@@ -1,0 +1,113 @@
+﻿<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>@ViewData["Title"] - Admin HoaHome</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
+    <style>
+
+        body {
+            background-color: #f8f9fa;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+
+        #sidebar {
+            width: 250px;
+            height: 100vh;
+            position: fixed;
+            background: #fff;
+            border-right: 1px solid #dee2e6;
+            z-index: 1000;
+        }
+
+        #main-content {
+            margin-left: 250px;
+            padding: 20px;
+        }
+
+        .sidebar-link {
+            display: block;
+            padding: 10px 20px;
+            color: #495057;
+            text-decoration: none;
+            font-weight: 500;
+        }
+
+            .sidebar-link:hover, .sidebar-link.active {
+                background-color: #e9ecef;
+                color: #0d6efd;
+                border-radius: 5px;
+                margin: 0 10px;
+            }
+
+            .sidebar-link i {
+                width: 25px;
+            }
+
+        .top-navbar {
+            background: #fff;
+            padding: 10px 20px;
+            border-bottom: 1px solid #dee2e6;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .stat-card {
+            background: #fff;
+            border: 1px solid #dee2e6;
+            border-radius: 8px;
+            padding: 20px;
+        }
+
+        .table-wrapper {
+            background: #fff;
+            border: 1px solid #dee2e6;
+            border-radius: 8px;
+            padding: 20px;
+            margin-top: 20px;
+        }
+
+    </style>
+</head>
+<body>
+    <div id="sidebar" class="d-flex flex-column py-3">
+        <div class="text-center mb-4">
+            <h4 class="fw-bold text-primary"><i class="fa-solid fa-couch"></i> HoaHome</h4>
+        </div>
+
+        <a href="/Admin/Home/Index" class="sidebar-link active"><i class="fa-solid fa-house"></i> Trang chủ</a>
+        <a href="/Admin/Products" class="sidebar-link"><i class="fa-solid fa-box"></i> Sản phẩm</a>
+        <a href="/Admin/OrderManager" class="sidebar-link"><i class="fa-solid fa-cart-shopping"></i> Đơn hàng</a>
+        <a href="/Admin/Users" class="sidebar-link"><i class="fa-solid fa-users"></i> Khách hàng</a>
+
+        <div class="mt-auto px-3">
+            <hr />
+            <a href="/Account/Logout" class="sidebar-link text-danger"><i class="fa-solid fa-right-from-bracket"></i> Đăng xuất</a>
+            <div class="d-flex align-items-center mt-3">
+                <img src="https://ui-avatars.com/api/?name=Admin" class="rounded-circle me-2" width="40">
+                <div>
+                    <h6 class="mb-0 fs-6">Admin Name</h6>
+                    <small class="text-muted">admin@hoahome.com</small>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div id="main-content">
+        <div class="top-navbar mb-4 rounded">
+            <div class="fw-bold text-muted">Bảng điều khiển > <span class="text-dark">@ViewData["Title"]</span></div>
+            <div class="d-flex">
+                <input type="text" class="form-control form-control-sm me-2" placeholder="Tìm kiếm...">
+                <button class="btn btn-outline-secondary btn-sm"><i class="fa-regular fa-calendar"></i> Hôm nay</button>
+            </div>
+        </div>
+
+        @RenderBody()
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>

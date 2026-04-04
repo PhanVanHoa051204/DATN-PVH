@@ -1,0 +1,53 @@
+﻿/* --- CSS DÙNG CHUNG TOÀN HỆ THỐNG --- */
+body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+/* Nút bấm đen chữ trắng chuẩn phong cách Minimalism */
+.btn-black {
+    background-color: #000;
+    color: #fff;
+    border-radius: 0;
+    padding: 10px 20px;
+    font-weight: bold;
+    font-size: 13px;
+    text-transform: uppercase;
+    border: 1px solid #000;
+    transition: all 0.3s ease;
+}
+
+    .btn-black:hover {
+        background-color: #fff;
+        color: #000;
+    }
+
+/* Tùy chỉnh Form Input vuông vức */
+.form-control {
+    border-radius: 0;
+    border: 1px solid #ccc;
+    padding: 10px;
+    font-size: 14px;
+}
+
+    .form-control:focus {
+        box-shadow: none;
+        border-color: #000;
+    }
+
+.form-label {
+    font-size: 13px;
+    font-weight: bold;
+}
+
+/* Tùy chỉnh Popup (Modal) */
+.modal-content {
+    border-radius: 0;
+    border: none;
+}
+
+.modal-title-custom {
+    font-size: 18px;
+    font-weight: bold;
+    text-transform: uppercase;
+    margin-bottom: 20px;
+}

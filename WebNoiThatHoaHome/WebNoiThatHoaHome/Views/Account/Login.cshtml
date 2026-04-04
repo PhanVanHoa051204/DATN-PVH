@@ -1,0 +1,36 @@
+﻿@model WebNoiThatHoaHome.Models.LoginViewModel
+@{
+    ViewData["Title"] = "Đăng nhập";
+}
+
+<div class="container mt-5">
+    <div class="row justify-content-center">
+        <div class="col-md-5">
+            <div class="card shadow-sm">
+                <div class="card-body p-4">
+                    <h3 class="text-center mb-4">Đăng nhập</h3>
+                    <form asp-action="Login" method="post">
+                        <div asp-validation-summary="ModelOnly" class="text-danger mb-3"></div>
+
+                        <div class="mb-3">
+                            <label class="form-label">Email</label>
+                            <input asp-for="Email" class="form-control" placeholder="Nhập email..." />
+                            <span asp-validation-for="Email" class="text-danger"></span>
+                        </div>
+
+                        <div class="mb-3">
+                            <label class="form-label">Mật khẩu</label>
+                            <input asp-for="Password" class="form-control" placeholder="Nhập mật khẩu..." />
+                            <span asp-validation-for="Password" class="text-danger"></span>
+                        </div>
+
+                        <button type="submit" class="btn btn-primary w-100">Đăng nhập</button>
+                    </form>
+                    <div class="text-center mt-3">
+                        <p>Chưa có tài khoản? <a href="/Account/Register">Đăng ký ngay</a></p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

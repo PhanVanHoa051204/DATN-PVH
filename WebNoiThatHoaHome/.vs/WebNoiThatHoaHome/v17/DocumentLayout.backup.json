@@ -1,0 +1,326 @@
+{
+  "Version": 1,
+  "WorkspaceRootPath": "D:\\\u0110\u1ED3 \u00E1n t\u1ED1t nghi\u1EC7p PVH\\WebNoiThatHoaHome\\",
+  "Documents": [
+    {
+      "AbsoluteMoniker": "D:0:0:{116CBB3C-6ED3-42F3-A577-A80A6F16F407}|WebNoiThatHoaHome\\WebNoiThatHoaHome.csproj|d:\\\u0111\u1ED3 \u00E1n t\u1ED1t nghi\u1EC7p pvh\\webnoithathoahome\\webnoithathoahome\\controllers\\accountcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{116CBB3C-6ED3-42F3-A577-A80A6F16F407}|WebNoiThatHoaHome\\WebNoiThatHoaHome.csproj|solutionrelative:webnoithathoahome\\controllers\\accountcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{116CBB3C-6ED3-42F3-A577-A80A6F16F407}|WebNoiThatHoaHome\\WebNoiThatHoaHome.csproj|d:\\\u0111\u1ED3 \u00E1n t\u1ED1t nghi\u1EC7p pvh\\webnoithathoahome\\webnoithathoahome\\views\\shared\\_layout.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{116CBB3C-6ED3-42F3-A577-A80A6F16F407}|WebNoiThatHoaHome\\WebNoiThatHoaHome.csproj|solutionrelative:webnoithathoahome\\views\\shared\\_layout.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{116CBB3C-6ED3-42F3-A577-A80A6F16F407}|WebNoiThatHoaHome\\WebNoiThatHoaHome.csproj|d:\\\u0111\u1ED3 \u00E1n t\u1ED1t nghi\u1EC7p pvh\\webnoithathoahome\\webnoithathoahome\\views\\account\\login.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{116CBB3C-6ED3-42F3-A577-A80A6F16F407}|WebNoiThatHoaHome\\WebNoiThatHoaHome.csproj|solutionrelative:webnoithathoahome\\views\\account\\login.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{116CBB3C-6ED3-42F3-A577-A80A6F16F407}|WebNoiThatHoaHome\\WebNoiThatHoaHome.csproj|d:\\\u0111\u1ED3 \u00E1n t\u1ED1t nghi\u1EC7p pvh\\webnoithathoahome\\webnoithathoahome\\views\\home\\index.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{116CBB3C-6ED3-42F3-A577-A80A6F16F407}|WebNoiThatHoaHome\\WebNoiThatHoaHome.csproj|solutionrelative:webnoithathoahome\\views\\home\\index.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{116CBB3C-6ED3-42F3-A577-A80A6F16F407}|WebNoiThatHoaHome\\WebNoiThatHoaHome.csproj|d:\\\u0111\u1ED3 \u00E1n t\u1ED1t nghi\u1EC7p pvh\\webnoithathoahome\\webnoithathoahome\\views\\home\\index.cshtml.css||{A5401142-F49D-43DB-90B1-F57BA349E55C}",
+      "RelativeMoniker": "D:0:0:{116CBB3C-6ED3-42F3-A577-A80A6F16F407}|WebNoiThatHoaHome\\WebNoiThatHoaHome.csproj|solutionrelative:webnoithathoahome\\views\\home\\index.cshtml.css||{A5401142-F49D-43DB-90B1-F57BA349E55C}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{116CBB3C-6ED3-42F3-A577-A80A6F16F407}|WebNoiThatHoaHome\\WebNoiThatHoaHome.csproj|d:\\\u0111\u1ED3 \u00E1n t\u1ED1t nghi\u1EC7p pvh\\webnoithathoahome\\webnoithathoahome\\views\\shared\\_layout.cshtml.css||{A5401142-F49D-43DB-90B1-F57BA349E55C}",
+      "RelativeMoniker": "D:0:0:{116CBB3C-6ED3-42F3-A577-A80A6F16F407}|WebNoiThatHoaHome\\WebNoiThatHoaHome.csproj|solutionrelative:webnoithathoahome\\views\\shared\\_layout.cshtml.css||{A5401142-F49D-43DB-90B1-F57BA349E55C}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{116CBB3C-6ED3-42F3-A577-A80A6F16F407}|WebNoiThatHoaHome\\WebNoiThatHoaHome.csproj|d:\\\u0111\u1ED3 \u00E1n t\u1ED1t nghi\u1EC7p pvh\\webnoithathoahome\\webnoithathoahome\\wwwroot\\css\\site.css||{A5401142-F49D-43DB-90B1-F57BA349E55C}",
+      "RelativeMoniker": "D:0:0:{116CBB3C-6ED3-42F3-A577-A80A6F16F407}|WebNoiThatHoaHome\\WebNoiThatHoaHome.csproj|solutionrelative:webnoithathoahome\\wwwroot\\css\\site.css||{A5401142-F49D-43DB-90B1-F57BA349E55C}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{116CBB3C-6ED3-42F3-A577-A80A6F16F407}|WebNoiThatHoaHome\\WebNoiThatHoaHome.csproj|d:\\\u0111\u1ED3 \u00E1n t\u1ED1t nghi\u1EC7p pvh\\webnoithathoahome\\webnoithathoahome\\views\\home\\privacy.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{116CBB3C-6ED3-42F3-A577-A80A6F16F407}|WebNoiThatHoaHome\\WebNoiThatHoaHome.csproj|solutionrelative:webnoithathoahome\\views\\home\\privacy.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{116CBB3C-6ED3-42F3-A577-A80A6F16F407}|WebNoiThatHoaHome\\WebNoiThatHoaHome.csproj|d:\\\u0111\u1ED3 \u00E1n t\u1ED1t nghi\u1EC7p pvh\\webnoithathoahome\\webnoithathoahome\\views\\account\\register.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{116CBB3C-6ED3-42F3-A577-A80A6F16F407}|WebNoiThatHoaHome\\WebNoiThatHoaHome.csproj|solutionrelative:webnoithathoahome\\views\\account\\register.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{116CBB3C-6ED3-42F3-A577-A80A6F16F407}|WebNoiThatHoaHome\\WebNoiThatHoaHome.csproj|d:\\\u0111\u1ED3 \u00E1n t\u1ED1t nghi\u1EC7p pvh\\webnoithathoahome\\webnoithathoahome\\areas\\admin\\views\\shared\\_layout.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{116CBB3C-6ED3-42F3-A577-A80A6F16F407}|WebNoiThatHoaHome\\WebNoiThatHoaHome.csproj|solutionrelative:webnoithathoahome\\areas\\admin\\views\\shared\\_layout.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{116CBB3C-6ED3-42F3-A577-A80A6F16F407}|WebNoiThatHoaHome\\WebNoiThatHoaHome.csproj|d:\\\u0111\u1ED3 \u00E1n t\u1ED1t nghi\u1EC7p pvh\\webnoithathoahome\\webnoithathoahome\\areas\\admin\\views\\home\\index.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{116CBB3C-6ED3-42F3-A577-A80A6F16F407}|WebNoiThatHoaHome\\WebNoiThatHoaHome.csproj|solutionrelative:webnoithathoahome\\areas\\admin\\views\\home\\index.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{116CBB3C-6ED3-42F3-A577-A80A6F16F407}|WebNoiThatHoaHome\\WebNoiThatHoaHome.csproj|d:\\\u0111\u1ED3 \u00E1n t\u1ED1t nghi\u1EC7p pvh\\webnoithathoahome\\webnoithathoahome\\areas\\admin\\controllers\\homecontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{116CBB3C-6ED3-42F3-A577-A80A6F16F407}|WebNoiThatHoaHome\\WebNoiThatHoaHome.csproj|solutionrelative:webnoithathoahome\\areas\\admin\\controllers\\homecontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{116CBB3C-6ED3-42F3-A577-A80A6F16F407}|WebNoiThatHoaHome\\WebNoiThatHoaHome.csproj|d:\\\u0111\u1ED3 \u00E1n t\u1ED1t nghi\u1EC7p pvh\\webnoithathoahome\\webnoithathoahome\\areas\\admin\\views\\shared\\_viewstart.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{116CBB3C-6ED3-42F3-A577-A80A6F16F407}|WebNoiThatHoaHome\\WebNoiThatHoaHome.csproj|solutionrelative:webnoithathoahome\\areas\\admin\\views\\shared\\_viewstart.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{116CBB3C-6ED3-42F3-A577-A80A6F16F407}|WebNoiThatHoaHome\\WebNoiThatHoaHome.csproj|d:\\\u0111\u1ED3 \u00E1n t\u1ED1t nghi\u1EC7p pvh\\webnoithathoahome\\webnoithathoahome\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{116CBB3C-6ED3-42F3-A577-A80A6F16F407}|WebNoiThatHoaHome\\WebNoiThatHoaHome.csproj|solutionrelative:webnoithathoahome\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{116CBB3C-6ED3-42F3-A577-A80A6F16F407}|WebNoiThatHoaHome\\WebNoiThatHoaHome.csproj|d:\\\u0111\u1ED3 \u00E1n t\u1ED1t nghi\u1EC7p pvh\\webnoithathoahome\\webnoithathoahome\\appsettings.json||{90A6B3A7-C1A3-4009-A288-E2FF89E96FA0}",
+      "RelativeMoniker": "D:0:0:{116CBB3C-6ED3-42F3-A577-A80A6F16F407}|WebNoiThatHoaHome\\WebNoiThatHoaHome.csproj|solutionrelative:webnoithathoahome\\appsettings.json||{90A6B3A7-C1A3-4009-A288-E2FF89E96FA0}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{116CBB3C-6ED3-42F3-A577-A80A6F16F407}|WebNoiThatHoaHome\\WebNoiThatHoaHome.csproj|d:\\\u0111\u1ED3 \u00E1n t\u1ED1t nghi\u1EC7p pvh\\webnoithathoahome\\webnoithathoahome\\appsettings.development.json||{90A6B3A7-C1A3-4009-A288-E2FF89E96FA0}",
+      "RelativeMoniker": "D:0:0:{116CBB3C-6ED3-42F3-A577-A80A6F16F407}|WebNoiThatHoaHome\\WebNoiThatHoaHome.csproj|solutionrelative:webnoithathoahome\\appsettings.development.json||{90A6B3A7-C1A3-4009-A288-E2FF89E96FA0}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{116CBB3C-6ED3-42F3-A577-A80A6F16F407}|WebNoiThatHoaHome\\WebNoiThatHoaHome.csproj|d:\\\u0111\u1ED3 \u00E1n t\u1ED1t nghi\u1EC7p pvh\\webnoithathoahome\\webnoithathoahome\\models\\accountviewmodels.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{116CBB3C-6ED3-42F3-A577-A80A6F16F407}|WebNoiThatHoaHome\\WebNoiThatHoaHome.csproj|solutionrelative:webnoithathoahome\\models\\accountviewmodels.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{116CBB3C-6ED3-42F3-A577-A80A6F16F407}|WebNoiThatHoaHome\\WebNoiThatHoaHome.csproj|d:\\\u0111\u1ED3 \u00E1n t\u1ED1t nghi\u1EC7p pvh\\webnoithathoahome\\webnoithathoahome\\models\\hoahomedbcontext.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{116CBB3C-6ED3-42F3-A577-A80A6F16F407}|WebNoiThatHoaHome\\WebNoiThatHoaHome.csproj|solutionrelative:webnoithathoahome\\models\\hoahomedbcontext.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    }
+  ],
+  "DocumentGroupContainers": [
+    {
+      "Orientation": 0,
+      "VerticalTabListWidth": 256,
+      "DocumentGroups": [
+        {
+          "DockedWidth": 200,
+          "SelectedChildIndex": 6,
+          "Children": [
+            {
+              "$type": "Document",
+              "DocumentIndex": 4,
+              "Title": "Index.cshtml.css",
+              "DocumentMoniker": "D:\\\u0110\u1ED3 \u00E1n t\u1ED1t nghi\u1EC7p PVH\\WebNoiThatHoaHome\\WebNoiThatHoaHome\\Views\\Home\\Index.cshtml.css",
+              "RelativeDocumentMoniker": "WebNoiThatHoaHome\\Views\\Home\\Index.cshtml.css",
+              "ToolTip": "D:\\\u0110\u1ED3 \u00E1n t\u1ED1t nghi\u1EC7p PVH\\WebNoiThatHoaHome\\WebNoiThatHoaHome\\Views\\Home\\Index.cshtml.css",
+              "RelativeToolTip": "WebNoiThatHoaHome\\Views\\Home\\Index.cshtml.css",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAABUAAAABAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003000|",
+              "WhenOpened": "2026-04-02T17:03:27.918Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 7,
+              "Title": "Privacy.cshtml",
+              "DocumentMoniker": "D:\\\u0110\u1ED3 \u00E1n t\u1ED1t nghi\u1EC7p PVH\\WebNoiThatHoaHome\\WebNoiThatHoaHome\\Views\\Home\\Privacy.cshtml",
+              "RelativeDocumentMoniker": "WebNoiThatHoaHome\\Views\\Home\\Privacy.cshtml",
+              "ToolTip": "D:\\\u0110\u1ED3 \u00E1n t\u1ED1t nghi\u1EC7p PVH\\WebNoiThatHoaHome\\WebNoiThatHoaHome\\Views\\Home\\Privacy.cshtml",
+              "RelativeToolTip": "WebNoiThatHoaHome\\Views\\Home\\Privacy.cshtml",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
+              "WhenOpened": "2026-04-02T17:02:34.941Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 3,
+              "Title": "Index.cshtml",
+              "DocumentMoniker": "D:\\\u0110\u1ED3 \u00E1n t\u1ED1t nghi\u1EC7p PVH\\WebNoiThatHoaHome\\WebNoiThatHoaHome\\Views\\Home\\Index.cshtml",
+              "RelativeDocumentMoniker": "WebNoiThatHoaHome\\Views\\Home\\Index.cshtml",
+              "ToolTip": "D:\\\u0110\u1ED3 \u00E1n t\u1ED1t nghi\u1EC7p PVH\\WebNoiThatHoaHome\\WebNoiThatHoaHome\\Views\\Home\\Index.cshtml",
+              "RelativeToolTip": "WebNoiThatHoaHome\\Views\\Home\\Index.cshtml",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAsAAAAGAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
+              "WhenOpened": "2026-04-02T17:02:33.982Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 10,
+              "Title": "Index.cshtml",
+              "DocumentMoniker": "D:\\\u0110\u1ED3 \u00E1n t\u1ED1t nghi\u1EC7p PVH\\WebNoiThatHoaHome\\WebNoiThatHoaHome\\Areas\\Admin\\Views\\Home\\Index.cshtml",
+              "RelativeDocumentMoniker": "WebNoiThatHoaHome\\Areas\\Admin\\Views\\Home\\Index.cshtml",
+              "ToolTip": "D:\\\u0110\u1ED3 \u00E1n t\u1ED1t nghi\u1EC7p PVH\\WebNoiThatHoaHome\\WebNoiThatHoaHome\\Areas\\Admin\\Views\\Home\\Index.cshtml",
+              "RelativeToolTip": "WebNoiThatHoaHome\\Areas\\Admin\\Views\\Home\\Index.cshtml",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAEsAAAAGAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
+              "WhenOpened": "2026-04-02T15:32:34.175Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 12,
+              "Title": "_ViewStart.cshtml",
+              "DocumentMoniker": "D:\\\u0110\u1ED3 \u00E1n t\u1ED1t nghi\u1EC7p PVH\\WebNoiThatHoaHome\\WebNoiThatHoaHome\\Areas\\Admin\\Views\\Shared\\_ViewStart.cshtml",
+              "RelativeDocumentMoniker": "WebNoiThatHoaHome\\Areas\\Admin\\Views\\Shared\\_ViewStart.cshtml",
+              "ToolTip": "D:\\\u0110\u1ED3 \u00E1n t\u1ED1t nghi\u1EC7p PVH\\WebNoiThatHoaHome\\WebNoiThatHoaHome\\Areas\\Admin\\Views\\Shared\\_ViewStart.cshtml",
+              "RelativeToolTip": "WebNoiThatHoaHome\\Areas\\Admin\\Views\\Shared\\_ViewStart.cshtml",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAIAAAABAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
+              "WhenOpened": "2026-04-02T14:14:57.59Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 9,
+              "Title": "_Layout.cshtml",
+              "DocumentMoniker": "D:\\\u0110\u1ED3 \u00E1n t\u1ED1t nghi\u1EC7p PVH\\WebNoiThatHoaHome\\WebNoiThatHoaHome\\Areas\\Admin\\Views\\Shared\\_Layout.cshtml",
+              "RelativeDocumentMoniker": "WebNoiThatHoaHome\\Areas\\Admin\\Views\\Shared\\_Layout.cshtml",
+              "ToolTip": "D:\\\u0110\u1ED3 \u00E1n t\u1ED1t nghi\u1EC7p PVH\\WebNoiThatHoaHome\\WebNoiThatHoaHome\\Areas\\Admin\\Views\\Shared\\_Layout.cshtml",
+              "RelativeToolTip": "WebNoiThatHoaHome\\Areas\\Admin\\Views\\Shared\\_Layout.cshtml",
+              "ViewState": "AgIAADkAAAAAAAAAAAAAABgAAAAXAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
+              "WhenOpened": "2026-04-02T14:14:20.377Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 0,
+              "Title": "AccountController.cs",
+              "DocumentMoniker": "D:\\\u0110\u1ED3 \u00E1n t\u1ED1t nghi\u1EC7p PVH\\WebNoiThatHoaHome\\WebNoiThatHoaHome\\Controllers\\AccountController.cs",
+              "RelativeDocumentMoniker": "WebNoiThatHoaHome\\Controllers\\AccountController.cs",
+              "ToolTip": "D:\\\u0110\u1ED3 \u00E1n t\u1ED1t nghi\u1EC7p PVH\\WebNoiThatHoaHome\\WebNoiThatHoaHome\\Controllers\\AccountController.cs",
+              "RelativeToolTip": "WebNoiThatHoaHome\\Controllers\\AccountController.cs",
+              "ViewState": "AgIAADUAAAAAAAAAAAAwwEoAAAAyAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-04-02T16:17:56.392Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 1,
+              "Title": "_Layout.cshtml",
+              "DocumentMoniker": "D:\\\u0110\u1ED3 \u00E1n t\u1ED1t nghi\u1EC7p PVH\\WebNoiThatHoaHome\\WebNoiThatHoaHome\\Views\\Shared\\_Layout.cshtml",
+              "RelativeDocumentMoniker": "WebNoiThatHoaHome\\Views\\Shared\\_Layout.cshtml",
+              "ToolTip": "D:\\\u0110\u1ED3 \u00E1n t\u1ED1t nghi\u1EC7p PVH\\WebNoiThatHoaHome\\WebNoiThatHoaHome\\Views\\Shared\\_Layout.cshtml",
+              "RelativeToolTip": "WebNoiThatHoaHome\\Views\\Shared\\_Layout.cshtml",
+              "ViewState": "AgIAAGYAAAAAAAAAAAAcwKUAAAAHAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
+              "WhenOpened": "2026-04-02T17:05:00.322Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 2,
+              "Title": "Login.cshtml",
+              "DocumentMoniker": "D:\\\u0110\u1ED3 \u00E1n t\u1ED1t nghi\u1EC7p PVH\\WebNoiThatHoaHome\\WebNoiThatHoaHome\\Views\\Account\\Login.cshtml",
+              "RelativeDocumentMoniker": "WebNoiThatHoaHome\\Views\\Account\\Login.cshtml",
+              "ToolTip": "D:\\\u0110\u1ED3 \u00E1n t\u1ED1t nghi\u1EC7p PVH\\WebNoiThatHoaHome\\WebNoiThatHoaHome\\Views\\Account\\Login.cshtml",
+              "RelativeToolTip": "WebNoiThatHoaHome\\Views\\Account\\Login.cshtml",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAB4AAAAaAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
+              "WhenOpened": "2026-04-02T16:22:10.104Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 6,
+              "Title": "site.css",
+              "DocumentMoniker": "D:\\\u0110\u1ED3 \u00E1n t\u1ED1t nghi\u1EC7p PVH\\WebNoiThatHoaHome\\WebNoiThatHoaHome\\wwwroot\\css\\site.css",
+              "RelativeDocumentMoniker": "WebNoiThatHoaHome\\wwwroot\\css\\site.css",
+              "ToolTip": "D:\\\u0110\u1ED3 \u00E1n t\u1ED1t nghi\u1EC7p PVH\\WebNoiThatHoaHome\\WebNoiThatHoaHome\\wwwroot\\css\\site.css",
+              "RelativeToolTip": "WebNoiThatHoaHome\\wwwroot\\css\\site.css",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAB8AAAAZAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003000|",
+              "WhenOpened": "2026-04-02T17:04:11.097Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 5,
+              "Title": "_Layout.cshtml.css",
+              "DocumentMoniker": "D:\\\u0110\u1ED3 \u00E1n t\u1ED1t nghi\u1EC7p PVH\\WebNoiThatHoaHome\\WebNoiThatHoaHome\\Views\\Shared\\_Layout.cshtml.css",
+              "RelativeDocumentMoniker": "WebNoiThatHoaHome\\Views\\Shared\\_Layout.cshtml.css",
+              "ToolTip": "D:\\\u0110\u1ED3 \u00E1n t\u1ED1t nghi\u1EC7p PVH\\WebNoiThatHoaHome\\WebNoiThatHoaHome\\Views\\Shared\\_Layout.cshtml.css",
+              "RelativeToolTip": "WebNoiThatHoaHome\\Views\\Shared\\_Layout.cshtml.css",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAABwAAAAFAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003000|",
+              "WhenOpened": "2026-04-02T17:04:35.522Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 15,
+              "Title": "appsettings.Development.json",
+              "DocumentMoniker": "D:\\\u0110\u1ED3 \u00E1n t\u1ED1t nghi\u1EC7p PVH\\WebNoiThatHoaHome\\WebNoiThatHoaHome\\appsettings.Development.json",
+              "RelativeDocumentMoniker": "WebNoiThatHoaHome\\appsettings.Development.json",
+              "ToolTip": "D:\\\u0110\u1ED3 \u00E1n t\u1ED1t nghi\u1EC7p PVH\\WebNoiThatHoaHome\\WebNoiThatHoaHome\\appsettings.Development.json",
+              "RelativeToolTip": "WebNoiThatHoaHome\\appsettings.Development.json",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001642|",
+              "WhenOpened": "2026-04-02T14:06:35.309Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 13,
+              "Title": "Program.cs",
+              "DocumentMoniker": "D:\\\u0110\u1ED3 \u00E1n t\u1ED1t nghi\u1EC7p PVH\\WebNoiThatHoaHome\\WebNoiThatHoaHome\\Program.cs",
+              "RelativeDocumentMoniker": "WebNoiThatHoaHome\\Program.cs",
+              "ToolTip": "D:\\\u0110\u1ED3 \u00E1n t\u1ED1t nghi\u1EC7p PVH\\WebNoiThatHoaHome\\WebNoiThatHoaHome\\Program.cs",
+              "RelativeToolTip": "WebNoiThatHoaHome\\Program.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAYAAAAxAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-04-02T14:15:48.474Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 8,
+              "Title": "Register.cshtml",
+              "DocumentMoniker": "D:\\\u0110\u1ED3 \u00E1n t\u1ED1t nghi\u1EC7p PVH\\WebNoiThatHoaHome\\WebNoiThatHoaHome\\Views\\Account\\Register.cshtml",
+              "RelativeDocumentMoniker": "WebNoiThatHoaHome\\Views\\Account\\Register.cshtml",
+              "ToolTip": "D:\\\u0110\u1ED3 \u00E1n t\u1ED1t nghi\u1EC7p PVH\\WebNoiThatHoaHome\\WebNoiThatHoaHome\\Views\\Account\\Register.cshtml",
+              "RelativeToolTip": "WebNoiThatHoaHome\\Views\\Account\\Register.cshtml",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAA8AAABMAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
+              "WhenOpened": "2026-04-02T16:22:39.166Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 14,
+              "Title": "appsettings.json",
+              "DocumentMoniker": "D:\\\u0110\u1ED3 \u00E1n t\u1ED1t nghi\u1EC7p PVH\\WebNoiThatHoaHome\\WebNoiThatHoaHome\\appsettings.json",
+              "RelativeDocumentMoniker": "WebNoiThatHoaHome\\appsettings.json",
+              "ToolTip": "D:\\\u0110\u1ED3 \u00E1n t\u1ED1t nghi\u1EC7p PVH\\WebNoiThatHoaHome\\WebNoiThatHoaHome\\appsettings.json",
+              "RelativeToolTip": "WebNoiThatHoaHome\\appsettings.json",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAsAAAABAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001642|",
+              "WhenOpened": "2026-04-02T14:04:59.691Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 11,
+              "Title": "HomeController.cs",
+              "DocumentMoniker": "D:\\\u0110\u1ED3 \u00E1n t\u1ED1t nghi\u1EC7p PVH\\WebNoiThatHoaHome\\WebNoiThatHoaHome\\Areas\\Admin\\Controllers\\HomeController.cs",
+              "RelativeDocumentMoniker": "WebNoiThatHoaHome\\Areas\\Admin\\Controllers\\HomeController.cs",
+              "ToolTip": "D:\\\u0110\u1ED3 \u00E1n t\u1ED1t nghi\u1EC7p PVH\\WebNoiThatHoaHome\\WebNoiThatHoaHome\\Areas\\Admin\\Controllers\\HomeController.cs",
+              "RelativeToolTip": "WebNoiThatHoaHome\\Areas\\Admin\\Controllers\\HomeController.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAA8AAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-04-02T15:43:44.482Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 16,
+              "Title": "AccountViewModels.cs",
+              "DocumentMoniker": "D:\\\u0110\u1ED3 \u00E1n t\u1ED1t nghi\u1EC7p PVH\\WebNoiThatHoaHome\\WebNoiThatHoaHome\\Models\\AccountViewModels.cs",
+              "RelativeDocumentMoniker": "WebNoiThatHoaHome\\Models\\AccountViewModels.cs",
+              "ToolTip": "D:\\\u0110\u1ED3 \u00E1n t\u1ED1t nghi\u1EC7p PVH\\WebNoiThatHoaHome\\WebNoiThatHoaHome\\Models\\AccountViewModels.cs",
+              "RelativeToolTip": "WebNoiThatHoaHome\\Models\\AccountViewModels.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAA4AAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-04-02T16:17:06.558Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 17,
+              "Title": "HoaHomeDbContext.cs",
+              "DocumentMoniker": "D:\\\u0110\u1ED3 \u00E1n t\u1ED1t nghi\u1EC7p PVH\\WebNoiThatHoaHome\\WebNoiThatHoaHome\\Models\\HoaHomeDbContext.cs",
+              "RelativeDocumentMoniker": "WebNoiThatHoaHome\\Models\\HoaHomeDbContext.cs",
+              "ToolTip": "D:\\\u0110\u1ED3 \u00E1n t\u1ED1t nghi\u1EC7p PVH\\WebNoiThatHoaHome\\WebNoiThatHoaHome\\Models\\HoaHomeDbContext.cs",
+              "RelativeToolTip": "WebNoiThatHoaHome\\Models\\HoaHomeDbContext.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAoAAAAFAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-04-02T14:05:45.156Z",
+              "EditorCaption": ""
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,76 @@
+﻿@{
+    ViewData["Title"] = "Tổng quan";
+}
+
+<div class="row g-3">
+    <div class="col-md-4">
+        <div class="stat-card">
+            <div class="text-muted fw-bold mb-2">Người dùng mới</div>
+            <div class="d-flex justify-content-between align-items-center">
+                <h2 class="mb-0">1,245</h2>
+                <span class="badge bg-success rounded-pill">+15%</span>
+            </div>
+            <small class="text-muted">30 ngày qua</small>
+        </div>
+    </div>
+
+    <div class="col-md-4">
+        <div class="stat-card">
+            <div class="text-muted fw-bold mb-2">Đơn hàng mới</div>
+            <div class="d-flex justify-content-between align-items-center">
+                <h2 class="mb-0">325</h2>
+                <span class="badge bg-danger rounded-pill">-5%</span>
+            </div>
+            <small class="text-muted">30 ngày qua</small>
+        </div>
+    </div>
+
+    <div class="col-md-4">
+        <div class="stat-card">
+            <div class="text-muted fw-bold mb-2">Doanh thu</div>
+            <div class="d-flex justify-content-between align-items-center">
+                <h2 class="mb-0">150M ₫</h2>
+                <span class="badge bg-success rounded-pill">+20%</span>
+            </div>
+            <small class="text-muted">30 ngày qua</small>
+        </div>
+    </div>
+</div>
+
+<div class="table-wrapper">
+    <h5 class="fw-bold mb-3">Thông tin đơn hàng gần đây</h5>
+    <table class="table table-hover align-middle">
+        <thead class="table-light">
+            <tr>
+                <th>Mã ĐH</th>
+                <th>Khách hàng</th>
+                <th>Ngày đặt</th>
+                <th>Tổng tiền</th>
+                <th>Trạng thái</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td>#ORD-001</td>
+                <td>Nguyễn Văn A</td>
+                <td>12/04/2026</td>
+                <td>4,500,000 ₫</td>
+                <td><span class="badge bg-warning text-dark">Chờ xác nhận</span></td>
+            </tr>
+            <tr>
+                <td>#ORD-002</td>
+                <td>Trần Thị B</td>
+                <td>11/04/2026</td>
+                <td>12,000,000 ₫</td>
+                <td><span class="badge bg-success">Đã hoàn thành</span></td>
+            </tr>
+            <tr>
+                <td>#ORD-003</td>
+                <td>Lê Văn C</td>
+                <td>10/04/2026</td>
+                <td>2,300,000 ₫</td>
+                <td><span class="badge bg-primary">Đang giao</span></td>
+            </tr>
+        </tbody>
+    </table>
+</div>

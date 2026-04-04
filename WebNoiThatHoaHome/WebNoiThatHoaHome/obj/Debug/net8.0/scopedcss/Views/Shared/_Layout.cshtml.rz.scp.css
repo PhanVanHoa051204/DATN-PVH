@@ -1,0 +1,40 @@
+/* --- CSS RIÊNG CHO LAYOUT (HEADER/FOOTER) --- */
+.top-bar[b-2zdqnlhqql] {
+    font-size: 12px;
+    border-bottom: 1px solid #eaeaea;
+    padding: 5px 0;
+}
+
+.navbar[b-2zdqnlhqql] {
+    padding: 15px 0;
+    border-bottom: 1px solid #eaeaea;
+}
+
+.navbar-brand[b-2zdqnlhqql] {
+    font-size: 28px;
+    font-weight: bold;
+    letter-spacing: 2px;
+}
+
+.nav-link[b-2zdqnlhqql] {
+    font-size: 13px;
+    font-weight: 600;
+    color: #333 !important;
+    text-transform: uppercase;
+    margin: 0 10px;
+}
+
+    .nav-link:hover[b-2zdqnlhqql] {
+        color: #888 !important;
+    }
+
+.nav-icons a[b-2zdqnlhqql] {
+    color: #333;
+    margin-left: 15px;
+    font-size: 18px;
+    text-decoration: none;
+}
+
+.divider-vertical[b-2zdqnlhqql] {
+    border-right: 1px solid #eaeaea;
+}
