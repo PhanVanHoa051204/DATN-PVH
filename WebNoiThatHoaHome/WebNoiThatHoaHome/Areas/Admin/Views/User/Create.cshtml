@@ -1,0 +1,49 @@
+﻿@model WebNoiThatHoaHome.Models.UserCreateViewModel
+@{
+    ViewData["Title"] = "Thêm Người dùng";
+    Layout = "~/Areas/Admin/Views/Shared/_Layout.cshtml";
+}
+
+<div class="row">
+    <div class="col-md-8 mx-auto">
+        <div class="card shadow-sm border-0 rounded-3">
+            <div class="card-header bg-white py-3">
+                <h5 class="mb-0 fw-bold"><i class="fa-solid fa-user-plus text-primary me-2"></i> Thêm Người dùng mới</h5>
+            </div>
+            <div class="card-body p-4">
+                <form asp-action="Create" method="post">
+                    <div class="mb-3">
+                        <label class="form-label fw-bold">Họ và tên *</label>
+                        <input asp-for="FullName" class="form-control" placeholder="Nhập họ tên đầy đủ..." required />
+                        <span asp-validation-for="FullName" class="text-danger"></span>
+                    </div>
+
+                    <div class="mb-3">
+                        <label class="form-label fw-bold">Địa chỉ Email *</label>
+                        <input asp-for="Email" type="email" class="form-control" placeholder="name@example.com" required />
+                        <span asp-validation-for="Email" class="text-danger"></span>
+                    </div>
+
+                    <div class="row mb-4">
+                        <div class="col-md-6">
+                            <label class="form-label fw-bold">Mật khẩu *</label>
+                            <input asp-for="Password" type="password" class="form-control" required />
+                            <span asp-validation-for="Password" class="text-danger"></span>
+                        </div>
+                        <div class="col-md-6">
+                            <label class="form-label fw-bold">Vai trò *</label>
+                            <select asp-for="RoleId" asp-items="Model.Roles" class="form-select" required>
+                                <option value="">-- Chọn quyền hạn --</option>
+                            </select>
+                        </div>
+                    </div>
+
+                    <div class="d-flex justify-content-end">
+                        <a href="/Admin/User/Index" class="btn btn-outline-secondary me-2">Hủy bỏ</a>
+                        <button type="submit" class="btn btn-primary fw-bold"><i class="fa-solid fa-floppy-disk me-1"></i> Lưu thông tin</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>

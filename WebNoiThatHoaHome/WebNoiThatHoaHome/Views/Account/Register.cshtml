@@ -34,7 +34,14 @@
                             <span asp-validation-for="ConfirmPassword" class="text-danger"></span>
                         </div>
 
-                        <button type="submit" class="btn btn-success w-100">Đăng ký</button>
+                        <button type="submit" class="btn btn-dark text-white w-100 mt-3">ĐĂNG KÝ</button>
+
+                        @if (TempData["RegisterError"] != null)
+                        {
+                            <p class="text-danger text-center mt-2 mb-0 fw-bold error-trigger" style="font-size: 14px;">
+                                <i class="fa-solid fa-circle-exclamation"></i> @TempData["RegisterError"]
+                            </p>
+                        }
                     </form>
                     <div class="text-center mt-3">
                         <p>Đã có tài khoản? <a href="/Account/Login">Đăng nhập</a></p>

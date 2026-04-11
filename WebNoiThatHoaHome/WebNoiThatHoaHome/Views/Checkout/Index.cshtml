@@ -1,0 +1,154 @@
+﻿@model WebNoiThatHoaHome.Models.User
+@{
+    ViewData["Title"] = "Thanh toán";
+    decimal totalCartPrice = 0;
+}
+
+<div class="container my-5">
+    <form action="/Checkout/PlaceOrder" method="post">
+        <div class="row">
+
+            <div class="col-lg-7 pe-lg-5 mb-4">
+                <h5 class="fw-bold mb-4 text-uppercase">Địa chỉ giao hàng</h5>
+
+                <div class="mb-3">
+                    <label class="form-label text-muted" style="font-size: 13px;">Họ và tên *</label>
+                    <input type="text" class="form-control rounded-0" name="CustomerName" value="@Model.FullName" required>
+                </div>
+
+                <div class="row mb-3">
+                    <div class="col-md-6 mb-3 mb-md-0">
+                        <label class="form-label text-muted" style="font-size: 13px;">Số điện thoại *</label>
+                        <input type="text" class="form-control rounded-0" name="Phone" value="@Model.Phone" required>
+                    </div>
+                    <div class="col-md-6">
+                        <label class="form-label text-muted" style="font-size: 13px;">Địa chỉ email (tuỳ chọn)</label>
+                        <input type="email" class="form-control rounded-0 bg-light" value="@Model.Email" readonly>
+                    </div>
+                </div>
+
+                <div class="row mb-3">
+                    <div class="col-md-6 mb-3 mb-md-0">
+                        <label class="form-label text-muted" style="font-size: 13px;">Tỉnh / Thành phố *</label>
+                        <select class="form-select rounded-0" name="City" id="cityDropdown" required>
+                            <option value="">Chọn Tỉnh/Thành phố...</option>
+                        </select>
+                    </div>
+                    <div class="col-md-6">
+                        <label class="form-label text-muted" style="font-size: 13px;">Phường/Xã *</label>
+                        <select class="form-select rounded-0" name="Ward" id="districtDropdown" required>
+                            <option value="">Chọn Quận/Huyện...</option>
+                        </select>
+                    </div>
+                </div>
+
+                <div class="mb-5">
+                    <label class="form-label text-muted" style="font-size: 13px;">Địa chỉ chi tiết *</label>
+                    <input type="text" class="form-control rounded-0" name="AddressDetail" placeholder="Số nhà, tên đường..." required>
+                </div>
+
+                <h5 class="fw-bold mb-4 text-uppercase">Thông tin thêm</h5>
+                <div class="mb-5">
+                    <label class="form-label text-muted" style="font-size: 13px;">Lưu ý cho đơn hàng (tuỳ chọn)</label>
+                    <textarea class="form-control rounded-0" name="OrderNote" rows="3" placeholder="Ví dụ: Giao hàng vào giờ hành chính..."></textarea>
+                </div>
+
+                <div class="payment-methods mb-4">
+                    <h6 class="fw-bold border-bottom pb-2">Phương thức thanh toán</h6>
+                    <div class="form-check mb-2">
+                        <input class="form-check-input" type="radio" name="paymentMethod" id="paymentCOD" value="COD" checked>
+                        <label class="form-check-label" for="paymentCOD">Thanh toán khi nhận hàng (COD)</label>
+                    </div>
+                    <div class="form-check">
+                        <input class="form-check-input" type="radio" name="paymentMethod" id="paymentVNPAY" value="BANK">
+                        <label class="form-check-label" for="paymentVNPAY">Thanh toán qua VNPAY (Ngân hàng/QR)</label>
+                    </div>
+                </div>
+
+            </div>
+
+            <div class="col-lg-5">
+                <div class="bg-light p-4 rounded-0 sticky-top" style="top: 100px;">
+                    <h5 class="fw-bold mb-4 text-uppercase border-bottom pb-3">Tóm tắt đơn hàng</h5>
+
+                    <div class="mb-4">
+                        @foreach (var item in Model.Cart.CartItems)
+                        {
+                            var mainImg = item.Product?.ProductImages?.FirstOrDefault(i => i.IsMain == true)?.ImageUrl ?? "/images/no-image.png";
+                            decimal itemTotal = (item.Product?.Price ?? 0) * item.Quantity;
+                            totalCartPrice += itemTotal;
+
+                            <div class="d-flex justify-content-between align-items-center mb-3">
+                                <div class="d-flex align-items-center">
+                                    <img src="@mainImg" alt="ảnh" style="width: 50px; height: 50px; object-fit: cover;" class="me-3 border">
+                                    <div>
+                                        <div class="fw-bold" style="font-size: 13px;">@item.Product?.ProductName</div>
+                                        <div class="text-muted" style="font-size: 12px;">x @item.Quantity</div>
+                                    </div>
+                                </div>
+                                <div class="fw-bold" style="font-size: 14px;">@string.Format("{0:N0} ₫", itemTotal)</div>
+                            </div>
+                        }
+                    </div>
+
+                    <div class="d-flex justify-content-between mb-3 border-top pt-3" style="font-size: 14px;">
+                        <span class="text-muted">Tạm tính</span>
+                        <span class="fw-bold">@string.Format("{0:N0} ₫", totalCartPrice)</span>
+                    </div>
+
+                    <div class="d-flex justify-content-between mb-4 pb-3 border-bottom" style="font-size: 14px;">
+                        <span class="text-muted">Vận chuyển</span>
+                        <span class="text-end" style="font-size: 12px;">Phí giao hàng tính theo thực tế.</span>
+                    </div>
+
+                    <div class="d-flex justify-content-between mb-4">
+                        <span class="fw-bold text-uppercase">Tổng cộng</span>
+                        <span class="fw-bold text-danger fs-5">@string.Format("{0:N0} ₫", totalCartPrice)</span>
+                    </div>
+
+                    <div class="form-check mb-4">
+                        <input class="form-check-input" type="checkbox" id="agreeTerms" required>
+                        <label class="form-check-label text-muted" for="agreeTerms" style="font-size: 12px;">
+                            Tôi đã đọc và đồng ý điều kiện đổi trả hàng, giao hàng, chính sách bảo mật, điều khoản dịch vụ mua hàng online *
+                        </label>
+                    </div>
+
+                    <button type="submit" class="btn btn-dark w-100 py-3 rounded-0 fw-bold fs-5">ĐẶT MUA</button>
+                </div>
+            </div>
+
+        </div>
+    </form>
+</div>
+
+@section Scripts {
+    <script>
+        // Copy lại đoạn Script gọi API Tỉnh/Thành phố y hệt như bên Profile.cshtml sang đây
+        $(document).ready(function() {
+            $.ajax({
+                url: 'https://provinces.open-api.vn/api/?depth=2',
+                method: 'GET',
+                success: function(data) {
+                    let cityDropdown = $('#cityDropdown');
+                    $.each(data, function(index, province) {
+                        let option = $('<option></option>').val(province.name).text(province.name);
+                        option.data('districts', province.districts);
+                        cityDropdown.append(option);
+                    });
+                }
+            });
+
+            $('#cityDropdown').change(function() {
+                let districtDropdown = $('#districtDropdown');
+                districtDropdown.empty().append('<option value="">Chọn Quận/Huyện...</option>');
+                let selectedOption = $(this).find('option:selected');
+                let districts = selectedOption.data('districts');
+                if (districts) {
+                    $.each(districts, function(index, district) {
+                        districtDropdown.append($('<option></option>').val(district.name).text(district.name));
+                    });
+                }
+            });
+        });
+    </script>
+}

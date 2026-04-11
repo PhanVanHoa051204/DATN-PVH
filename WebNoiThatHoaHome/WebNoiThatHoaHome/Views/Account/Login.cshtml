@@ -24,7 +24,14 @@
                             <span asp-validation-for="Password" class="text-danger"></span>
                         </div>
 
-                        <button type="submit" class="btn btn-primary w-100">Đăng nhập</button>
+                        <button type="submit" class="btn btn-dark text-white w-100 mt-3">ĐĂNG NHẬP</button>
+
+                        @if (TempData["LoginError"] != null)
+                        {
+                            <p class="text-danger text-center mt-2 mb-0 fw-bold error-trigger" style="font-size: 14px;">
+                                <i class="fa-solid fa-circle-exclamation"></i> @TempData["LoginError"]
+                            </p>
+                        }
                     </form>
                     <div class="text-center mt-3">
                         <p>Chưa có tài khoản? <a href="/Account/Register">Đăng ký ngay</a></p>

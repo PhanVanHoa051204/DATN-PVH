@@ -1,0 +1,24 @@
+﻿@{
+    ViewData["Title"] = "Đặt hàng thành công";
+}
+
+<div class="container my-5 text-center" style="min-height: 50vh; display: flex; flex-direction: column; justify-content: center; align-items: center;">
+
+    <div class="mb-4">
+        <i class="fa-solid fa-circle-check text-success" style="font-size: 5rem;"></i>
+    </div>
+
+    <h2 class="fw-bold text-uppercase mb-3">CẢM ƠN BẠN ĐÃ ĐẶT HÀNG!</h2>
+    <p class="text-muted fs-5 mb-2">Đơn hàng của bạn đã được tiếp nhận và đang trong quá trình xử lý.</p>
+
+    <div class="bg-light p-3 mt-3 mb-4 rounded-0 d-inline-block border">
+        Mã đơn hàng của bạn là: <span class="fw-bold text-danger">#@ViewBag.OrderId</span>
+    </div>
+
+    <p class="text-muted mb-5" style="font-size: 14px;">Chúng tôi sẽ sớm liên hệ với bạn để xác nhận đơn hàng và thời gian giao hàng.</p>
+
+    <div>
+        <a href="/Product/Index" class="btn btn-outline-dark rounded-0 px-4 py-2 fw-bold me-2">TIẾP TỤC MUA SẮM</a>
+        <a href="/Account/Orders" class="btn btn-dark rounded-0 px-4 py-2 fw-bold">XEM ĐƠN HÀNG CỦA TÔI</a>
+    </div>
+</div>

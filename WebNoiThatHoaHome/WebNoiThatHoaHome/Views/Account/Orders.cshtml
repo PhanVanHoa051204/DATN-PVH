@@ -1,0 +1,133 @@
+﻿@model IEnumerable<WebNoiThatHoaHome.Models.Order>
+@{
+    ViewData["Title"] = " Đơn hàng";
+}
+
+<div class="container my-5">
+    <div class="row">
+
+        <div class="col-md-3 mb-4">
+            <h5 class="fw-bold mb-4 ps-3 border-start border-dark border-3">Tài khoản cá nhân</h5>
+            <div class="list-group list-group-flush rounded-0">
+                <a href="/Account/Profile" class="list-group-item list-group-item-action border-0 py-2">Thông tin của tôi</a>
+                <a href="/Account/Orders" class="list-group-item list-group-item-action border-0 fw-bold py-2">Đơn hàng của tôi</a>
+                <a href="/Account/Wishlist" class="list-group-item list-group-item-action border-0 py-2">Danh sách yêu thích</a>
+                <a href="/Account/Logout" class="list-group-item list-group-item-action border-0 py-2 text-danger">Đăng xuất</a>
+            </div>
+        </div>
+
+        <div class="col-md-9 ps-md-5">
+            <h5 class="fw-bold mb-4 text-uppercase">Đơn hàng của tôi</h5>
+
+            @if (!Model.Any())
+            {
+                <div class="text-center py-5 bg-light border">
+                    <i class="fa-solid fa-box-open text-muted mb-3" style="font-size: 3rem;"></i>
+                    <p class="text-muted">Bạn chưa có đơn hàng nào.</p>
+                    <a href="/Product/Index" class="btn btn-dark rounded-0 px-4 mt-2">MUA SẮM NGAY</a>
+                </div>
+            }
+            else
+            {
+                <div class="accordion" id="accordionOrders">
+                    @foreach (var order in Model)
+                    {
+                        string collapseId = "collapseOrder" + order.OrderId;
+                        string headingId = "headingOrder" + order.OrderId;
+
+                        <div class="accordion-item rounded-0 mb-3 border">
+                            <h2 class="accordion-header" id="@headingId">
+                                <button class="accordion-button collapsed bg-white rounded-0 shadow-none" type="button" data-bs-toggle="collapse" data-bs-target="#@collapseId" aria-expanded="false" aria-controls="@collapseId">
+                                    <div class="d-flex w-100 justify-content-between align-items-center pe-3">
+                                        <div>
+                                            <span class="fw-bold text-dark">Đơn hàng #@order.OrderId</span>
+                                            <small class="text-muted ms-2">| Đặt ngày: @order.OrderDate?.ToString("dd/MM/yyyy HH:mm")</small>
+                                        </div>
+                                        <div class="text-end">
+                                            <span class="fw-bold text-danger d-block">@string.Format("{0:N0} ₫", order.TotalAmount)</span>
+                                            <span class="badge bg-dark rounded-0 mt-1">@TranslateOrderStatus(order.OrderStatus)</span>
+                                        </div>
+                                    </div>
+                                </button>
+                            </h2>
+
+                            <div id="@collapseId" class="accordion-collapse collapse" aria-labelledby="@headingId" data-bs-parent="#accordionOrders">
+                                <div class="accordion-body bg-light">
+                                    <div class="row mb-3 pb-3 border-bottom" style="font-size: 13px;">
+                                        <div class="col-md-6">
+                                            <span class="text-muted fw-bold d-block mb-1">Địa chỉ giao hàng:</span>
+                                            <span>@order.ShippingAddress</span>
+                                        </div>
+                                        <div class="col-md-6 mt-2 mt-md-0">
+                                            <span class="text-muted fw-bold d-block mb-1">Phương thức thanh toán:</span>
+                                            <span>@(order.PaymentMethod == "BANK" ? "Chuyển khoản (VNPay)" : "Thanh toán khi nhận hàng (COD)")</span>
+                                            <br />
+                                            <span class="text-muted">Trạng thái TT: </span>                                          
+                                            <span class="fw-bold @(order.PaymentStatus == "Success" ? "text-success" : "text-warning")">@TranslatePaymentStatus(order.PaymentStatus)</span>
+                                        </div>
+                                    </div>
+
+                                    <div class="table-responsive">
+                                        <table class="table table-borderless align-middle mb-0">
+                                            <tbody>
+                                                @foreach (var item in order.OrderItems)
+                                                {
+                                                    var img = item.Product?.ProductImages?.FirstOrDefault(i => i.IsMain == true)?.ImageUrl ?? "/images/no-image.png";
+                                                    <tr>
+                                                        <td style="width: 60px;">
+                                                            <img src="@img" alt="SP" style="width: 50px; height: 50px; object-fit: cover;" class="border">
+                                                        </td>
+                                                        <td>
+                                                            <a href="/Product/Details/@item.ProductId" class="text-dark text-decoration-none fw-bold" style="font-size: 13px;">@item.Product?.ProductName</a>
+                                                        </td>
+                                                        <td class="text-center text-muted" style="font-size: 13px;">
+                                                            SL: @item.Quantity
+                                                        </td>
+                                                        <td class="text-end fw-bold" style="font-size: 13px;">
+                                                            @string.Format("{0:N0} ₫", item.UnitPrice * item.Quantity)
+                                                        </td>
+                                                    </tr>
+                                                }
+                                            </tbody>
+                                        </table>
+                                    </div>
+
+                                </div>
+                            </div>
+                        </div>
+                    }
+                </div>
+            }
+        </div>
+
+    </div>
+</div>
+@functions {
+    // Dịch Trạng thái Đơn hàng
+    public string TranslateOrderStatus(string status)
+    {
+        if (string.IsNullOrEmpty(status)) return "";
+        switch (status)
+        {
+            case "New": return "Chờ xác nhận";
+            case "Processing": return "Đang xử lý";
+            case "Delivering": return "Đang giao hàng";
+            case "Completed": return "Đã hoàn thành";
+            case "Cancelled": return "Đã hủy";
+            default: return status;
+        }
+    }
+
+    // Dịch Trạng thái Thanh toán
+    public string TranslatePaymentStatus(string status)
+    {
+        if (string.IsNullOrEmpty(status)) return "";
+        switch (status)
+        {
+            case "Pending": return "Chờ thanh toán";
+            case "Success": return "Đã thanh toán";
+            case "Failed": return "Lỗi thanh toán";
+            default: return status;
+        }
+    }
+}

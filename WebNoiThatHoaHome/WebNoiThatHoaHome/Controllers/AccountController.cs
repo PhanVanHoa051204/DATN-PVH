@@ -1,5 +1,6 @@
 ﻿using Microsoft.AspNetCore.Authentication;
 using Microsoft.AspNetCore.Authentication.Cookies;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using System.Security.Claims;
@@ -19,6 +20,7 @@ namespace WebNoiThatHoaHome.Controllers
         [HttpGet]
         public IActionResult Login() => RedirectToAction("Index", "Home");
 
+        // --- 1. XỬ LÝ ĐĂNG NHẬP ---
         [HttpPost]
         public async Task<IActionResult> Login(LoginViewModel model)
         {
@@ -46,12 +48,19 @@ namespace WebNoiThatHoaHome.Controllers
 
                     return RedirectToAction("Index", "Home");
                 }
-                ModelState.AddModelError("LoginError", "Email hoặc mật khẩu không chính xác.");
+
+                // Đăng nhập sai -> Lưu lỗi vào TempData và đẩy về trang chủ
+                TempData["LoginError"] = "Email hoặc mật khẩu không chính xác!";
             }
-            // Nếu đăng nhập lỗi, quay về trang chủ để Script tự bật Modal báo lỗi
-            return View("~/Views/Home/Index.cshtml", model);
+            else
+            {
+                TempData["LoginError"] = "Vui lòng nhập đầy đủ thông tin!";
+            }
+
+            return RedirectToAction("Index", "Home");
         }
 
+        // --- 2. XỬ LÝ ĐĂNG KÝ ---
         [HttpPost]
         public async Task<IActionResult> Register(RegisterViewModel model)
         {
@@ -60,10 +69,9 @@ namespace WebNoiThatHoaHome.Controllers
                 var emailExists = await _context.Users.AnyAsync(u => u.Email == model.Email);
                 if (emailExists)
                 {
-                    
-                    // Thêm dòng này nếu muốn hiện chữ đỏ ngay dưới ô nhập Email:
-                    ModelState.AddModelError("Email", "Email đã tồn tại.");
-                    return View("~/Views/Home/Index.cshtml", model);
+                    // Trùng Email -> Lưu lỗi vào TempData và đẩy về trang chủ
+                    TempData["RegisterError"] = "Email này đã được sử dụng!";
+                    return RedirectToAction("Index", "Home");
                 }
 
                 var customerRole = await _context.Roles.FirstOrDefaultAsync(r => r.RoleName == "Customer");
@@ -75,7 +83,7 @@ namespace WebNoiThatHoaHome.Controllers
                     PasswordHash = model.Password,
                     RoleId = customerRole?.RoleId,
                     CreatedAt = DateTime.Now,
-                    UpdatedAt = DateTime.Now, // FIX LỖI TẠI ĐÂY
+                    UpdatedAt = DateTime.Now,
                     IsDeleted = false
                 };
 
@@ -86,14 +94,144 @@ namespace WebNoiThatHoaHome.Controllers
                 return RedirectToAction("Index", "Home");
             }
 
-            // Nếu dữ liệu không hợp lệ (VD: Pass không khớp), trả về trang chủ kèm lỗi
-            return View("~/Views/Home/Index.cshtml", model);
+            TempData["RegisterError"] = "Thông tin đăng ký chưa hợp lệ!";
+            return RedirectToAction("Index", "Home");
         }
 
         public async Task<IActionResult> Logout()
         {
             await HttpContext.SignOutAsync(CookieAuthenticationDefaults.AuthenticationScheme);
             return RedirectToAction("Index", "Home");
+        }
+
+        // ==========================================
+        // CÁC HÀM CŨ CỦA SẾP (GIỮ NGUYÊN KHÔNG ĐỔI)
+        // ==========================================
+
+        public async Task<IActionResult> Profile()
+        {
+            var userIdString = User.FindFirstValue(ClaimTypes.NameIdentifier);
+            if (string.IsNullOrEmpty(userIdString)) return RedirectToAction("Login", "Account");
+
+            int userId = int.Parse(userIdString);
+            var user = await _context.Users.FindAsync(userId);
+            if (user == null) return NotFound();
+
+            return View(user);
+        }
+
+        [HttpPost]
+        public async Task<IActionResult> UpdateProfile(string FirstName, string LastName, string CurrentPassword, string NewPassword, string ConfirmPassword)
+        {
+            var userIdString = User.FindFirstValue(ClaimTypes.NameIdentifier);
+            if (string.IsNullOrEmpty(userIdString)) return RedirectToAction("Login", "Account");
+
+            int userId = int.Parse(userIdString);
+            var user = await _context.Users.FindAsync(userId);
+
+            if (user != null)
+            {
+                user.FullName = FirstName + " " + LastName;
+                if (!string.IsNullOrEmpty(NewPassword))
+                {
+                    if (user.PasswordHash != CurrentPassword)
+                    {
+                        TempData["ErrorMsg"] = "Mật khẩu hiện tại không chính xác!";
+                        return RedirectToAction("Profile");
+                    }
+                    if (NewPassword != ConfirmPassword)
+                    {
+                        TempData["ErrorMsg"] = "Mật khẩu xác nhận không khớp!";
+                        return RedirectToAction("Profile");
+                    }
+                    user.PasswordHash = NewPassword;
+                }
+                await _context.SaveChangesAsync();
+                TempData["SuccessMsg"] = "Cập nhật thông tin thành công!";
+            }
+            return RedirectToAction("Profile");
+        }
+
+        [HttpPost]
+        public async Task<IActionResult> UpdateAddress(string DeliveryName, string Phone, string City, string Ward, string AddressDetail)
+        {
+            var userIdString = User.FindFirstValue(ClaimTypes.NameIdentifier);
+            if (string.IsNullOrEmpty(userIdString)) return RedirectToAction("Login", "Account");
+
+            int userId = int.Parse(userIdString);
+            var user = await _context.Users.FindAsync(userId);
+
+            if (user != null)
+            {
+                if (!string.IsNullOrWhiteSpace(DeliveryName)) user.FullName = DeliveryName;
+                user.Phone = Phone;
+
+                string fullAddress = AddressDetail;
+                if (!string.IsNullOrEmpty(Ward) && !string.IsNullOrEmpty(City))
+                {
+                    fullAddress = $"{AddressDetail}, {Ward}, {City}";
+                }
+                user.Address = fullAddress;
+
+                await _context.SaveChangesAsync();
+                TempData["SuccessMsg"] = "Cập nhật địa chỉ giao hàng thành công!";
+            }
+            return RedirectToAction("Profile");
+        }
+
+        [HttpGet]
+        public async Task<IActionResult> Orders()
+        {
+            var userIdString = User.FindFirstValue(ClaimTypes.NameIdentifier);
+            if (string.IsNullOrEmpty(userIdString)) return RedirectToAction("Login", "Account");
+
+            int userId = int.Parse(userIdString);
+            var orders = await _context.Orders
+                .Include(o => o.OrderItems)
+                    .ThenInclude(oi => oi.Product)
+                        .ThenInclude(p => p.ProductImages)
+                .Where(o => o.UserId == userId)
+                .OrderByDescending(o => o.OrderDate)
+                .ToListAsync();
+
+            return View(orders);
+        }
+
+        [Authorize]
+        public async Task<IActionResult> Wishlist()
+        {
+            var userIdString = User.FindFirstValue(ClaimTypes.NameIdentifier);
+            if (int.TryParse(userIdString, out int userId))
+            {
+                var wishlist = await _context.Wishlists
+                    .Include(w => w.Product)
+                        .ThenInclude(p => p.ProductImages)
+                    .Where(w => w.UserId == userId)
+                    .ToListAsync();
+
+                return View(wishlist);
+            }
+            return RedirectToAction("Login");
+        }
+
+        [HttpPost]
+        [Authorize]
+        public async Task<IActionResult> RemoveWishlist(int productId)
+        {
+            var userIdString = User.FindFirstValue(ClaimTypes.NameIdentifier);
+            if (int.TryParse(userIdString, out int userId))
+            {
+                var wishlistItem = await _context.Wishlists
+                    .FirstOrDefaultAsync(w => w.UserId == userId && w.ProductId == productId);
+
+                if (wishlistItem != null)
+                {
+                    _context.Wishlists.Remove(wishlistItem);
+                    await _context.SaveChangesAsync();
+                    TempData["SuccessMsg"] = "Đã xóa khỏi danh sách yêu thích!";
+                }
+            }
+            return RedirectToAction("Wishlist");
         }
     }
 }

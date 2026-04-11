@@ -1,0 +1,103 @@
+﻿@model IEnumerable<WebNoiThatHoaHome.Models.ProductListViewModel>
+@{
+    ViewData["Title"] = "Quản lý Sản phẩm";
+    Layout = "~/Areas/Admin/Views/Shared/_Layout.cshtml";
+}
+
+<div class="card shadow-sm border-0 rounded-3">
+    <div class="card-header bg-white py-3 d-flex justify-content-between align-items-center">
+        <h5 class="mb-0 fw-bold"><i class="fa-solid fa-couch text-primary me-2"></i> Danh sách Sản phẩm</h5>
+
+        <div class="d-flex gap-2">
+            <form asp-action="Index" method="get" class="input-group" style="width: 350px;">
+                <input type="text" name="searchString" value="@ViewData["CurrentSearch"]" class="form-control" placeholder="Nhập tên SP hoặc danh mục...">
+                <button class="btn btn-outline-primary" type="submit"><i class="fa-solid fa-magnifying-glass"></i> Tìm kiếm</button>
+
+                @if (!string.IsNullOrEmpty(ViewData["CurrentSearch"]?.ToString()))
+                {
+                    <a href="/Admin/Product/Index" class="btn btn-outline-danger" title="Xóa tìm kiếm"><i class="fa-solid fa-xmark"></i></a>
+                }
+            </form>
+
+            <a href="/Admin/Product/Create" class="btn btn-primary fw-bold">
+                <i class="fa-solid fa-plus me-1"></i> Thêm mới
+            </a>
+            <a href="/Admin/Product/Trash" class="btn btn-outline-danger" title="Xem sản phẩm đã xóa">
+                <i class="fa-solid fa-trash-can"></i> Thùng rác
+            </a>
+        </div>
+    </div>
+
+    <div class="card-body p-0">
+        <div class="table-responsive">
+            <table class="table table-hover align-middle mb-0">
+                <thead class="table-light">
+                    <tr>
+                        <th class="px-4">Mã SP</th>
+                        <th>Hình ảnh</th>
+                        <th>Tên sản phẩm</th>
+                        <th>Danh mục</th>
+                        <th>Giá bán</th>
+                        <th>Tồn kho</th>
+                        <th>Trạng thái</th>
+                        <th class="text-center">Thao tác</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @if (Model != null && Model.Any())
+                    {
+                        foreach (var item in Model)
+                        {
+                            <tr>
+                                <td class="px-4 fw-bold text-muted">#@item.ProductId</td>
+                                <td>
+                                    <img src="@item.MainImageUrl" alt="@item.ProductName" style="width: 60px; height: 60px; object-fit: cover; border-radius: 8px; border: 1px solid #ddd;" />
+                                </td>
+                                <td class="fw-bold text-truncate" style="max-width: 200px;" title="@item.ProductName">@item.ProductName</td>
+                                <td><span class="badge bg-info text-dark">@item.CategoryName</span></td>
+                                <td class="text-danger fw-bold">@String.Format("{0:0,0}", item.Price) ₫</td>
+                                <td>
+                                    @if (item.StockQuantity > 0)
+                                    {
+                                        <span>@item.StockQuantity</span>
+                                    }
+                                    else
+                                    {
+                                        <span class="text-danger fw-bold">Hết hàng</span>
+                                    }
+                                </td>
+                                <td>
+                                    @if (item.IsActive)
+                                    {
+                                        <span class="badge bg-success">Đang bán</span>
+                                    }
+                                    else
+                                    {
+                                        <span class="badge bg-secondary">Tạm ẩn</span>
+                                    }
+                                </td>
+                                <td class="text-center">
+                                    <a href="/Admin/Product/Edit/@item.ProductId" class="btn btn-sm btn-outline-primary" title="Sửa">
+                                        <i class="fa-solid fa-pen-to-square"></i>
+                                    </a>
+
+                                    <a href="/Admin/Product/Delete/@item.ProductId" class="btn btn-sm btn-outline-danger ms-1"
+                                       title="Xóa"
+                                       onclick="return confirm('Bạn có chắc chắn muốn xóa sản phẩm này không?');">
+                                        <i class="fa-solid fa-trash"></i>
+                                    </a>
+                                </td>
+                            </tr>
+                        }
+                    }
+                    else
+                    {
+                        <tr>
+                            <td colspan="8" class="text-center py-4 text-muted">Chưa có sản phẩm nào. Hãy thêm sản phẩm mới!</td>
+                        </tr>
+                    }
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>

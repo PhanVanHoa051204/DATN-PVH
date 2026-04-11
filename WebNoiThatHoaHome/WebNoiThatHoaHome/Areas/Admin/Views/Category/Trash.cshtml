@@ -1,0 +1,57 @@
+﻿@model IEnumerable<WebNoiThatHoaHome.Models.Category>
+@{
+    ViewData["Title"] = "Thùng rác Danh mục";
+    Layout = "~/Areas/Admin/Views/Shared/_Layout.cshtml";
+}
+
+<div class="card shadow-sm border-0 rounded-3">
+    <div class="card-header bg-white py-3 d-flex justify-content-between align-items-center border-bottom">
+        <h5 class="mb-0 fw-bold text-danger"><i class="fa-solid fa-trash-can me-2"></i> Thùng rác Danh mục</h5>
+
+        <a href="/Admin/Category/Index" class="btn btn-outline-primary fw-bold">
+            <i class="fa-solid fa-arrow-left me-1"></i> Quay lại danh sách
+        </a>
+    </div>
+
+    <div class="card-body p-0">
+        <div class="table-responsive">
+            <table class="table table-hover align-middle mb-0">
+                <thead class="table-light">
+                    <tr>
+                        <th class="px-4 py-3">Mã DM</th>
+                        <th class="py-3">Tên danh mục</th>
+                        <th class="py-3">Mô tả</th>
+                        <th class="text-center py-3">Thao tác</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @if (Model != null && Model.Any())
+                    {
+                        foreach (var item in Model)
+                        {
+                            <tr>
+                                <td class="px-4 text-muted fw-bold">#@item.CategoryId</td>
+                                <td class="fw-bold text-dark text-decoration-line-through">@item.CategoryName</td>
+                                <td class="text-muted">@item.Description</td>
+                                <td class="text-center">
+                                    <a href="/Admin/Category/Restore/@item.CategoryId" class="btn btn-sm btn-success fw-bold" onclick="return confirm('Bạn muốn khôi phục danh mục này?');">
+                                        <i class="fa-solid fa-rotate-left me-1"></i> Khôi phục
+                                    </a>
+                                </td>
+                            </tr>
+                        }
+                    }
+                    else
+                    {
+                        <tr>
+                            <td colspan="4" class="text-center py-5 text-muted">
+                                <i class="fa-solid fa-box-open fa-2x mb-3 text-light"></i><br />
+                                Thùng rác đang trống.
+                            </td>
+                        </tr>
+                    }
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>

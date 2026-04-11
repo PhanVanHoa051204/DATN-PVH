@@ -1,0 +1,119 @@
+﻿@model IEnumerable<WebNoiThatHoaHome.Models.ProductListViewModel>
+@using System.Security.Claims
+@inject WebNoiThatHoaHome.Models.HoaHomeDbContext _context
+
+@{
+    // Lấy ID người dùng và danh sách các sản phẩm họ đã thả tim
+    var userIdStr = User.FindFirstValue(ClaimTypes.NameIdentifier);
+    List<int> wishlistedIds = new List<int>();
+    if (!string.IsNullOrEmpty(userIdStr))
+    {
+        int uid = int.Parse(userIdStr);
+        wishlistedIds = _context.Wishlists.Where(w => w.UserId == uid).Select(w => w.ProductId ?? 0).ToList();
+    }
+}
+
+<div class="container mt-5 mb-5">
+    @{
+        // Lấy tên chức năng hiện tại (Category, Index, NewProducts, Search...)
+        var currentAction = ViewContext.RouteData.Values["action"]?.ToString();
+    }
+
+    <nav aria-label="breadcrumb" class="mb-4">
+        <ol class="breadcrumb text-muted" style="font-size: 13px;">
+            <li class="breadcrumb-item"><a href="/" class="text-dark text-decoration-none">Trang chủ</a></li>
+
+            @if (currentAction == "Category")
+            {
+                <li class="breadcrumb-item"><span class="text-muted">Phòng</span></li>
+            }
+
+            <li class="breadcrumb-item active text-dark fw-bold" aria-current="page">@ViewData["CategoryName"]</li>
+        </ol>
+    </nav>
+
+    <div class="d-flex flex-wrap justify-content-between align-items-center mb-4 border-bottom pb-3">
+
+        <h3 class="text-uppercase mb-3 mb-md-0 fw-bold" style="letter-spacing: 1px;">
+            @ViewData["CategoryName"]
+            <span class="text-muted text-lowercase" style="font-size: 14px; font-weight: normal;">(@Model.Count() sản phẩm)</span>
+        </h3>
+
+        <form method="get" class="d-flex align-items-center">
+
+            @if (Context.Request.Query.ContainsKey("keyword"))
+            {
+                <input type="hidden" name="keyword" value="@Context.Request.Query["keyword"]" />
+            }
+
+            <label class="me-3 text-dark mb-0" style="font-size: 14px; white-space: nowrap;">Theo giá:</label>
+
+            <select name="sortOrder" class="form-select border-dark rounded-0 me-3" style="width: 200px; font-size: 14px; cursor: pointer;">
+                <option value="">Mặc định</option>
+                <option value="price_asc" selected="@(Context.Request.Query["sortOrder"] == "price_asc")">Thấp đến cao</option>
+                <option value="price_desc" selected="@(Context.Request.Query["sortOrder"] == "price_desc")">Cao đến thấp</option>
+            </select>
+
+            <button type="submit" class="btn btn-dark rounded-0 px-4 fw-bold" style="font-size: 14px;">ÁP DỤNG</button>
+        </form>
+
+    </div>
+
+    <div class="row g-4">
+        @if (Model != null && Model.Any())
+        {
+            foreach (var item in Model)
+            {
+                <div class="col-lg-3 col-md-4 col-sm-6 mb-4">
+                    <div class="card product-card border-0 shadow-sm h-100">
+
+                        <a href="/Product/Details/@item.ProductId" class="d-block text-decoration-none">
+                            <img src="@item.MainImageUrl" alt="@item.ProductName" class="card-img-top img-fluid object-fit-cover" style="height: 250px;">
+                        </a>
+
+                        <div class="card-body p-3 d-flex flex-column">
+
+                            <a href="/Product/Details/@item.ProductId" class="text-decoration-none text-dark text-start mb-auto">
+                                <h6 class="product-title fw-bold" style="font-size: 15px; white-space: nowrap; overflow: hidden; text-overflow: ellipsis;">
+                                    @item.ProductName
+                                </h6>
+                            </a>
+
+                            <div class="d-flex justify-content-between align-items-center mt-3 w-100 text-start">
+                                <div class="product-price text-danger fw-bold" style="font-size: 15px;">
+                                    @String.Format("{0:0,0}", item.Price) đ
+                                </div>
+
+                                @{
+                                    // Kiểm tra xem sản phẩm này có nằm trong danh sách đã thả tim không
+                                    bool isWishlisted = wishlistedIds.Contains(item.ProductId);
+                                }
+
+                                <button class="btn btn-wishlist border-0 bg-transparent p-0 float-end" data-product-id="@item.ProductId">
+                                    <i class="@(isWishlisted ? "fa-solid fa-heart text-danger" : "fa-regular fa-heart")" style="font-size: 1.2rem; cursor: pointer;"></i>
+                                </button>
+                            </div>
+
+                        </div>
+
+                    </div>
+                </div>
+            }
+        }
+        else
+        {
+            <div class="col-12 text-center py-5">
+                <i class="fa-solid fa-box-open fa-4x text-muted mb-3 opacity-50"></i>
+                <h5 class="text-muted">Chưa có sản phẩm nào trong phòng này.</h5>
+                <a href="/" class="btn btn-outline-dark mt-3 rounded-0 px-4 py-2 text-uppercase" style="letter-spacing: 1px;">Quay lại trang chủ</a>
+            </div>
+        }
+    </div>
+</div>
+
+<style>
+    .product-card:hover {
+        box-shadow: 0 10px 20px rgba(0,0,0,0.1) !important;
+        transform: translateY(-5px);
+    }
+</style>

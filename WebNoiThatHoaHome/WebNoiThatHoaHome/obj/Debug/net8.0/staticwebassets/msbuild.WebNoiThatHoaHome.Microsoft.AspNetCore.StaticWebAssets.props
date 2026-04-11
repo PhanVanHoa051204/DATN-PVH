@@ -12,8 +12,8 @@
       <RelatedAsset></RelatedAsset>
       <AssetTraitName></AssetTraitName>
       <AssetTraitValue></AssetTraitValue>
-      <Fingerprint>j33x18n7mw</Fingerprint>
-      <Integrity>737alY4ilqYH3EmD3M7WW5ocnTvEd6PM47FHr1qlF1k=</Integrity>
+      <Fingerprint>gehivtobxr</Fingerprint>
+      <Integrity>aIQAyR8l0s/vr6xkO6m1LBFAEsVMVXL37LEBin62w8Q=</Integrity>
       <CopyToOutputDirectory>Never</CopyToOutputDirectory>
       <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
       <OriginalItemSpec>$([System.IO.Path]::GetFullPath('$(MSBuildThisFileDirectory)..\staticwebassets\css\site.css'))</OriginalItemSpec>
@@ -35,6 +35,60 @@
       <CopyToOutputDirectory>Never</CopyToOutputDirectory>
       <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
       <OriginalItemSpec>$([System.IO.Path]::GetFullPath('$(MSBuildThisFileDirectory)..\staticwebassets\favicon.ico'))</OriginalItemSpec>
+    </StaticWebAsset>
+    <StaticWebAsset Include="$([System.IO.Path]::GetFullPath('$(MSBuildThisFileDirectory)..\staticwebassets\images\trangchu\phong-an.jpg'))">
+      <SourceType>Package</SourceType>
+      <SourceId>WebNoiThatHoaHome</SourceId>
+      <ContentRoot>$(MSBuildThisFileDirectory)..\staticwebassets\</ContentRoot>
+      <BasePath>_content/WebNoiThatHoaHome</BasePath>
+      <RelativePath>images/trangchu/phong-an.jpg</RelativePath>
+      <AssetKind>All</AssetKind>
+      <AssetMode>All</AssetMode>
+      <AssetRole>Primary</AssetRole>
+      <RelatedAsset></RelatedAsset>
+      <AssetTraitName></AssetTraitName>
+      <AssetTraitValue></AssetTraitValue>
+      <Fingerprint>w7ek33tyfe</Fingerprint>
+      <Integrity>BFyU/aUA9h27ktU5NHuZOa0lIXqXPWX99OZC1JZJie4=</Integrity>
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+      <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
+      <OriginalItemSpec>$([System.IO.Path]::GetFullPath('$(MSBuildThisFileDirectory)..\staticwebassets\images\trangchu\phong-an.jpg'))</OriginalItemSpec>
+    </StaticWebAsset>
+    <StaticWebAsset Include="$([System.IO.Path]::GetFullPath('$(MSBuildThisFileDirectory)..\staticwebassets\images\trangchu\phong-khach.jpg'))">
+      <SourceType>Package</SourceType>
+      <SourceId>WebNoiThatHoaHome</SourceId>
+      <ContentRoot>$(MSBuildThisFileDirectory)..\staticwebassets\</ContentRoot>
+      <BasePath>_content/WebNoiThatHoaHome</BasePath>
+      <RelativePath>images/trangchu/phong-khach.jpg</RelativePath>
+      <AssetKind>All</AssetKind>
+      <AssetMode>All</AssetMode>
+      <AssetRole>Primary</AssetRole>
+      <RelatedAsset></RelatedAsset>
+      <AssetTraitName></AssetTraitName>
+      <AssetTraitValue></AssetTraitValue>
+      <Fingerprint>slhqvfxqbc</Fingerprint>
+      <Integrity>YHlEsXZ7vl2pq7OREDRwZHRvbZlwCnyI3ijc6tW8iLM=</Integrity>
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+      <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
+      <OriginalItemSpec>$([System.IO.Path]::GetFullPath('$(MSBuildThisFileDirectory)..\staticwebassets\images\trangchu\phong-khach.jpg'))</OriginalItemSpec>
+    </StaticWebAsset>
+    <StaticWebAsset Include="$([System.IO.Path]::GetFullPath('$(MSBuildThisFileDirectory)..\staticwebassets\images\trangchu\phong-ngu.jpg'))">
+      <SourceType>Package</SourceType>
+      <SourceId>WebNoiThatHoaHome</SourceId>
+      <ContentRoot>$(MSBuildThisFileDirectory)..\staticwebassets\</ContentRoot>
+      <BasePath>_content/WebNoiThatHoaHome</BasePath>
+      <RelativePath>images/trangchu/phong-ngu.jpg</RelativePath>
+      <AssetKind>All</AssetKind>
+      <AssetMode>All</AssetMode>
+      <AssetRole>Primary</AssetRole>
+      <RelatedAsset></RelatedAsset>
+      <AssetTraitName></AssetTraitName>
+      <AssetTraitValue></AssetTraitValue>
+      <Fingerprint>5503t6imu0</Fingerprint>
+      <Integrity>hyfQWnncrEfdQjsCfOXJYOGJNMSvXr9UUteDDEDY78g=</Integrity>
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+      <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
+      <OriginalItemSpec>$([System.IO.Path]::GetFullPath('$(MSBuildThisFileDirectory)..\staticwebassets\images\trangchu\phong-ngu.jpg'))</OriginalItemSpec>
     </StaticWebAsset>
     <StaticWebAsset Include="$([System.IO.Path]::GetFullPath('$(MSBuildThisFileDirectory)..\staticwebassets\js\site.js'))">
       <SourceType>Package</SourceType>
@@ -1080,23 +1134,599 @@
       <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
       <OriginalItemSpec>$([System.IO.Path]::GetFullPath('$(MSBuildThisFileDirectory)..\staticwebassets\lib\jquery\LICENSE.txt'))</OriginalItemSpec>
     </StaticWebAsset>
-    <StaticWebAsset Include="$([System.IO.Path]::GetFullPath('$(MSBuildThisFileDirectory)..\staticwebassets\WebNoiThatHoaHome.mzisunu1pe.bundle.scp.css'))">
+    <StaticWebAsset Include="$([System.IO.Path]::GetFullPath('$(MSBuildThisFileDirectory)..\staticwebassets\uploads\products\Category_1\2f71f0d3-3a4d-419e-8749-93138de91fb1_tu-ti-vi-valente-1-1-e1721639264504.jpg'))">
       <SourceType>Package</SourceType>
       <SourceId>WebNoiThatHoaHome</SourceId>
       <ContentRoot>$(MSBuildThisFileDirectory)..\staticwebassets\</ContentRoot>
       <BasePath>_content/WebNoiThatHoaHome</BasePath>
-      <RelativePath>WebNoiThatHoaHome.mzisunu1pe.bundle.scp.css</RelativePath>
+      <RelativePath>uploads/products/Category_1/2f71f0d3-3a4d-419e-8749-93138de91fb1_tu-ti-vi-valente-1-1-e1721639264504.jpg</RelativePath>
+      <AssetKind>All</AssetKind>
+      <AssetMode>All</AssetMode>
+      <AssetRole>Primary</AssetRole>
+      <RelatedAsset></RelatedAsset>
+      <AssetTraitName></AssetTraitName>
+      <AssetTraitValue></AssetTraitValue>
+      <Fingerprint>yjcgf7poob</Fingerprint>
+      <Integrity>cuFmcXJEWoPPx3nFEYDW8TgwpNvSx2jNO+n5uaYfL6Y=</Integrity>
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+      <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
+      <OriginalItemSpec>$([System.IO.Path]::GetFullPath('$(MSBuildThisFileDirectory)..\staticwebassets\uploads\products\Category_1\2f71f0d3-3a4d-419e-8749-93138de91fb1_tu-ti-vi-valente-1-1-e1721639264504.jpg'))</OriginalItemSpec>
+    </StaticWebAsset>
+    <StaticWebAsset Include="$([System.IO.Path]::GetFullPath('$(MSBuildThisFileDirectory)..\staticwebassets\uploads\products\Category_1\388ba8bc-1148-4d5d-8943-7152fd6be66f_daybed-nest-beige-2.webp'))">
+      <SourceType>Package</SourceType>
+      <SourceId>WebNoiThatHoaHome</SourceId>
+      <ContentRoot>$(MSBuildThisFileDirectory)..\staticwebassets\</ContentRoot>
+      <BasePath>_content/WebNoiThatHoaHome</BasePath>
+      <RelativePath>uploads/products/Category_1/388ba8bc-1148-4d5d-8943-7152fd6be66f_daybed-nest-beige-2.webp</RelativePath>
+      <AssetKind>All</AssetKind>
+      <AssetMode>All</AssetMode>
+      <AssetRole>Primary</AssetRole>
+      <RelatedAsset></RelatedAsset>
+      <AssetTraitName></AssetTraitName>
+      <AssetTraitValue></AssetTraitValue>
+      <Fingerprint>tmhhmjomid</Fingerprint>
+      <Integrity>hXWTGOvu0HUBcQZryAVztRWkIE1hl6Q2qhNimBqIDr4=</Integrity>
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+      <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
+      <OriginalItemSpec>$([System.IO.Path]::GetFullPath('$(MSBuildThisFileDirectory)..\staticwebassets\uploads\products\Category_1\388ba8bc-1148-4d5d-8943-7152fd6be66f_daybed-nest-beige-2.webp'))</OriginalItemSpec>
+    </StaticWebAsset>
+    <StaticWebAsset Include="$([System.IO.Path]::GetFullPath('$(MSBuildThisFileDirectory)..\staticwebassets\uploads\products\Category_1\7b2f8435-9386-4665-8ed9-54678ecd2690_Sofa-2-cho-Ogami-vai-vact10499.webp'))">
+      <SourceType>Package</SourceType>
+      <SourceId>WebNoiThatHoaHome</SourceId>
+      <ContentRoot>$(MSBuildThisFileDirectory)..\staticwebassets\</ContentRoot>
+      <BasePath>_content/WebNoiThatHoaHome</BasePath>
+      <RelativePath>uploads/products/Category_1/7b2f8435-9386-4665-8ed9-54678ecd2690_Sofa-2-cho-Ogami-vai-vact10499.webp</RelativePath>
+      <AssetKind>All</AssetKind>
+      <AssetMode>All</AssetMode>
+      <AssetRole>Primary</AssetRole>
+      <RelatedAsset></RelatedAsset>
+      <AssetTraitName></AssetTraitName>
+      <AssetTraitValue></AssetTraitValue>
+      <Fingerprint>z279ziuzh4</Fingerprint>
+      <Integrity>G7dupBAbv/l2eK++8zi1WINCgKqKsQ7QByzOx3oItm0=</Integrity>
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+      <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
+      <OriginalItemSpec>$([System.IO.Path]::GetFullPath('$(MSBuildThisFileDirectory)..\staticwebassets\uploads\products\Category_1\7b2f8435-9386-4665-8ed9-54678ecd2690_Sofa-2-cho-Ogami-vai-vact10499.webp'))</OriginalItemSpec>
+    </StaticWebAsset>
+    <StaticWebAsset Include="$([System.IO.Path]::GetFullPath('$(MSBuildThisFileDirectory)..\staticwebassets\uploads\products\Category_1\a6f71b4f-e5ea-40dc-b003-b74f07a4118e_Sofa-3-Cho-NEST-2m8-–-Vai-Beige-PGY2302-03-Kem-Don-1.webp'))">
+      <SourceType>Package</SourceType>
+      <SourceId>WebNoiThatHoaHome</SourceId>
+      <ContentRoot>$(MSBuildThisFileDirectory)..\staticwebassets\</ContentRoot>
+      <BasePath>_content/WebNoiThatHoaHome</BasePath>
+      <RelativePath>uploads/products/Category_1/a6f71b4f-e5ea-40dc-b003-b74f07a4118e_Sofa-3-Cho-NEST-2m8-–-Vai-Beige-PGY2302-03-Kem-Don-1.webp</RelativePath>
+      <AssetKind>All</AssetKind>
+      <AssetMode>All</AssetMode>
+      <AssetRole>Primary</AssetRole>
+      <RelatedAsset></RelatedAsset>
+      <AssetTraitName></AssetTraitName>
+      <AssetTraitValue></AssetTraitValue>
+      <Fingerprint>t9g9oyylkq</Fingerprint>
+      <Integrity>ofqeR9E6gq5yGHGuB5sB03CrEVu6e2FX5T/zeA9goXs=</Integrity>
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+      <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
+      <OriginalItemSpec>$([System.IO.Path]::GetFullPath('$(MSBuildThisFileDirectory)..\staticwebassets\uploads\products\Category_1\a6f71b4f-e5ea-40dc-b003-b74f07a4118e_Sofa-3-Cho-NEST-2m8-–-Vai-Beige-PGY2302-03-Kem-Don-1.webp'))</OriginalItemSpec>
+    </StaticWebAsset>
+    <StaticWebAsset Include="$([System.IO.Path]::GetFullPath('$(MSBuildThisFileDirectory)..\staticwebassets\uploads\products\Category_1\a75eccb0-510e-416e-9044-94375b7b3cf6_ghe-thu-gian-lazboy-eden-10t-559-–-forest-4.jpg'))">
+      <SourceType>Package</SourceType>
+      <SourceId>WebNoiThatHoaHome</SourceId>
+      <ContentRoot>$(MSBuildThisFileDirectory)..\staticwebassets\</ContentRoot>
+      <BasePath>_content/WebNoiThatHoaHome</BasePath>
+      <RelativePath>uploads/products/Category_1/a75eccb0-510e-416e-9044-94375b7b3cf6_ghe-thu-gian-lazboy-eden-10t-559-–-forest-4.jpg</RelativePath>
+      <AssetKind>All</AssetKind>
+      <AssetMode>All</AssetMode>
+      <AssetRole>Primary</AssetRole>
+      <RelatedAsset></RelatedAsset>
+      <AssetTraitName></AssetTraitName>
+      <AssetTraitValue></AssetTraitValue>
+      <Fingerprint>zbzfb9ooln</Fingerprint>
+      <Integrity>YXBq34KC9gq+PO1QBlcJXZcJeQFXcBFr1oE0CAMovsk=</Integrity>
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+      <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
+      <OriginalItemSpec>$([System.IO.Path]::GetFullPath('$(MSBuildThisFileDirectory)..\staticwebassets\uploads\products\Category_1\a75eccb0-510e-416e-9044-94375b7b3cf6_ghe-thu-gian-lazboy-eden-10t-559-–-forest-4.jpg'))</OriginalItemSpec>
+    </StaticWebAsset>
+    <StaticWebAsset Include="$([System.IO.Path]::GetFullPath('$(MSBuildThisFileDirectory)..\staticwebassets\uploads\products\Category_1\c0b40623-f67e-4469-85bd-5dccea8679c4_Armchair-ONA.jpg'))">
+      <SourceType>Package</SourceType>
+      <SourceId>WebNoiThatHoaHome</SourceId>
+      <ContentRoot>$(MSBuildThisFileDirectory)..\staticwebassets\</ContentRoot>
+      <BasePath>_content/WebNoiThatHoaHome</BasePath>
+      <RelativePath>uploads/products/Category_1/c0b40623-f67e-4469-85bd-5dccea8679c4_Armchair-ONA.jpg</RelativePath>
+      <AssetKind>All</AssetKind>
+      <AssetMode>All</AssetMode>
+      <AssetRole>Primary</AssetRole>
+      <RelatedAsset></RelatedAsset>
+      <AssetTraitName></AssetTraitName>
+      <AssetTraitValue></AssetTraitValue>
+      <Fingerprint>ki5n7r8uyp</Fingerprint>
+      <Integrity>rC6ddVZtmthPAlQH0HsEo69jIPTJGAmofCvZlNZb1sc=</Integrity>
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+      <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
+      <OriginalItemSpec>$([System.IO.Path]::GetFullPath('$(MSBuildThisFileDirectory)..\staticwebassets\uploads\products\Category_1\c0b40623-f67e-4469-85bd-5dccea8679c4_Armchair-ONA.jpg'))</OriginalItemSpec>
+    </StaticWebAsset>
+    <StaticWebAsset Include="$([System.IO.Path]::GetFullPath('$(MSBuildThisFileDirectory)..\staticwebassets\uploads\products\Category_1\c3862e3e-2f01-4f33-83cf-d63eab04eb11_102424-ban-nuoc-elegance-mau-tu-nhien-1.jpg'))">
+      <SourceType>Package</SourceType>
+      <SourceId>WebNoiThatHoaHome</SourceId>
+      <ContentRoot>$(MSBuildThisFileDirectory)..\staticwebassets\</ContentRoot>
+      <BasePath>_content/WebNoiThatHoaHome</BasePath>
+      <RelativePath>uploads/products/Category_1/c3862e3e-2f01-4f33-83cf-d63eab04eb11_102424-ban-nuoc-elegance-mau-tu-nhien-1.jpg</RelativePath>
+      <AssetKind>All</AssetKind>
+      <AssetMode>All</AssetMode>
+      <AssetRole>Primary</AssetRole>
+      <RelatedAsset></RelatedAsset>
+      <AssetTraitName></AssetTraitName>
+      <AssetTraitValue></AssetTraitValue>
+      <Fingerprint>fmp8posawq</Fingerprint>
+      <Integrity>t4zywo/hm0892TlnZ9dJTZYrQbl4FCPzAVpBJSQjp5o=</Integrity>
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+      <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
+      <OriginalItemSpec>$([System.IO.Path]::GetFullPath('$(MSBuildThisFileDirectory)..\staticwebassets\uploads\products\Category_1\c3862e3e-2f01-4f33-83cf-d63eab04eb11_102424-ban-nuoc-elegance-mau-tu-nhien-1.jpg'))</OriginalItemSpec>
+    </StaticWebAsset>
+    <StaticWebAsset Include="$([System.IO.Path]::GetFullPath('$(MSBuildThisFileDirectory)..\staticwebassets\uploads\products\Category_1\e9293c13-8f1a-43f0-8b04-5f601d82c21a_Sofa-3-Cho-ONA-HER-2m-–-Da-xanh-Kem-2-goi.webp'))">
+      <SourceType>Package</SourceType>
+      <SourceId>WebNoiThatHoaHome</SourceId>
+      <ContentRoot>$(MSBuildThisFileDirectory)..\staticwebassets\</ContentRoot>
+      <BasePath>_content/WebNoiThatHoaHome</BasePath>
+      <RelativePath>uploads/products/Category_1/e9293c13-8f1a-43f0-8b04-5f601d82c21a_Sofa-3-Cho-ONA-HER-2m-–-Da-xanh-Kem-2-goi.webp</RelativePath>
+      <AssetKind>All</AssetKind>
+      <AssetMode>All</AssetMode>
+      <AssetRole>Primary</AssetRole>
+      <RelatedAsset></RelatedAsset>
+      <AssetTraitName></AssetTraitName>
+      <AssetTraitValue></AssetTraitValue>
+      <Fingerprint>xx7qyexl6f</Fingerprint>
+      <Integrity>tVSNjMM6xLZl2Fk3kZvXeo6pGfdosa3CiMUCNsH5AQc=</Integrity>
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+      <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
+      <OriginalItemSpec>$([System.IO.Path]::GetFullPath('$(MSBuildThisFileDirectory)..\staticwebassets\uploads\products\Category_1\e9293c13-8f1a-43f0-8b04-5f601d82c21a_Sofa-3-Cho-ONA-HER-2m-–-Da-xanh-Kem-2-goi.webp'))</OriginalItemSpec>
+    </StaticWebAsset>
+    <StaticWebAsset Include="$([System.IO.Path]::GetFullPath('$(MSBuildThisFileDirectory)..\staticwebassets\uploads\products\Category_1\fe19d289-bc30-40af-9e3d-aaa1b489483a_armchair-Eponji.webp'))">
+      <SourceType>Package</SourceType>
+      <SourceId>WebNoiThatHoaHome</SourceId>
+      <ContentRoot>$(MSBuildThisFileDirectory)..\staticwebassets\</ContentRoot>
+      <BasePath>_content/WebNoiThatHoaHome</BasePath>
+      <RelativePath>uploads/products/Category_1/fe19d289-bc30-40af-9e3d-aaa1b489483a_armchair-Eponji.webp</RelativePath>
+      <AssetKind>All</AssetKind>
+      <AssetMode>All</AssetMode>
+      <AssetRole>Primary</AssetRole>
+      <RelatedAsset></RelatedAsset>
+      <AssetTraitName></AssetTraitName>
+      <AssetTraitValue></AssetTraitValue>
+      <Fingerprint>k63ehvbt8r</Fingerprint>
+      <Integrity>nIReb5CYAlIOWLq7T7Oe+QlkeFctcn7c1ogKDuP0mjY=</Integrity>
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+      <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
+      <OriginalItemSpec>$([System.IO.Path]::GetFullPath('$(MSBuildThisFileDirectory)..\staticwebassets\uploads\products\Category_1\fe19d289-bc30-40af-9e3d-aaa1b489483a_armchair-Eponji.webp'))</OriginalItemSpec>
+    </StaticWebAsset>
+    <StaticWebAsset Include="$([System.IO.Path]::GetFullPath('$(MSBuildThisFileDirectory)..\staticwebassets\uploads\products\Category_2\2c741688-c515-44ee-b341-9d4d12152659_ghe-bar-hojas-mau-beige-h99xw50-1.jpg'))">
+      <SourceType>Package</SourceType>
+      <SourceId>WebNoiThatHoaHome</SourceId>
+      <ContentRoot>$(MSBuildThisFileDirectory)..\staticwebassets\</ContentRoot>
+      <BasePath>_content/WebNoiThatHoaHome</BasePath>
+      <RelativePath>uploads/products/Category_2/2c741688-c515-44ee-b341-9d4d12152659_ghe-bar-hojas-mau-beige-h99xw50-1.jpg</RelativePath>
+      <AssetKind>All</AssetKind>
+      <AssetMode>All</AssetMode>
+      <AssetRole>Primary</AssetRole>
+      <RelatedAsset></RelatedAsset>
+      <AssetTraitName></AssetTraitName>
+      <AssetTraitValue></AssetTraitValue>
+      <Fingerprint>latd46c59p</Fingerprint>
+      <Integrity>jTEZKsPd6ihGaBqMI51JfVgTl6WcPJdYJnkboVDPYcY=</Integrity>
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+      <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
+      <OriginalItemSpec>$([System.IO.Path]::GetFullPath('$(MSBuildThisFileDirectory)..\staticwebassets\uploads\products\Category_2\2c741688-c515-44ee-b341-9d4d12152659_ghe-bar-hojas-mau-beige-h99xw50-1.jpg'))</OriginalItemSpec>
+    </StaticWebAsset>
+    <StaticWebAsset Include="$([System.IO.Path]::GetFullPath('$(MSBuildThisFileDirectory)..\staticwebassets\uploads\products\Category_2\6f2d30df-ece9-434e-83f8-49a854b5db53_Tu-ly-Candra-Oak.webp'))">
+      <SourceType>Package</SourceType>
+      <SourceId>WebNoiThatHoaHome</SourceId>
+      <ContentRoot>$(MSBuildThisFileDirectory)..\staticwebassets\</ContentRoot>
+      <BasePath>_content/WebNoiThatHoaHome</BasePath>
+      <RelativePath>uploads/products/Category_2/6f2d30df-ece9-434e-83f8-49a854b5db53_Tu-ly-Candra-Oak.webp</RelativePath>
+      <AssetKind>All</AssetKind>
+      <AssetMode>All</AssetMode>
+      <AssetRole>Primary</AssetRole>
+      <RelatedAsset></RelatedAsset>
+      <AssetTraitName></AssetTraitName>
+      <AssetTraitValue></AssetTraitValue>
+      <Fingerprint>nqh3iui6d9</Fingerprint>
+      <Integrity>j6b0Ez2gytEWH4N85OSUmsCZbwc6LxTzPUOv1XaBjsg=</Integrity>
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+      <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
+      <OriginalItemSpec>$([System.IO.Path]::GetFullPath('$(MSBuildThisFileDirectory)..\staticwebassets\uploads\products\Category_2\6f2d30df-ece9-434e-83f8-49a854b5db53_Tu-ly-Candra-Oak.webp'))</OriginalItemSpec>
+    </StaticWebAsset>
+    <StaticWebAsset Include="$([System.IO.Path]::GetFullPath('$(MSBuildThisFileDirectory)..\staticwebassets\uploads\products\Category_2\7a029a59-948d-469b-ae9e-72aa07d14da4_Ban-an-6-cho-Coastal.jpg'))">
+      <SourceType>Package</SourceType>
+      <SourceId>WebNoiThatHoaHome</SourceId>
+      <ContentRoot>$(MSBuildThisFileDirectory)..\staticwebassets\</ContentRoot>
+      <BasePath>_content/WebNoiThatHoaHome</BasePath>
+      <RelativePath>uploads/products/Category_2/7a029a59-948d-469b-ae9e-72aa07d14da4_Ban-an-6-cho-Coastal.jpg</RelativePath>
+      <AssetKind>All</AssetKind>
+      <AssetMode>All</AssetMode>
+      <AssetRole>Primary</AssetRole>
+      <RelatedAsset></RelatedAsset>
+      <AssetTraitName></AssetTraitName>
+      <AssetTraitValue></AssetTraitValue>
+      <Fingerprint>h5amcisiny</Fingerprint>
+      <Integrity>G883hjAxTAOu6tVw15/In6hil8NYDWZ5n4NnGW9nboc=</Integrity>
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+      <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
+      <OriginalItemSpec>$([System.IO.Path]::GetFullPath('$(MSBuildThisFileDirectory)..\staticwebassets\uploads\products\Category_2\7a029a59-948d-469b-ae9e-72aa07d14da4_Ban-an-6-cho-Coastal.jpg'))</OriginalItemSpec>
+    </StaticWebAsset>
+    <StaticWebAsset Include="$([System.IO.Path]::GetFullPath('$(MSBuildThisFileDirectory)..\staticwebassets\uploads\products\Category_2\98473a46-3343-437d-8e44-7a2f87a49db7_phong-an-coastal.jpg'))">
+      <SourceType>Package</SourceType>
+      <SourceId>WebNoiThatHoaHome</SourceId>
+      <ContentRoot>$(MSBuildThisFileDirectory)..\staticwebassets\</ContentRoot>
+      <BasePath>_content/WebNoiThatHoaHome</BasePath>
+      <RelativePath>uploads/products/Category_2/98473a46-3343-437d-8e44-7a2f87a49db7_phong-an-coastal.jpg</RelativePath>
+      <AssetKind>All</AssetKind>
+      <AssetMode>All</AssetMode>
+      <AssetRole>Primary</AssetRole>
+      <RelatedAsset></RelatedAsset>
+      <AssetTraitName></AssetTraitName>
+      <AssetTraitValue></AssetTraitValue>
+      <Fingerprint>9s6t84h3wv</Fingerprint>
+      <Integrity>Z9C8yAk1eAeCA4wlSolwOhcEfZr0ru+QFrEshwosNbo=</Integrity>
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+      <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
+      <OriginalItemSpec>$([System.IO.Path]::GetFullPath('$(MSBuildThisFileDirectory)..\staticwebassets\uploads\products\Category_2\98473a46-3343-437d-8e44-7a2f87a49db7_phong-an-coastal.jpg'))</OriginalItemSpec>
+    </StaticWebAsset>
+    <StaticWebAsset Include="$([System.IO.Path]::GetFullPath('$(MSBuildThisFileDirectory)..\staticwebassets\uploads\products\Category_2\f4e25e31-47dd-4e6f-8ace-bacbe1740294_ban-an-jazz-1.6.webp'))">
+      <SourceType>Package</SourceType>
+      <SourceId>WebNoiThatHoaHome</SourceId>
+      <ContentRoot>$(MSBuildThisFileDirectory)..\staticwebassets\</ContentRoot>
+      <BasePath>_content/WebNoiThatHoaHome</BasePath>
+      <RelativePath>uploads/products/Category_2/f4e25e31-47dd-4e6f-8ace-bacbe1740294_ban-an-jazz-1.6.webp</RelativePath>
+      <AssetKind>All</AssetKind>
+      <AssetMode>All</AssetMode>
+      <AssetRole>Primary</AssetRole>
+      <RelatedAsset></RelatedAsset>
+      <AssetTraitName></AssetTraitName>
+      <AssetTraitValue></AssetTraitValue>
+      <Fingerprint>tfplqwwwyo</Fingerprint>
+      <Integrity>97HFBNKq2OL3TaGesUEIjd/UXxI7jcuZ7LOTQ0WTb88=</Integrity>
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+      <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
+      <OriginalItemSpec>$([System.IO.Path]::GetFullPath('$(MSBuildThisFileDirectory)..\staticwebassets\uploads\products\Category_2\f4e25e31-47dd-4e6f-8ace-bacbe1740294_ban-an-jazz-1.6.webp'))</OriginalItemSpec>
+    </StaticWebAsset>
+    <StaticWebAsset Include="$([System.IO.Path]::GetFullPath('$(MSBuildThisFileDirectory)..\staticwebassets\uploads\products\Category_3\213c1077-dc06-4402-9543-2ed9802ad3ec_tu-ao-MFC.webp'))">
+      <SourceType>Package</SourceType>
+      <SourceId>WebNoiThatHoaHome</SourceId>
+      <ContentRoot>$(MSBuildThisFileDirectory)..\staticwebassets\</ContentRoot>
+      <BasePath>_content/WebNoiThatHoaHome</BasePath>
+      <RelativePath>uploads/products/Category_3/213c1077-dc06-4402-9543-2ed9802ad3ec_tu-ao-MFC.webp</RelativePath>
+      <AssetKind>All</AssetKind>
+      <AssetMode>All</AssetMode>
+      <AssetRole>Primary</AssetRole>
+      <RelatedAsset></RelatedAsset>
+      <AssetTraitName></AssetTraitName>
+      <AssetTraitValue></AssetTraitValue>
+      <Fingerprint>ivo0w5jzyq</Fingerprint>
+      <Integrity>Ej47OWnNAGLenuEe/BrFBnSDI8TkyZkiJZDmxuNT2HU=</Integrity>
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+      <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
+      <OriginalItemSpec>$([System.IO.Path]::GetFullPath('$(MSBuildThisFileDirectory)..\staticwebassets\uploads\products\Category_3\213c1077-dc06-4402-9543-2ed9802ad3ec_tu-ao-MFC.webp'))</OriginalItemSpec>
+    </StaticWebAsset>
+    <StaticWebAsset Include="$([System.IO.Path]::GetFullPath('$(MSBuildThisFileDirectory)..\staticwebassets\uploads\products\Category_3\33b15a6f-73d3-4fcb-9f6c-12ec2780a3c6_Nem-lo-xo-Tokyobed-1m8-TB330.webp'))">
+      <SourceType>Package</SourceType>
+      <SourceId>WebNoiThatHoaHome</SourceId>
+      <ContentRoot>$(MSBuildThisFileDirectory)..\staticwebassets\</ContentRoot>
+      <BasePath>_content/WebNoiThatHoaHome</BasePath>
+      <RelativePath>uploads/products/Category_3/33b15a6f-73d3-4fcb-9f6c-12ec2780a3c6_Nem-lo-xo-Tokyobed-1m8-TB330.webp</RelativePath>
+      <AssetKind>All</AssetKind>
+      <AssetMode>All</AssetMode>
+      <AssetRole>Primary</AssetRole>
+      <RelatedAsset></RelatedAsset>
+      <AssetTraitName></AssetTraitName>
+      <AssetTraitValue></AssetTraitValue>
+      <Fingerprint>4p29aar8e9</Fingerprint>
+      <Integrity>GCi0OKLCDJfwo1K3MR60ZowBGjS4QROgK/h0wDYh5Cw=</Integrity>
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+      <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
+      <OriginalItemSpec>$([System.IO.Path]::GetFullPath('$(MSBuildThisFileDirectory)..\staticwebassets\uploads\products\Category_3\33b15a6f-73d3-4fcb-9f6c-12ec2780a3c6_Nem-lo-xo-Tokyobed-1m8-TB330.webp'))</OriginalItemSpec>
+    </StaticWebAsset>
+    <StaticWebAsset Include="$([System.IO.Path]::GetFullPath('$(MSBuildThisFileDirectory)..\staticwebassets\uploads\products\Category_3\60727ae9-0311-4ceb-96b8-0e40a5692374_ban-trang-diem-dep-tinh-te-co-hoc-3.jpg'))">
+      <SourceType>Package</SourceType>
+      <SourceId>WebNoiThatHoaHome</SourceId>
+      <ContentRoot>$(MSBuildThisFileDirectory)..\staticwebassets\</ContentRoot>
+      <BasePath>_content/WebNoiThatHoaHome</BasePath>
+      <RelativePath>uploads/products/Category_3/60727ae9-0311-4ceb-96b8-0e40a5692374_ban-trang-diem-dep-tinh-te-co-hoc-3.jpg</RelativePath>
+      <AssetKind>All</AssetKind>
+      <AssetMode>All</AssetMode>
+      <AssetRole>Primary</AssetRole>
+      <RelatedAsset></RelatedAsset>
+      <AssetTraitName></AssetTraitName>
+      <AssetTraitValue></AssetTraitValue>
+      <Fingerprint>jyohdp7pwf</Fingerprint>
+      <Integrity>m3n9CaXKY+siBFJgB4AWvwda0awGUM2LPyu18o1frxo=</Integrity>
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+      <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
+      <OriginalItemSpec>$([System.IO.Path]::GetFullPath('$(MSBuildThisFileDirectory)..\staticwebassets\uploads\products\Category_3\60727ae9-0311-4ceb-96b8-0e40a5692374_ban-trang-diem-dep-tinh-te-co-hoc-3.jpg'))</OriginalItemSpec>
+    </StaticWebAsset>
+    <StaticWebAsset Include="$([System.IO.Path]::GetFullPath('$(MSBuildThisFileDirectory)..\staticwebassets\uploads\products\Category_3\79c1305c-be4d-476f-ad80-6ec5de36dc35_giuong-bridge-2.webp'))">
+      <SourceType>Package</SourceType>
+      <SourceId>WebNoiThatHoaHome</SourceId>
+      <ContentRoot>$(MSBuildThisFileDirectory)..\staticwebassets\</ContentRoot>
+      <BasePath>_content/WebNoiThatHoaHome</BasePath>
+      <RelativePath>uploads/products/Category_3/79c1305c-be4d-476f-ad80-6ec5de36dc35_giuong-bridge-2.webp</RelativePath>
+      <AssetKind>All</AssetKind>
+      <AssetMode>All</AssetMode>
+      <AssetRole>Primary</AssetRole>
+      <RelatedAsset></RelatedAsset>
+      <AssetTraitName></AssetTraitName>
+      <AssetTraitValue></AssetTraitValue>
+      <Fingerprint>mlfrhszdd4</Fingerprint>
+      <Integrity>uphmjvSnwG1I4didqUYGQtfW32rLyhVcCDAaEBMytSQ=</Integrity>
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+      <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
+      <OriginalItemSpec>$([System.IO.Path]::GetFullPath('$(MSBuildThisFileDirectory)..\staticwebassets\uploads\products\Category_3\79c1305c-be4d-476f-ad80-6ec5de36dc35_giuong-bridge-2.webp'))</OriginalItemSpec>
+    </StaticWebAsset>
+    <StaticWebAsset Include="$([System.IO.Path]::GetFullPath('$(MSBuildThisFileDirectory)..\staticwebassets\uploads\products\Category_3\7b01bbf9-cd30-49b2-b598-21d2b429df90_tu-hoc-keo-boston2.jpg'))">
+      <SourceType>Package</SourceType>
+      <SourceId>WebNoiThatHoaHome</SourceId>
+      <ContentRoot>$(MSBuildThisFileDirectory)..\staticwebassets\</ContentRoot>
+      <BasePath>_content/WebNoiThatHoaHome</BasePath>
+      <RelativePath>uploads/products/Category_3/7b01bbf9-cd30-49b2-b598-21d2b429df90_tu-hoc-keo-boston2.jpg</RelativePath>
+      <AssetKind>All</AssetKind>
+      <AssetMode>All</AssetMode>
+      <AssetRole>Primary</AssetRole>
+      <RelatedAsset></RelatedAsset>
+      <AssetTraitName></AssetTraitName>
+      <AssetTraitValue></AssetTraitValue>
+      <Fingerprint>r7ayttdve3</Fingerprint>
+      <Integrity>N8n7jEGtl0I1POrxZAmqF53tcuE3AgGwSaO2gkcgSTI=</Integrity>
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+      <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
+      <OriginalItemSpec>$([System.IO.Path]::GetFullPath('$(MSBuildThisFileDirectory)..\staticwebassets\uploads\products\Category_3\7b01bbf9-cd30-49b2-b598-21d2b429df90_tu-hoc-keo-boston2.jpg'))</OriginalItemSpec>
+    </StaticWebAsset>
+    <StaticWebAsset Include="$([System.IO.Path]::GetFullPath('$(MSBuildThisFileDirectory)..\staticwebassets\uploads\products\Category_3\c84008aa-084d-462b-84fe-110972eacc0a_Ban-dau-giuong-Bridge-mau-DB.webp'))">
+      <SourceType>Package</SourceType>
+      <SourceId>WebNoiThatHoaHome</SourceId>
+      <ContentRoot>$(MSBuildThisFileDirectory)..\staticwebassets\</ContentRoot>
+      <BasePath>_content/WebNoiThatHoaHome</BasePath>
+      <RelativePath>uploads/products/Category_3/c84008aa-084d-462b-84fe-110972eacc0a_Ban-dau-giuong-Bridge-mau-DB.webp</RelativePath>
+      <AssetKind>All</AssetKind>
+      <AssetMode>All</AssetMode>
+      <AssetRole>Primary</AssetRole>
+      <RelatedAsset></RelatedAsset>
+      <AssetTraitName></AssetTraitName>
+      <AssetTraitValue></AssetTraitValue>
+      <Fingerprint>2hsm0lhbp0</Fingerprint>
+      <Integrity>WoLqaJOwHOy3WjEG9fb7Kd71avvkfTejuJHUMTFZn1o=</Integrity>
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+      <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
+      <OriginalItemSpec>$([System.IO.Path]::GetFullPath('$(MSBuildThisFileDirectory)..\staticwebassets\uploads\products\Category_3\c84008aa-084d-462b-84fe-110972eacc0a_Ban-dau-giuong-Bridge-mau-DB.webp'))</OriginalItemSpec>
+    </StaticWebAsset>
+    <StaticWebAsset Include="$([System.IO.Path]::GetFullPath('$(MSBuildThisFileDirectory)..\staticwebassets\uploads\products\Category_4\b3eba309-e490-4b6f-89cb-7f2f5adf9618_ghe-ruby-beige.webp'))">
+      <SourceType>Package</SourceType>
+      <SourceId>WebNoiThatHoaHome</SourceId>
+      <ContentRoot>$(MSBuildThisFileDirectory)..\staticwebassets\</ContentRoot>
+      <BasePath>_content/WebNoiThatHoaHome</BasePath>
+      <RelativePath>uploads/products/Category_4/b3eba309-e490-4b6f-89cb-7f2f5adf9618_ghe-ruby-beige.webp</RelativePath>
+      <AssetKind>All</AssetKind>
+      <AssetMode>All</AssetMode>
+      <AssetRole>Primary</AssetRole>
+      <RelatedAsset></RelatedAsset>
+      <AssetTraitName></AssetTraitName>
+      <AssetTraitValue></AssetTraitValue>
+      <Fingerprint>1x3xylf0x5</Fingerprint>
+      <Integrity>FVi1ODdZmX93nvccPq6DAXl5B9/Tg/SYofgp+3MBuxc=</Integrity>
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+      <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
+      <OriginalItemSpec>$([System.IO.Path]::GetFullPath('$(MSBuildThisFileDirectory)..\staticwebassets\uploads\products\Category_4\b3eba309-e490-4b6f-89cb-7f2f5adf9618_ghe-ruby-beige.webp'))</OriginalItemSpec>
+    </StaticWebAsset>
+    <StaticWebAsset Include="$([System.IO.Path]::GetFullPath('$(MSBuildThisFileDirectory)..\staticwebassets\uploads\products\Category_4\c05fd5bc-f48c-499c-add4-b122ee214d10_ke-sach-taura.webp'))">
+      <SourceType>Package</SourceType>
+      <SourceId>WebNoiThatHoaHome</SourceId>
+      <ContentRoot>$(MSBuildThisFileDirectory)..\staticwebassets\</ContentRoot>
+      <BasePath>_content/WebNoiThatHoaHome</BasePath>
+      <RelativePath>uploads/products/Category_4/c05fd5bc-f48c-499c-add4-b122ee214d10_ke-sach-taura.webp</RelativePath>
+      <AssetKind>All</AssetKind>
+      <AssetMode>All</AssetMode>
+      <AssetRole>Primary</AssetRole>
+      <RelatedAsset></RelatedAsset>
+      <AssetTraitName></AssetTraitName>
+      <AssetTraitValue></AssetTraitValue>
+      <Fingerprint>o0iyzaknme</Fingerprint>
+      <Integrity>SAXJDD6/mmfjZccRMskPB1hcazPIQvwl0voJd44ooTc=</Integrity>
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+      <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
+      <OriginalItemSpec>$([System.IO.Path]::GetFullPath('$(MSBuildThisFileDirectory)..\staticwebassets\uploads\products\Category_4\c05fd5bc-f48c-499c-add4-b122ee214d10_ke-sach-taura.webp'))</OriginalItemSpec>
+    </StaticWebAsset>
+    <StaticWebAsset Include="$([System.IO.Path]::GetFullPath('$(MSBuildThisFileDirectory)..\staticwebassets\uploads\products\Category_4\def9bf29-f934-45d4-aa85-d7d2be4a6bf7_Ban-lam-viec-Coastal.jpg'))">
+      <SourceType>Package</SourceType>
+      <SourceId>WebNoiThatHoaHome</SourceId>
+      <ContentRoot>$(MSBuildThisFileDirectory)..\staticwebassets\</ContentRoot>
+      <BasePath>_content/WebNoiThatHoaHome</BasePath>
+      <RelativePath>uploads/products/Category_4/def9bf29-f934-45d4-aa85-d7d2be4a6bf7_Ban-lam-viec-Coastal.jpg</RelativePath>
+      <AssetKind>All</AssetKind>
+      <AssetMode>All</AssetMode>
+      <AssetRole>Primary</AssetRole>
+      <RelatedAsset></RelatedAsset>
+      <AssetTraitName></AssetTraitName>
+      <AssetTraitValue></AssetTraitValue>
+      <Fingerprint>ntd1wtwaz5</Fingerprint>
+      <Integrity>OzARx33HFNVwkfZ8tbN7VPye3V32qyJKVtqasHk1czU=</Integrity>
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+      <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
+      <OriginalItemSpec>$([System.IO.Path]::GetFullPath('$(MSBuildThisFileDirectory)..\staticwebassets\uploads\products\Category_4\def9bf29-f934-45d4-aa85-d7d2be4a6bf7_Ban-lam-viec-Coastal.jpg'))</OriginalItemSpec>
+    </StaticWebAsset>
+    <StaticWebAsset Include="$([System.IO.Path]::GetFullPath('$(MSBuildThisFileDirectory)..\staticwebassets\uploads\products\Category_5\35290e0f-858d-4fda-a77e-b03805121519_bep-shiny-vang-1000.jpg'))">
+      <SourceType>Package</SourceType>
+      <SourceId>WebNoiThatHoaHome</SourceId>
+      <ContentRoot>$(MSBuildThisFileDirectory)..\staticwebassets\</ContentRoot>
+      <BasePath>_content/WebNoiThatHoaHome</BasePath>
+      <RelativePath>uploads/products/Category_5/35290e0f-858d-4fda-a77e-b03805121519_bep-shiny-vang-1000.jpg</RelativePath>
+      <AssetKind>All</AssetKind>
+      <AssetMode>All</AssetMode>
+      <AssetRole>Primary</AssetRole>
+      <RelatedAsset></RelatedAsset>
+      <AssetTraitName></AssetTraitName>
+      <AssetTraitValue></AssetTraitValue>
+      <Fingerprint>ezsubafgv5</Fingerprint>
+      <Integrity>xs58KAAltzLiPAbDtn89Z5ED00zIVv2ZAStRZcCZ/lY=</Integrity>
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+      <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
+      <OriginalItemSpec>$([System.IO.Path]::GetFullPath('$(MSBuildThisFileDirectory)..\staticwebassets\uploads\products\Category_5\35290e0f-858d-4fda-a77e-b03805121519_bep-shiny-vang-1000.jpg'))</OriginalItemSpec>
+    </StaticWebAsset>
+    <StaticWebAsset Include="$([System.IO.Path]::GetFullPath('$(MSBuildThisFileDirectory)..\staticwebassets\uploads\products\Category_5\671f5551-eabb-4fd0-a458-970134b6e876_nha-xinh-tu-bep-paris.jpg'))">
+      <SourceType>Package</SourceType>
+      <SourceId>WebNoiThatHoaHome</SourceId>
+      <ContentRoot>$(MSBuildThisFileDirectory)..\staticwebassets\</ContentRoot>
+      <BasePath>_content/WebNoiThatHoaHome</BasePath>
+      <RelativePath>uploads/products/Category_5/671f5551-eabb-4fd0-a458-970134b6e876_nha-xinh-tu-bep-paris.jpg</RelativePath>
+      <AssetKind>All</AssetKind>
+      <AssetMode>All</AssetMode>
+      <AssetRole>Primary</AssetRole>
+      <RelatedAsset></RelatedAsset>
+      <AssetTraitName></AssetTraitName>
+      <AssetTraitValue></AssetTraitValue>
+      <Fingerprint>5bq8g6nhx7</Fingerprint>
+      <Integrity>Mc8ZggMcjiJizNHtzcY8Psnii538SkudL45Zh3cO6vg=</Integrity>
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+      <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
+      <OriginalItemSpec>$([System.IO.Path]::GetFullPath('$(MSBuildThisFileDirectory)..\staticwebassets\uploads\products\Category_5\671f5551-eabb-4fd0-a458-970134b6e876_nha-xinh-tu-bep-paris.jpg'))</OriginalItemSpec>
+    </StaticWebAsset>
+    <StaticWebAsset Include="$([System.IO.Path]::GetFullPath('$(MSBuildThisFileDirectory)..\staticwebassets\uploads\products\Category_5\d2b648aa-0bef-451d-86ba-2238bf4b8210_7._daily.jpg'))">
+      <SourceType>Package</SourceType>
+      <SourceId>WebNoiThatHoaHome</SourceId>
+      <ContentRoot>$(MSBuildThisFileDirectory)..\staticwebassets\</ContentRoot>
+      <BasePath>_content/WebNoiThatHoaHome</BasePath>
+      <RelativePath>uploads/products/Category_5/d2b648aa-0bef-451d-86ba-2238bf4b8210_7._daily.jpg</RelativePath>
+      <AssetKind>All</AssetKind>
+      <AssetMode>All</AssetMode>
+      <AssetRole>Primary</AssetRole>
+      <RelatedAsset></RelatedAsset>
+      <AssetTraitName></AssetTraitName>
+      <AssetTraitValue></AssetTraitValue>
+      <Fingerprint>auvxefx5it</Fingerprint>
+      <Integrity>ctl83oHKbIl3/F9cNd/qS2v+WD+vookPZ0noPm4erxk=</Integrity>
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+      <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
+      <OriginalItemSpec>$([System.IO.Path]::GetFullPath('$(MSBuildThisFileDirectory)..\staticwebassets\uploads\products\Category_5\d2b648aa-0bef-451d-86ba-2238bf4b8210_7._daily.jpg'))</OriginalItemSpec>
+    </StaticWebAsset>
+    <StaticWebAsset Include="$([System.IO.Path]::GetFullPath('$(MSBuildThisFileDirectory)..\staticwebassets\uploads\products\Category_6\0e1f20a3-cd1b-4065-a37b-2cbc452d1299_BINH-ALINE-CERAMIC-RED-XS16X16X16-23102J-1.jpg'))">
+      <SourceType>Package</SourceType>
+      <SourceId>WebNoiThatHoaHome</SourceId>
+      <ContentRoot>$(MSBuildThisFileDirectory)..\staticwebassets\</ContentRoot>
+      <BasePath>_content/WebNoiThatHoaHome</BasePath>
+      <RelativePath>uploads/products/Category_6/0e1f20a3-cd1b-4065-a37b-2cbc452d1299_BINH-ALINE-CERAMIC-RED-XS16X16X16-23102J-1.jpg</RelativePath>
+      <AssetKind>All</AssetKind>
+      <AssetMode>All</AssetMode>
+      <AssetRole>Primary</AssetRole>
+      <RelatedAsset></RelatedAsset>
+      <AssetTraitName></AssetTraitName>
+      <AssetTraitValue></AssetTraitValue>
+      <Fingerprint>yf20hkrsap</Fingerprint>
+      <Integrity>osLzZHHGonHjofsAtNNFQ6RdyPei8JN5fkTJpH/QKks=</Integrity>
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+      <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
+      <OriginalItemSpec>$([System.IO.Path]::GetFullPath('$(MSBuildThisFileDirectory)..\staticwebassets\uploads\products\Category_6\0e1f20a3-cd1b-4065-a37b-2cbc452d1299_BINH-ALINE-CERAMIC-RED-XS16X16X16-23102J-1.jpg'))</OriginalItemSpec>
+    </StaticWebAsset>
+    <StaticWebAsset Include="$([System.IO.Path]::GetFullPath('$(MSBuildThisFileDirectory)..\staticwebassets\uploads\products\Category_6\bc08e700-7cb6-4928-8f19-aa5fa8dfefdf_Binh-Child-head-xanh-la-159645C.jpg'))">
+      <SourceType>Package</SourceType>
+      <SourceId>WebNoiThatHoaHome</SourceId>
+      <ContentRoot>$(MSBuildThisFileDirectory)..\staticwebassets\</ContentRoot>
+      <BasePath>_content/WebNoiThatHoaHome</BasePath>
+      <RelativePath>uploads/products/Category_6/bc08e700-7cb6-4928-8f19-aa5fa8dfefdf_Binh-Child-head-xanh-la-159645C.jpg</RelativePath>
+      <AssetKind>All</AssetKind>
+      <AssetMode>All</AssetMode>
+      <AssetRole>Primary</AssetRole>
+      <RelatedAsset></RelatedAsset>
+      <AssetTraitName></AssetTraitName>
+      <AssetTraitValue></AssetTraitValue>
+      <Fingerprint>2vhhtswx1w</Fingerprint>
+      <Integrity>ruFmvQPQoh0mz7OzyxhBldQPe+FovHvlpZbWQyY0VXc=</Integrity>
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+      <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
+      <OriginalItemSpec>$([System.IO.Path]::GetFullPath('$(MSBuildThisFileDirectory)..\staticwebassets\uploads\products\Category_6\bc08e700-7cb6-4928-8f19-aa5fa8dfefdf_Binh-Child-head-xanh-la-159645C.jpg'))</OriginalItemSpec>
+    </StaticWebAsset>
+    <StaticWebAsset Include="$([System.IO.Path]::GetFullPath('$(MSBuildThisFileDirectory)..\staticwebassets\uploads\products\Category_6\bf564945-5b7e-488b-9df6-3463412981b4_BINH-CYLINDER-GL-GREEN-S-16X16X32-3704J-2.jpg'))">
+      <SourceType>Package</SourceType>
+      <SourceId>WebNoiThatHoaHome</SourceId>
+      <ContentRoot>$(MSBuildThisFileDirectory)..\staticwebassets\</ContentRoot>
+      <BasePath>_content/WebNoiThatHoaHome</BasePath>
+      <RelativePath>uploads/products/Category_6/bf564945-5b7e-488b-9df6-3463412981b4_BINH-CYLINDER-GL-GREEN-S-16X16X32-3704J-2.jpg</RelativePath>
+      <AssetKind>All</AssetKind>
+      <AssetMode>All</AssetMode>
+      <AssetRole>Primary</AssetRole>
+      <RelatedAsset></RelatedAsset>
+      <AssetTraitName></AssetTraitName>
+      <AssetTraitValue></AssetTraitValue>
+      <Fingerprint>nfyc0a7x65</Fingerprint>
+      <Integrity>U1G9oncNcP9KdIuHxO/QTwWpBJdxPQ4r6hJ8giFJbhU=</Integrity>
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+      <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
+      <OriginalItemSpec>$([System.IO.Path]::GetFullPath('$(MSBuildThisFileDirectory)..\staticwebassets\uploads\products\Category_6\bf564945-5b7e-488b-9df6-3463412981b4_BINH-CYLINDER-GL-GREEN-S-16X16X32-3704J-2.jpg'))</OriginalItemSpec>
+    </StaticWebAsset>
+    <StaticWebAsset Include="$([System.IO.Path]::GetFullPath('$(MSBuildThisFileDirectory)..\staticwebassets\uploads\products\Category_7\0583bb51-f965-4979-a094-86144c889d08_80846-1000-nhaxinh-hang-ngoai-troi-ghe.jpg'))">
+      <SourceType>Package</SourceType>
+      <SourceId>WebNoiThatHoaHome</SourceId>
+      <ContentRoot>$(MSBuildThisFileDirectory)..\staticwebassets\</ContentRoot>
+      <BasePath>_content/WebNoiThatHoaHome</BasePath>
+      <RelativePath>uploads/products/Category_7/0583bb51-f965-4979-a094-86144c889d08_80846-1000-nhaxinh-hang-ngoai-troi-ghe.jpg</RelativePath>
+      <AssetKind>All</AssetKind>
+      <AssetMode>All</AssetMode>
+      <AssetRole>Primary</AssetRole>
+      <RelatedAsset></RelatedAsset>
+      <AssetTraitName></AssetTraitName>
+      <AssetTraitValue></AssetTraitValue>
+      <Fingerprint>iqbq9i50gm</Fingerprint>
+      <Integrity>FsHjRhZKO4qcqhM4TAwx0kUCmAINHP0tOz2xvLbnlD8=</Integrity>
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+      <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
+      <OriginalItemSpec>$([System.IO.Path]::GetFullPath('$(MSBuildThisFileDirectory)..\staticwebassets\uploads\products\Category_7\0583bb51-f965-4979-a094-86144c889d08_80846-1000-nhaxinh-hang-ngoai-troi-ghe.jpg'))</OriginalItemSpec>
+    </StaticWebAsset>
+    <StaticWebAsset Include="$([System.IO.Path]::GetFullPath('$(MSBuildThisFileDirectory)..\staticwebassets\uploads\products\Category_7\ce413d2c-e71a-4e36-b068-348a4c91a0be_Goi-Lorette-68X44-Green-271310-1.jpg'))">
+      <SourceType>Package</SourceType>
+      <SourceId>WebNoiThatHoaHome</SourceId>
+      <ContentRoot>$(MSBuildThisFileDirectory)..\staticwebassets\</ContentRoot>
+      <BasePath>_content/WebNoiThatHoaHome</BasePath>
+      <RelativePath>uploads/products/Category_7/ce413d2c-e71a-4e36-b068-348a4c91a0be_Goi-Lorette-68X44-Green-271310-1.jpg</RelativePath>
+      <AssetKind>All</AssetKind>
+      <AssetMode>All</AssetMode>
+      <AssetRole>Primary</AssetRole>
+      <RelatedAsset></RelatedAsset>
+      <AssetTraitName></AssetTraitName>
+      <AssetTraitValue></AssetTraitValue>
+      <Fingerprint>uivzjdlj3i</Fingerprint>
+      <Integrity>VuFAU2HVHsglfB1jeWt8sxeQo89Fn7GDCDWnQ7REkMI=</Integrity>
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+      <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
+      <OriginalItemSpec>$([System.IO.Path]::GetFullPath('$(MSBuildThisFileDirectory)..\staticwebassets\uploads\products\Category_7\ce413d2c-e71a-4e36-b068-348a4c91a0be_Goi-Lorette-68X44-Green-271310-1.jpg'))</OriginalItemSpec>
+    </StaticWebAsset>
+    <StaticWebAsset Include="$([System.IO.Path]::GetFullPath('$(MSBuildThisFileDirectory)..\staticwebassets\uploads\products\Category_7\f77b129c-0de7-4369-a8cb-3dd27d7d7ae4_DEN-SAN-MARIPOSA-BRASS-160-52931K-3-2.jpg'))">
+      <SourceType>Package</SourceType>
+      <SourceId>WebNoiThatHoaHome</SourceId>
+      <ContentRoot>$(MSBuildThisFileDirectory)..\staticwebassets\</ContentRoot>
+      <BasePath>_content/WebNoiThatHoaHome</BasePath>
+      <RelativePath>uploads/products/Category_7/f77b129c-0de7-4369-a8cb-3dd27d7d7ae4_DEN-SAN-MARIPOSA-BRASS-160-52931K-3-2.jpg</RelativePath>
+      <AssetKind>All</AssetKind>
+      <AssetMode>All</AssetMode>
+      <AssetRole>Primary</AssetRole>
+      <RelatedAsset></RelatedAsset>
+      <AssetTraitName></AssetTraitName>
+      <AssetTraitValue></AssetTraitValue>
+      <Fingerprint>63v9vnavw1</Fingerprint>
+      <Integrity>Xl/lBOLXrSXLeX8G0pp4UUSB1sJQTIhh79WHT+9PjXg=</Integrity>
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+      <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
+      <OriginalItemSpec>$([System.IO.Path]::GetFullPath('$(MSBuildThisFileDirectory)..\staticwebassets\uploads\products\Category_7\f77b129c-0de7-4369-a8cb-3dd27d7d7ae4_DEN-SAN-MARIPOSA-BRASS-160-52931K-3-2.jpg'))</OriginalItemSpec>
+    </StaticWebAsset>
+    <StaticWebAsset Include="$([System.IO.Path]::GetFullPath('$(MSBuildThisFileDirectory)..\staticwebassets\WebNoiThatHoaHome.t3i1fvc4fi.bundle.scp.css'))">
+      <SourceType>Package</SourceType>
+      <SourceId>WebNoiThatHoaHome</SourceId>
+      <ContentRoot>$(MSBuildThisFileDirectory)..\staticwebassets\</ContentRoot>
+      <BasePath>_content/WebNoiThatHoaHome</BasePath>
+      <RelativePath>WebNoiThatHoaHome.t3i1fvc4fi.bundle.scp.css</RelativePath>
       <AssetKind>All</AssetKind>
       <AssetMode>Reference</AssetMode>
       <AssetRole>Primary</AssetRole>
       <RelatedAsset></RelatedAsset>
       <AssetTraitName>ScopedCss</AssetTraitName>
       <AssetTraitValue>ProjectBundle</AssetTraitValue>
-      <Fingerprint>mzisunu1pe</Fingerprint>
-      <Integrity>IgnNQGmxdL5h+zpYImWu45mmF9UZ6cn8k7jdII7ND1U=</Integrity>
+      <Fingerprint>t3i1fvc4fi</Fingerprint>
+      <Integrity>6RwAX6lFgcJ+IwmbYPL8BtwmcHsdtzjU7NRoBJNTkeA=</Integrity>
       <CopyToOutputDirectory>Never</CopyToOutputDirectory>
       <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
-      <OriginalItemSpec>$([System.IO.Path]::GetFullPath('$(MSBuildThisFileDirectory)..\staticwebassets\WebNoiThatHoaHome.mzisunu1pe.bundle.scp.css'))</OriginalItemSpec>
+      <OriginalItemSpec>$([System.IO.Path]::GetFullPath('$(MSBuildThisFileDirectory)..\staticwebassets\WebNoiThatHoaHome.t3i1fvc4fi.bundle.scp.css'))</OriginalItemSpec>
     </StaticWebAsset>
   </ItemGroup>
 </Project>

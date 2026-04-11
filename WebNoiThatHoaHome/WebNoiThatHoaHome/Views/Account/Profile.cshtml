@@ -1,0 +1,184 @@
+﻿@model WebNoiThatHoaHome.Models.User
+@{
+    ViewData["Title"] = "Tài khoản cá nhân";
+
+    // Tách FullName ra thành Họ và Tên (nếu DB của bạn gộp chung)
+    var names = Model.FullName?.Split(' ') ?? new string[0];
+    var lastName = names.Length > 0 ? names.Last() : "";
+    var firstName = names.Length > 1 ? string.Join(" ", names.Take(names.Length - 1)) : "";
+}
+
+<div class="container my-5">
+    <div class="row">
+
+        <div class="col-md-3 mb-4">
+            <h5 class="fw-bold mb-4 ps-3 border-start border-warning border-3">Tài khoản cá nhân</h5>
+            <div class="list-group list-group-flush rounded-0">
+                <a href="/Account/Profile" class="list-group-item list-group-item-action border-0 fw-bold py-2">Thông tin của tôi</a>
+                <a href="/Account/Orders" class="list-group-item list-group-item-action border-0 py-2">Đơn hàng</a>               
+                <a href="/Account/Wishlist" class="list-group-item list-group-item-action border-0 py-2">Danh sách yêu thích</a>
+                <a href="/Account/Logout" class="list-group-item list-group-item-action border-0 py-2">Đăng xuất</a>
+            </div>
+        </div>
+
+        <div class="col-md-9 ps-md-5">
+            <form action="/Account/UpdateProfile" method="post">
+                <div class="row mb-4">
+                    <div class="col-md-6 mb-3">
+                        <label class="form-label" style="font-size: 13px;">Tên *</label>
+                        <input type="text" class="form-control rounded-0" name="FirstName" value="@lastName" required>
+                    </div>
+                    <div class="col-md-6 mb-3">
+                        <label class="form-label" style="font-size: 13px;">Họ *</label>
+                        <input type="text" class="form-control rounded-0" name="LastName" value="@firstName" required>
+                    </div>
+                    <div class="col-12 mb-3">
+                        <label class="form-label" style="font-size: 13px;">Địa chỉ email *</label>
+                        <input type="email" class="form-control rounded-0" name="Email" value="@User.Identity.Name" readonly>
+                    </div>
+                </div>
+
+                <h5 class="fw-bold mb-4 text-uppercase">Thay đổi mật khẩu</h5>
+                <div class="mb-3">
+                    <label class="form-label" style="font-size: 13px;">Mật khẩu hiện tại (để trống nếu không có thay đổi)</label>
+                    <input type="password" class="form-control rounded-0" name="CurrentPassword">
+                </div>
+                <div class="mb-3">
+                    <label class="form-label" style="font-size: 13px;">Mật khẩu mới (để trống nếu không có thay đổi)</label>
+                    <input type="password" class="form-control rounded-0" name="NewPassword">
+                </div>
+                <div class="mb-4">
+                    <label class="form-label" style="font-size: 13px;">Xác nhận mật khẩu mới</label>
+                    <input type="password" class="form-control rounded-0" name="ConfirmPassword">
+                </div>
+
+                <button type="submit" class="btn btn-dark rounded-0 px-4 py-2 fw-bold mb-5">LƯU THAY ĐỔI</button>
+            </form>
+
+            <h5 class="fw-bold mb-4 text-uppercase">Địa chỉ</h5>
+
+            <form action="/Account/UpdateAddress" method="post">
+                <div class="mb-3">
+                    <label class="form-label" style="font-size: 13px;">Họ và tên *</label>
+                    <input type="text" class="form-control rounded-0" name="DeliveryName" value="@Model.FullName" placeholder="Nhập họ và tên" required>
+                </div>
+
+                <div class="row mb-3">
+                    <div class="col-md-6 mb-3 mb-md-0">
+                        <label class="form-label" style="font-size: 13px;">Số điện thoại *</label>
+                        <input type="text" class="form-control rounded-0" name="Phone" value="@Model.Phone" placeholder="Nhập số điện thoại" required>
+                    </div>
+                    <div class="col-md-6">
+                        <label class="form-label" style="font-size: 13px;">Địa chỉ email *</label>
+                        <input type="email" class="form-control rounded-0 bg-light" value="@Model.Email" readonly>
+                    </div>
+                </div>
+
+                <div class="row mb-3">
+                    <div class="col-md-6 mb-3 mb-md-0">
+                        <label class="form-label" style="font-size: 13px;">Tỉnh / Thành phố *</label>
+                        <select class="form-select rounded-0 text-muted" name="City" id="cityDropdown" required>
+                            <option value="">Vui lòng chọn Tỉnh/Thành phố...</option>
+                        </select>
+                    </div>
+                    <div class="col-md-6">
+                        <label class="form-label" style="font-size: 13px;">Quận / Huyện *</label>
+                        <select class="form-select rounded-0 text-muted" name="Ward" id="districtDropdown" required>
+                            <option value="">Vui lòng chọn Quận/Huyện...</option>
+                        </select>
+                    </div>
+                </div>
+
+                <div class="mb-4">
+                    <label class="form-label" style="font-size: 13px;">Địa chỉ chi tiết *</label>
+                    <input type="text" class="form-control rounded-0" name="AddressDetail" value="@Model.Address" placeholder="Nhập địa chỉ (VD: Số 123 Đường Lê Lợi...)" required>
+                </div>
+
+                <button type="submit" class="btn btn-dark rounded-0 px-4 py-2 fw-bold mb-5">CẬP NHẬT</button>
+            </form>
+        </div>
+
+    </div>
+</div>
+@section Scripts {
+    <script>
+        $(document).ready(function () {
+
+            // 1. Nhận thông báo LỖI từ Controller (nếu gõ sai mật khẩu)
+        @if (TempData["ErrorMsg"] != null)
+        {
+            <text>
+                    Swal.fire({
+                        icon: 'error',
+                        title: 'Lỗi rùi!',
+                        text: '@Html.Raw(TempData["ErrorMsg"])',
+                        confirmButtonColor: '#212529'
+                    });
+            </text>
+        }
+
+            // 2. Nhận thông báo THÀNH CÔNG (Biến thành Toast trượt góc phải)
+        @if (TempData["SuccessMsg"] != null)
+        {
+            <text>
+                    Swal.fire({
+                        toast: true,
+                        position: 'top-end',
+                        icon: 'success',
+                        title: '@Html.Raw(TempData["SuccessMsg"])',
+                        showConfirmButton: false,
+                        timer: 3000, // Tự tắt sau 3 giây
+                        timerProgressBar: true
+                    });
+            </text>
+        }
+
+        });
+        // ==========================================
+            // LOGIC TẢI TỈNH THÀNH VIỆT NAM QUA API MỞ
+            // ==========================================
+
+            // 1. Gọi API lấy danh sách 63 Tỉnh Thành
+            $.ajax({
+                url: 'https://provinces.open-api.vn/api/?depth=2', // depth=2 sẽ lấy luôn cả danh sách Quận/Huyện bên trong
+                method: 'GET',
+                success: function(data) {
+                    let cityDropdown = $('#cityDropdown');
+
+                    // Lặp qua từng Tỉnh/Thành và gắn vào ô select 1
+                    $.each(data, function(index, province) {
+                        let option = $('<option></option>').val(province.name).text(province.name);
+
+                        // Cất giấu danh sách Quận/Huyện của tỉnh này vào data của thẻ option
+                        option.data('districts', province.districts);
+
+                        cityDropdown.append(option);
+                    });
+                },
+                error: function() {
+                    console.log('Lỗi không tải được dữ liệu tỉnh thành');
+                }
+            });
+
+            // 2. Bắt sự kiện khi khách hàng CHỌN một Tỉnh/Thành phố
+            $('#cityDropdown').change(function() {
+                let districtDropdown = $('#districtDropdown');
+
+                // Xóa sạch các Quận/Huyện cũ
+                districtDropdown.empty();
+                districtDropdown.append('<option value="">Vui lòng chọn Quận/Huyện...</option>');
+
+                // Lấy ra danh sách Quận/Huyện đã được cất giấu ở bước 1
+                let selectedOption = $(this).find('option:selected');
+                let districts = selectedOption.data('districts');
+
+                // Nếu có danh sách Quận/Huyện thì in ra ô select 2
+                if (districts) {
+                    $.each(districts, function(index, district) {
+                        districtDropdown.append($('<option></option>').val(district.name).text(district.name));
+                    });
+                }
+            });
+        
+    </script>
+}

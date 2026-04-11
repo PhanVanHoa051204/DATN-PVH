@@ -1,0 +1,69 @@
+﻿@model WebNoiThatHoaHome.Models.ProductEditViewModel
+@{
+    ViewData["Title"] = "Chỉnh sửa Sản phẩm";
+    Layout = "~/Areas/Admin/Views/Shared/_Layout.cshtml";
+}
+
+<div class="row">
+    <div class="col-md-10 mx-auto">
+        <div class="card shadow-sm border-0 rounded-3">
+            <div class="card-header bg-white py-3">
+                <h5 class="mb-0 fw-bold"><i class="fa-solid fa-pen-to-square text-primary me-2"></i> Chỉnh sửa Sản phẩm #@Model.ProductId</h5>
+            </div>
+            <div class="card-body p-4">
+                <form asp-action="Edit" method="post">
+                    <input type="hidden" asp-for="ProductId" />
+
+                    <div class="row mb-3">
+                        <div class="col-md-8">
+                            <label class="form-label fw-bold">Tên sản phẩm *</label>
+                            <input asp-for="ProductName" class="form-control" required />
+                        </div>
+                        <div class="col-md-4">
+                            <label class="form-label fw-bold">Danh mục (Loại SP) *</label>
+                            <select asp-for="CategoryId" asp-items="Model.Categories" class="form-select" required></select>
+                        </div>
+                    </div>
+
+                    <div class="row mb-3">
+                        <div class="col-md-4">
+                            <label class="form-label fw-bold">Giá bán (VNĐ) *</label>
+                            <input asp-for="Price" type="number" class="form-control" required />
+                        </div>
+                        <div class="col-md-4">
+                            <label class="form-label fw-bold">Số lượng tồn kho</label>
+                            <input asp-for="StockQuantity" type="number" class="form-control" />
+                        </div>
+                        <div class="col-md-4">
+                            <label class="form-label fw-bold">Chất liệu</label>
+                            <input asp-for="Material" class="form-control" />
+                        </div>
+                    </div>
+
+                    <div class="row mb-4">
+                        <div class="col-md-8">
+                            <label class="form-label fw-bold">Kích thước</label>
+                            <input asp-for="Dimensions" class="form-control" />
+                        </div>
+                        <div class="col-md-4 d-flex align-items-end pb-2">
+                            <div class="form-check form-switch fs-5">
+                                <input class="form-check-input" type="checkbox" asp-for="IsActive">
+                                <label class="form-check-label fw-bold text-success" for="IsActive">Hiển thị bán</label>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="mb-4">
+                        <label class="form-label fw-bold">Mô tả sản phẩm</label>
+                        <textarea asp-for="Description" class="form-control" rows="4"></textarea>
+                    </div>
+
+                    <div class="d-flex justify-content-end">
+                        <a href="/Admin/Product/Index" class="btn btn-outline-secondary me-2">Hủy bỏ</a>
+                        <button type="submit" class="btn btn-primary fw-bold"><i class="fa-solid fa-floppy-disk me-1"></i> Lưu thay đổi</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>

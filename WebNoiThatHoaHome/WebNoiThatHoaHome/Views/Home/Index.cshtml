@@ -1,12 +1,143 @@
-﻿@{
-    ViewData["Title"] = "Trang chủ";
+﻿@model WebNoiThatHoaHome.Models.HomeViewModel
+@{
+    ViewData["Title"] = "Trang chủ - HoaHome";
 }
 
-<div class="hero-banner">
-    <h1 class="hero-title">SALE</h1>
-    <p class="hero-subtitle">Ưu đãi đến 50% cho tất cả sản phẩm từ 24/03 - 17/04</p>
+<div class="hero-banner container-fluid px-0">
+    <h1 class="hero-title">Chào Mừng Đến Với Nội Thất Hoà Home</h1>
+    <p class="hero-subtitle">Khi Không Gian Sống Trở Thành Cảm Hứng</p>
+    
 </div>
 
-<div class="container mt-5 pt-5">
-    <h3 class="text-center fw-bold mb-4">SẢN PHẨM NỔI BẬT</h3>
+<div class="container mt-5">
+    <div class="row g-4">
+        @if (Model.Categories != null && Model.Categories.Any())
+        {
+            foreach (var cat in Model.Categories)
+            {
+                <div class="col-md-4">
+                    <a href="/Product/Category/@cat.CategoryId" class="text-decoration-none">
+                        <div class="category-block text-center">
+                            <div class="img-wrapper mb-3">
+                                
+                                @if (cat.CategoryName.Contains("Phòng khách", StringComparison.OrdinalIgnoreCase))
+                                {
+                                    <img src="~/images/trangchu/phong-khach.jpg" alt="@cat.CategoryName" style="width: 100%; height: 350px; object-fit: cover; display: block;">
+                                }
+                                else if (cat.CategoryName.Contains("Phòng ăn", StringComparison.OrdinalIgnoreCase))
+                                {
+                                    <img src="~/images/trangchu/phong-an.jpg" alt="@cat.CategoryName" style="width: 100%; height: 350px; object-fit: cover; display: block;">
+                                }
+                                else if (cat.CategoryName.Contains("Phòng ngủ", StringComparison.OrdinalIgnoreCase))
+                                {
+                                    <img src="~/images/trangchu/phong-ngu.jpg" alt="@cat.CategoryName" style="width: 100%; height: 350px; object-fit: cover; display: block;">
+                                }
+                                else
+                                {
+                                    <img src="https://images.unsplash.com/photo-1555041469-a586c61ea9bc?w=600&q=80" alt="@cat.CategoryName" style="width: 100%; height: 350px; object-fit: cover; display: block;">
+                                }
+                            </div>
+                            <h5 class="text-dark fw-bold">@cat.CategoryName</h5>
+                        </div>
+                    </a>
+                </div>
+            }
+        }
+        else
+        {
+            <div class="col-12 text-center text-muted py-4">Chưa có danh mục nào.</div>
+        }
+    </div>
 </div>
+
+<div class="container mt-5">
+    <div class="d-flex justify-content-between align-items-end mb-4 border-bottom pb-2">
+        <h3 class="mb-0 fw-bold fs-5 text-uppercase">Sản phẩm mới</h3>
+
+        <a href="/Product/NewProducts" class="text-decoration-none text-muted" style="font-size: 13px;">xem tất cả <i class="fa-solid fa-chevron-right fs-6"></i></a>
+    </div>
+    <div class="row g-4">
+        @if (Model.NewProducts != null && Model.NewProducts.Any())
+        {
+            foreach (var item in Model.NewProducts)
+            {
+                <div class="col-lg-3 col-md-4 col-sm-6 mb-4">
+                    <div class="product-card position-relative border-0">
+
+                        <a href="/Product/Details/@item.ProductId" class="d-block text-decoration-none">
+                            <img src="@item.MainImageUrl" alt="@item.ProductName" class="img-fluid w-100 object-fit-cover" style="height: 250px;">
+                        </a>
+
+                        <a href="/Product/Details/@item.ProductId" class="text-decoration-none text-dark d-block mt-3 px-2">
+                            <h6 class="product-title mb-2 fw-bold" style="font-size: 15px; white-space: nowrap; overflow: hidden; text-overflow: ellipsis;">
+                                @item.ProductName
+                            </h6>
+                        </a>
+
+                        <div class="d-flex justify-content-between align-items-center mt-2 px-2 pb-3">
+                            <div class="product-price text-danger fw-bold">
+                                @String.Format("{0:0,0}", item.Price) đ
+                            </div>
+
+                            <button type="button" class="btn btn-link text-dark p-0 btn-wishlist position-relative" data-product-id="@item.ProductId" style="font-size: 20px; text-decoration: none; z-index: 10;">
+                                <i class="fa-regular fa-heart heart-icon-@item.ProductId"></i>
+                            </button>
+                        </div>
+
+                    </div>
+                </div>
+            }
+        }
+        else
+        {
+            <div class="col-12 text-center text-muted py-5">
+                <i class="fa-solid fa-box-open fa-3x mb-3 text-light"></i>
+                <p>Chưa có sản phẩm nào được đăng bán.</p>
+            </div>
+        }
+    </div>
+</div>
+
+<footer class="footer-dark">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-3 mb-4">
+                <h6 class="text-uppercase mb-4">Kết nối với HoaHome</h6>
+                <h2 class="text-white border border-white d-inline-block p-2 mb-4" style="letter-spacing: 2px;">HOAHOME</h2>
+                <p class="text-muted" style="font-size: 13px;">FOLLOW US<br>Instagram - Youtube - Facebook</p>
+                <a href="#" class="btn btn-outline-light rounded-0 mt-2 text-uppercase" style="font-size: 12px; letter-spacing: 1px;">Hệ thống cửa hàng</a>
+            </div>
+
+            <div class="col-md-3 mb-4">
+                <h6 class="text-uppercase mb-4">HoaHome</h6>
+                <ul>
+                    <li><a href="#">Giới thiệu</a></li>
+                    <li><a href="#">Chuyện HoaHome</a></li>
+                    <li><a href="#">Tổng công ty</a></li>
+                    <li><a href="#">Tuyển dụng</a></li>
+                    <li><a href="#">Thẻ hội viên</a></li>
+                    <li><a href="#">Đổi trả hàng</a></li>
+                </ul>
+            </div>
+
+            <div class="col-md-3 mb-4">
+                <h6 class="text-uppercase mb-4">Cảm hứng #HoaHome</h6>
+                <ul>
+                    <li><a href="#">Sản phẩm</a></li>
+                    <li><a href="#">Ý tưởng và cảm hứng</a></li>
+                </ul>
+            </div>
+
+            <div class="col-md-3 mb-4">
+                <h6 class="text-uppercase mb-4">Newsletter</h6>
+                <p style="font-size: 13px; color: #bbb; line-height: 1.8;">Hãy để lại email của bạn để nhận được những ý tưởng trang trí mới và những thông tin, ưu đãi từ HoaHome</p>
+                <p style="font-size: 13px; color: #bbb;">Email: info@hoahome.com.vn<br>Hotline: 0345 033 641</p>
+
+                <form class="input-group mt-3">
+                    <input type="email" class="form-control rounded-0 bg-secondary border-0 text-white" placeholder="Nhập email của bạn" style="font-size: 13px;">
+                    <button class="btn btn-dark rounded-0 text-uppercase" type="submit" style="font-size: 13px; letter-spacing: 1px;">Đăng ký</button>
+                </form>
+            </div>
+        </div>
+    </div>
+</footer>

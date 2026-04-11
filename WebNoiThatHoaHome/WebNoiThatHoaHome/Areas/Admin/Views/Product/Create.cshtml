@@ -1,0 +1,68 @@
+﻿@model WebNoiThatHoaHome.Models.ProductCreateViewModel
+@{
+    ViewData["Title"] = "Thêm Sản phẩm mới";
+    Layout = "~/Areas/Admin/Views/Shared/_Layout.cshtml";
+}
+
+<div class="row">
+    <div class="col-md-10 mx-auto">
+        <div class="card shadow-sm border-0 rounded-3">
+            <div class="card-header bg-white py-3">
+                <h5 class="mb-0 fw-bold"><i class="fa-solid fa-plus-circle text-primary me-2"></i> Thêm Sản phẩm Nội thất</h5>
+            </div>
+            <div class="card-body p-4">
+                <form asp-action="Create" method="post" enctype="multipart/form-data">
+
+                    <div class="row mb-3">
+                        <div class="col-md-8">
+                            <label class="form-label fw-bold">Tên sản phẩm *</label>
+                            <input asp-for="ProductName" class="form-control" placeholder="VD: Sofa da cao cấp..." required />
+                        </div>
+                        <div class="col-md-4">
+                            <label class="form-label fw-bold">Danh mục (Loại SP) *</label>
+                            <select asp-for="CategoryId" asp-items="Model.Categories" class="form-select" required>
+                                <option value="">-- Chọn danh mục --</option>
+                            </select>
+                        </div>
+                    </div>
+
+                    <div class="row mb-3">
+                        <div class="col-md-4">
+                            <label class="form-label fw-bold">Giá bán (VNĐ) *</label>
+                            <input asp-for="Price" type="number" class="form-control" required />
+                        </div>
+                        <div class="col-md-4">
+                            <label class="form-label fw-bold">Số lượng tồn kho</label>
+                            <input asp-for="StockQuantity" type="number" class="form-control" />
+                        </div>
+                        <div class="col-md-4">
+                            <label class="form-label fw-bold">Chất liệu</label>
+                            <input asp-for="Material" class="form-control" placeholder="VD: Gỗ Sồi, Vải Nỉ..." />
+                        </div>
+                    </div>
+
+                    <div class="mb-3">
+                        <label class="form-label fw-bold">Kích thước</label>
+                        <input asp-for="Dimensions" class="form-control" placeholder="VD: 2000 x 900 x 750 mm" />
+                    </div>
+
+                    <div class="mb-4 bg-light p-3 border rounded">
+                        <label class="form-label fw-bold text-primary"><i class="fa-solid fa-images me-1"></i> Tải ảnh sản phẩm lên</label>
+                        <input type="file" asp-for="UploadedImages" class="form-control" accept="image/*" multiple />
+                        <div class="form-text mt-2 text-danger">Ảnh đầu tiên bạn chọn sẽ tự động làm ảnh đại diện. Có thể chọn nhiều ảnh một lúc!</div>
+                    </div>
+
+                    <div class="mb-4">
+                        <label class="form-label fw-bold">Mô tả sản phẩm</label>
+                        <textarea asp-for="Description" class="form-control" rows="4" placeholder="Nhập mô tả chi tiết sản phẩm..."></textarea>
+                    </div>
+
+                    <div class="d-flex justify-content-end">
+                        <a href="/Admin/Product/Index" class="btn btn-outline-secondary me-2">Hủy bỏ</a>
+                        <button type="submit" class="btn btn-primary fw-bold"><i class="fa-solid fa-floppy-disk me-1"></i> Thêm sản phẩm</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>

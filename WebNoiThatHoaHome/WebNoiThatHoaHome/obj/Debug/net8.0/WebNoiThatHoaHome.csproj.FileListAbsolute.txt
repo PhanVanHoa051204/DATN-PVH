@@ -139,3 +139,4 @@ D:\Đồ án tốt nghiệp PVH\WebNoiThatHoaHome\WebNoiThatHoaHome\obj\Debug\ne
 D:\Đồ án tốt nghiệp PVH\WebNoiThatHoaHome\WebNoiThatHoaHome\obj\Debug\net8.0\WebNoiThatHoaHome.genruntimeconfig.cache
 D:\Đồ án tốt nghiệp PVH\WebNoiThatHoaHome\WebNoiThatHoaHome\obj\Debug\net8.0\ref\WebNoiThatHoaHome.dll
 D:\Đồ án tốt nghiệp PVH\WebNoiThatHoaHome\WebNoiThatHoaHome\obj\Debug\net8.0\scopedcss\Views\Home\Index.cshtml.rz.scp.css
+D:\Đồ án tốt nghiệp PVH\WebNoiThatHoaHome\WebNoiThatHoaHome\obj\Debug\net8.0\WebNoiThatHoaHome.sourcelink.json

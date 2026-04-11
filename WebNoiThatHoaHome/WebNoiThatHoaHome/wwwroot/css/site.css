@@ -51,3 +51,19 @@ body {
     text-transform: uppercase;
     margin-bottom: 20px;
 }
+
+/* ==========================================================================
+   MỞ RỘNG GIAO DIỆN (WIDER LAYOUT) CHO TOÀN BỘ WEBSITE
+   ========================================================================== */
+/* Khi màn hình to hơn 1400px (PC, Laptop màn to) */
+@media (min-width: 1400px) {
+    .container,
+    .container-lg,
+    .container-md,
+    .container-sm,
+    .container-xl,
+    .container-xxl {
+        /* Nới rộng khung hiển thị lên 92% màn hình */
+        max-width: 92% !important;
+    }
+}

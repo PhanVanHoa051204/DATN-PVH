@@ -30,5 +30,6 @@ namespace WebNoiThatHoaHome.Models
         [Compare("Password", ErrorMessage = "Mật khẩu xác nhận không khớp")]
         [DataType(DataType.Password)]
         public string ConfirmPassword { get; set; }
+      
     }
 }

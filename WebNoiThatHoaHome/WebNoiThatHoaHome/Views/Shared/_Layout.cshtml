@@ -1,4 +1,25 @@
-﻿<!DOCTYPE html>
+﻿@using WebNoiThatHoaHome.Models
+@inject HoaHomeDbContext _context
+@using System.Security.Claims
+@inject WebNoiThatHoaHome.Models.HoaHomeDbContext _context
+
+@{
+    // Biến lưu tổng số lượng hàng trong giỏ
+    int cartCount = 0;
+
+    // Nếu khách đã đăng nhập, tìm giỏ hàng của họ và cộng dồn số lượng lại
+    if (User.Identity.IsAuthenticated)
+    {
+        var userIdString = User.FindFirstValue(ClaimTypes.NameIdentifier);
+        if (int.TryParse(userIdString, out int userId))
+        {
+            // Sum(c => c.Quantity) sẽ cộng tất cả số lượng của các món lại
+            // Ví dụ: 2 ghế + 1 bàn = hiện số 3
+            cartCount = _context.CartItems.Where(c => c.Cart.UserId == userId).Sum(c => c.Quantity);
+        }
+    }
+}
+<!DOCTYPE html>
 <html lang="vi">
 <head>
     <meta charset="utf-8" />
@@ -14,11 +35,11 @@
     <div class="top-bar d-none d-md-block">
         <div class="container-fluid px-5 d-flex justify-content-between">
             <div>
-                <span class="me-3"><i class="fa-solid fa-flag text-danger"></i> VN EN</span>
-                <span><i class="fa-solid fa-phone"></i> <strong>0903 884 358</strong></span>
+                <span class="me-3"><i class="fa-solid fa-flag text-danger"></i> VN </span>
+                <span><i class="fa-solid fa-phone"></i> <strong>0345 033 641</strong></span>
                 <a href="#" class="text-dark text-decoration-none ms-3">Giới thiệu</a>
-                <a href="#" class="text-dark text-decoration-none ms-3">Khuyến mãi</a>
-                <a href="#" class="text-danger text-decoration-none ms-3 fw-bold">Giảm giá đặc biệt</a>
+                @* <a href="#" class="text-dark text-decoration-none ms-3">Khuyến mãi</a>
+                <a href="#" class="text-danger text-decoration-none ms-3 fw-bold">Giảm giá đặc biệt</a> *@
             </div>
         </div>
     </div>
@@ -31,33 +52,86 @@
             <a class="navbar-brand border border-dark px-3 py-1 me-4" href="/">HoaHome</a>
             <div class="collapse navbar-collapse" id="navbarNav">
                 <ul class="navbar-nav me-auto">
-                    <li class="nav-item"><a class="nav-link" href="#">Sản phẩm mới</a></li>
-                    <li class="nav-item"><a class="nav-link" href="#">Sản phẩm <i class="fa-solid fa-chevron-down ms-1" style="font-size:10px;"></i></a></li>
-                    <li class="nav-item"><a class="nav-link" href="#">Phòng <i class="fa-solid fa-chevron-down ms-1" style="font-size:10px;"></i></a></li>
+                    <li class="nav-item">
+                        <a class="nav-link text-uppercase" href="/Product/NewProducts">Sản phẩm mới</a>
+                    </li>
+                    <li class="nav-item dropdown">
+                        <a class="nav-link text-uppercase" href="/Product/Index">
+                            Sản phẩm <i class="fa-solid fa-chevron-down ms-1" style="font-size: 10px;"></i>
+                        </a>                      
+                    </li>
+                    @{
+                        // Lấy toàn bộ danh mục đang có trong Database (chưa bị xóa)
+                        var roomCategories = _context.Categories.Where(c => c.IsDeleted == false).ToList();
+
+                        // Lấy danh mục đầu tiên (thường ID số 1 của bạn đang là Phòng khách)
+                        var defaultCategory = roomCategories.FirstOrDefault();
+                    }
+
+                    <li class="nav-item dropdown">
+                        <a class="nav-link text-uppercase" href="@(defaultCategory != null ? $"/Product/Category/{defaultCategory.CategoryId}" : "#")">
+                            Phòng <i class="fa-solid fa-chevron-down ms-1" style="font-size: 10px;"></i>
+                        </a>
+
+                        <ul class="dropdown-menu shadow border-0 mt-0">
+                            @if (roomCategories.Any())
+                            {
+                                foreach (var cat in roomCategories)
+                                {
+                                    <li>
+                                        <a class="dropdown-item py-2" href="/Product/Category/@cat.CategoryId">@cat.CategoryName</a>
+                                    </li>
+                                }
+                            }
+                            else
+                            {
+                                <li><span class="dropdown-item py-2 text-muted">Chưa có danh mục</span></li>
+                            }
+                        </ul>
+                    </li>
                     <li class="nav-item"><a class="nav-link" href="#">Bộ sưu tập</a></li>
                     <li class="nav-item"><a class="nav-link" href="#">Thiết kế nội thất</a></li>
                 </ul>
                 <div class="d-flex align-items-center">
                     <div class="input-group me-4" style="width: 250px;">
-                        <input type="text" class="form-control rounded-pill bg-light border-0 px-3" placeholder="Tìm sản phẩm">
-                        <span class="input-group-text bg-light border-0 rounded-pill"><i class="fa-solid fa-magnifying-glass"></i></span>
+                        <form action="/Product/Search" method="get" class="input-group me-4" style="width: 250px;">
+                            <input type="text" name="keyword" class="form-control rounded-pill bg-light border-0 px-3"
+                                   placeholder="Tìm sản phẩm" value="@Context.Request.Query["keyword"]" required>
+
+                            <button type="submit" class="input-group-text bg-light border-0 rounded-pill">
+                                <i class="fa-solid fa-magnifying-glass"></i>
+                            </button>
+                        </form>
                     </div>
                     <div class="nav-icons d-flex align-items-center">
                         <a href="#"><i class="fa-solid fa-location-dot"></i></a>
-                        <a href="#"><i class="fa-regular fa-heart"></i></a>
-                        <a href="#"><i class="fa-solid fa-bag-shopping"></i></a>
+                        <a href="/Account/Wishlist" class="text-dark me-3" style="font-size: 18px;" title="Danh sách yêu thích">
+                            <i class="fa-regular fa-heart"></i>
+                        </a>
+                        <a href="/Cart/Index" class="text-dark me-3 position-relative" style="font-size: 18px;" title="Giỏ hàng của tôi">
+                            <i class="fa-solid fa-bag-shopping"></i>
+
+                            <span id="cart-badge" class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger" style="font-size: 10px;">
+                                @cartCount
+                            </span>
+                        </a>
                         @if (User.Identity.IsAuthenticated)
                         {
                             <div class="dropdown ms-3">
-                                <a href="#" class="text-dark text-decoration-none dropdown-toggle" data-bs-toggle="dropdown" style="font-size: 13px;">Xin chào, @User.Identity.Name</a>
-                                <ul class="dropdown-menu dropdown-menu-end rounded-0">
+                                <a href="#" class="text-dark text-decoration-none dropdown-toggle d-flex align-items-center" data-bs-toggle="dropdown" style="font-size: 14px;">
+                                    Tài khoản của tôi <i class="fa-solid fa-user ms-2" style="font-size: 16px;"></i>
+                                </a>
+                                <ul class="dropdown-menu dropdown-menu-end rounded-0 border-0 shadow-sm mt-3" style="width: 220px;">
+                                    <li><a class="dropdown-item py-2 text-muted" href="/Account/Profile">Thông tin của tôi</a></li>
+                                    <li><a class="dropdown-item py-2 text-muted" href="/Account/Orders">Đơn hàng</a></li>
+                                    <li><a class="dropdown-item py-2 text-muted" href="/Account/Wishlist">Danh sách yêu thích</a></li>
                                     @if (User.IsInRole("Admin"))
                                     {
-                                        <li><a class="dropdown-item" href="/Admin/Home/Index">Trang Quản trị</a></li>
+                                        <li><hr class="dropdown-divider"></li>
+                                        <li><a class="dropdown-item py-2 text-dark fw-bold" href="/Admin/Home/Index">Trang Quản trị</a></li>
                                     }
-                                    <li><a class="dropdown-item" href="#">Đơn hàng của tôi</a></li>
                                     <li><hr class="dropdown-divider"></li>
-                                    <li><a class="dropdown-item text-danger" href="/Account/Logout">Đăng xuất</a></li>
+                                    <li><a class="dropdown-item py-2 text-dark" href="/Account/Logout">Đăng xuất</a></li>
                                 </ul>
                             </div>
                         }
@@ -79,17 +153,11 @@
         <div class="modal-dialog modal-lg modal-dialog-centered">
             <div class="modal-content border-0 rounded-0">
                 <button type="button" class="btn-close position-absolute top-0 end-0 m-3" data-bs-dismiss="modal" aria-label="Close" style="z-index: 1060;"></button>
+
                 <div class="modal-body p-0">
                     <div class="row g-0">
                         <div class="col-md-6 p-5 border-end">
                             <h4 class="modal-title-custom mb-4">Đăng nhập</h4>
-
-                            @* Chỉ hiện lỗi nếu Route đang là Login *@
-                            @if (ViewContext.RouteData.Values["action"]?.ToString() == "Login")
-                            {
-                                <div asp-validation-summary="All" class="text-danger small mb-3"></div>
-                            }
-
                             <form asp-controller="Account" asp-action="Login" method="post">
                                 <div class="mb-3">
                                     <label class="form-label">Địa chỉ email *</label>
@@ -99,19 +167,21 @@
                                     <label class="form-label">Mật khẩu *</label>
                                     <input type="password" name="Password" class="form-control" required>
                                 </div>
-                                <button type="submit" class="btn-black w-100">Đăng nhập</button>
+                                <button type="submit" class="btn btn-dark text-white w-100">ĐĂNG NHẬP</button>
+
+                                @if (TempData["LoginError"] != null)
+                                {
+                                    string loginErr = TempData["LoginError"].ToString();
+                                    TempData.Remove("LoginError"); // Diệt cỏ tận gốc ngay tại đây
+                                    <p class="text-danger text-center mt-2 mb-0 fw-bold error-trigger" style="font-size: 14px;">
+                                        <i class="fa-solid fa-circle-exclamation"></i> @loginErr
+                                    </p>
+                                }
                             </form>
                         </div>
 
                         <div class="col-md-6 p-5">
                             <h4 class="modal-title-custom mb-4">Đăng ký</h4>
-
-                            @* Chỉ hiện lỗi nếu Route đang là Register *@
-                            @if (ViewContext.RouteData.Values["action"]?.ToString() == "Register")
-                            {
-                                <div asp-validation-summary="All" class="text-danger small mb-3"></div>
-                            }
-
                             <form asp-controller="Account" asp-action="Register" method="post">
                                 <div class="mb-3">
                                     <label class="form-label">Họ và tên *</label>
@@ -131,7 +201,16 @@
                                         <input type="password" name="ConfirmPassword" class="form-control" required>
                                     </div>
                                 </div>
-                                <button type="submit" class="btn-black w-100">Đăng ký</button>
+                                <button type="submit" class="btn btn-dark text-white w-100">ĐĂNG KÝ</button>
+
+                                @if (TempData["RegisterError"] != null)
+                                {
+                                    string regErr = TempData["RegisterError"].ToString();
+                                    TempData.Remove("RegisterError"); // Diệt cỏ tận gốc
+                                    <p class="text-danger text-center mt-2 mb-0 fw-bold error-trigger" style="font-size: 14px;">
+                                        <i class="fa-solid fa-circle-exclamation"></i> @regErr
+                                    </p>
+                                }
                             </form>
                         </div>
                     </div>
@@ -139,28 +218,86 @@
             </div>
         </div>
     </div>
-
+    <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
     @await RenderSectionAsync("Scripts", required: false)
-
     <script>
-        document.addEventListener("DOMContentLoaded", function() {
+        document.addEventListener("DOMContentLoaded", function () {
             var modalElement = document.getElementById('authModal');
-            if(!modalElement) return;
-            var myModal = new bootstrap.Modal(modalElement);
+            if (!modalElement) return;
 
+            // Cài đặt modal
+            var authModal = new bootstrap.Modal(modalElement);
+
+            // NẾU CÓ CHỮ ĐỎ THÌ MỚI BẬT LÊN
+            var hasError = document.querySelector('.error-trigger') !== null;
+            if (hasError) {
+                authModal.show();
+            }
+
+            // BÁO TOAST THÀNH CÔNG (Nếu có)
         @if (TempData["SuccessMsg"] != null)
         {
             <text>
-                        alert("@Html.Raw(TempData["SuccessMsg"])");
-                        myModal.show();
+                    Swal.fire({
+                        toast: true,
+                        position: 'top-end',
+                        icon: 'success',
+                        title: '@Html.Raw(TempData["SuccessMsg"])',
+                        showConfirmButton: false,
+                        timer: 3000,
+                        timerProgressBar: true
+                    });
             </text>
-        }
-        else if (!ViewData.ModelState.IsValid)
-        {
-            <text>myModal.show();</text>
         }
         });
     </script>
+
+    <script>
+        $(document).ready(function () {
+            $(document).on('click', '.btn-wishlist', function (e) {
+                e.preventDefault();
+                e.stopPropagation();
+
+                var productId = $(this).data('product-id');
+                var icon = $(this).find('i');
+
+                $.ajax({
+                    url: '/Wishlist/ToggleWishlist',
+                    type: 'POST',
+                    data: { id: productId },
+                    success: function (response) {
+                        if (response.success) {
+                            
+                            if (window.location.pathname.toLowerCase().includes('/wishlist')) {
+                                window.location.reload();
+                                return; 
+                            }
+
+                            if (response.isAdded) {
+                                icon.removeClass('fa-regular').addClass('fa-solid text-danger');
+                            } else {
+                                icon.removeClass('fa-solid text-danger').addClass('fa-regular');
+                            }
+                        } else {
+
+                            $('#authModal').modal('show');
+                        }
+                    },
+                    error: function () {
+
+                        Swal.fire({
+                            icon: 'error',
+                            title: 'Ôi hỏng!',
+                            text: 'Có lỗi xảy ra, vui lòng thử lại!',
+                            confirmButtonColor: '#212529'
+                        });
+                    }
+                });
+            });
+        });
+    </script>
+    
 </body>
 </html>

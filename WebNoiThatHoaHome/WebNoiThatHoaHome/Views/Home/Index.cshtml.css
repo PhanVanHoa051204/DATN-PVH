@@ -1,29 +1,189 @@
-﻿/* --- CSS RIÊNG CHO TRANG CHỦ --- */
+﻿/* Nền tảng trang (Nên chuyển đoạn body này sang file wwwroot/css/site.css thì tốt hơn, nhưng để tạm đây cũng không báo lỗi) */
+body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background-color: #fafafa;
+}
+
+/* ==================================== */
+/* 1. HERO BANNER */
+/* ==================================== */
 .hero-banner {
-    /* Link ảnh tạm, bạn đổi link sau nếu cần */
-    background-image: linear-gradient(rgba(0, 0, 0, 0.4), rgba(0, 0, 0, 0.4)), url('https://images.unsplash.com/photo-1555041469-a586c61ea9bc?ixlib=rb-4.0.3&auto=format&fit=crop&w=2000&q=80');
+    position: relative;
+    height: 80vh;
+    background-image: url('https://images.unsplash.com/photo-1600210492486-724fe5c67fb0?q=80&w=1920&auto=format&fit=crop');
     background-size: cover;
     background-position: center;
-    height: 80vh;
     display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: center;
     text-align: center;
+    color: #fff;
+    background-color: rgba(0, 0, 0, 0.15);
+    background-blend-mode: overlay;
+    margin-bottom: 50px;
 }
 
 .hero-title {
-    font-size: 180px;
-    font-weight: 900;
-    color: #e5ff00;
-    letter-spacing: 5px;
-    line-height: 1;
-    margin-bottom: 20px;
+    font-size: 3rem;
+    font-weight: 700;
+    margin-bottom: 10px;
+    text-shadow: 2px 2px 8px rgba(0,0,0,0.3);
 }
 
 .hero-subtitle {
-    color: #fff;
-    font-size: 20px;
-    letter-spacing: 2px;
-    text-transform: uppercase;
+    font-size: 1.2rem;
+    margin-bottom: 30px;
+    font-weight: 400;
+    text-shadow: 1px 1px 5px rgba(0,0,0,0.3);
 }
+
+.btn-hero {
+    border: 2px solid #fff;
+    color: #fff;
+    background: transparent;
+    padding: 10px 40px;
+    text-transform: uppercase;
+    font-weight: 600;
+    letter-spacing: 2px;
+    transition: all 0.3s ease;
+    text-decoration: none;
+}
+
+    .btn-hero:hover {
+        background: #fff;
+        color: #000;
+    }
+
+/* ==================================== */
+/* 2. KHỐI DANH MỤC PHÒNG (Đã gộp chuẩn chống méo ảnh) */
+/* ==================================== */
+.category-block {
+    text-align: center;
+    margin-bottom: 40px;
+}
+
+/* Định dạng chung cho khối bọc ảnh */
+.img-wrapper {
+    border-radius: 0px;
+    overflow: hidden;
+    margin-bottom: 15px;
+    transition: transform 0.4s ease;
+}
+
+/* Thần chú chống méo ảnh: nhắm trực tiếp vào class .category-img */
+.category-img {
+    width: 100%;
+    height: 350px;
+    object-fit: cover;
+    display: block;
+    transition: transform 0.5s ease;
+}
+
+/* Hiệu ứng phóng to ảnh khi hover vào toàn khối */
+.category-block:hover .category-img {
+    transform: scale(1.05);
+}
+
+.category-block h5 {
+    font-weight: 500;
+    letter-spacing: 1px;
+    color: #333;
+}
+
+/* ==================================== */
+/* 3. KHỐI SẢN PHẨM */
+/* ==================================== */
+.section-title {
+    font-size: 20px;
+    font-weight: 600;
+    letter-spacing: 2px;
+    margin-bottom: 30px;
+    border-bottom: 1px solid #eaeaea;
+    padding-bottom: 10px;
+}
+
+.product-card {
+    border: none;
+    background: transparent;
+    transition: all 0.3s ease;
+}
+
+    .product-card:hover {
+        box-shadow: 0 10px 20px rgba(0,0,0,0.05);
+    }
+
+    /* Cố định ảnh sản phẩm không bị méo */
+    .product-card img {
+        width: 100%;
+        height: 250px;
+        object-fit: cover;
+    }
+
+.discount-badge {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    background-color: #ff0000;
+    color: white;
+    padding: 4px 8px;
+    font-size: 12px;
+    font-weight: bold;
+}
+
+.product-title {
+    font-size: 15px;
+    color: #333;
+    margin-top: 15px;
+    text-decoration: none;
+    display: block;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+.product-price {
+    font-weight: bold;
+    color: #d9534f;
+}
+
+.old-price {
+    text-decoration: line-through;
+    color: #999;
+    font-size: 13px;
+    margin-left: 10px;
+}
+
+/* ==================================== */
+/* 4. FOOTER */
+/* ==================================== */
+.footer-dark {
+    background-color: #2c2c2c;
+    color: #e0e0e0;
+    padding: 60px 0 30px;
+    margin-top: 60px;
+}
+
+    .footer-dark h6 {
+        color: #fff;
+        font-weight: bold;
+        letter-spacing: 1px;
+        margin-bottom: 20px;
+    }
+
+    .footer-dark ul {
+        list-style: none;
+        padding: 0;
+    }
+
+        .footer-dark ul li a {
+            color: #bbb;
+            text-decoration: none;
+            font-size: 14px;
+            line-height: 2.5;
+            transition: color 0.3s ease;
+        }
+
+            .footer-dark ul li a:hover {
+                color: #fff;
+            }

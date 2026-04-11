@@ -1,0 +1,146 @@
+﻿@model WebNoiThatHoaHome.Models.Cart
+@{
+    ViewData["Title"] = "Giỏ hàng của bạn";
+    decimal totalCartPrice = 0;
+}
+
+<div class="container my-5">
+    <h3 class="fw-bold mb-4 text-uppercase">Giỏ hàng của tôi</h3>
+
+    @if (Model.CartItems == null || !Model.CartItems.Any())
+    {
+        <div class="text-center py-5">
+            <i class="fa-solid fa-cart-arrow-down text-muted mb-3" style="font-size: 4rem;"></i>
+            <h5 class="text-muted">Giỏ hàng của bạn đang trống</h5>
+            <a href="/Product/Index" class="btn btn-dark rounded-0 px-4 py-2 mt-3 fw-bold">TIẾP TỤC MUA SẮM</a>
+        </div>
+    }
+    else
+    {
+        <div class="row">
+            <div class="col-lg-8 mb-4">
+                <div class="table-responsive">
+                    <table class="table align-middle border-bottom">
+                        <thead>
+                            <tr class="text-uppercase text-muted" style="font-size: 13px;">
+                                <th scope="col" style="width: 50%;">Sản phẩm</th>
+                                <th scope="col" class="text-center">Đơn giá</th>
+                                <th scope="col" class="text-center">Số lượng</th>
+                                <th scope="col" class="text-end">Thành tiền</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            @foreach (var item in Model.CartItems)
+                            {
+                                // Lấy ảnh chính
+                                var mainImage = item.Product?.ProductImages?.FirstOrDefault(i => i.IsMain == true)?.ImageUrl ?? "/images/no-image.png";
+                                decimal itemTotal = (item.Product?.Price ?? 0) * item.Quantity;
+                                totalCartPrice += itemTotal;
+
+                                <tr>
+                                    <td>
+                                        <div class="d-flex align-items-center">
+                                            <a href="javascript:void(0)" onclick="removeCartItem(@item.CartItemId)" class="text-danger me-3" title="Xóa">
+                                                <i class="fa-solid fa-trash-can"></i>
+                                            </a>
+                                            <img src="@mainImage" alt="@item.Product?.ProductName" style="width: 80px; height: 80px; object-fit: cover;" class="me-3 border">
+                                            <a href="/Product/Details/@item.ProductId" class="text-dark text-decoration-none fw-bold" style="font-size: 14px;">
+                                                @item.Product?.ProductName
+                                            </a>
+                                        </div>
+                                    </td>
+                                    <td class="text-center" style="font-size: 14px;">
+                                        @string.Format("{0:N0} ₫", item.Product?.Price)
+                                    </td>
+                                    <td class="text-center">
+                                        <div class="input-group input-group-sm mx-auto border" style="width: 100px;">
+                                            <button class="btn btn-light rounded-0 border-0" onclick="updateQty(@item.CartItemId, @item.Quantity - 1)">-</button>
+                                            <input type="text" class="form-control text-center border-0 bg-white" value="@item.Quantity" readonly>
+                                            <button class="btn btn-light rounded-0 border-0" onclick="updateQty(@item.CartItemId, @item.Quantity + 1)">+</button>
+                                        </div>
+                                    </td>
+                                    <td class="text-end fw-bold text-danger" style="font-size: 14px;">
+                                        @string.Format("{0:N0} ₫", itemTotal)
+                                    </td>
+                                </tr>
+                            }
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+
+            <div class="col-lg-4">
+                <div class="bg-light p-4 rounded-0">
+                    <h5 class="fw-bold mb-4 text-uppercase border-bottom pb-3">Tổng cộng</h5>
+
+                    <div class="d-flex justify-content-between mb-3" style="font-size: 14px;">
+                        <span class="text-muted">Tạm tính</span>
+                        <span class="fw-bold">@string.Format("{0:N0} ₫", totalCartPrice)</span>
+                    </div>
+
+                    <div class="d-flex justify-content-between mb-4 pb-3 border-bottom" style="font-size: 14px;">
+                        <span class="text-muted">Giao hàng</span>
+                        <span>Phí ship tính lúc giao hàng thành công</span>
+                    </div>
+
+                    <div class="d-flex justify-content-between mb-4">
+                        <span class="fw-bold text-uppercase">Tổng tiền</span>
+                        <span class="fw-bold text-danger fs-5">@string.Format("{0:N0} ₫", totalCartPrice)</span>
+                    </div>
+                    <div class="row g-2 mt-2">
+                        <div class="col-12 col-xl-6">
+                            <a href="/Product/Index" class="btn btn-outline-dark w-100 py-3 rounded-0 fw-bold" style="font-size: 13px;">
+                                <i class="fa-solid fa-arrow-left me-1"></i> TIẾP TỤC MUA HÀNG
+                            </a>
+                        </div>
+
+                        <div class="col-12 col-xl-6">
+                            <a href="/Checkout/Index" class="btn btn-dark w-100 py-3 rounded-0 fw-bold" style="font-size: 13px;">
+                                TIẾN HÀNH ĐẶT HÀNG
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    }
+</div>
+
+@section Scripts {
+    <script>
+        // Hàm cập nhật số lượng
+        function updateQty(cartItemId, newQty) {
+            if (newQty <= 0) return; 
+
+            $.post('/Cart/UpdateQuantity', { cartItemId: cartItemId, quantity: newQty }, function(res) {
+                if(res.success) {
+                    window.location.reload(); 
+                } else {
+                    Swal.fire({ icon: 'error', title: 'Lỗi', text: res.message, confirmButtonColor: '#212529' });
+                }
+            });
+        }
+
+        // Hàm xóa sản phẩm khỏi giỏ
+        function removeCartItem(cartItemId) {
+            Swal.fire({
+                title: 'Bạn có chắc chắn?',
+                text: "Xóa sản phẩm này khỏi giỏ hàng?",
+                icon: 'warning',
+                showCancelButton: true,
+                confirmButtonColor: '#d33',
+                cancelButtonColor: '#212529',
+                confirmButtonText: 'Đồng ý xóa',
+                cancelButtonText: 'Hủy'
+            }).then((result) => {
+                if (result.isConfirmed) {
+                    $.post('/Cart/RemoveItem', { cartItemId: cartItemId }, function(res) {
+                        if(res.success) {
+                            window.location.reload();
+                        }
+                    });
+                }
+            })
+        }
+    </script>
+}

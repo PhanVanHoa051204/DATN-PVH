@@ -1,0 +1,70 @@
+﻿@model WebNoiThatHoaHome.Models.Order
+@{
+    ViewData["Title"] = "Chi tiết Đơn hàng #" + Model.OrderId;
+    Layout = "~/Areas/Admin/Views/Shared/_Layout.cshtml"; // Ép dùng Layout của Admin
+}
+
+<div class="container-fluid my-4">
+    <div class="d-flex justify-content-between align-items-center mb-4">
+        <h3 class="fw-bold text-uppercase mb-0">Chi tiết Đơn hàng <span class="text-danger">#@Model.OrderId</span></h3>
+        <a href="/Admin/Order/Index" class="btn btn-outline-dark rounded-0"><i class="fa-solid fa-arrow-left me-2"></i>Quay lại</a>
+    </div>
+
+    <div class="row">
+        <div class="col-lg-4 mb-4">
+            <div class="card rounded-0 border shadow-sm h-100">
+                <div class="card-header bg-dark text-white rounded-0 text-uppercase fw-bold">Thông tin giao hàng</div>
+                <div class="card-body">
+                    <p class="mb-2"><strong>Địa chỉ:</strong> @Model.ShippingAddress</p>
+                    <p class="mb-2"><strong>Ngày đặt:</strong> @Model.OrderDate?.ToString("dd/MM/yyyy HH:mm")</p>
+                    <p class="mb-2"><strong>Ghi chú của khách:</strong> <br /> <span class="text-muted fst-italic">@(string.IsNullOrEmpty(Model.CustomerNote) ? "Không có" : Model.CustomerNote)</span></p>
+                    <hr />
+                    <p class="mb-2"><strong>Phương thức TT:</strong> @Model.PaymentMethod</p>
+                    <p class="mb-2"><strong>Trạng thái TT:</strong> @Model.PaymentStatus</p>
+                    <p class="mb-0"><strong>Trạng thái ĐH:</strong> <span class="badge bg-warning text-dark fs-6">@Model.OrderStatus</span></p>
+                </div>
+            </div>
+        </div>
+
+        <div class="col-lg-8 mb-4">
+            <div class="card rounded-0 border shadow-sm h-100">
+                <div class="card-header bg-dark text-white rounded-0 text-uppercase fw-bold">Sản phẩm đã đặt</div>
+                <div class="card-body p-0">
+                    <table class="table table-borderless align-middle mb-0">
+                        <thead class="border-bottom">
+                            <tr>
+                                <th>Sản phẩm</th>
+                                <th class="text-center">Đơn giá</th>
+                                <th class="text-center">Số lượng</th>
+                                <th class="text-end pe-4">Thành tiền</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            @foreach (var item in Model.OrderItems)
+                            {
+                                var img = item.Product?.ProductImages?.FirstOrDefault(i => i.IsMain == true)?.ImageUrl ?? "/images/no-image.png";
+                                <tr class="border-bottom">
+                                    <td class="ps-3">
+                                        <div class="d-flex align-items-center py-2">
+                                            <img src="@img" alt="sp" style="width: 60px; height: 60px; object-fit: cover;" class="border me-3">
+                                            <span class="fw-bold">@item.Product?.ProductName</span>
+                                        </div>
+                                    </td>
+                                    <td class="text-center">@string.Format("{0:N0} ₫", item.UnitPrice)</td>
+                                    <td class="text-center">@item.Quantity</td>
+                                    <td class="text-end pe-4 fw-bold text-danger">@string.Format("{0:N0} ₫", item.UnitPrice * item.Quantity)</td>
+                                </tr>
+                            }
+                        </tbody>
+                        <tfoot class="bg-light">
+                            <tr>
+                                <td colspan="3" class="text-end fw-bold pt-3 pb-3">TỔNG CỘNG ĐƠN HÀNG:</td>
+                                <td class="text-end fw-bold text-danger fs-5 pe-4 pt-3 pb-3">@string.Format("{0:N0} ₫", Model.TotalAmount)</td>
+                            </tr>
+                        </tfoot>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

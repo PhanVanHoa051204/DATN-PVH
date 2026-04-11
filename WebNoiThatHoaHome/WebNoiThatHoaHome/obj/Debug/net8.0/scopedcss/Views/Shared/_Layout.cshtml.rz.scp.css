@@ -38,3 +38,11 @@
 .divider-vertical[b-2zdqnlhqql] {
     border-right: 1px solid #eaeaea;
 }
+
+@media all and (min-width: 992px) {
+    .navbar .nav-item.dropdown:hover .dropdown-menu[b-2zdqnlhqql] {
+        display: block;
+        margin-top: 0;
+        transition: all 0.3s ease;
+    }
+}

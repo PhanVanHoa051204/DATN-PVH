@@ -1,0 +1,116 @@
+﻿@model IEnumerable<WebNoiThatHoaHome.Models.Wishlist>
+@{
+    ViewData["Title"] = "Danh sách yêu thích";
+}
+
+<div class="container my-5">
+    <div class="row">
+        <div class="col-md-3 mb-4">
+            <h5 class="fw-bold mb-4 ps-3 border-start border-dark border-3">Tài khoản cá nhân</h5>
+            <div class="list-group list-group-flush rounded-0">
+                <a href="/Account/Profile" class="list-group-item list-group-item-action border-0 py-2">Thông tin của tôi</a>
+                <a href="/Account/Orders" class="list-group-item list-group-item-action border-0 py-2">Đơn hàng của tôi</a>
+
+                <a href="/Account/Wishlist" class="list-group-item list-group-item-action border-0 fw-bold py-2">Danh sách yêu thích</a>
+
+                <a href="/Account/Logout" class="list-group-item list-group-item-action border-0 py-2 text-danger">Đăng xuất</a>
+            </div>
+        </div>
+
+        <div class="col-md-9 ps-md-5">
+            <h5 class="fw-bold mb-4 text-uppercase">Danh sách yêu thích</h5>
+
+            @if (Model == null || !Model.Any())
+            {
+                <div class="text-center py-5 bg-light border">
+                    <i class="fa-regular fa-heart text-muted mb-3" style="font-size: 3rem;"></i>
+                    <p class="text-muted">Bạn chưa có sản phẩm nào trong danh sách yêu thích.</p>
+                    <a href="/Product/Index" class="btn btn-dark rounded-0 px-4 mt-2">KHÁM PHÁ NGAY</a>
+                </div>
+            }
+            else
+            {
+                <div class="row g-3">
+                    @foreach (var item in Model)
+                    {
+                        var img = item.Product?.ProductImages?.FirstOrDefault(i => i.IsMain == true)?.ImageUrl ?? "/images/no-image.png";
+
+                        <div class="col-xl-4 col-md-6 col-6">
+                            <div class="card h-100 rounded-0 border p-3 position-relative">
+
+                                <form action="/Account/RemoveWishlist" method="post" class="position-absolute top-0 end-0 p-1">
+                                    <input type="hidden" name="productId" value="@item.ProductId" />
+                                    <button type="submit" class="btn btn-sm text-danger shadow-none" title="Xóa khỏi danh sách">
+                                        <i class="fa-solid fa-xmark fs-5"></i>
+                                    </button>
+                                </form>
+
+                                <a href="/Product/Details/@item.ProductId" class="text-center d-block">
+                                    <img src="@img" class="img-fluid mb-3" alt="@item.Product?.ProductName" style="height: 180px; object-fit: contain;">
+                                </a>
+
+                                <div class="card-body p-0 text-center d-flex flex-column">
+                                    <h6 class="fw-bold mb-2 text-truncate" style="font-size: 14px;">
+                                        <a href="/Product/Details/@item.ProductId" class="text-dark text-decoration-none">@item.Product?.ProductName</a>
+                                    </h6>
+                                    <p class="text-danger fw-bold mb-3 mt-auto">@string.Format("{0:N0} ₫", item.Product?.Price)</p>
+
+                                    <button type="button" class="btn btn-outline-dark btn-sm rounded-0 w-100 fw-bold" onclick="addToCart(@item.ProductId)">
+                                        THÊM VÀO GIỎ
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                    }
+                </div>
+            }
+        </div>
+    </div>
+</div>
+
+@section Scripts {
+    <script>
+        function addToCart(productId) {
+            var quantity = 1;
+
+            $.ajax({
+                url: '/Cart/AddToCart',
+                type: 'POST',
+                data: { productId: productId, quantity: quantity },
+                success: function (response) {
+                    if (response.success) {
+                        var currentBadge = $('#cart-badge');
+                        if (currentBadge.length > 0) {
+                            var currentCount = parseInt(currentBadge.text().trim()) || 0;
+                            currentBadge.text(currentCount + quantity);
+                        }
+
+                        Swal.fire({
+                            toast: true,
+                            position: 'top-end',
+                            icon: 'success',
+                            title: 'Đã thêm vào giỏ hàng!',
+                            showConfirmButton: false,
+                            timer: 3000,
+                            timerProgressBar: true
+                        });
+                    } else {
+                        if (response.message === "Not logged in") {
+                            $('#authModal').modal('show');
+                        } else {
+                            Swal.fire({
+                                icon: 'error',
+                                title: 'Ôi hỏng!',
+                                text: response.message,
+                                confirmButtonColor: '#212529'
+                            });
+                        }
+                    }
+                },
+                error: function () {
+                    Swal.fire({ icon: 'error', title: 'Lỗi!', text: 'Có lỗi xảy ra, vui lòng thử lại!', confirmButtonColor: '#212529' });
+                }
+            });
+        }
+    </script>
+}
