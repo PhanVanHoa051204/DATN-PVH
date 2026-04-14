@@ -1,0 +1,75 @@
+﻿@model WebNoiThatHoaHome.Models.Appointment
+@{
+    ViewData["Title"] = "Đặt lịch Dịch vụ";
+    Layout = "~/Views/Shared/_Layout.cshtml"; // Layout của trang Khách
+}
+
+<div class="container my-5">
+    <div class="row justify-content-center">
+        <div class="col-lg-8">
+            <div class="card shadow-lg border-0 rounded-4 overflow-hidden">
+                <div class="card-header bg-dark text-white text-center py-4">
+                    <h3 class="mb-0 fw-bold text-uppercase"><i class="fa-regular fa-calendar-check text-warning me-2"></i> ĐẶT LỊCH DỊCH VỤ</h3>
+                    <p class="mb-0 mt-2 text-light opacity-75">Vui lòng điền thông tin để HoaHome hỗ trợ bạn tốt nhất</p>
+                </div>
+
+                <div class="card-body p-5 bg-white">
+                    <form asp-action="Booking" method="post">
+
+                        <div class="mb-4">
+                            <label class="form-label fw-bold">Chọn dịch vụ cần hỗ trợ <span class="text-danger">*</span></label>
+                            <select asp-for="ServiceTypeId" class="form-select form-select-lg rounded-0 bg-light" asp-items="ViewBag.Services" required>
+                                <option value="">-- Click để chọn dịch vụ --</option>
+                            </select>
+                        </div>
+
+                        <div class="mb-4">
+                            <label class="form-label fw-bold">Thời gian hẹn (Dự kiến) <span class="text-danger">*</span></label>
+                            <input asp-for="AppointmentDate" type="datetime-local" class="form-control form-control-lg rounded-0 bg-light" required />
+                            <div class="form-text mt-2"><i class="fa-solid fa-circle-info text-primary me-1"></i> Kỹ thuật viên sẽ gọi điện xác nhận trước khi đến.</div>
+                        </div>
+
+                        <div class="mb-5">
+                            <label class="form-label fw-bold">Ghi chú cho HoaHome</label>
+                            <textarea asp-for="CustomerNote" class="form-control rounded-0 bg-light" rows="4" placeholder="VD: Nhà hẻm nhỏ xe tải không vào được, cần thợ gọi trước 30 phút..."></textarea>
+                        </div>
+
+                        <hr class="mb-4" />
+
+                        <div class="d-grid">
+                            <button type="submit" class="btn btn-danger btn-lg fw-bold rounded-0 py-3 shadow-sm">
+                                XÁC NHẬN ĐẶT LỊCH TẬN NHÀ
+                            </button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+@section Scripts {
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    <script>
+        $(document).ready(function () {
+            // Hiển thị thông báo khi Đặt lịch thành công
+        @if (TempData["SuccessMsg"] != null)
+        {
+            <text>
+                    Swal.fire({
+                        title: 'Thành công tuyệt vời!',
+                        text: '@Html.Raw(TempData["SuccessMsg"])',
+                        icon: 'success',
+                        confirmButtonText: 'Về trang chủ',
+                        confirmButtonColor: '#198754',
+                        allowOutsideClick: false
+                    }).then((result) => {
+                        if (result.isConfirmed) {
+                            window.location.href = '/'; // Bấm OK xong tự động đá khách về trang chủ
+                        }
+                    });
+            </text>
+        }
+        });
+    </script>
+}

@@ -12,17 +12,22 @@
         body {
             background-color: #f4f6f9;
             font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            overflow-x: hidden; /* Tránh cuộn ngang rác trên mobile */
         }
 
-        /* ĐÃ NÂNG CẤP: CỐ ĐỊNH MENU TRÁI */
+        /* ========================================= */
+        /* CSS SIDEBAR (MẶC ĐỊNH CHO MÀN HÌNH LỚN)   */
+        /* ========================================= */
         .sidebar {
             position: sticky;
             top: 0;
-            height: 100vh; /* Ép chiều cao bằng đúng 1 màn hình */
-            overflow-y: auto; /* Tự hiện thanh cuộn nếu menu quá dài */
+            height: 100vh;
+            overflow-y: auto;
             background-color: #343a40;
             color: #c2c7d0;
             box-shadow: 2px 0 5px rgba(0,0,0,0.1);
+            z-index: 1060; /* Đặt z-index cao để đè lên các phần tử khác khi trên mobile */
+            transition: left 0.3s ease-in-out; /* Hiệu ứng trượt mượt mà */
         }
 
         .sidebar-brand {
@@ -62,37 +67,114 @@
             padding: 30px;
         }
 
-        /* ĐÃ NÂNG CẤP: CỐ ĐỊNH THANH TOPBAR TRÊN CÙNG */
         .navbar-admin {
             position: sticky;
             top: 0;
-            z-index: 1050; /* Đảm bảo luôn nổi lên trên cùng */
+            z-index: 1050;
             background-color: white;
             border-bottom: 1px solid #dee2e6;
             padding: 15px 30px;
             margin-bottom: 30px;
             box-shadow: 0 2px 4px rgba(0,0,0,0.04);
         }
+
+        /* ========================================= */
+        /* FIX LỖI FLEXBOX BUNG MÀN HÌNH CỰC MẠNH    */
+        /* ========================================= */
+        .w-100.flex-column {
+            min-width: 0; /* Phép màu nằm ở đây: Ép khung chính không được phình to hơn màn hình */
+        }
+
+        /* ========================================= */
+        /* KỸ THUẬT ĐÓNG BĂNG CỘT CUỐI CÙNG (EXCEL)  */
+        /* ========================================= */
+        .table-responsive {
+            overflow-x: auto;
+            -webkit-overflow-scrolling: touch;
+            width: 100%; /* Đảm bảo bảng cuộn gọn gàng bên trong */
+        }
+
+            /* Ghim cột cuối cùng (Thao tác) dính chặt vào lề phải */
+            .table-responsive .table th:last-child,
+            .table-responsive .table td:last-child {
+                position: sticky !important;
+                right: 0 !important;
+                background-color: #fff !important;
+                z-index: 10 !important; /* Tăng z-index lên để đè bẹp các thành phần khác */
+                box-shadow: -3px 0 5px rgba(0,0,0,0.1) !important;
+            }
+
+            /* Tiêu đề của cột cố định phải có màu nền xám giống thead */
+            .table-responsive .table thead th:last-child {
+                background-color: #f8f9fa !important;
+                z-index: 11 !important;
+            }
+
+        /* Đổi màu cột cố định khi Admin di chuột (hover) vào dòng */
+        .table-hover > tbody > tr:hover > td:last-child {
+            background-color: #f2f2f2;
+        }
+        
+        @@media (max-width: 991.98px) {
+            .sidebar
+
+        {
+            position: fixed;
+            left: -260px; /* Mặc định giấu hẳn sang trái */
+        }
+
+        /* Class này được gắn bằng JS khi bấm nút 3 gạch */
+        .sidebar.show-sidebar {
+            left: 0; /* Trượt vào màn hình */
+        }
+
+        .main-content {
+            padding: 15px; /* Giảm padding trên mobile cho rộng chỗ */
+        }
+
+        .navbar-admin {
+            padding: 15px;
+        }
+
+        }
+
+        /* Lớp phủ đen mờ (Overlay) */
+        .sidebar-overlay {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100vw;
+            height: 100vh;
+            background-color: rgba(0, 0, 0, 0.5);
+            z-index: 1055; /* Nằm dưới Sidebar (1060) nhưng trên Navbar (1050) */
+        }
+
+            .sidebar-overlay.show {
+                display: block;
+            }
     </style>
 </head>
 <body class="d-flex">
 
-    <div class="sidebar" style="width: 260px;">
+    <div class="sidebar-overlay" id="sidebarOverlay"></div>
+
+    <div class="sidebar" id="sidebar" style="width: 260px; min-width: 260px;">
         <div class="sidebar-brand">
             <i class="fa-solid fa-leaf text-success"></i> HoaHome
         </div>
-        <a href="/Admin/Home/Index" class="active"><i class="fa-solid fa-gauge"></i> Tổng quan</a>
-        <a href="/Admin/User/Index"><i class="fa-solid fa-users"></i> Quản lý Khách hàng</a>
+        <a href="/Admin/Home/Index" class="@(Context.Request.Path == "/Admin" || Context.Request.Path.StartsWithSegments("/Admin/Home") ? "active" : "")"><i class="fa-solid fa-gauge"></i> Tổng quan</a>
+        <a href="/Admin/User/Index" class="@(Context.Request.Path.StartsWithSegments("/Admin/User") ? "active" : "")"><i class="fa-solid fa-users"></i> Quản lý Khách hàng</a>
 
-        <a href="/Admin/Category/Index">
+        <a href="/Admin/Category/Index" class="@(Context.Request.Path.StartsWithSegments("/Admin/Category") ? "active" : "")">
             <i class="fa-solid fa-layer-group"></i> Quản lý Danh mục
         </a>
 
-        <a href="/Admin/Product/Index">
+        <a href="/Admin/Product/Index" class="@(Context.Request.Path.StartsWithSegments("/Admin/Product") ? "active" : "")">
             <i class="fa-solid fa-couch"></i> Quản lý Sản phẩm
         </a>
 
-        <a href="/Admin/Order/Index" class="nav-link">
+        <a href="/Admin/Order/Index" class="@(Context.Request.Path.StartsWithSegments("/Admin/Order") ? "active" : "")">
             <i class="fa-solid fa-cart-shopping"></i> Quản lý Đơn hàng
         </a>
         <hr class="text-secondary border-2 opacity-50 my-2">
@@ -115,7 +197,14 @@
 
     <div class="w-100 flex-column d-flex">
         <div class="navbar-admin d-flex justify-content-between align-items-center">
-            <h5 class="mb-0 text-muted">@ViewData["Title"]</h5>
+
+            <div class="d-flex align-items-center">
+                <button class="btn btn-light d-lg-none me-3 shadow-sm" id="sidebarToggle">
+                    <i class="fa-solid fa-bars fs-5"></i>
+                </button>
+                <h5 class="mb-0 text-muted d-none d-sm-block">@ViewData["Title"]</h5>
+            </div>
+
             <div class="user-info">
                 <span class="me-2 text-dark fw-bold"><i class="fa-regular fa-circle-user me-1"></i> Admin</span>
             </div>
@@ -127,6 +216,31 @@
     </div>
 
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+
+    <script>
+        document.addEventListener("DOMContentLoaded", function () {
+            var toggleBtn = document.getElementById("sidebarToggle");
+            var sidebar = document.getElementById("sidebar");
+            var overlay = document.getElementById("sidebarOverlay");
+
+            // Bấm nút 3 gạch để hiện/ẩn menu
+            if (toggleBtn && sidebar) {
+                toggleBtn.addEventListener("click", function () {
+                    sidebar.classList.toggle("show-sidebar");
+                    if (overlay) overlay.classList.toggle("show");
+                });
+            }
+
+            // Bấm ra ngoài lớp phủ đen để đóng menu nhanh
+            if (overlay) {
+                overlay.addEventListener("click", function () {
+                    sidebar.classList.remove("show-sidebar");
+                    overlay.classList.remove("show");
+                });
+            }
+        });
+    </script>
+
     @await RenderSectionAsync("Scripts", required: false)
 </body>
 </html>

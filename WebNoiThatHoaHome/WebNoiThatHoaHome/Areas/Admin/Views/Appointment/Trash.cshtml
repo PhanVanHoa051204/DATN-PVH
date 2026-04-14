@@ -1,0 +1,112 @@
+﻿@model IEnumerable<WebNoiThatHoaHome.Models.Appointment>
+@{
+    ViewData["Title"] = "Thùng rác Lịch hẹn";
+    Layout = "~/Areas/Admin/Views/Shared/_Layout.cshtml";
+}
+
+<div class="container-fluid my-4">
+    <div class="d-flex justify-content-between align-items-center mb-4">
+        <h4 class="fw-bold text-uppercase mb-0 text-danger">
+            <i class="fa-solid fa-trash-arrow-up me-2"></i>Thùng rác Lịch hẹn
+        </h4>
+        <a href="/Admin/Appointment/Index" class="btn btn-secondary fw-bold">
+            <i class="fa-solid fa-arrow-left me-1"></i> Quay lại
+        </a>
+    </div>
+
+    <div class="card border-0 shadow-sm rounded-3">
+        <div class="card-body p-0">
+            <div class="table-responsive">
+                <table class="table table-hover align-middle mb-0">
+                    <thead class="bg-secondary text-white">
+                        <tr>
+                            <th class="ps-4 py-3">Mã LH</th>
+                            <th class="py-3">Khách hàng</th>
+                            <th class="py-3">Dịch vụ & Thời gian</th>
+                            <th class="py-3">Ngày xóa</th>
+                            <th class="text-center py-3">Thao tác</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @if (!Model.Any())
+                        {
+                            <tr><td colspan="5" class="text-center py-5 text-muted">Thùng rác trống.</td></tr>
+                        }
+                        else
+                        {
+                            foreach (var item in Model)
+                            {
+                                <tr>
+                                    <td class="ps-4 fw-bold">#@item.AppointmentId</td>
+                                    <td>
+                                        <div class="fw-bold text-dark">@item.Customer?.FullName</div>
+                                        <div class="small text-muted">@item.Customer?.Phone</div>
+                                    </td>
+                                    <td>
+                                        <span class="badge bg-light text-dark border mb-1">@item.ServiceType?.TypeName</span>
+                                        <div class="small fw-bold">@item.AppointmentDate.ToString("dd/MM/yyyy HH:mm")</div>
+                                    </td>
+                                    <td class="text-muted small">@item.UpdatedAt?.ToString("dd/MM/yyyy HH:mm")</td>
+                                    <td class="text-center">
+                                        <form asp-action="Restore" asp-controller="Appointment" asp-area="Admin" asp-route-id="@item.AppointmentId" method="post">
+                                            @Html.AntiForgeryToken() 
+                                            <button type="submit" class="btn btn-sm btn-success px-3 btn-restore-appointment">
+                                                <i class="fa-solid fa-rotate-left me-1"></i> Khôi phục
+                                            </button>
+                                        </form>
+                                    </td>
+                                </tr>
+                            }
+                        }
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>
+
+@section Scripts {
+    <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
+
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+
+    <script>
+        $(document).ready(function () {
+            // Xác nhận khôi phục
+            $('.btn-restore-appointment').on('click', function (e) {
+                e.preventDefault();
+                var form = $(this).closest('form');
+
+                Swal.fire({
+                    title: 'Khôi phục lịch hẹn?',
+                    text: "Đơn này sẽ xuất hiện lại ở danh sách điều phối.",
+                    icon: 'question',
+                    showCancelButton: true,
+                    confirmButtonColor: '#198754',
+                    confirmButtonText: 'Đồng ý',
+                    cancelButtonText: 'Hủy'
+                }).then((result) => {
+                    if (result.isConfirmed) {
+                        form.submit(); // JS sẽ đẩy form đi sau khi xác nhận
+                    }
+                });
+            });
+
+            // Hiện thông báo thành công sau khi redirect
+        @if (TempData["SuccessMsg"] != null)
+        {
+            <text>
+                    Swal.fire({
+                        toast: true,
+                        position: 'top-end',
+                        icon: 'success',
+                        title: '@Html.Raw(TempData["SuccessMsg"])',
+                        showConfirmButton: false,
+                        timer: 3000,
+                        timerProgressBar: true
+                    });
+            </text>
+        }
+        });
+    </script>
+}

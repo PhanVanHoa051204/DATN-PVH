@@ -53,7 +53,7 @@ namespace WebNoiThatHoaHome.Controllers
             };
 
                     var identity = new ClaimsIdentity(claims, CookieAuthenticationDefaults.AuthenticationScheme);
-                    await HttpContext.SignInAsync(CookieAuthenticationDefaults.AuthenticationScheme, new ClaimsPrincipal(identity));
+                    await HttpContext.SignInAsync(CookieAuthenticationDefaults.AuthenticationScheme, new ClaimsPrincipal(identity));                 
 
                     if (user.Role?.RoleName == "Admin")
                         return RedirectToAction("Index", "Home", new { area = "Admin" });
@@ -288,6 +288,30 @@ namespace WebNoiThatHoaHome.Controllers
                 TempData["SuccessMsg"] = "Đã gửi yêu cầu hủy đơn thành công!";
             }
             return RedirectToAction("Orders"); // Vì đang ở trong AccountController nên chỉ cần tên Action
+        }
+        [HttpGet]
+        public async Task<IActionResult> Appointments()
+        {
+            
+            var userIdString = User.FindFirstValue(ClaimTypes.NameIdentifier);
+
+            if (string.IsNullOrEmpty(userIdString))
+            {
+                // Nếu không tìm thấy thẻ căn cước -> Chưa đăng nhập
+                return RedirectToAction("Login", "Account");
+            }
+
+            // Ép kiểu chữ sang số
+            int customerId = int.Parse(userIdString);
+
+            // Kéo danh sách lịch hẹn của Khách này
+            var myAppointments = await _context.Appointments
+                .Include(a => a.ServiceType)
+                .Where(a => a.CustomerId == customerId)
+                .OrderByDescending(a => a.CreatedAt)
+                .ToListAsync();
+
+            return View(myAppointments);
         }
     }
 }

@@ -1,129 +1,181 @@
 ﻿@model IEnumerable<WebNoiThatHoaHome.Models.User>
 @{
-    ViewData["Title"] = "Quản lý Khách hàng";
+    ViewData["Title"] = "Quản lý Người dùng";
     Layout = "~/Areas/Admin/Views/Shared/_Layout.cshtml";
+    var currentFilter = ViewBag.CurrentFilter as int?;
 }
 
-<div class="card shadow-sm border-0 rounded-3">
-    <div class="card-header bg-white py-3 d-flex justify-content-between align-items-center border-bottom">
-        <h5 class="mb-0 fw-bold"><i class="fa-solid fa-users text-primary me-2"></i> Danh sách Khách hàng</h5>
-        <div class="d-flex gap-2">
-            <form asp-action="Index" method="get" class="input-group" style="width: 350px;">
-                <input type="text" name="searchString" value="@ViewData["CurrentSearch"]" class="form-control" placeholder="Tìm tên hoặc email...">
-                <button class="btn btn-outline-primary" type="submit">
-                    <i class="fa-solid fa-magnifying-glass"></i> Tìm kiếm
-                </button>
-                @if (!string.IsNullOrEmpty(ViewData["CurrentSearch"]?.ToString()))
-                {
-                    <a href="/Admin/User/Index" class="btn btn-outline-danger" title="Xóa tìm kiếm">
-                        <i class="fa-solid fa-xmark"></i>
-                    </a>
-                }
-            </form>
-
-            <a href="/Admin/User/Create" class="btn btn-primary fw-bold">
-                <i class="fa-solid fa-plus me-1"></i> Thêm mới
+<div class="container-fluid my-4">
+    @* BỘ NÚT LỌC (TABS) ĐỂ SẾP BẤM NHANH *@
+    <ul class="nav nav-pills mb-4">
+        <li class="nav-item me-2">
+            <a class="nav-link rounded-pill px-4 @(currentFilter == null ? "active shadow-sm" : "bg-white text-dark border")" href="/Admin/User/Index">
+                Tất cả
             </a>
-        </div>
-    </div>
-    <div class="card-body p-0">
-        <div class="table-responsive">
-            <table class="table table-hover align-middle mb-0">
-                <thead class="table-light">
-                    <tr>
-                        <th class="px-4 py-3">ID</th>
-                        <th class="py-3">Họ và tên</th>
-                        <th class="py-3">Email</th>
-                        <th class="py-3">Vai trò</th>
-                        <th class="py-3">Ngày đăng ký</th>
-                        <th class="py-3">Trạng thái</th>
-                        <th class="text-center py-3">Thao tác</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    @if (Model != null && Model.Any())
+        </li>
+        <li class="nav-item me-2">
+            <a class="nav-link rounded-pill px-4 @(currentFilter == 1 ? "active bg-danger border-danger shadow-sm" : "bg-white text-dark border")" href="/Admin/User/Index?roleFilter=1">
+                <i class="fa-solid fa-shield-halved me-1"></i> Admin
+            </a>
+        </li>
+        <li class="nav-item me-2">
+            <a class="nav-link rounded-pill px-4 @(currentFilter == 16 ? "active bg-info border-info text-dark fw-bold shadow-sm" : "bg-white text-dark border")" href="/Admin/User/Index?roleFilter=16">
+                <i class="fa-solid fa-user-tie me-1"></i> Nhân viên
+            </a>
+        </li>
+        <li class="nav-item">
+            <a class="nav-link rounded-pill px-4 @(currentFilter == 2 ? "active bg-secondary border-secondary shadow-sm" : "bg-white text-dark border")" href="/Admin/User/Index?roleFilter=2">
+                <i class="fa-solid fa-user me-1"></i> Khách hàng
+            </a>
+        </li>
+    </ul>
+
+    <div class="card shadow-sm border-0 rounded-3">
+        <div class="card-header bg-white py-3 d-flex justify-content-between align-items-center border-bottom">
+            <h5 class="mb-0 fw-bold"><i class="fa-solid fa-users text-primary me-2"></i> Danh sách Tài khoản</h5>
+
+            <div class="d-flex gap-2">
+                @* THANH TÌM KIẾM CỦA SẾP (Giữ nguyên siêu chuẩn) *@
+                <form asp-action="Index" method="get" class="input-group" style="width: 350px;">
+                    @* Giữ lại roleFilter đang chọn nếu Sếp vừa lọc vừa tìm kiếm *@
+                    @if (currentFilter.HasValue)
                     {
-                        foreach (var item in Model)
+                        <input type="hidden" name="roleFilter" value="@currentFilter.Value" />
+                    }
+                    <input type="text" name="searchString" value="@ViewData["CurrentSearch"]" class="form-control" placeholder="Tìm tên hoặc email...">
+                    <button class="btn btn-outline-primary" type="submit">
+                        <i class="fa-solid fa-magnifying-glass"></i> Tìm kiếm
+                    </button>
+                    @if (!string.IsNullOrEmpty(ViewData["CurrentSearch"]?.ToString()))
+                    {
+                        <a href="/Admin/User/Index@(currentFilter.HasValue ? "?roleFilter=" + currentFilter.Value : "")" class="btn btn-outline-danger" title="Xóa tìm kiếm">
+                            <i class="fa-solid fa-xmark"></i>
+                        </a>
+                    }
+                </form>
+
+                <a href="/Admin/User/Create" class="btn btn-primary fw-bold">
+                    <i class="fa-solid fa-plus me-1"></i> Thêm mới
+                </a>
+            </div>
+        </div>
+
+        <div class="card-body p-0">
+            <div class="table-responsive">
+                <table class="table table-hover align-middle mb-0">
+                    <thead class="table-light">
+                        <tr>
+                            <th class="px-4 py-3">ID</th>
+                            <th class="py-3">Họ và tên</th>
+                            <th class="py-3">Email</th>
+                            <th class="py-3">Vai trò</th>
+                            <th class="py-3">Ngày đăng ký</th>
+                            <th class="py-3">Trạng thái</th>
+                            <th class="text-center py-3">Thao tác</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @if (Model != null && Model.Any())
+                        {
+                            foreach (var item in Model)
+                            {
+                                <tr>
+                                    <td class="px-4 text-muted fw-bold">#@item.UserId</td>
+                                    <td class="fw-bold text-dark">@item.FullName</td>
+                                    <td>@item.Email</td>
+                                    <td>
+                                        @* LOGIC 3 MÀU PHÂN QUYỀN *@
+                                        @if (item.RoleId == 1)
+                                        {
+                                            <span class="badge bg-danger px-2 py-1"><i class="fa-solid fa-shield-halved me-1"></i> Quản trị viên</span>
+                                        }
+                                        else if (item.RoleId == 16)
+                                        {
+                                            <span class="badge bg-info text-dark px-2 py-1"><i class="fa-solid fa-briefcase me-1"></i> Nhân viên</span>
+                                        }
+                                        else
+                                        {
+                                            <span class="badge bg-secondary px-2 py-1"><i class="fa-regular fa-user me-1"></i> Khách hàng</span>
+                                        }
+                                    </td>
+                                    <td>@(item.CreatedAt?.ToString("dd/MM/yyyy HH:mm") ?? "N/A")</td>
+                                    <td>
+                                        @if (item.IsDeleted == true)
+                                        {
+                                            <span class="badge bg-danger px-2 py-1">Đã khóa</span>
+                                        }
+                                        else
+                                        {
+                                            <span class="badge bg-success px-2 py-1">Hoạt động</span>
+                                        }
+                                    </td>
+
+                                    <td class="text-center">
+                                        <a href="/Admin/User/Details/@item.UserId" class="btn btn-sm btn-outline-primary" title="Xem chi tiết / Cấp quyền">
+                                            <i class="fa-solid fa-eye"></i>
+                                        </a>
+
+                                        <form asp-action="Delete" asp-route-id="@item.UserId" method="post" class="d-inline ms-1">
+                                            @* Nếu đang khóa thì hiện nút Mở khóa màu xanh, ngược lại hiện nút Khóa màu đỏ *@
+                                            @if (item.IsDeleted == true)
+                                            {
+                                                <button type="button" class="btn btn-sm btn-outline-success btn-delete" title="Mở khóa tài khoản">
+                                                    <i class="fa-solid fa-lock-open"></i>
+                                                </button>
+                                            }
+                                            else
+                                            {
+                                                <button type="button" class="btn btn-sm btn-outline-danger btn-delete" title="Khóa tài khoản">
+                                                    <i class="fa-solid fa-lock"></i>
+                                                </button>
+                                            }
+                                        </form>
+                                    </td>
+                                </tr>
+                            }
+                        }
+                        else
                         {
                             <tr>
-                                <td class="px-4 text-muted fw-bold">#@item.UserId</td>
-                                <td class="fw-bold text-dark">@item.FullName</td>
-                                <td>@item.Email</td>
-                                <td>
-                                    @if (item.Role != null && item.Role.RoleName.Contains("Admin"))
-                                    {
-                                        <span class="badge bg-danger px-2 py-1">Quản trị viên</span>
-                                    }
-                                    else
-                                    {
-                                        <span class="badge bg-secondary px-2 py-1">Khách hàng</span>
-                                    }
+                                <td colspan="7" class="text-center py-5 text-muted">
+                                    <i class="fa-solid fa-users-slash fa-2x mb-3"></i><br />
+                                    Không tìm thấy tài khoản nào.
                                 </td>
-                                <td>@(item.CreatedAt?.ToString("dd/MM/yyyy HH:mm") ?? "N/A")</td>
-                                <td>
-                                    @if (item.IsDeleted == true)
-                                    {
-                                        <span class="badge bg-danger px-2 py-1">Đã khóa</span>
-                                    }
-                                    else
-                                    {
-                                        <span class="badge bg-success px-2 py-1">Hoạt động</span>
-                                    }
-                                </td>
-                                
-                                <td class="text-center">
-                                    <a href="/Admin/User/Details/@item.UserId" class="btn btn-sm btn-outline-primary" title="Xem chi tiết">
-                                        <i class="fa-solid fa-eye"></i>
-                                    </a>
-
-                                    <form asp-action="Delete" asp-route-id="@item.UserId" method="post" class="d-inline ms-1">
-                                        <button type="button" class="btn btn-sm btn-outline-danger btn-delete" title="Khóa tài khoản">
-                                            <i class="fa-solid fa-lock"></i>
-                                        </button>
-                                    </form>
-                                </td>
-                                
                             </tr>
                         }
-                    }
-                    else
-                    {
-                        <tr>
-                            <td colspan="7" class="text-center py-5 text-muted">
-                                <i class="fa-solid fa-users-slash fa-2x mb-3"></i><br />
-                                Không tìm thấy khách hàng nào.
-                            </td>
-                        </tr>
-                    }
-                </tbody>
-            </table>
+                    </tbody>
+                </table>
+            </div>
         </div>
     </div>
 </div>
+
 @section Scripts {
     <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 
     <script>
         $(document).ready(function () {
-            // 1. Xác nhận trước khi Khóa/Xóa tài khoản
-            // ⚠️ Lưu ý: Sếp nhớ thêm class="btn-delete" vào cái thẻ <button> màu đỏ nhé!
+            // 1. Xác nhận trước khi Khóa/Mở khóa tài khoản
             $('.btn-delete').on('click', function (e) {
-                e.preventDefault(); // Chặn load trang ngay lập tức
+                e.preventDefault();
                 var form = $(this).closest('form');
+
+                // Đổi câu text linh hoạt dựa vào nút bấm (Mở khóa hay Khóa)
+                var actionText = $(this).hasClass('btn-outline-success') ? "mở khóa" : "khóa";
 
                 Swal.fire({
                     title: 'Xác nhận thao tác?',
-                    text: "Bạn có chắc chắn muốn thay đổi trạng thái của khách hàng này không?",
+                    text: `Bạn có chắc chắn muốn ${actionText} tài khoản này không?`,
                     icon: 'warning',
                     showCancelButton: true,
-                    confirmButtonColor: '#d33',
+                    confirmButtonColor: '#0d6efd',
                     cancelButtonColor: '#6c757d',
                     confirmButtonText: 'Đồng ý',
                     cancelButtonText: 'Hủy'
                 }).then((result) => {
                     if (result.isConfirmed) {
-                        form.submit(); // Bấm đồng ý mới cho form chạy
+                        form.submit();
                     }
                 });
             });
@@ -132,15 +184,15 @@
         @if (TempData["SuccessMsg"] != null)
         {
             <text>
-                    Swal.fire({
-                        toast: true,
-                        position: 'top-end',
-                        icon: 'success',
-                        title: '@Html.Raw(TempData["SuccessMsg"])',
-                        showConfirmButton: false,
-                        timer: 3000,
-                        timerProgressBar: true
-                    });
+                        Swal.fire({
+                            toast: true,
+                            position: 'top-end',
+                            icon: 'success',
+                            title: '@Html.Raw(TempData["SuccessMsg"])',
+                            showConfirmButton: false,
+                            timer: 3000,
+                            timerProgressBar: true
+                        });
             </text>
         }
 
@@ -148,15 +200,15 @@
         @if (TempData["ErrorMsg"] != null)
         {
             <text>
-                    Swal.fire({
-                        toast: true,
-                        position: 'top-end',
-                        icon: 'error',
-                        title: '@Html.Raw(TempData["ErrorMsg"])',
-                        showConfirmButton: false,
-                        timer: 3000,
-                        timerProgressBar: true
-                    });
+                        Swal.fire({
+                            toast: true,
+                            position: 'top-end',
+                            icon: 'error',
+                            title: '@Html.Raw(TempData["ErrorMsg"])',
+                            showConfirmButton: false,
+                            timer: 3000,
+                            timerProgressBar: true
+                        });
             </text>
         }
         });

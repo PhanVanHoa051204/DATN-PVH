@@ -2,105 +2,148 @@
 @{
     ViewData["Title"] = "Quản lý Sản phẩm";
     Layout = "~/Areas/Admin/Views/Shared/_Layout.cshtml";
+
+    // Lấy biến CurrentCategory từ Controller ra để biết Tab nào đang được chọn
+    var currentCategory = ViewBag.CurrentCategory as int?;
 }
 
-<div class="card shadow-sm border-0 rounded-3">
-    <div class="card-header bg-white py-3 d-flex justify-content-between align-items-center">
-        <h5 class="mb-0 fw-bold"><i class="fa-solid fa-couch text-primary me-2"></i> Danh sách Sản phẩm</h5>
-
-        <div class="d-flex gap-2">
-            <form asp-action="Index" method="get" class="input-group" style="width: 350px;">
-                <input type="text" name="searchString" value="@ViewData["CurrentSearch"]" class="form-control" placeholder="Nhập tên SP hoặc danh mục...">
-                <button class="btn btn-outline-primary" type="submit"><i class="fa-solid fa-magnifying-glass"></i> Tìm kiếm</button>
-
-                @if (!string.IsNullOrEmpty(ViewData["CurrentSearch"]?.ToString()))
-                {
-                    <a href="/Admin/Product/Index" class="btn btn-outline-danger" title="Xóa tìm kiếm"><i class="fa-solid fa-xmark"></i></a>
-                }
-            </form>
-
-            <a href="/Admin/Product/Create" class="btn btn-primary fw-bold">
-                <i class="fa-solid fa-plus me-1"></i> Thêm mới
+<div class="container-fluid my-4">
+    @* ============================================================== *@
+    @* BỘ NÚT LỌC (TABS) ĐỘNG TỪ DATABASE (Thêm vào theo ý Sếp) *@
+    @* ============================================================== *@
+    <ul class="nav nav-pills mb-4 flex-wrap">
+        <li class="nav-item me-2 mb-2">
+            <a class="nav-link rounded-pill px-4 @(currentCategory == null ? "active shadow-sm" : "bg-white text-dark border")"
+               href="/Admin/Product/Index">
+                Tất cả
             </a>
-            <a href="/Admin/Product/Trash" class="btn btn-outline-danger" title="Xem sản phẩm đã xóa">
-                <i class="fa-solid fa-trash-can"></i> Thùng rác
-            </a>
-        </div>
-    </div>
+        </li>
 
-    <div class="card-body p-0">
-        <div class="table-responsive">
-            <table class="table table-hover align-middle mb-0">
-                <thead class="table-light">
-                    <tr>
-                        <th class="px-4">Mã SP</th>
-                        <th>Hình ảnh</th>
-                        <th>Tên sản phẩm</th>
-                        <th>Danh mục</th>
-                        <th>Giá bán</th>
-                        <th>Tồn kho</th>
-                        <th>Trạng thái</th>
-                        <th class="text-center">Thao tác</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    @if (Model != null && Model.Any())
+        @if (ViewBag.Categories != null)
+        {
+            foreach (var cat in ViewBag.Categories)
+            {
+                <li class="nav-item me-2 mb-2">
+                    <a class="nav-link rounded-pill px-4 @(currentCategory == cat.CategoryId ? "active shadow-sm" : "bg-white text-dark border")"
+                       href="/Admin/Product/Index?categoryId=@cat.CategoryId">
+                        @cat.CategoryName
+                    </a>
+                </li>
+            }
+        }
+    </ul>
+
+    <div class="card shadow-sm border-0 rounded-3">
+        <div class="card-header bg-white py-3 d-flex justify-content-between align-items-center border-bottom">
+            <h5 class="mb-0 fw-bold"><i class="fa-solid fa-couch text-primary me-2"></i> Danh sách Sản phẩm</h5>
+
+            <div class="d-flex gap-2">
+                @* CẬP NHẬT FORM TÌM KIẾM ĐỂ NÓ NHỚ DANH MỤC ĐANG LỌC *@
+                <form asp-action="Index" method="get" class="input-group" style="width: 350px;">
+
+                    @if (currentCategory.HasValue)
                     {
-                        foreach (var item in Model)
+                        <input type="hidden" name="categoryId" value="@currentCategory.Value" />
+                    }
+
+                    <input type="text" name="searchString" value="@ViewData["CurrentSearch"]" class="form-control" placeholder="Nhập tên SP...">
+                    <button class="btn btn-outline-primary" type="submit"><i class="fa-solid fa-magnifying-glass"></i> Tìm kiếm</button>
+
+                    @if (!string.IsNullOrEmpty(ViewData["CurrentSearch"]?.ToString()))
+                    {
+                        <a href="/Admin/Product/Index@(currentCategory.HasValue ? "?categoryId=" + currentCategory.Value : "")" class="btn btn-outline-danger" title="Xóa tìm kiếm">
+                            <i class="fa-solid fa-xmark"></i>
+                        </a>
+                    }
+                </form>
+
+                <a href="/Admin/Product/Create" class="btn btn-primary fw-bold">
+                    <i class="fa-solid fa-plus me-1"></i> Thêm mới
+                </a>
+                <a href="/Admin/Product/Trash" class="btn btn-outline-danger" title="Xem sản phẩm đã xóa">
+                    <i class="fa-solid fa-trash-can"></i> Thùng rác
+                </a>
+            </div>
+        </div>
+
+        <div class="card-body p-0">
+            <div class="table-responsive">
+                <table class="table table-hover align-middle mb-0">
+                    <thead class="table-light">
+                        <tr>
+                            <th class="px-4 py-3">Mã SP</th>
+                            <th class="py-3">Hình ảnh</th>
+                            <th class="py-3">Tên sản phẩm</th>
+                            <th class="py-3">Danh mục</th>
+                            <th class="py-3">Giá bán</th>
+                            <th class="py-3">Tồn kho</th>
+                            <th class="py-3">Trạng thái</th>
+                            <th class="text-center py-3">Thao tác</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @if (Model != null && Model.Any())
+                        {
+                            foreach (var item in Model)
+                            {
+                                <tr>
+                                    <td class="px-4 fw-bold text-muted">#@item.ProductId</td>
+                                    <td>
+                                        <img src="@item.MainImageUrl" alt="@item.ProductName" style="width: 60px; height: 60px; object-fit: cover; border-radius: 8px; border: 1px solid #ddd;" />
+                                    </td>
+                                    <td class="fw-bold text-truncate" style="max-width: 200px;" title="@item.ProductName">@item.ProductName</td>
+                                    <td><span class="badge bg-info text-dark">@item.CategoryName</span></td>
+                                    <td class="text-danger fw-bold">@String.Format("{0:0,0}", item.Price) ₫</td>
+                                    <td>
+                                        @if (item.StockQuantity > 0)
+                                        {
+                                            <span>@item.StockQuantity</span>
+                                        }
+                                        else
+                                        {
+                                            <span class="text-danger fw-bold">Hết hàng</span>
+                                        }
+                                    </td>
+                                    <td>
+                                        @if (item.IsActive)
+                                        {
+                                            <span class="badge bg-success">Đang bán</span>
+                                        }
+                                        else
+                                        {
+                                            <span class="badge bg-secondary">Tạm ẩn</span>
+                                        }
+                                    </td>
+                                    <td class="text-center">
+                                        <a href="/Admin/Product/Edit/@item.ProductId" class="btn btn-sm btn-outline-primary" title="Sửa">
+                                            <i class="fa-solid fa-pen-to-square"></i>
+                                        </a>
+
+                                        <form asp-action="Delete" asp-route-id="@item.ProductId" method="post" class="d-inline ms-1">
+                                            <button type="button" class="btn btn-sm btn-outline-danger btn-delete" title="Xóa">
+                                                <i class="fa-solid fa-trash"></i>
+                                            </button>
+                                        </form>
+                                    </td>
+                                </tr>
+                            }
+                        }
+                        else
                         {
                             <tr>
-                                <td class="px-4 fw-bold text-muted">#@item.ProductId</td>
-                                <td>
-                                    <img src="@item.MainImageUrl" alt="@item.ProductName" style="width: 60px; height: 60px; object-fit: cover; border-radius: 8px; border: 1px solid #ddd;" />
-                                </td>
-                                <td class="fw-bold text-truncate" style="max-width: 200px;" title="@item.ProductName">@item.ProductName</td>
-                                <td><span class="badge bg-info text-dark">@item.CategoryName</span></td>
-                                <td class="text-danger fw-bold">@String.Format("{0:0,0}", item.Price) ₫</td>
-                                <td>
-                                    @if (item.StockQuantity > 0)
-                                    {
-                                        <span>@item.StockQuantity</span>
-                                    }
-                                    else
-                                    {
-                                        <span class="text-danger fw-bold">Hết hàng</span>
-                                    }
-                                </td>
-                                <td>
-                                    @if (item.IsActive)
-                                    {
-                                        <span class="badge bg-success">Đang bán</span>
-                                    }
-                                    else
-                                    {
-                                        <span class="badge bg-secondary">Tạm ẩn</span>
-                                    }
-                                </td>
-                                <td class="text-center">
-                                    <a href="/Admin/Product/Edit/@item.ProductId" class="btn btn-sm btn-outline-primary" title="Sửa">
-                                        <i class="fa-solid fa-pen-to-square"></i>
-                                    </a>
-
-                                    <form asp-action="Delete" asp-route-id="@item.ProductId" method="post" class="d-inline ms-1">
-                                        <button type="button" class="btn btn-sm btn-outline-danger btn-delete" title="Xóa">
-                                            <i class="fa-solid fa-trash"></i>
-                                        </button>
-                                    </form>
+                                <td colspan="8" class="text-center py-5 text-muted">
+                                    <i class="fa-solid fa-box-open fa-2x mb-3 text-secondary"></i><br />
+                                    Chưa có sản phẩm nào. Hãy thêm sản phẩm mới!
                                 </td>
                             </tr>
                         }
-                    }
-                    else
-                    {
-                        <tr>
-                            <td colspan="8" class="text-center py-4 text-muted">Chưa có sản phẩm nào. Hãy thêm sản phẩm mới!</td>
-                        </tr>
-                    }
-                </tbody>
-            </table>
+                    </tbody>
+                </table>
+            </div>
         </div>
     </div>
 </div>
+
 @section Scripts {
     <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
@@ -125,29 +168,11 @@
                 });
             });
 
-            // Cảnh báo Khôi phục
-            $('.btn-restore').on('click', function (e) {
-                e.preventDefault();
-                var form = $(this).closest('form');
-                Swal.fire({
-                    title: 'Khôi phục sản phẩm?',
-                    text: "Sản phẩm sẽ được hiển thị lại trên cửa hàng!",
-                    icon: 'info',
-                    showCancelButton: true,
-                    confirmButtonColor: '#198754',
-                    cancelButtonColor: '#6c757d',
-                    confirmButtonText: 'Đồng ý',
-                    cancelButtonText: 'Hủy'
-                }).then((result) => {
-                    if (result.isConfirmed) form.submit();
-                });
-            });
-
             // Hiện Toast Thành công
         @if (TempData["SuccessMsg"] != null)
         {
             <text>
-                    Swal.fire({ toast: true, position: 'top-end', icon: 'success', title: '@Html.Raw(TempData["SuccessMsg"])', showConfirmButton: false, timer: 3000 });
+                        Swal.fire({ toast: true, position: 'top-end', icon: 'success', title: '@Html.Raw(TempData["SuccessMsg"])', showConfirmButton: false, timer: 3000 });
             </text>
         }
 
@@ -155,7 +180,7 @@
         @if (TempData["ErrorMsg"] != null)
         {
             <text>
-                    Swal.fire({ toast: true, position: 'top-end', icon: 'error', title: '@Html.Raw(TempData["ErrorMsg"])', showConfirmButton: false, timer: 3000 });
+                        Swal.fire({ toast: true, position: 'top-end', icon: 'error', title: '@Html.Raw(TempData["ErrorMsg"])', showConfirmButton: false, timer: 3000 });
             </text>
         }
         });

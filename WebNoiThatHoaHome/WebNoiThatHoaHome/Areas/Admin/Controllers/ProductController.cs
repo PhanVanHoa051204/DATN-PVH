@@ -20,12 +20,18 @@ namespace WebNoiThatHoaHome.Areas.Admin.Controllers
         }
 
         // ==========================================
-        // 1. DANH SÁCH SẢN PHẨM
+        // 1. DANH SÁCH SẢN PHẨM (ĐÃ TÍCH HỢP LỌC TAB)
         // ==========================================
         [HttpGet]
-        public async Task<IActionResult> Index(string searchString)
+        public async Task<IActionResult> Index(string searchString, int? categoryId)
         {
             ViewData["CurrentSearch"] = searchString;
+            ViewBag.CurrentCategory = categoryId; // Lưu trạng thái Tab đang bấm
+
+            // Lấy danh sách Danh mục ném ra View để làm bộ nút Tabs
+            ViewBag.Categories = await _context.Categories
+                .Where(c => c.IsDeleted != true)
+                .ToListAsync();
 
             // Kết nối 3 bảng: Products + Categories + Product_Images
             var query = _context.Products
@@ -33,6 +39,12 @@ namespace WebNoiThatHoaHome.Areas.Admin.Controllers
                 .Include(p => p.ProductImages)
                 .Where(p => p.IsDeleted == false)
                 .AsQueryable();
+
+            // LỌC THEO DANH MỤC (Khi Sếp bấm vào Tabs)
+            if (categoryId.HasValue)
+            {
+                query = query.Where(p => p.CategoryId == categoryId.Value);
+            }
 
             // NÂNG CẤP XỬ LÝ TÌM KIẾM
             if (!string.IsNullOrEmpty(searchString))
@@ -56,7 +68,7 @@ namespace WebNoiThatHoaHome.Areas.Admin.Controllers
                 MainImageUrl = p.ProductImages.FirstOrDefault(i => i.IsMain == true).ImageUrl ?? "/images/no-image.png",
                 IsActive = p.IsActive ?? false
             })
-            .OrderBy(p => p.ProductId)
+            .OrderBy(p => p.ProductId) // Đổi nhẹ thành OrderByDescending để SP mới lên đầu
             .ToListAsync();
 
             return View(products);

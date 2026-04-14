@@ -1,8 +1,14 @@
-﻿@using WebNoiThatHoaHome.Models
+﻿@using Microsoft.EntityFrameworkCore
+@using WebNoiThatHoaHome.Models
 @inject HoaHomeDbContext _context
 @using System.Security.Claims
 @inject WebNoiThatHoaHome.Models.HoaHomeDbContext _context
-
+@{
+    // Lấy danh sách dịch vụ từ DB ra biến serviceCategories
+    var serviceCategories = await _context.ServiceTypes
+        .Where(s => s.IsDeleted != true)
+        .ToListAsync();
+}
 @{
     // Biến lưu tổng số lượng hàng trong giỏ
     int cartCount = 0;
@@ -57,7 +63,7 @@
                     </li>
                     <li class="nav-item dropdown">
                         <a class="nav-link text-uppercase" href="/Product/Index">
-                            Sản phẩm <i class="fa-solid fa-chevron-down ms-1" style="font-size: 10px;"></i>
+                            Sản phẩm
                         </a>                      
                     </li>
                     @{
@@ -69,7 +75,7 @@
                     }
 
                     <li class="nav-item dropdown">
-                        <a class="nav-link text-uppercase" href="@(defaultCategory != null ? $"/Product/Category/{defaultCategory.CategoryId}" : "#")">
+                        <a class="nav-link text-uppercase fw-bold" href="@(defaultCategory != null ? $"/Product/Category/{defaultCategory.CategoryId}" : "#")" id="navbarRooms" data-bs-toggle="dropdown">
                             Phòng <i class="fa-solid fa-chevron-down ms-1" style="font-size: 10px;"></i>
                         </a>
 
@@ -78,8 +84,23 @@
                             {
                                 foreach (var cat in roomCategories)
                                 {
+                                    // Logic chọn Icon dựa trên tên danh mục (Sếp có thể thêm bớt tùy tên DB của Sếp)
+                                    string iconClass = "fa-door-open text-secondary"; // Mặc định
+                                    string iconColor = "text-secondary";
+
+                                    if (cat.CategoryName.Contains("Khách")) { iconClass = "fa-couch"; iconColor = "text-primary"; }
+                                    else if (cat.CategoryName.Contains("Ăn")) { iconClass = "fa-utensils"; iconColor = "text-warning"; }
+                                    else if (cat.CategoryName.Contains("Ngủ")) { iconClass = "fa-bed"; iconColor = "text-info"; }
+                                    else if (cat.CategoryName.Contains("Việc")) { iconClass = "fa-desktop"; iconColor = "text-secondary"; }
+                                    else if (cat.CategoryName.Contains("Bếp")) { iconClass = "fa-kitchen-set"; iconColor = "text-danger"; }
+                                    else if (cat.CategoryName.Contains("Trang trí")) { iconClass = "fa-shapes"; iconColor = "text-dark"; }
+                                    else if (cat.CategoryName.Contains("Ngoại")) { iconClass = "fa-tree"; iconColor = "text-success"; }
+
                                     <li>
-                                        <a class="dropdown-item py-2" href="/Product/Category/@cat.CategoryId">@cat.CategoryName</a>
+                                        <a class="dropdown-item py-2 d-flex align-items-center" href="/Product/Category/@cat.CategoryId">
+                                            <i class="fa-solid @iconClass @iconColor me-3" style="width: 20px; text-align: center;"></i>
+                                            <span>@cat.CategoryName</span>
+                                        </a>
                                     </li>
                                 }
                             }
@@ -90,7 +111,46 @@
                         </ul>
                     </li>
                     <li class="nav-item"><a class="nav-link" href="#">Bộ sưu tập</a></li>
-                    <li class="nav-item"><a class="nav-link" href="#">Thiết kế nội thất</a></li>
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle fw-bold text-uppercase" href="#" id="navbarServices" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                            Dịch vụ
+                        </a>
+                        <ul class="dropdown-menu shadow border-0 mt-0">
+                            @* Giả sử Sếp đã truyền danh sách dịch vụ vào biến serviceCategories hoặc tương đương *@
+                            @if (serviceCategories != null && serviceCategories.Any())
+                            {
+                                foreach (var svc in serviceCategories)
+                                {
+                                    // Logic gán Icon dựa trên TypeName của bảng ServiceType
+                                    string svcIcon = "fa-gear"; // Mặc định
+                                    string svcColor = "text-secondary";
+
+                                    if (svc.TypeName.Contains("Đo đạc")) { svcIcon = "fa-ruler-combined"; svcColor = "text-primary"; }
+                                    else if (svc.TypeName.Contains("Thiết kế") || svc.TypeName.Contains("Tư vấn")) { svcIcon = "fa-compass-drafting"; svcColor = "text-info"; }
+                                    else if (svc.TypeName.Contains("Lắp đặt")) { svcIcon = "fa-screwdriver-wrench"; svcColor = "text-warning"; }
+                                    else if (svc.TypeName.Contains("Giao hàng") || svc.TypeName.Contains("Vận chuyển")) { svcIcon = "fa-truck-fast"; svcColor = "text-success"; }
+
+                                    <li>
+                                        <a class="dropdown-item py-2 d-flex align-items-center" href="/Service/Details/@svc.ServiceTypeId">
+                                            <i class="fa-solid @svcIcon @svcColor me-3" style="width: 20px; text-align: center;"></i>
+                                            <span>@svc.TypeName</span>
+                                        </a>
+                                    </li>
+                                }
+                                @* <li><hr class="dropdown-divider"></li>
+                                <li>
+                                    <a class="dropdown-item py-2 fw-bold text-danger d-flex align-items-center" href="/Appointment/Booking">
+                                        <i class="fa-regular fa-calendar-check me-3" style="width: 20px; text-align: center;"></i>
+                                        <span>ĐẶT LỊCH NGAY</span>
+                                    </a>
+                                </li> *@
+                            }
+                            else
+                            {
+                                <li><span class="dropdown-item py-2 text-muted">Đang cập nhật dịch vụ...</span></li>
+                            }
+                        </ul>
+                    </li>
                 </ul>
                 <div class="d-flex align-items-center">
                     <div class="input-group me-4" style="width: 250px;">
@@ -124,7 +184,9 @@
                                 <ul class="dropdown-menu dropdown-menu-end rounded-0 border-0 shadow-sm mt-3" style="width: 220px;">
                                     <li><a class="dropdown-item py-2 text-muted" href="/Account/Profile">Thông tin của tôi</a></li>
                                     <li><a class="dropdown-item py-2 text-muted" href="/Account/Orders">Đơn hàng</a></li>
+                                    <li><a class="dropdown-item py-2 text-muted" href="/Account/Appointments">Lịch hẹn của tôi</a></li>
                                     <li><a class="dropdown-item py-2 text-muted" href="/Account/Wishlist">Danh sách yêu thích</a></li>
+                                    
                                     @if (User.IsInRole("Admin"))
                                     {
                                         <li><hr class="dropdown-divider"></li>

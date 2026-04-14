@@ -1,0 +1,154 @@
+﻿@model IEnumerable<WebNoiThatHoaHome.Models.Employee>
+@{
+    ViewData["Title"] = "Quản lý Nhân sự";
+    Layout = "~/Areas/Admin/Views/Shared/_Layout.cshtml";
+}
+
+<div class="container-fluid my-4">
+    <div class="d-flex justify-content-between align-items-center mb-4">
+        <h3 class="fw-bold text-uppercase mb-0"><i class="fa-solid fa-users-gear text-primary me-2"></i>Quản lý Nhân sự</h3>
+        <a href="/Admin/Employee/Create" class="btn btn-primary rounded-0 fw-bold">
+            <i class="fa-solid fa-user-plus me-1"></i> Thêm Nhân viên
+        </a>
+    </div>
+
+    <div class="card border-0 shadow-sm rounded-0">
+        <div class="card-body p-0">
+            <table class="table table-hover align-middle mb-0">
+                <thead class="table-dark">
+                    <tr>
+                        <th class="ps-4 py-3">Nhân viên</th>
+                        <th class="py-3">Chuyên môn</th>
+                        <th class="py-3">Liên hệ</th>
+                        <th class="py-3 text-center">Trạng thái công việc</th>
+                        <th class="text-center py-3">Thao tác</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @if (!Model.Any())
+                    {
+                        <tr>
+                            <td colspan="5" class="text-center py-4 text-muted">
+                                <i>Chưa có nhân sự nào trên hệ thống. Hãy thêm mới!</i>
+                            </td>
+                        </tr>
+                    }
+                    else
+                    {
+                        foreach (var item in Model)
+                        {
+                            <tr>
+                                <td class="ps-4">
+                                    <div class="d-flex align-items-center py-2">
+                                        <div class="bg-light text-primary d-flex justify-content-center align-items-center rounded-circle border fw-bold me-3" style="width: 45px; height: 45px; font-size: 18px;">
+                                            @* Lấy chữ cái đầu tiên của tên làm Avatar mặc định *@
+                                            @(string.IsNullOrEmpty(item.User?.FullName) ? "U" : item.User.FullName.Substring(0, 1).ToUpper())
+                                        </div>
+                                        <div>
+                                            <div class="fw-bold text-dark fs-6">@item.User?.FullName</div>
+                                            <small class="text-muted">Mã NV: <span class="text-danger fw-bold">#@item.EmployeeId</span></small>
+                                        </div>
+                                    </div>
+                                </td>
+                                <td>
+                                    <span class="badge border border-primary text-primary px-3 py-2 rounded-pill">
+                                        <i class="fa-solid fa-briefcase me-1"></i> @(item.Specialization ?? "Chưa cập nhật")
+                                    </span>
+                                </td>
+                                <td>
+                                    <div class="small mb-1"><i class="fa-solid fa-phone me-2 text-muted"></i> @(string.IsNullOrEmpty(item.User?.Phone) ? "Chưa có SĐT" : item.User.Phone)</div>
+                                    <div class="small text-muted"><i class="fa-solid fa-envelope me-2"></i> @item.User?.Email</div>
+                                </td>
+                                <td class="text-center">
+                                    @* Form cập nhật trạng thái siêu tốc *@
+                                    <form asp-action="UpdateStatus" method="post" class="d-inline-block">
+                                        <input type="hidden" name="id" value="@item.EmployeeId" />
+                                        <select name="status" class="form-select form-select-sm fw-bold border-0 shadow-sm
+                                                @(item.Status == "Available" ? "bg-success text-white" : item.Status == "Busy" ? "bg-warning text-dark" : "bg-secondary text-white")"
+                                                onchange="this.form.submit()" style="cursor: pointer; min-width: 140px;">
+                                            <option value="Available" class="bg-white text-dark" selected="@(item.Status == "Available")">🟢 Đang rảnh</option>
+                                            <option value="Busy" class="bg-white text-dark" selected="@(item.Status == "Busy")">🟡 Đang thi công</option>
+                                            <option value="OnLeave" class="bg-white text-dark" selected="@(item.Status == "OnLeave")">⚪ Nghỉ phép</option>
+                                        </select>
+                                    </form>
+                                </td>
+                                <td class="text-center">
+                                    <a href="/Admin/Employee/Edit/@item.EmployeeId" class="btn btn-sm btn-outline-dark" title="Sửa">
+                                        <i class="fa-solid fa-pen-to-square"></i>
+                                    </a>
+                                    <form asp-action="Delete" method="post" class="d-inline-block ms-1 btn-delete-form">
+                                        <input type="hidden" name="id" value="@item.EmployeeId" />
+                                        <button type="button" class="btn btn-sm btn-outline-danger btn-delete" title="Xóa">
+                                            <i class="fa-solid fa-trash"></i>
+                                        </button>
+                                    </form>
+                                </td>
+                            </tr>
+                        }
+                    }
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
+@section Scripts {
+    <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+
+    <script>
+        $(document).ready(function () {
+            // 1. Gắn sự kiện Xác nhận Xóa cho nút thùng rác đỏ
+            $('.btn-delete').on('click', function (e) {
+                e.preventDefault(); // Ngăn form submit ngay lập tức
+                var form = $(this).closest('form');
+
+                Swal.fire({
+                    title: 'Xóa nhân sự này?',
+                    text: "Tài khoản này sẽ bị thu hồi quyền Nhân viên và trở về làm Khách hàng bình thường. Bạn có chắc chắn không?",
+                    icon: 'warning',
+                    showCancelButton: true,
+                    confirmButtonColor: '#d33',
+                    cancelButtonColor: '#6c757d',
+                    confirmButtonText: 'Đồng ý xóa',
+                    cancelButtonText: 'Hủy thao tác'
+                }).then((result) => {
+                    if (result.isConfirmed) {
+                        form.submit(); // Bấm đồng ý thì mới cho gửi lệnh xóa
+                    }
+                });
+            });
+
+            // 2. Bắt thông báo THÀNH CÔNG từ TempData
+        @if (TempData["SuccessMsg"] != null)
+        {
+            <text>
+                    Swal.fire({
+                        toast: true,
+                        position: 'top-end',
+                        icon: 'success',
+                        title: '@Html.Raw(TempData["SuccessMsg"])',
+                        showConfirmButton: false,
+                        timer: 3000,
+                        timerProgressBar: true
+                    });
+            </text>
+        }
+
+            // 3. Bắt thông báo LỖI từ TempData (nếu có)
+        @if (TempData["ErrorMsg"] != null)
+        {
+            <text>
+                    Swal.fire({
+                        toast: true,
+                        position: 'top-end',
+                        icon: 'error',
+                        title: '@Html.Raw(TempData["ErrorMsg"])',
+                        showConfirmButton: false,
+                        timer: 3000,
+                        timerProgressBar: true
+                    });
+            </text>
+        }
+        });
+    </script>
+}

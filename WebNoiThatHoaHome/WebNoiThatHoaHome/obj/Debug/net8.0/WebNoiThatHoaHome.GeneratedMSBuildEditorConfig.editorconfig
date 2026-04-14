@@ -20,6 +20,14 @@ build_property._RazorSourceGeneratorDebug =
 build_property.EffectiveAnalysisLevelStyle = 8.0
 build_property.EnableCodeStyleSeverity = 
 
+[D:/Đồ án tốt nghiệp PVH/WebNoiThatHoaHome/WebNoiThatHoaHome/Areas/Admin/Views/Appointment/Index.cshtml]
+build_metadata.AdditionalFiles.TargetPath = QXJlYXNcQWRtaW5cVmlld3NcQXBwb2ludG1lbnRcSW5kZXguY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[D:/Đồ án tốt nghiệp PVH/WebNoiThatHoaHome/WebNoiThatHoaHome/Areas/Admin/Views/Appointment/Trash.cshtml]
+build_metadata.AdditionalFiles.TargetPath = QXJlYXNcQWRtaW5cVmlld3NcQXBwb2ludG1lbnRcVHJhc2guY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
 [D:/Đồ án tốt nghiệp PVH/WebNoiThatHoaHome/WebNoiThatHoaHome/Areas/Admin/Views/Category/Create.cshtml]
 build_metadata.AdditionalFiles.TargetPath = QXJlYXNcQWRtaW5cVmlld3NcQ2F0ZWdvcnlcQ3JlYXRlLmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
@@ -34,6 +42,18 @@ build_metadata.AdditionalFiles.CssScope =
 
 [D:/Đồ án tốt nghiệp PVH/WebNoiThatHoaHome/WebNoiThatHoaHome/Areas/Admin/Views/Category/Trash.cshtml]
 build_metadata.AdditionalFiles.TargetPath = QXJlYXNcQWRtaW5cVmlld3NcQ2F0ZWdvcnlcVHJhc2guY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[D:/Đồ án tốt nghiệp PVH/WebNoiThatHoaHome/WebNoiThatHoaHome/Areas/Admin/Views/Employee/Create.cshtml]
+build_metadata.AdditionalFiles.TargetPath = QXJlYXNcQWRtaW5cVmlld3NcRW1wbG95ZWVcQ3JlYXRlLmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[D:/Đồ án tốt nghiệp PVH/WebNoiThatHoaHome/WebNoiThatHoaHome/Areas/Admin/Views/Employee/Edit.cshtml]
+build_metadata.AdditionalFiles.TargetPath = QXJlYXNcQWRtaW5cVmlld3NcRW1wbG95ZWVcRWRpdC5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[D:/Đồ án tốt nghiệp PVH/WebNoiThatHoaHome/WebNoiThatHoaHome/Areas/Admin/Views/Employee/Index.cshtml]
+build_metadata.AdditionalFiles.TargetPath = QXJlYXNcQWRtaW5cVmlld3NcRW1wbG95ZWVcSW5kZXguY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
 [D:/Đồ án tốt nghiệp PVH/WebNoiThatHoaHome/WebNoiThatHoaHome/Areas/Admin/Views/Home/Index.cshtml]
@@ -96,6 +116,10 @@ build_metadata.AdditionalFiles.CssScope =
 build_metadata.AdditionalFiles.TargetPath = QXJlYXNcQWRtaW5cVmlld3NcX1ZpZXdJbXBvcnRzLmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
+[D:/Đồ án tốt nghiệp PVH/WebNoiThatHoaHome/WebNoiThatHoaHome/Views/Account/Appointments.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQWNjb3VudFxBcHBvaW50bWVudHMuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
 [D:/Đồ án tốt nghiệp PVH/WebNoiThatHoaHome/WebNoiThatHoaHome/Views/Account/Login.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQWNjb3VudFxMb2dpbi5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
@@ -114,6 +138,10 @@ build_metadata.AdditionalFiles.CssScope =
 
 [D:/Đồ án tốt nghiệp PVH/WebNoiThatHoaHome/WebNoiThatHoaHome/Views/Account/Wishlist.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQWNjb3VudFxXaXNobGlzdC5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[D:/Đồ án tốt nghiệp PVH/WebNoiThatHoaHome/WebNoiThatHoaHome/Views/Appointment/Booking.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQXBwb2ludG1lbnRcQm9va2luZy5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
 [D:/Đồ án tốt nghiệp PVH/WebNoiThatHoaHome/WebNoiThatHoaHome/Views/Cart/Index.cshtml]
@@ -142,6 +170,10 @@ build_metadata.AdditionalFiles.CssScope =
 
 [D:/Đồ án tốt nghiệp PVH/WebNoiThatHoaHome/WebNoiThatHoaHome/Views/Product/Details.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcUHJvZHVjdFxEZXRhaWxzLmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[D:/Đồ án tốt nghiệp PVH/WebNoiThatHoaHome/WebNoiThatHoaHome/Views/Service/Details.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcU2VydmljZVxEZXRhaWxzLmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
 [D:/Đồ án tốt nghiệp PVH/WebNoiThatHoaHome/WebNoiThatHoaHome/Views/Shared/Error.cshtml]
