@@ -21,14 +21,14 @@
                     </a>
                 }
             </form>
-
+            <a href="/Admin/Category/Create" class="btn btn-primary fw-bold">
+                <i class="fa-solid fa-plus me-1"></i> Thêm mới
+            </a>
             <a href="/Admin/Category/Trash" class="btn btn-outline-secondary fw-bold">
                 <i class="fa-solid fa-trash-can me-1"></i> Thùng rác
             </a>
 
-            <a href="/Admin/Category/Create" class="btn btn-primary fw-bold">
-                <i class="fa-solid fa-plus me-1"></i> Thêm mới
-            </a>
+            
         </div>
     </div>
 
@@ -50,8 +50,15 @@
                         <td class="fw-bold text-primary">@item.CategoryName</td>
                         <td>@(string.IsNullOrEmpty(item.Description) ? "Không có mô tả" : item.Description)</td>
                         <td class="text-center">
-                            <a href="/Admin/Category/Edit/@item.CategoryId" class="btn btn-sm btn-outline-primary" title="Sửa"><i class="fa-solid fa-pen-to-square"></i></a>
-                            <a href="/Admin/Category/Delete/@item.CategoryId" class="btn btn-sm btn-outline-danger ms-1" title="Xóa" onclick="return confirm('Bạn có chắc chắn muốn xóa danh mục này?');"><i class="fa-solid fa-trash"></i></a>
+                            <a href="/Admin/Category/Edit/@item.CategoryId" class="btn btn-sm btn-outline-primary" title="Chỉnh sửa">
+                                <i class="fa-solid fa-pen-to-square"></i>
+                            </a>
+
+                            <form asp-action="Delete" asp-route-id="@item.CategoryId" method="post" class="d-inline ms-1">
+                                <button type="button" class="btn btn-sm btn-outline-danger btn-delete" title="Xóa danh mục">
+                                    <i class="fa-solid fa-trash"></i>
+                                </button>
+                            </form>
                         </td>
                     </tr>
                 }
@@ -59,3 +66,64 @@
         </table>
     </div>
 </div>
+@section Scripts {
+    <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+
+    <script>
+        $(document).ready(function () {
+            // 1. Xác nhận trước khi Xóa
+            $('.btn-delete').on('click', function (e) {
+                e.preventDefault();
+                var form = $(this).closest('form');
+
+                Swal.fire({
+                    title: 'Xác nhận xóa?',
+                    text: "Bạn có chắc chắn muốn xóa danh mục này không?",
+                    icon: 'warning',
+                    showCancelButton: true,
+                    confirmButtonColor: '#d33',
+                    cancelButtonColor: '#6c757d',
+                    confirmButtonText: 'Đồng ý xóa',
+                    cancelButtonText: 'Hủy'
+                }).then((result) => {
+                    if (result.isConfirmed) {
+                        form.submit();
+                    }
+                });
+            });
+
+            // 2. Bắt TempData báo THÀNH CÔNG từ CategoryController
+        @if (TempData["SuccessMsg"] != null)
+        {
+            <text>
+                    Swal.fire({
+                        toast: true,
+                        position: 'top-end',
+                        icon: 'success',
+                        title: '@Html.Raw(TempData["SuccessMsg"])',
+                        showConfirmButton: false,
+                        timer: 3000,
+                        timerProgressBar: true
+                    });
+            </text>
+        }
+
+            // 3. Bắt TempData báo LỖI từ CategoryController
+        @if (TempData["ErrorMsg"] != null)
+        {
+            <text>
+                    Swal.fire({
+                        toast: true,
+                        position: 'top-end',
+                        icon: 'error',
+                        title: '@Html.Raw(TempData["ErrorMsg"])',
+                        showConfirmButton: false,
+                        timer: 3000,
+                        timerProgressBar: true
+                    });
+            </text>
+        }
+        });
+    </script>
+}

@@ -81,11 +81,11 @@
                                         <i class="fa-solid fa-pen-to-square"></i>
                                     </a>
 
-                                    <a href="/Admin/Product/Delete/@item.ProductId" class="btn btn-sm btn-outline-danger ms-1"
-                                       title="Xóa"
-                                       onclick="return confirm('Bạn có chắc chắn muốn xóa sản phẩm này không?');">
-                                        <i class="fa-solid fa-trash"></i>
-                                    </a>
+                                    <form asp-action="Delete" asp-route-id="@item.ProductId" method="post" class="d-inline ms-1">
+                                        <button type="button" class="btn btn-sm btn-outline-danger btn-delete" title="Xóa">
+                                            <i class="fa-solid fa-trash"></i>
+                                        </button>
+                                    </form>
                                 </td>
                             </tr>
                         }
@@ -101,3 +101,63 @@
         </div>
     </div>
 </div>
+@section Scripts {
+    <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+
+    <script>
+        $(document).ready(function () {
+            // Cảnh báo Xóa
+            $('.btn-delete').on('click', function (e) {
+                e.preventDefault();
+                var form = $(this).closest('form');
+                Swal.fire({
+                    title: 'Xác nhận xóa?',
+                    text: "Sản phẩm này sẽ được chuyển vào thùng rác!",
+                    icon: 'warning',
+                    showCancelButton: true,
+                    confirmButtonColor: '#d33',
+                    cancelButtonColor: '#6c757d',
+                    confirmButtonText: 'Đồng ý xóa',
+                    cancelButtonText: 'Hủy'
+                }).then((result) => {
+                    if (result.isConfirmed) form.submit();
+                });
+            });
+
+            // Cảnh báo Khôi phục
+            $('.btn-restore').on('click', function (e) {
+                e.preventDefault();
+                var form = $(this).closest('form');
+                Swal.fire({
+                    title: 'Khôi phục sản phẩm?',
+                    text: "Sản phẩm sẽ được hiển thị lại trên cửa hàng!",
+                    icon: 'info',
+                    showCancelButton: true,
+                    confirmButtonColor: '#198754',
+                    cancelButtonColor: '#6c757d',
+                    confirmButtonText: 'Đồng ý',
+                    cancelButtonText: 'Hủy'
+                }).then((result) => {
+                    if (result.isConfirmed) form.submit();
+                });
+            });
+
+            // Hiện Toast Thành công
+        @if (TempData["SuccessMsg"] != null)
+        {
+            <text>
+                    Swal.fire({ toast: true, position: 'top-end', icon: 'success', title: '@Html.Raw(TempData["SuccessMsg"])', showConfirmButton: false, timer: 3000 });
+            </text>
+        }
+
+            // Hiện Toast Lỗi
+        @if (TempData["ErrorMsg"] != null)
+        {
+            <text>
+                    Swal.fire({ toast: true, position: 'top-end', icon: 'error', title: '@Html.Raw(TempData["ErrorMsg"])', showConfirmButton: false, timer: 3000 });
+            </text>
+        }
+        });
+    </script>
+}

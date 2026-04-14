@@ -107,14 +107,15 @@
 </div>
 
 @section Scripts {
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
     <script>
         // Hàm cập nhật số lượng
         function updateQty(cartItemId, newQty) {
-            if (newQty <= 0) return; 
+            if (newQty <= 0) return;
 
             $.post('/Cart/UpdateQuantity', { cartItemId: cartItemId, quantity: newQty }, function(res) {
                 if(res.success) {
-                    window.location.reload(); 
+                    window.location.reload();
                 } else {
                     Swal.fire({ icon: 'error', title: 'Lỗi', text: res.message, confirmButtonColor: '#212529' });
                 }
@@ -134,9 +135,29 @@
                 cancelButtonText: 'Hủy'
             }).then((result) => {
                 if (result.isConfirmed) {
+
+                    // Gửi request ngầm bằng AJAX
                     $.post('/Cart/RemoveItem', { cartItemId: cartItemId }, function(res) {
                         if(res.success) {
-                            window.location.reload();
+
+                            // 1. Hiển thị Toast thông báo lấy từ JSON trả về
+                            Swal.fire({
+                                toast: true,
+                                position: 'top-end',
+                                icon: 'success',
+                                title: res.message,
+                                showConfirmButton: false,
+                                timer: 1500, // Hiện trong 1.5 giây
+                                timerProgressBar: true
+                            });
+
+                            // 2. Chờ 1.5 giây rồi mới tải lại trang để cập nhật lại bảng giỏ hàng
+                            setTimeout(function() {
+                                window.location.reload();
+                            }, 1500);
+
+                        } else {
+                            Swal.fire('Lỗi', res.message, 'error');
                         }
                     });
                 }

@@ -2,24 +2,26 @@
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 using WebNoiThatHoaHome.Models;
+using System.IO;
+using System;
 
 namespace WebNoiThatHoaHome.Areas.Admin.Controllers
 {
     [Area("Admin")]
     public class ProductController : Controller
     {
-        
         private readonly HoaHomeDbContext _context;
         private readonly IWebHostEnvironment _webHostEnvironment;
 
-        
         public ProductController(HoaHomeDbContext context, IWebHostEnvironment webHostEnvironment)
         {
             _context = context;
             _webHostEnvironment = webHostEnvironment;
         }
 
-        
+        // ==========================================
+        // 1. DANH SÁCH SẢN PHẨM
+        // ==========================================
         [HttpGet]
         public async Task<IActionResult> Index(string searchString)
         {
@@ -32,13 +34,10 @@ namespace WebNoiThatHoaHome.Areas.Admin.Controllers
                 .Where(p => p.IsDeleted == false)
                 .AsQueryable();
 
-            // --- NÂNG CẤP XỬ LÝ TÌM KIẾM ---
+            // NÂNG CẤP XỬ LÝ TÌM KIẾM
             if (!string.IsNullOrEmpty(searchString))
             {
-                // Chuyển từ khóa về chữ thường để tìm kiếm dễ hơn (tùy chọn)
                 string searchLower = searchString.ToLower();
-
-                // Lọc theo Tên sản phẩm HOẶC Tên Danh mục
                 query = query.Where(p =>
                     p.ProductName.ToLower().Contains(searchLower) ||
                     (p.Category != null && p.Category.CategoryName.ToLower().Contains(searchLower))
@@ -48,7 +47,7 @@ namespace WebNoiThatHoaHome.Areas.Admin.Controllers
             // Chuyển dữ liệu sang ViewModel
             var products = await query.Select(p => new ProductListViewModel
             {
-                ProductId = p.ProductId, 
+                ProductId = p.ProductId,
                 ProductName = p.ProductName,
                 CategoryName = p.Category != null ? p.Category.CategoryName : "Chưa phân loại",
                 Price = p.Price,
@@ -115,13 +114,9 @@ namespace WebNoiThatHoaHome.Areas.Admin.Controllers
                 // Bước 2: Xử lý lưu các file ảnh theo Danh mục
                 if (model.UploadedImages != null && model.UploadedImages.Count > 0)
                 {
-                    // TẠO TÊN THƯ MỤC CON THEO ID DANH MỤC (Ví dụ: Category_1, Category_2)
                     string categoryFolderName = "Category_" + model.CategoryId;
-
-                    // Đường dẫn gộp: wwwroot/uploads/products/Category_1
                     string uploadsFolder = Path.Combine(_webHostEnvironment.WebRootPath, "uploads", "products", categoryFolderName);
 
-                    // Code tự động tạo thư mục trên ổ D nếu nó chưa tồn tại
                     if (!Directory.Exists(uploadsFolder))
                     {
                         Directory.CreateDirectory(uploadsFolder);
@@ -136,17 +131,14 @@ namespace WebNoiThatHoaHome.Areas.Admin.Controllers
                             string uniqueFileName = Guid.NewGuid().ToString() + "_" + file.FileName;
                             string filePath = Path.Combine(uploadsFolder, uniqueFileName);
 
-                            // Copy file từ form vào đúng cái thư mục Danh mục vừa tạo
                             using (var fileStream = new FileStream(filePath, FileMode.Create))
                             {
                                 await file.CopyToAsync(fileStream);
                             }
 
-                            // Lưu đường dẫn ảnh vào Database (chú ý có thêm biến categoryFolderName ở giữa)
                             var productImage = new ProductImage
                             {
                                 ProductId = product.ProductId,
-                                // Đường dẫn lưu vào DB sẽ là: /uploads/products/Category_1/ten_anh.jpg
                                 ImageUrl = "/uploads/products/" + categoryFolderName + "/" + uniqueFileName,
                                 IsMain = isFirstImage,
                                 CreatedAt = DateTime.Now
@@ -158,7 +150,7 @@ namespace WebNoiThatHoaHome.Areas.Admin.Controllers
                     await _context.SaveChangesAsync();
                 }
 
-                TempData["AdminSuccessMsg"] = "Đã thêm sản phẩm mới thành công!";
+                TempData["SuccessMsg"] = $"Đã thêm sản phẩm [{model.ProductName}] thành công!";
                 return RedirectToAction("Index");
             }
 
@@ -171,6 +163,7 @@ namespace WebNoiThatHoaHome.Areas.Admin.Controllers
 
             return View(model);
         }
+
         // ==========================================
         // 4. HIỂN THỊ FORM CHỈNH SỬA SẢN PHẨM
         // ==========================================
@@ -225,7 +218,7 @@ namespace WebNoiThatHoaHome.Areas.Admin.Controllers
                 product.UpdatedAt = DateTime.Now;
 
                 await _context.SaveChangesAsync();
-                TempData["AdminSuccessMsg"] = "Cập nhật sản phẩm thành công!";
+                TempData["SuccessMsg"] = $"Cập nhật sản phẩm [{product.ProductName}] thành công!";
                 return RedirectToAction("Index");
             }
             // Nếu lỗi, nạp lại Dropdown
@@ -236,7 +229,7 @@ namespace WebNoiThatHoaHome.Areas.Admin.Controllers
         // ==========================================
         // 6. XÓA MỀM SẢN PHẨM
         // ==========================================
-        [HttpGet]
+        [HttpPost]
         public async Task<IActionResult> Delete(int id)
         {
             var product = await _context.Products.FindAsync(id);
@@ -246,10 +239,11 @@ namespace WebNoiThatHoaHome.Areas.Admin.Controllers
                 product.IsActive = false; // Ẩn luôn khỏi trang khách hàng
                 product.UpdatedAt = DateTime.Now;
                 await _context.SaveChangesAsync();
-                TempData["AdminSuccessMsg"] = "Đã xóa sản phẩm thành công!";
+                TempData["SuccessMsg"] = $"Đã chuyển sản phẩm [{product.ProductName}] vào thùng rác!";
             }
             return RedirectToAction("Index");
         }
+
         // ==========================================
         // 7. TRANG DANH SÁCH SẢN PHẨM ĐÃ XÓA (Thùng rác)
         // ==========================================
@@ -278,7 +272,7 @@ namespace WebNoiThatHoaHome.Areas.Admin.Controllers
         // ==========================================
         // 8. LỆNH KHÔI PHỤC SẢN PHẨM
         // ==========================================
-        [HttpGet]
+        [HttpPost]
         public async Task<IActionResult> Restore(int id)
         {
             var product = await _context.Products.FindAsync(id);
@@ -289,7 +283,7 @@ namespace WebNoiThatHoaHome.Areas.Admin.Controllers
                 product.UpdatedAt = DateTime.Now;
 
                 await _context.SaveChangesAsync();
-                TempData["AdminSuccessMsg"] = "Đã khôi phục sản phẩm thành công!";
+                TempData["SuccessMsg"] = $"Đã khôi phục sản phẩm [{product.ProductName}] thành công!";
             }
             return RedirectToAction("Trash"); // Khôi phục xong thì ở lại trang thùng rác
         }

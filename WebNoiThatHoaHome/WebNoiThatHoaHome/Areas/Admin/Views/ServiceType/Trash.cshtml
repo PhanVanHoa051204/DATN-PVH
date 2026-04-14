@@ -1,0 +1,93 @@
+﻿@model IEnumerable<WebNoiThatHoaHome.Models.ServiceType>
+@{
+    ViewData["Title"] = "Thùng Rác Dịch Vụ";
+    Layout = "~/Areas/Admin/Views/Shared/_Layout.cshtml";
+}
+
+<div class="container-fluid my-4">
+    <div class="d-flex justify-content-between align-items-center mb-4">
+        <h3 class="fw-bold text-uppercase mb-0 text-secondary"><i class="fa-solid fa-trash-can me-2"></i> Thùng Rác Dịch Vụ</h3>
+        <a href="/Admin/ServiceType/Index" class="btn btn-outline-dark rounded-0 px-4">
+            <i class="fa-solid fa-arrow-left me-2"></i> Quay lại Danh sách
+        </a>
+    </div>
+
+    <div class="card rounded-0 border shadow-sm">
+        <div class="card-body p-0">
+            @if (!Model.Any())
+            {
+                <div class="text-center py-5 text-muted">
+                    <i class="fa-solid fa-box-open fs-1 mb-3"></i>
+                    <p>Thùng rác trống!</p>
+                </div>
+            }
+            else
+            {
+                <table class="table table-hover align-middle mb-0">
+                    <thead class="table-light">
+                        <tr>
+                            <th class="ps-3">ID</th>
+                            <th>Tên Dịch Vụ</th>
+                            <th>Giá Cơ Bản</th>
+                            <th class="text-center">Thao tác</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @foreach (var item in Model)
+                        {
+                            <tr class="opacity-75 bg-light">
+                                <td class="ps-3 fw-bold text-muted">#@item.ServiceTypeId</td>
+                                <td class="fw-bold text-decoration-line-through">@item.TypeName</td>
+                                <td class="text-danger fw-bold">
+                                    @(item.BasePrice.HasValue && item.BasePrice > 0 ? string.Format("{0:N0} ₫", item.BasePrice) : "Miễn phí")
+                                </td>
+                                <td class="text-center">
+                                    <form asp-action="Restore" asp-route-id="@item.ServiceTypeId" method="post" class="d-inline form-restore">
+                                        <button type="button" class="btn btn-sm btn-success rounded-0 btn-restore" title="Khôi phục">
+                                            <i class="fa-solid fa-rotate-left me-1"></i> Khôi phục
+                                        </button>
+                                    </form>
+                                </td>
+                            </tr>
+                        }
+                    </tbody>
+                </table>
+            }
+        </div>
+    </div>
+</div>
+
+@section Scripts {
+    <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    <script>
+        $(document).ready(function () {
+            // Xác nhận Khôi phục
+            $('.btn-restore').on('click', function (e) {
+                var form = $(this).closest('form');
+                Swal.fire({
+                    title: 'Khôi phục dịch vụ?',
+                    text: "Dịch vụ này sẽ hiển thị lại trên hệ thống!",
+                    icon: 'info',
+                    showCancelButton: true,
+                    confirmButtonColor: '#198754',
+                    cancelButtonColor: '#6c757d',
+                    confirmButtonText: 'Đồng ý',
+                    cancelButtonText: 'Hủy'
+                }).then((result) => {
+                    if (result.isConfirmed) {
+                        form.submit();
+                    }
+                });
+            });
+
+            // Hiện thông báo
+        @if (TempData["SuccessMsg"] != null)
+        {
+            <text>
+                    Swal.fire({ toast: true, position: 'top-end', icon: 'success', title: '@Html.Raw(TempData["SuccessMsg"])', showConfirmButton: false, timer: 3000 });
+            </text>
+        }
+        });
+    </script>
+}

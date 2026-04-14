@@ -5,7 +5,7 @@ using WebNoiThatHoaHome.Models;
 
 
 var builder = WebApplication.CreateBuilder(args);
-
+builder.Services.AddSignalR();
 // Add services to the container.
 builder.Services.AddControllersWithViews();
 
@@ -42,6 +42,7 @@ app.UseRouting();
 app.UseAuthentication(); // BẮT BUỘC THÊM DÒNG NÀY TRƯỚC ĐỂ LÀM LOGIN
 app.UseAuthorization();
 
+app.MapHub<WebNoiThatHoaHome.Hubs.OrderHub>("/orderHub");
 // Route dành riêng cho Area (Admin) - Phải đặt bên trên Default
 app.MapControllerRoute(
     name: "areas",

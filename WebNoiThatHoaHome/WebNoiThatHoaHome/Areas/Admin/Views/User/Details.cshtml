@@ -76,3 +76,44 @@
         </div>
     </div>
 </div>
+@section Scripts {
+    <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+
+    <script>
+        $(document).ready(function () {
+
+            // Bắt TempData báo THÀNH CÔNG
+        @if (TempData["SuccessMsg"] != null)
+        {
+            <text>
+                    Swal.fire({
+                        toast: true,
+                        position: 'top-end',
+                        icon: 'success',
+                        title: '@Html.Raw(TempData["SuccessMsg"])',
+                        showConfirmButton: false,
+                        timer: 3000,
+                        timerProgressBar: true
+                    });
+            </text>
+        }
+
+            // Bắt TempData báo LỖI
+        @if (TempData["ErrorMsg"] != null)
+        {
+            <text>
+                    Swal.fire({
+                        toast: true,
+                        position: 'top-end',
+                        icon: 'error',
+                        title: '@Html.Raw(TempData["ErrorMsg"])',
+                        showConfirmButton: false,
+                        timer: 3000,
+                        timerProgressBar: true
+                    });
+            </text>
+        }
+        });
+    </script>
+}

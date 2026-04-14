@@ -1584,6 +1584,24 @@
       <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
       <OriginalItemSpec>$([System.IO.Path]::GetFullPath('$(MSBuildThisFileDirectory)..\staticwebassets\uploads\products\Category_5\671f5551-eabb-4fd0-a458-970134b6e876_nha-xinh-tu-bep-paris.jpg'))</OriginalItemSpec>
     </StaticWebAsset>
+    <StaticWebAsset Include="$([System.IO.Path]::GetFullPath('$(MSBuildThisFileDirectory)..\staticwebassets\uploads\products\Category_5\afb60ada-d876-4d62-b81c-4425729cc75f_nha-xinh-tu-bep-classic_1_500x3331.jpg'))">
+      <SourceType>Package</SourceType>
+      <SourceId>WebNoiThatHoaHome</SourceId>
+      <ContentRoot>$(MSBuildThisFileDirectory)..\staticwebassets\</ContentRoot>
+      <BasePath>_content/WebNoiThatHoaHome</BasePath>
+      <RelativePath>uploads/products/Category_5/afb60ada-d876-4d62-b81c-4425729cc75f_nha-xinh-tu-bep-classic_1_500x3331.jpg</RelativePath>
+      <AssetKind>All</AssetKind>
+      <AssetMode>All</AssetMode>
+      <AssetRole>Primary</AssetRole>
+      <RelatedAsset></RelatedAsset>
+      <AssetTraitName></AssetTraitName>
+      <AssetTraitValue></AssetTraitValue>
+      <Fingerprint>l6szf7p8ei</Fingerprint>
+      <Integrity>bfRUHIwN0bg2S853li/+dWMX7W7sYhcf+KgXmFg6tws=</Integrity>
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+      <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
+      <OriginalItemSpec>$([System.IO.Path]::GetFullPath('$(MSBuildThisFileDirectory)..\staticwebassets\uploads\products\Category_5\afb60ada-d876-4d62-b81c-4425729cc75f_nha-xinh-tu-bep-classic_1_500x3331.jpg'))</OriginalItemSpec>
+    </StaticWebAsset>
     <StaticWebAsset Include="$([System.IO.Path]::GetFullPath('$(MSBuildThisFileDirectory)..\staticwebassets\uploads\products\Category_5\d2b648aa-0bef-451d-86ba-2238bf4b8210_7._daily.jpg'))">
       <SourceType>Package</SourceType>
       <SourceId>WebNoiThatHoaHome</SourceId>

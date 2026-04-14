@@ -86,6 +86,7 @@ wwwroot\uploads\products\Category_4\c05fd5bc-f48c-499c-add4-b122ee214d10_ke-sach
 wwwroot\uploads\products\Category_4\def9bf29-f934-45d4-aa85-d7d2be4a6bf7_Ban-lam-viec-Coastal.jpg
 wwwroot\uploads\products\Category_5\35290e0f-858d-4fda-a77e-b03805121519_bep-shiny-vang-1000.jpg
 wwwroot\uploads\products\Category_5\671f5551-eabb-4fd0-a458-970134b6e876_nha-xinh-tu-bep-paris.jpg
+wwwroot\uploads\products\Category_5\afb60ada-d876-4d62-b81c-4425729cc75f_nha-xinh-tu-bep-classic_1_500x3331.jpg
 wwwroot\uploads\products\Category_5\d2b648aa-0bef-451d-86ba-2238bf4b8210_7._daily.jpg
 wwwroot\uploads\products\Category_6\0e1f20a3-cd1b-4065-a37b-2cbc452d1299_BINH-ALINE-CERAMIC-RED-XS16X16X16-23102J-1.jpg
 wwwroot\uploads\products\Category_6\bc08e700-7cb6-4928-8f19-aa5fa8dfefdf_Binh-Child-head-xanh-la-159645C.jpg

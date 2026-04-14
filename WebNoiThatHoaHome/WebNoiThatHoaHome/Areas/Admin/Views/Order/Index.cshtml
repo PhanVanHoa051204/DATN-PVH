@@ -5,89 +5,167 @@
 }
 
 <div class="container-fluid my-4">
-    <h3 class="fw-bold text-uppercase mb-4">Quản lý Đơn hàng</h3>
+    <div class="d-flex justify-content-between align-items-center mb-4">
+        <h3 class="fw-bold text-uppercase mb-0"><i class="fa-solid fa-cart-shopping text-primary me-2"></i>Quản lý Đơn hàng</h3>
+        <form asp-action="Index" method="get" class="d-flex gap-2">
+            <input type="text" name="searchString" value="@ViewData["CurrentSearch"]" class="form-control" placeholder="Tìm mã đơn, tên khách...">
+            <button class="btn btn-primary" type="submit"><i class="fa-solid fa-magnifying-glass"></i></button>
+        </form>
+    </div>
 
-    @if (TempData["SuccessMsg"] != null)
-    {
-        <div class="alert alert-success alert-dismissible fade show rounded-0" role="alert">
-            <i class="fa-solid fa-circle-check me-2"></i> @TempData["SuccessMsg"]
-            <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
-        </div>
-    }
-
-    <div class="card rounded-0 border shadow-sm">
+    <div class="card rounded-3 border-0 shadow-sm">
         <div class="card-body p-0">
             <div class="table-responsive">
                 <table class="table table-hover align-middle mb-0">
                     <thead class="table-light">
                         <tr>
-                            <th>Mã ĐH</th>
+                            <th class="ps-4">Mã ĐH</th>
                             <th>Ngày đặt</th>
-                            <th style="width: 25%;">Thông tin giao hàng</th>
+                            <th style="width: 20%;">Khách hàng</th>
                             <th>Tổng tiền</th>
                             <th>Thanh toán</th>
-                            <th style="width: 20%;">Trạng thái</th>
+                            <th style="width: 15%;">Trạng thái</th>
                             <th class="text-center">Thao tác</th>
                         </tr>
                     </thead>
                     <tbody>
-                    <tbody>
-                            @foreach (var item in Model)
-                            {
+                        @foreach (var item in Model)
+                        {
+                            @* 1. HÀNG THÔNG TIN ĐƠN HÀNG CHÍNH *@
                             <tr>
-                                <td class="fw-bold">#@item.OrderId</td>
-
+                                <td class="ps-4 fw-bold">#@item.OrderId</td>
                                 <td>@item.OrderDate?.ToString("dd/MM/yyyy HH:mm")</td>
-
-                                <td style="font-size: 13px;">
-                                        @item.ShippingAddress
+                                <td>
+                                    <div class="fw-bold">@item.User?.FullName</div>
+                                    <small class="text-muted">@item.ShippingAddress</small>
                                 </td>
-
                                 <td class="text-danger fw-bold">@string.Format("{0:N0} ₫", item.TotalAmount)</td>
 
                                 <td>
-                                    <form action="/Admin/Order/UpdatePaymentStatus" method="post" class="d-flex align-items-center mb-0">
+                                    <form asp-action="UpdatePaymentStatus" method="post" class="d-flex gap-1">
                                         <input type="hidden" name="orderId" value="@item.OrderId" />
                                         <input type="hidden" name="returnUrl" value="/Admin/Order/Index" />
-
-                                        <select name="newPaymentStatus" class="form-select form-select-sm rounded-0 me-1" style="width: 135px; font-size: 13px;">
+                                        <select name="newPaymentStatus" class="form-select form-select-sm" onchange="this.form.submit()">
                                             <option value="Pending" selected="@(item.PaymentStatus == "Pending")">Chờ thanh toán</option>
                                             <option value="Success" selected="@(item.PaymentStatus == "Success")">Đã thanh toán</option>
                                             <option value="Failed" selected="@(item.PaymentStatus == "Failed")">Thanh toán lỗi</option>
                                         </select>
-                                        <button type="submit" class="btn btn-sm btn-dark rounded-0" title="Cập nhật">
-                                            <i class="fa-solid fa-check"></i>
-                                        </button>
                                     </form>
                                 </td>
 
                                 <td>
-                                    <form action="/Admin/Order/UpdateStatus" method="post" class="d-flex align-items-center mb-0">
+                                    <form asp-action="UpdateStatus" method="post" class="d-flex gap-1">
                                         <input type="hidden" name="orderId" value="@item.OrderId" />
-                                        <select name="newStatus" class="form-select form-select-sm rounded-0 me-1" style="width: 140px; font-size: 13px;">
+                                        <select name="newStatus" class="form-select form-select-sm" onchange="this.form.submit()">
                                             <option value="New" selected="@(item.OrderStatus == "New")">Chờ xác nhận</option>
                                             <option value="Processing" selected="@(item.OrderStatus == "Processing")">Đang xử lý</option>
                                             <option value="Delivering" selected="@(item.OrderStatus == "Delivering")">Đang giao hàng</option>
                                             <option value="Completed" selected="@(item.OrderStatus == "Completed")">Đã hoàn thành</option>
                                             <option value="Cancelled" selected="@(item.OrderStatus == "Cancelled")">Đã hủy</option>
+                                            <option value="PendingCancel" selected="@(item.OrderStatus == "PendingCancel")">Khách yêu cầu hủy</option>
                                         </select>
-                                        <button type="submit" class="btn btn-sm btn-dark rounded-0" title="Cập nhật">
-                                            <i class="fa-solid fa-floppy-disk"></i>
-                                        </button>
                                     </form>
                                 </td>
 
                                 <td class="text-center">
-                                    <a href="/Admin/Order/Details/@item.OrderId" class="btn btn-sm btn-outline-dark rounded-0" style="white-space: nowrap;">
+                                    <a href="/Admin/Order/Details/@item.OrderId" class="btn btn-sm btn-outline-dark">
                                         <i class="fa-solid fa-eye"></i> Chi tiết
                                     </a>
                                 </td>
                             </tr>
+
+                            @* 2. HÀNG THÔNG BÁO HỦY (CHỈ HIỆN KHI ĐÚNG TRẠNG THÁI PENDINGCANCEL) *@
+                            @if (item.OrderStatus == "PendingCancel")
+                            {
+                                <tr class="table-warning">
+                                    <td colspan="7" class="px-4 py-3">
+                                        <div class="d-flex align-items-center justify-content-between">
+                                            <div class="text-danger fw-bold">
+                                                <i class="fa-solid fa-circle-exclamation me-2"></i>
+                                                Yêu cầu hủy đơn!
+                                                <div class="text-dark fw-normal ms-4 mt-2 p-2 bg-white bg-opacity-50 rounded"
+                                                     style="border-left: 3px solid #dc3545;">
+                                                    <strong>Nội dung ghi chú & Lý do:</strong>
+                                                    <div class="text-muted italic mt-1" style="font-size: 13px; line-height: 1.6;">
+                                                        @{
+                                                            // Bước 1: Chuẩn hóa dữ liệu bằng cách thêm một ký tự phân tách đặc biệt trước mỗi dấu [
+                                                            var rawNote = item.CustomerNote ?? "";
+                                                            var formattedNote = rawNote.Replace("[", "|[");
+
+                                                            // Bước 2: Tách chuỗi dựa trên ký tự phân tách |
+                                                            var noteParts = formattedNote.Split('|', StringSplitOptions.RemoveEmptyEntries);
+                                                        }
+
+                                                        @foreach (var part in noteParts)
+                                                        {
+                                                            <p class="mb-1">@part.Trim()</p>
+                                                        }
+                                                    </div>
+                                                </div>
+                                            </div>
+
+                                            <form asp-action="ProcessCancelRequest" method="post" class="d-flex gap-2 align-items-center">
+                                                <input type="hidden" name="orderId" value="@item.OrderId" />
+                                                <input name="adminNote" class="form-control form-control-sm shadow-none" style="width: 250px;"
+                                                       placeholder="Lời nhắn phản hồi khách..." required />
+                                                <button type="submit" name="actionType" value="Approve" class="btn btn-danger btn-sm px-3 shadow-sm">
+                                                    <i class="fa-solid fa-check me-1"></i> Chấp nhận hủy
+                                                </button>
+                                                <button type="submit" name="actionType" value="Reject" class="btn btn-secondary btn-sm px-3 shadow-sm">
+                                                    <i class="fa-solid fa-rotate-left me-1"></i> Từ chối
+                                                </button>
+                                            </form>
+                                        </div>
+                                    </td>
+                                </tr>
                             }
-                    </tbody>
+                        }
                     </tbody>
                 </table>
             </div>
         </div>
     </div>
 </div>
+@section Scripts {
+    <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+
+    <script>
+        $(document).ready(function () {
+            // 1. Thông báo THÀNH CÔNG (Dùng chung cho mọi thao tác Order)
+        @if (TempData["SuccessMsg"] != null)
+        {
+            <text>
+                    Swal.fire({
+                        toast: true,
+                        position: 'top-end',
+                        icon: 'success',
+                        title: '@Html.Raw(TempData["SuccessMsg"])',
+                        showConfirmButton: false,
+                        timer: 3000,
+                        timerProgressBar: true
+                    });
+            </text>
+        }
+
+            // 2. Thông báo LỖI (Dự phòng)
+        @if (TempData["ErrorMsg"] != null)
+        {
+            <text>
+                    Swal.fire({
+                        toast: true,
+                        position: 'top-end',
+                        icon: 'error',
+                        title: '@Html.Raw(TempData["ErrorMsg"])',
+                        showConfirmButton: false,
+                        timer: 3000,
+                        timerProgressBar: true
+                    });
+            </text>
+        }
+
+            // 3. Hiệu ứng xác nhận khi Admin "Phê duyệt hủy đơn" hoặc "Từ chối"
+            // (Thêm class 'btn-confirm' vào các nút trong form ProcessCancelRequest nếu Sếp muốn hỏi kỹ trước khi bấm)
+        });
+    </script>
+}

@@ -1,11 +1,11 @@
 ﻿@model IEnumerable<WebNoiThatHoaHome.Models.Order>
 @{
-    ViewData["Title"] = " Đơn hàng";
+    ViewData["Title"] = "Đơn hàng của tôi";
+    Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
 <div class="container my-5">
     <div class="row">
-
         <div class="col-md-3 mb-4">
             <h5 class="fw-bold mb-4 ps-3 border-start border-dark border-3">Tài khoản cá nhân</h5>
             <div class="list-group list-group-flush rounded-0">
@@ -37,7 +37,7 @@
 
                         <div class="accordion-item rounded-0 mb-3 border">
                             <h2 class="accordion-header" id="@headingId">
-                                <button class="accordion-button collapsed bg-white rounded-0 shadow-none" type="button" data-bs-toggle="collapse" data-bs-target="#@collapseId" aria-expanded="false" aria-controls="@collapseId">
+                                <button class="accordion-button collapsed bg-white rounded-0 shadow-none" type="button" data-bs-toggle="collapse" data-bs-target="#@collapseId">
                                     <div class="d-flex w-100 justify-content-between align-items-center pe-3">
                                         <div>
                                             <span class="fw-bold text-dark">Đơn hàng #@order.OrderId</span>
@@ -51,7 +51,7 @@
                                 </button>
                             </h2>
 
-                            <div id="@collapseId" class="accordion-collapse collapse" aria-labelledby="@headingId" data-bs-parent="#accordionOrders">
+                            <div id="@collapseId" class="accordion-collapse collapse" data-bs-parent="#accordionOrders">
                                 <div class="accordion-body bg-light">
                                     <div class="row mb-3 pb-3 border-bottom" style="font-size: 13px;">
                                         <div class="col-md-6">
@@ -59,10 +59,10 @@
                                             <span>@order.ShippingAddress</span>
                                         </div>
                                         <div class="col-md-6 mt-2 mt-md-0">
-                                            <span class="text-muted fw-bold d-block mb-1">Phương thức thanh toán:</span>
+                                            <span class="text-muted fw-bold d-block mb-1">Thanh toán:</span>
                                             <span>@(order.PaymentMethod == "BANK" ? "Chuyển khoản (VNPay)" : "Thanh toán khi nhận hàng (COD)")</span>
                                             <br />
-                                            <span class="text-muted">Trạng thái TT: </span>                                          
+                                            <span class="text-muted">Trạng thái TT: </span>
                                             <span class="fw-bold @(order.PaymentStatus == "Success" ? "text-success" : "text-warning")">@TranslatePaymentStatus(order.PaymentStatus)</span>
                                         </div>
                                     </div>
@@ -74,24 +74,87 @@
                                                 {
                                                     var img = item.Product?.ProductImages?.FirstOrDefault(i => i.IsMain == true)?.ImageUrl ?? "/images/no-image.png";
                                                     <tr>
-                                                        <td style="width: 60px;">
-                                                            <img src="@img" alt="SP" style="width: 50px; height: 50px; object-fit: cover;" class="border">
-                                                        </td>
-                                                        <td>
-                                                            <a href="/Product/Details/@item.ProductId" class="text-dark text-decoration-none fw-bold" style="font-size: 13px;">@item.Product?.ProductName</a>
-                                                        </td>
-                                                        <td class="text-center text-muted" style="font-size: 13px;">
-                                                            SL: @item.Quantity
-                                                        </td>
-                                                        <td class="text-end fw-bold" style="font-size: 13px;">
-                                                            @string.Format("{0:N0} ₫", item.UnitPrice * item.Quantity)
-                                                        </td>
+                                                        <td style="width: 60px;"><img src="@img" style="width: 50px; height: 50px; object-fit: cover;" class="border"></td>
+                                                        <td><a href="/Product/Details/@item.ProductId" class="text-dark text-decoration-none fw-bold" style="font-size: 13px;">@item.Product?.ProductName</a></td>
+                                                        <td class="text-center text-muted" style="font-size: 13px;">SL: @item.Quantity</td>
+                                                        <td class="text-end fw-bold" style="font-size: 13px;">@string.Format("{0:N0} ₫", item.UnitPrice * item.Quantity)</td>
                                                     </tr>
                                                 }
                                             </tbody>
                                         </table>
                                     </div>
 
+                                    <div class="mt-3 border-top pt-3 d-flex justify-content-between align-items-center">
+                                        <strong>Tổng tiền: <span class="text-danger">@string.Format("{0:N0} ₫", order.TotalAmount)</span></strong>
+
+                                        @if (order.OrderStatus == "New" || order.OrderStatus == "Processing")
+                                        {
+                                            <button type="button" class="btn btn-outline-danger btn-sm rounded-0" data-bs-toggle="modal" data-bs-target="#modalCancel-@order.OrderId">
+                                                <i class="fa-solid fa-xmark me-1"></i> Yêu cầu hủy đơn
+                                            </button>
+
+                                            <div class="modal fade" id="modalCancel-@order.OrderId" tabindex="-1" aria-hidden="true">
+                                                <div class="modal-dialog modal-dialog-centered">
+                                                    <div class="modal-content border-0 shadow rounded-0">
+                                                        <div class="modal-header bg-danger text-white rounded-0">
+                                                            <h5 class="modal-title fw-bold">Hủy đơn hàng #@order.OrderId</h5>
+                                                            <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal"></button>
+                                                        </div>
+                                                        @* Tìm dòng này và sửa asp-controller *@
+                                                        <form asp-action="RequestCancel" asp-controller="Account" method="post">
+                                                            <input type="hidden" name="orderId" value="@order.OrderId" />
+                                                            <div class="modal-body text-start">
+                                                                <label class="form-label fw-bold">Lý do hủy đơn:</label>
+                                                                <textarea name="reason" class="form-control" rows="3" required></textarea>
+                                                            </div>
+                                                            <div class="modal-footer">
+                                                                <button type="submit" class="btn btn-danger">Gửi yêu cầu</button>
+                                                            </div>
+                                                        </form>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        }
+                                        else if (order.OrderStatus == "PendingCancel")
+                                        {
+                                            <span class="badge bg-warning text-dark py-2 px-3 rounded-0">Đang chờ duyệt hủy</span>
+                                        }
+                                    </div>
+
+                                    @if (!string.IsNullOrEmpty(order.CustomerNote))
+                                    {
+                                        <div class="alert alert-info mt-3 mb-0 rounded-0 border-0 border-start border-info border-4" style="font-size: 13px;">
+                                            <strong class="text-dark"><i class="fa-solid fa-envelope-open-text text-info me-2"></i> Thông tin ghi chú & Phản hồi:</strong>
+                                            <div class="mt-2" style="line-height: 1.6;">
+                                                @{
+                                                    // 1. Lấy dữ liệu thô và thay thế các từ khóa cho thân thiện với khách
+                                                    var rawNote = order.CustomerNote ?? "";
+                                                    var friendlyNote = rawNote.Replace("[Phản hồi Admin]:", "[Shop trả lời]:")
+                                                    .Replace("[Phản hồi từ Admin]:", "[Shop trả lời]:")
+                                                    .Replace("[Phản hồi từ Shop]:", "[Shop trả lời]:");
+
+                                                    // 2. Tự động thêm dấu phân tách | trước mỗi dấu [
+                                                    var formattedNote = friendlyNote.Replace("[", "|[");
+
+                                                    // 3. Tách thành các mảng dựa trên dấu |
+                                                    var parts = formattedNote.Split('|', StringSplitOptions.RemoveEmptyEntries);
+                                                }
+
+                                                @foreach (var p in parts)
+                                                {
+                                                    @* Kiểm tra nếu là dòng của Shop trả lời thì cho chữ đậm hơn hoặc đổi màu *@
+                                                    if (p.Contains("[Shop trả lời]:"))
+                                                    {
+                                                        <p class="mb-1 text-primary fw-bold">@p.Trim()</p>
+                                                    }
+                                                    else
+                                                    {
+                                                        <p class="mb-1 text-muted">@p.Trim()</p>
+                                                    }
+                                                }
+                                            </div>
+                                        </div>
+                                    }
                                 </div>
                             </div>
                         </div>
@@ -99,14 +162,12 @@
                 </div>
             }
         </div>
-
     </div>
 </div>
+
 @functions {
-    // Dịch Trạng thái Đơn hàng
     public string TranslateOrderStatus(string status)
     {
-        if (string.IsNullOrEmpty(status)) return "";
         switch (status)
         {
             case "New": return "Chờ xác nhận";
@@ -114,14 +175,12 @@
             case "Delivering": return "Đang giao hàng";
             case "Completed": return "Đã hoàn thành";
             case "Cancelled": return "Đã hủy";
+            case "PendingCancel": return "Chờ duyệt hủy";
             default: return status;
         }
     }
-
-    // Dịch Trạng thái Thanh toán
     public string TranslatePaymentStatus(string status)
     {
-        if (string.IsNullOrEmpty(status)) return "";
         switch (status)
         {
             case "Pending": return "Chờ thanh toán";
@@ -130,4 +189,24 @@
             default: return status;
         }
     }
+}
+
+@section Scripts {
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    <script>
+        $(document).ready(function () {
+        @if (TempData["SuccessMsg"] != null)
+        {
+            <text>
+                    Swal.fire({ toast: true, position: 'top-end', icon: 'success', title: '@Html.Raw(TempData["SuccessMsg"])', showConfirmButton: false, timer: 3000 });
+            </text>
+        }
+        @if (TempData["ErrorMsg"] != null)
+        {
+            <text>
+                    Swal.fire({ toast: true, position: 'top-end', icon: 'error', title: '@Html.Raw(TempData["ErrorMsg"])', showConfirmButton: false, timer: 3000 });
+            </text>
+        }
+        });
+    </script>
 }

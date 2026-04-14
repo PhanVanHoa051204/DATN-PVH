@@ -149,8 +149,11 @@ namespace WebNoiThatHoaHome.Controllers
             {
                 _context.CartItems.Remove(cartItem);
                 await _context.SaveChangesAsync();
+
+                // Trả về JSON để AJAX bắt được
+                return Json(new { success = true, message = "Xóa sản phẩm thành công khỏi giỏ hàng!" });
             }
-            return Json(new { success = true });
+            return Json(new { success = false, message = "Lỗi: Không tìm thấy sản phẩm!" });
         }
     }
 }

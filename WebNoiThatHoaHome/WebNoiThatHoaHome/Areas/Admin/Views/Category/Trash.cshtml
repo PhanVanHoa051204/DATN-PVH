@@ -34,9 +34,11 @@
                                 <td class="fw-bold text-dark text-decoration-line-through">@item.CategoryName</td>
                                 <td class="text-muted">@item.Description</td>
                                 <td class="text-center">
-                                    <a href="/Admin/Category/Restore/@item.CategoryId" class="btn btn-sm btn-success fw-bold" onclick="return confirm('Bạn muốn khôi phục danh mục này?');">
-                                        <i class="fa-solid fa-rotate-left me-1"></i> Khôi phục
-                                    </a>
+                                    <form asp-action="Restore" asp-route-id="@item.CategoryId" method="post" class="d-inline">
+                                        <button type="button" class="btn btn-sm btn-success fw-bold btn-restore" title="Khôi phục">
+                                            <i class="fa-solid fa-rotate-left me-1"></i> Khôi phục
+                                        </button>
+                                    </form>
                                 </td>
                             </tr>
                         }
@@ -55,3 +57,65 @@
         </div>
     </div>
 </div>
+
+@section Scripts {
+    <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+
+    <script>
+        $(document).ready(function () {
+            // 1. Xác nhận trước khi Khôi phục
+            $('.btn-restore').on('click', function (e) {
+                e.preventDefault();
+                var form = $(this).closest('form');
+
+                Swal.fire({
+                    title: 'Khôi phục danh mục?',
+                    text: "Danh mục này sẽ xuất hiện lại trên hệ thống và người dùng có thể nhìn thấy!",
+                    icon: 'info', // Dùng icon info màu xanh cho thân thiện
+                    showCancelButton: true,
+                    confirmButtonColor: '#198754', // Màu xanh lá giống nút
+                    cancelButtonColor: '#6c757d',
+                    confirmButtonText: 'Đồng ý khôi phục',
+                    cancelButtonText: 'Hủy'
+                }).then((result) => {
+                    if (result.isConfirmed) {
+                        form.submit();
+                    }
+                });
+            });
+
+            // 2. Bắt TempData báo THÀNH CÔNG
+        @if (TempData["SuccessMsg"] != null)
+        {
+            <text>
+                    Swal.fire({
+                        toast: true,
+                        position: 'top-end',
+                        icon: 'success',
+                        title: '@Html.Raw(TempData["SuccessMsg"])',
+                        showConfirmButton: false,
+                        timer: 3000,
+                        timerProgressBar: true
+                    });
+            </text>
+        }
+
+            // 3. Bắt TempData báo LỖI (Dự phòng)
+        @if (TempData["ErrorMsg"] != null)
+        {
+            <text>
+                    Swal.fire({
+                        toast: true,
+                        position: 'top-end',
+                        icon: 'error',
+                        title: '@Html.Raw(TempData["ErrorMsg"])',
+                        showConfirmButton: false,
+                        timer: 3000,
+                        timerProgressBar: true
+                    });
+            </text>
+        }
+        });
+    </script>
+}

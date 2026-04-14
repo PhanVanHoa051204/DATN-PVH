@@ -95,7 +95,20 @@
         <a href="/Admin/Order/Index" class="nav-link">
             <i class="fa-solid fa-cart-shopping"></i> Quản lý Đơn hàng
         </a>
+        <hr class="text-secondary border-2 opacity-50 my-2">
+        <div class="text-secondary fw-bold mb-2 ms-3 mt-3" style="font-size: 11px; text-transform: uppercase;">Dịch vụ & Lịch hẹn</div>
 
+        <a href="/Admin/ServiceType/Index" class="@(Context.Request.Path.StartsWithSegments("/Admin/ServiceType") ? "active" : "")">
+            <i class="fa-solid fa-briefcase"></i> Quản lý Dịch vụ
+        </a>
+
+        <a href="/Admin/Employee/Index" class="@(Context.Request.Path.StartsWithSegments("/Admin/Employee") ? "active" : "")">
+            <i class="fa-solid fa-users-gear"></i> Quản lý Nhân sự
+        </a>
+
+        <a href="/Admin/Appointment/Index" class="@(Context.Request.Path.StartsWithSegments("/Admin/Appointment") ? "active" : "text-warning fw-bold")">
+            <i class="fa-solid fa-calendar-check"></i> Điều phối Lịch hẹn
+        </a>
         <hr class="text-secondary mx-3">
         <a href="/" class="text-danger mt-auto"><i class="fa-solid fa-arrow-right-from-bracket"></i> Trở về Trang khách</a>
     </div>

@@ -1,70 +1,147 @@
 ﻿@model WebNoiThatHoaHome.Models.Order
 @{
     ViewData["Title"] = "Chi tiết Đơn hàng #" + Model.OrderId;
-    Layout = "~/Areas/Admin/Views/Shared/_Layout.cshtml"; // Ép dùng Layout của Admin
+    Layout = "~/Areas/Admin/Views/Shared/_Layout.cshtml";
 }
 
 <div class="container-fluid my-4">
     <div class="d-flex justify-content-between align-items-center mb-4">
-        <h3 class="fw-bold text-uppercase mb-0">Chi tiết Đơn hàng <span class="text-danger">#@Model.OrderId</span></h3>
-        <a href="/Admin/Order/Index" class="btn btn-outline-dark rounded-0"><i class="fa-solid fa-arrow-left me-2"></i>Quay lại</a>
+        <h3 class="fw-bold text-uppercase mb-0">Quản lý Đơn hàng <span class="text-danger">#@Model.OrderId</span></h3>
+        <a href="/Admin/Order/Index" class="btn btn-outline-dark rounded-0"><i class="fa-solid fa-arrow-left me-2"></i>Quay lại danh sách</a>
     </div>
 
-    <div class="row">
-        <div class="col-lg-4 mb-4">
-            <div class="card rounded-0 border shadow-sm h-100">
-                <div class="card-header bg-dark text-white rounded-0 text-uppercase fw-bold">Thông tin giao hàng</div>
-                <div class="card-body">
-                    <p class="mb-2"><strong>Địa chỉ:</strong> @Model.ShippingAddress</p>
-                    <p class="mb-2"><strong>Ngày đặt:</strong> @Model.OrderDate?.ToString("dd/MM/yyyy HH:mm")</p>
-                    <p class="mb-2"><strong>Ghi chú của khách:</strong> <br /> <span class="text-muted fst-italic">@(string.IsNullOrEmpty(Model.CustomerNote) ? "Không có" : Model.CustomerNote)</span></p>
-                    <hr />
-                    <p class="mb-2"><strong>Phương thức TT:</strong> @Model.PaymentMethod</p>
-                    <p class="mb-2"><strong>Trạng thái TT:</strong> @Model.PaymentStatus</p>
-                    <p class="mb-0"><strong>Trạng thái ĐH:</strong> <span class="badge bg-warning text-dark fs-6">@Model.OrderStatus</span></p>
+    @* DÙNG 1 FORM DUY NHẤT BAO QUÁT *@
+    <form asp-area="Admin" asp-controller="Order" method="post">
+        @* Input ẩn dùng chung cho cả 2 hành động *@
+        <input type="hidden" name="OrderId" value="@Model.OrderId" />
+        <input type="hidden" name="orderId" value="@Model.OrderId" /> @* Dự phòng cho hàm ProcessCancelRequest dùng chữ o thường *@
+
+        <div class="row">
+            @* CỘT TRÁI: THÔNG TIN GIAO HÀNG *@
+            <div class="col-lg-4 mb-4">
+                <div class="card rounded-0 border shadow-sm h-100">
+                    <div class="card-header bg-dark text-white rounded-0 text-uppercase fw-bold">Thông tin giao hàng</div>
+                    <div class="card-body">
+                        <div class="mb-3">
+                            <label class="fw-bold mb-1"><i class="fa-solid fa-location-dot me-1"></i> Địa chỉ nhận hàng:</label>
+                            <input type="text" name="ShippingAddress" class="form-control rounded-0" value="@Model.ShippingAddress" />
+                        </div>
+
+                        <p class="mb-3 small"><strong>Ngày đặt đơn:</strong> @Model.OrderDate?.ToString("dd/MM/yyyy HH:mm")</p>
+
+                        <div class="mb-3">
+                            <label class="fw-bold mb-1"><i class="fa-solid fa-pen-to-square me-1"></i> Ghi chú & Lý do (Hệ thống):</label>
+                            @* Quan trọng: Ô này sẽ gửi dữ liệu cho cả EditOrder và ProcessCancelRequest (làm adminNote) *@
+                            <textarea name="CustomerNote" id="adminNote" class="form-control rounded-0 small" rows="8" style="font-size: 13px; line-height: 1.5;">@Model.CustomerNote</textarea>
+                            <input type="hidden" name="adminNote" id="hiddenAdminNote" value="" />
+                        </div>
+
+                        <hr />
+                        <p class="mb-2"><strong>Phương thức TT:</strong> <span class="badge bg-secondary">@Model.PaymentMethod</span></p>
+                        <p class="mb-2"><strong>Trạng thái TT:</strong> <span class="fw-bold @(Model.PaymentStatus == "Success" ? "text-success" : "text-warning")">@Model.PaymentStatus</span></p>
+                        <p class="mb-4"><strong>Trạng thái ĐH:</strong> <span class="badge bg-warning text-dark fs-6">@Model.OrderStatus</span></p>
+
+                        <div class="d-grid">
+                            @* Nút này gửi đến EditOrder *@
+                            <button type="submit" asp-action="EditOrder" class="btn btn-primary rounded-0 fw-bold">
+                                <i class="fa-solid fa-floppy-disk me-2"></i> LƯU THAY ĐỔI
+                            </button>
+                        </div>
+                    </div>
                 </div>
             </div>
-        </div>
 
-        <div class="col-lg-8 mb-4">
-            <div class="card rounded-0 border shadow-sm h-100">
-                <div class="card-header bg-dark text-white rounded-0 text-uppercase fw-bold">Sản phẩm đã đặt</div>
-                <div class="card-body p-0">
-                    <table class="table table-borderless align-middle mb-0">
-                        <thead class="border-bottom">
-                            <tr>
-                                <th>Sản phẩm</th>
-                                <th class="text-center">Đơn giá</th>
-                                <th class="text-center">Số lượng</th>
-                                <th class="text-end pe-4">Thành tiền</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            @foreach (var item in Model.OrderItems)
-                            {
-                                var img = item.Product?.ProductImages?.FirstOrDefault(i => i.IsMain == true)?.ImageUrl ?? "/images/no-image.png";
-                                <tr class="border-bottom">
-                                    <td class="ps-3">
-                                        <div class="d-flex align-items-center py-2">
-                                            <img src="@img" alt="sp" style="width: 60px; height: 60px; object-fit: cover;" class="border me-3">
-                                            <span class="fw-bold">@item.Product?.ProductName</span>
-                                        </div>
-                                    </td>
-                                    <td class="text-center">@string.Format("{0:N0} ₫", item.UnitPrice)</td>
-                                    <td class="text-center">@item.Quantity</td>
-                                    <td class="text-end pe-4 fw-bold text-danger">@string.Format("{0:N0} ₫", item.UnitPrice * item.Quantity)</td>
+            @* CỘT PHẢI: XỬ LÝ HỦY & DANH SÁCH SẢN PHẨM *@
+            <div class="col-lg-8 mb-4">
+                @if (Model.OrderStatus == "PendingCancel")
+                {
+                    <div class="card border-warning shadow-sm mb-4 rounded-0">
+                        <div class="card-header bg-warning text-dark fw-bold text-uppercase">
+                            <i class="fa-solid fa-triangle-exclamation me-1"></i> Xử lý yêu cầu hủy đơn
+                        </div>
+                        <div class="card-body bg-light">
+                            <div class="alert alert-white border mb-3">
+                                <strong class="d-block mb-2 text-primary">Nội dung khách gửi:</strong>
+                                <div style="white-space: pre-line; font-size: 13px;">
+                                    @Model.CustomerNote
+                                </div>
+                            </div>
+                            <div class="d-flex gap-2">
+                                @* Dùng formaction để điều hướng nút bấm đến đúng hàm xử lý *@
+                                <button type="submit" formaction="/Admin/Order/ProcessCancelRequest?actionType=Approve" class="btn btn-danger px-4 rounded-0">Chấp nhận hủy</button>
+                                <button type="submit" formaction="/Admin/Order/ProcessCancelRequest?actionType=Reject" class="btn btn-secondary px-4 rounded-0">Từ chối</button>
+                            </div>
+                            <small class="text-muted d-block mt-2">Lưu ý: Nội dung trong ô Ghi chú bên trái sẽ được dùng làm phản hồi cho khách.</small>
+                        </div>
+                    </div>
+                }
+
+                <div class="card rounded-0 border shadow-sm">
+                    <div class="card-header bg-dark text-white rounded-0 text-uppercase fw-bold">Sản phẩm đã đặt</div>
+                    <div class="card-body p-0">
+                        <table class="table table-hover align-middle mb-0">
+                            <thead class="table-light">
+                                <tr>
+                                    <th class="ps-4">Sản phẩm</th>
+                                    <th class="text-center">Đơn giá</th>
+                                    <th class="text-center">Số lượng</th>
+                                    <th class="text-end pe-4">Thành tiền</th>
                                 </tr>
-                            }
-                        </tbody>
-                        <tfoot class="bg-light">
-                            <tr>
-                                <td colspan="3" class="text-end fw-bold pt-3 pb-3">TỔNG CỘNG ĐƠN HÀNG:</td>
-                                <td class="text-end fw-bold text-danger fs-5 pe-4 pt-3 pb-3">@string.Format("{0:N0} ₫", Model.TotalAmount)</td>
-                            </tr>
-                        </tfoot>
-                    </table>
+                            </thead>
+                            <tbody>
+                                @foreach (var item in Model.OrderItems)
+                                {
+                                    var imgUrl = item.Product?.ProductImages?.FirstOrDefault(i => i.IsMain == true)?.ImageUrl ?? "/images/no-image.png";
+                                    <tr>
+                                        <td class="ps-4 py-3">
+                                            <div class="d-flex align-items-center">
+                                                <img src="@imgUrl" style="width: 50px; height: 50px; object-fit: cover;" class="border rounded me-3">
+                                                <div>
+                                                    <div class="fw-bold">@item.Product?.ProductName</div>
+                                                    <small class="text-muted">Mã: #@item.ProductId</small>
+                                                </div>
+                                            </div>
+                                        </td>
+                                        <td class="text-center">@string.Format("{0:N0} ₫", item.UnitPrice)</td>
+                                        <td class="text-center fw-bold">x @item.Quantity</td>
+                                        <td class="text-end pe-4 fw-bold text-danger">@string.Format("{0:N0} ₫", item.UnitPrice * item.Quantity)</td>
+                                    </tr>
+                                }
+                            </tbody>
+                            <tfoot class="bg-light">
+                                <tr>
+                                    <td colspan="3" class="text-end fw-bold py-3">TỔNG CỘNG ĐƠN HÀNG:</td>
+                                    <td class="text-end fw-bold text-danger fs-5 pe-4 py-3">@string.Format("{0:N0} ₫", Model.TotalAmount)</td>
+                                </tr>
+                            </tfoot>
+                        </table>
+                    </div>
                 </div>
             </div>
         </div>
-    </div>
+    </form>
 </div>
+
+@section Scripts {
+    <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+
+    <script>
+        $(document).ready(function () {
+        @if (TempData["SuccessMsg"] != null)
+        {
+            <text>
+                    Swal.fire({
+                        toast: true,
+                        position: 'top-end',
+                        icon: 'success',
+                        title: '@Html.Raw(TempData["SuccessMsg"])',
+                        showConfirmButton: false,
+                        timer: 3000,
+                        timerProgressBar: true
+                    });
+            </text>
+        }
+        });
+    </script>
+}

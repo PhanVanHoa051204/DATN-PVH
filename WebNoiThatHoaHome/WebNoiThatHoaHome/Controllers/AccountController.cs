@@ -32,13 +32,25 @@ namespace WebNoiThatHoaHome.Controllers
 
                 if (user != null)
                 {
-                    var claims = new List<Claim>
+                    // =======================================================
+                    // 👇 TRẠM KIỂM SOÁT: TÀI KHOẢN CÓ BỊ KHÓA KHÔNG?
+                    // =======================================================
+                    if (user.IsDeleted == true)
                     {
-                        new Claim(ClaimTypes.NameIdentifier, user.UserId.ToString()),
-                        new Claim(ClaimTypes.Name, user.FullName ?? ""),
-                        new Claim(ClaimTypes.Email, user.Email ?? ""),
-                        new Claim(ClaimTypes.Role, user.Role?.RoleName ?? "Customer")
-                    };
+                        // Bị khóa -> Báo lỗi đúng bệnh và đuổi ra ngoài ngay lập tức
+                        TempData["LoginError"] = "Tài khoản của bạn đang bị khóa. Vui lòng liên hệ Admin!";
+                        return RedirectToAction("Index", "Home");
+                    }
+                    // =======================================================
+
+                    // Nếu an toàn đi qua trạm kiểm soát trên thì mới cấp "Vé" (Cookie)
+                    var claims = new List<Claim>
+            {
+                new Claim(ClaimTypes.NameIdentifier, user.UserId.ToString()),
+                new Claim(ClaimTypes.Name, user.FullName ?? ""),
+                new Claim(ClaimTypes.Email, user.Email ?? ""),
+                new Claim(ClaimTypes.Role, user.Role?.RoleName ?? "Customer")
+            };
 
                     var identity = new ClaimsIdentity(claims, CookieAuthenticationDefaults.AuthenticationScheme);
                     await HttpContext.SignInAsync(CookieAuthenticationDefaults.AuthenticationScheme, new ClaimsPrincipal(identity));
@@ -232,6 +244,50 @@ namespace WebNoiThatHoaHome.Controllers
                 }
             }
             return RedirectToAction("Wishlist");
+        }
+        [HttpPost]
+        [Authorize]
+        public async Task<IActionResult> RequestCancelOrder(int orderId)
+        {
+            // 1. Lấy ID của khách hàng đang đăng nhập
+            var userIdString = User.FindFirstValue(ClaimTypes.NameIdentifier);
+            if (!int.TryParse(userIdString, out int userId)) return RedirectToAction("Login");
+
+            // 2. Tìm đơn hàng xem có đúng của khách này không
+            var order = await _context.Orders
+                .FirstOrDefaultAsync(o => o.OrderId == orderId && o.UserId == userId);
+
+            if (order == null) return NotFound();
+
+            // 3. CHẶN: Chỉ cho phép hủy nếu đơn hàng đang "Chờ xử lý" hoặc "Chưa thanh toán"
+            // Lưu ý: Sếp tự đổi chữ "Chờ xử lý" thành đúng cái chữ Sếp đang lưu trong Database nhé
+            if (order.OrderStatus == "Đã hoàn thành" || order.OrderStatus == "Đang giao" || order.OrderStatus == "Đã hủy")
+            {
+                TempData["ErrorMsg"] = "Đơn hàng này đang được xử lý hoặc đã hoàn thành, không thể hủy!";
+                return RedirectToAction("Orders");
+            }
+
+            // 4. Cập nhật trạng thái thành Chờ duyệt
+            order.OrderStatus = "Chờ xác nhận hủy";
+            await _context.SaveChangesAsync();
+
+            TempData["SuccessMsg"] = "Đã gửi yêu cầu hủy! Vui lòng chờ Admin phê duyệt.";
+            return RedirectToAction("Orders");
+        }
+        [HttpPost]
+        public async Task<IActionResult> RequestCancel(int orderId, string reason)
+        {
+            var order = await _context.Orders.FindAsync(orderId);
+            if (order != null)
+            {
+                order.OrderStatus = "PendingCancel";
+                // Cộng dồn lý do vào CustomerNote
+                order.CustomerNote = (order.CustomerNote ?? "") + "\n[Lý do hủy]: " + reason;
+
+                await _context.SaveChangesAsync();
+                TempData["SuccessMsg"] = "Đã gửi yêu cầu hủy đơn thành công!";
+            }
+            return RedirectToAction("Orders"); // Vì đang ở trong AccountController nên chỉ cần tên Action
         }
     }
 }

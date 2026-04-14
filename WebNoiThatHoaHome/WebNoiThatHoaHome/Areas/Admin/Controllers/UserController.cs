@@ -96,9 +96,10 @@ namespace WebNoiThatHoaHome.Areas.Admin.Controllers
 
             await _context.SaveChangesAsync();
 
-            TempData["AdminSuccessMsg"] = "Cập nhật thông tin khách hàng thành công!";
+            TempData["SuccessMsg"] = "Cập nhật thông tin khách hàng thành công!";
             return RedirectToAction("Index");
         }
+
 
         // ==========================================
         // 3. THÊM MỚI NGƯỜI DÙNG
@@ -148,7 +149,7 @@ namespace WebNoiThatHoaHome.Areas.Admin.Controllers
                 _context.Users.Add(newUser);
                 await _context.SaveChangesAsync();
 
-                TempData["AdminSuccessMsg"] = "Đã thêm người dùng mới thành công!";
+                TempData["SuccessMsg"] = "Đã thêm người dùng mới thành công!";
                 return RedirectToAction("Index");
             }
 
@@ -157,23 +158,36 @@ namespace WebNoiThatHoaHome.Areas.Admin.Controllers
             return View(model);
         }
 
-        // ==========================================
-        // 4. XÓA MỀM (VÔ HIỆU HÓA)
-        // ==========================================
-        [HttpGet]
+        // Thêm [HttpPost] lên đầu hàm để nó nhận Form từ giao diện gửi xuống
+        [HttpPost]
         public async Task<IActionResult> Delete(int id)
         {
+            // Tìm khách hàng theo ID
             var user = await _context.Users.FindAsync(id);
+
             if (user != null)
             {
-                // Vô hiệu hóa tài khoản
-                user.IsDeleted = true;
-                
-                user.UpdatedAt = DateTime.Now;
+                // Logic Khóa / Mở khóa tài khoản (Xóa mềm)
+                // Nếu đang khóa thì mở, nếu đang mở thì khóa
+                if (user.IsDeleted == true)
+                {
+                    user.IsDeleted = false; // Mở khóa
+                    TempData["SuccessMsg"] = "Đã mở khóa tài khoản khách hàng!";
+                }
+                else
+                {
+                    user.IsDeleted = true; // Khóa
+                    TempData["SuccessMsg"] = "Đã vô hiệu hóa tài khoản thành công!";
+                }
 
                 await _context.SaveChangesAsync();
-                TempData["AdminSuccessMsg"] = "Đã vô hiệu hóa tài khoản thành công!";
             }
+            else
+            {
+                TempData["ErrorMsg"] = "Lỗi: Không tìm thấy khách hàng!";
+            }
+
+            // Xử lý xong thì quay về trang danh sách
             return RedirectToAction("Index");
         }
     }

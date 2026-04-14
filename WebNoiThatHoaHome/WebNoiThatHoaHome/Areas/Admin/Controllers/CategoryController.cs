@@ -62,7 +62,7 @@ namespace WebNoiThatHoaHome.Areas.Admin.Controllers
                 _context.Categories.Add(category);
                 await _context.SaveChangesAsync();
 
-                TempData["AdminSuccessMsg"] = "Đã thêm danh mục mới thành công!";
+                TempData["SuccessMsg"] = "Đã thêm danh mục mới thành công!";
                 return RedirectToAction("Index");
             }
             return View(model);
@@ -100,7 +100,7 @@ namespace WebNoiThatHoaHome.Areas.Admin.Controllers
                 category.UpdatedAt = DateTime.Now;
 
                 await _context.SaveChangesAsync();
-                TempData["AdminSuccessMsg"] = "Cập nhật danh mục thành công!";
+                TempData["SuccessMsg"] = "Cập nhật danh mục thành công!";
                 return RedirectToAction("Index");
             }
             return View(model);
@@ -109,7 +109,7 @@ namespace WebNoiThatHoaHome.Areas.Admin.Controllers
         // ==========================================
         // 4. XÓA MỀM (Chuyển vào Thùng rác)
         // ==========================================
-        [HttpGet]
+        [HttpPost]
         public async Task<IActionResult> Delete(int id)
         {
             var category = await _context.Categories.FindAsync(id);
@@ -119,7 +119,8 @@ namespace WebNoiThatHoaHome.Areas.Admin.Controllers
                 category.UpdatedAt = DateTime.Now;
 
                 await _context.SaveChangesAsync();
-                TempData["AdminSuccessMsg"] = $"Đã chuyển danh mục '{category.CategoryName}' vào thùng rác!";
+                
+                TempData["SuccessMsg"] = $"Đã chuyển danh mục [{category.CategoryName}] vào thùng rác!";
             }
             return RedirectToAction("Index");
         }
@@ -141,7 +142,7 @@ namespace WebNoiThatHoaHome.Areas.Admin.Controllers
         // ==========================================
         // 6. KHÔI PHỤC TỪ THÙNG RÁC
         // ==========================================
-        [HttpGet]
+        [HttpPost]
         public async Task<IActionResult> Restore(int id)
         {
             var category = await _context.Categories.FindAsync(id);
@@ -151,7 +152,7 @@ namespace WebNoiThatHoaHome.Areas.Admin.Controllers
                 category.UpdatedAt = DateTime.Now;
 
                 await _context.SaveChangesAsync();
-                TempData["AdminSuccessMsg"] = $"Đã khôi phục danh mục '{category.CategoryName}' thành công!";
+                TempData["SuccessMsg"] = $"Đã khôi phục danh mục [{category.CategoryName}] thành công!";
             }
             // Sau khi khôi phục xong thì tải lại trang Thùng rác
             return RedirectToAction("Trash");

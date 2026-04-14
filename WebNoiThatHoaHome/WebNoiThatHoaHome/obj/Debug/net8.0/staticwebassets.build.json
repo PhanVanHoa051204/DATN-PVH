@@ -1,6 +1,6 @@
 {
   "Version": 1,
-  "Hash": "PVMPwco2YdWOoCnxCv1j1T+MtYr4mDQsyfASgCgYDfE=",
+  "Hash": "o/F475+AtYMx9FzcP92XBE03w3IgLZycXwlTjipH/+o=",
   "Source": "WebNoiThatHoaHome",
   "BasePath": "_content/WebNoiThatHoaHome",
   "Mode": "Default",
@@ -1905,6 +1905,27 @@
       "CopyToOutputDirectory": "Never",
       "CopyToPublishDirectory": "PreserveNewest",
       "OriginalItemSpec": "wwwroot\\uploads\\products\\Category_5\\671f5551-eabb-4fd0-a458-970134b6e876_nha-xinh-tu-bep-paris.jpg"
+    },
+    {
+      "Identity": "D:\\Đồ án tốt nghiệp PVH\\WebNoiThatHoaHome\\WebNoiThatHoaHome\\wwwroot\\uploads\\products\\Category_5\\afb60ada-d876-4d62-b81c-4425729cc75f_nha-xinh-tu-bep-classic_1_500x3331.jpg",
+      "SourceId": "WebNoiThatHoaHome",
+      "SourceType": "Discovered",
+      "ContentRoot": "D:\\Đồ án tốt nghiệp PVH\\WebNoiThatHoaHome\\WebNoiThatHoaHome\\wwwroot\\",
+      "BasePath": "_content/WebNoiThatHoaHome",
+      "RelativePath": "uploads/products/Category_5/afb60ada-d876-4d62-b81c-4425729cc75f_nha-xinh-tu-bep-classic_1_500x3331#[.{fingerprint}]?.jpg",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "AssetMergeBehavior": "",
+      "AssetMergeSource": "",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "Fingerprint": "l6szf7p8ei",
+      "Integrity": "bfRUHIwN0bg2S853li/+dWMX7W7sYhcf+KgXmFg6tws=",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot\\uploads\\products\\Category_5\\afb60ada-d876-4d62-b81c-4425729cc75f_nha-xinh-tu-bep-classic_1_500x3331.jpg"
     },
     {
       "Identity": "D:\\Đồ án tốt nghiệp PVH\\WebNoiThatHoaHome\\WebNoiThatHoaHome\\wwwroot\\uploads\\products\\Category_5\\d2b648aa-0bef-451d-86ba-2238bf4b8210_7._daily.jpg",
@@ -9268,6 +9289,88 @@
         {
           "Name": "integrity",
           "Value": "sha256-Mc8ZggMcjiJizNHtzcY8Psnii538SkudL45Zh3cO6vg="
+        }
+      ]
+    },
+    {
+      "Route": "uploads/products/Category_5/afb60ada-d876-4d62-b81c-4425729cc75f_nha-xinh-tu-bep-classic_1_500x3331.jpg",
+      "AssetFile": "D:\\Đồ án tốt nghiệp PVH\\WebNoiThatHoaHome\\WebNoiThatHoaHome\\wwwroot\\uploads\\products\\Category_5\\afb60ada-d876-4d62-b81c-4425729cc75f_nha-xinh-tu-bep-classic_1_500x3331.jpg",
+      "Selectors": [],
+      "ResponseHeaders": [
+        {
+          "Name": "Accept-Ranges",
+          "Value": "bytes"
+        },
+        {
+          "Name": "Content-Length",
+          "Value": "167312"
+        },
+        {
+          "Name": "Content-Type",
+          "Value": "image/jpeg"
+        },
+        {
+          "Name": "ETag",
+          "Value": "\"bfRUHIwN0bg2S853li/+dWMX7W7sYhcf+KgXmFg6tws=\""
+        },
+        {
+          "Name": "Last-Modified",
+          "Value": "Mon, 13 Apr 2026 18:35:52 GMT"
+        },
+        {
+          "Name": "Cache-Control",
+          "Value": "max-age=3600, must-revalidate"
+        }
+      ],
+      "EndpointProperties": [
+        {
+          "Name": "integrity",
+          "Value": "sha256-bfRUHIwN0bg2S853li/+dWMX7W7sYhcf+KgXmFg6tws="
+        }
+      ]
+    },
+    {
+      "Route": "uploads/products/Category_5/afb60ada-d876-4d62-b81c-4425729cc75f_nha-xinh-tu-bep-classic_1_500x3331.l6szf7p8ei.jpg",
+      "AssetFile": "D:\\Đồ án tốt nghiệp PVH\\WebNoiThatHoaHome\\WebNoiThatHoaHome\\wwwroot\\uploads\\products\\Category_5\\afb60ada-d876-4d62-b81c-4425729cc75f_nha-xinh-tu-bep-classic_1_500x3331.jpg",
+      "Selectors": [],
+      "ResponseHeaders": [
+        {
+          "Name": "Accept-Ranges",
+          "Value": "bytes"
+        },
+        {
+          "Name": "Content-Length",
+          "Value": "167312"
+        },
+        {
+          "Name": "Content-Type",
+          "Value": "image/jpeg"
+        },
+        {
+          "Name": "ETag",
+          "Value": "\"bfRUHIwN0bg2S853li/+dWMX7W7sYhcf+KgXmFg6tws=\""
+        },
+        {
+          "Name": "Last-Modified",
+          "Value": "Mon, 13 Apr 2026 18:35:52 GMT"
+        },
+        {
+          "Name": "Cache-Control",
+          "Value": "max-age=31536000, immutable"
+        }
+      ],
+      "EndpointProperties": [
+        {
+          "Name": "fingerprint",
+          "Value": "l6szf7p8ei"
+        },
+        {
+          "Name": "label",
+          "Value": "uploads/products/Category_5/afb60ada-d876-4d62-b81c-4425729cc75f_nha-xinh-tu-bep-classic_1_500x3331.jpg"
+        },
+        {
+          "Name": "integrity",
+          "Value": "sha256-bfRUHIwN0bg2S853li/+dWMX7W7sYhcf+KgXmFg6tws="
         }
       ]
     },
