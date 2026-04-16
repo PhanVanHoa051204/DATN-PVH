@@ -42,26 +42,17 @@
                                 </div>
 
                                 <div class="text-end">
+                                    <span class="badge @GetAppStatusColor(item.Status) px-3 py-2 d-inline-block mb-1">
+                                        @TranslateAppStatus(item.Status)
+                                    </span>
+
                                     @if (item.Status == "Pending")
                                     {
-                                        <span class="badge bg-warning text-dark px-3 py-2">Đang chờ duyệt</span>
                                         <form asp-action="Cancel" asp-controller="Appointment" asp-route-id="@item.AppointmentId" method="post">
                                             <button type="submit" class="btn btn-link text-danger text-decoration-none p-0 small btn-cancel-appointment">
                                                 <i class="fa-solid fa-xmark me-1"></i> Hủy lịch này
                                             </button>
                                         </form>
-                                    }
-                                    else if (item.Status == "Approved")
-                                    {
-                                        <span class="badge bg-success px-3 py-2">Đã xác nhận</span>
-                                    }
-                                    else if (item.Status == "Completed")
-                                    {
-                                        <span class="badge bg-dark px-3 py-2">Đã hoàn thành</span>
-                                    }
-                                    else
-                                    {
-                                        <span class="badge bg-danger px-3 py-2">Đã hủy</span>
                                     }
                                 </div>
                             </div>
@@ -81,6 +72,39 @@
 
     </div>
 </div>
+@functions {
+    // Dịch chữ
+    public string TranslateAppStatus(string status)
+    {
+        if (string.IsNullOrEmpty(status)) return "Chờ duyệt";
+        switch (status)
+        {
+            case "Pending": return "Chờ duyệt";
+            case "Assigned": return "Đã phân công";
+            case "InProgress":
+            case "Processing": return "Đang thi công";
+            case "Completed": return "Hoàn thành";
+            case "Cancelled": return "Đã hủy";
+            default: return status;
+        }
+    }
+
+    // Gán màu cho Badge
+    public string GetAppStatusColor(string status)
+    {
+        if (string.IsNullOrEmpty(status)) return "bg-secondary";
+        switch (status)
+        {
+            case "Pending": return "bg-secondary";
+            case "Assigned": return "bg-info text-dark"; // Màu xanh lơ cho Đã phân công
+            case "InProgress":
+            case "Processing": return "bg-primary";
+            case "Completed": return "bg-success";
+            case "Cancelled": return "bg-danger";
+            default: return "bg-dark";
+        }
+    }
+}
 @section Scripts {
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
     <script>

@@ -18,7 +18,14 @@
 
                         <div class="mb-4">
                             <label class="form-label fw-bold">Chọn dịch vụ cần hỗ trợ <span class="text-danger">*</span></label>
-                            <select asp-for="ServiceTypeId" class="form-select form-select-lg rounded-0 bg-light" asp-items="ViewBag.Services" required>
+
+                            @{                              
+                                var filteredServices = ((IEnumerable<SelectListItem>)ViewBag.Services)
+                                .Where(s => !s.Text.Contains("Giao hàng"));
+                            }
+
+                            <select asp-for="ServiceTypeId" class="form-select form-select-lg rounded-0 bg-light"
+                                    asp-items="filteredServices" required>
                                 <option value="">-- Click để chọn dịch vụ --</option>
                             </select>
                         </div>

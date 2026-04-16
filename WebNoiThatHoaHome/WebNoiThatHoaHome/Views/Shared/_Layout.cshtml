@@ -116,10 +116,10 @@
                             Dịch vụ
                         </a>
                         <ul class="dropdown-menu shadow border-0 mt-0">
-                            @* Giả sử Sếp đã truyền danh sách dịch vụ vào biến serviceCategories hoặc tương đương *@
+                            
                             @if (serviceCategories != null && serviceCategories.Any())
                             {
-                                foreach (var svc in serviceCategories)
+                                foreach (var svc in serviceCategories.Where(s => !s.TypeName.Contains("Giao hàng")))
                                 {
                                     // Logic gán Icon dựa trên TypeName của bảng ServiceType
                                     string svcIcon = "fa-gear"; // Mặc định
@@ -128,8 +128,7 @@
                                     if (svc.TypeName.Contains("Đo đạc")) { svcIcon = "fa-ruler-combined"; svcColor = "text-primary"; }
                                     else if (svc.TypeName.Contains("Thiết kế") || svc.TypeName.Contains("Tư vấn")) { svcIcon = "fa-compass-drafting"; svcColor = "text-info"; }
                                     else if (svc.TypeName.Contains("Lắp đặt")) { svcIcon = "fa-screwdriver-wrench"; svcColor = "text-warning"; }
-                                    else if (svc.TypeName.Contains("Giao hàng") || svc.TypeName.Contains("Vận chuyển")) { svcIcon = "fa-truck-fast"; svcColor = "text-success"; }
-
+                                    
                                     <li>
                                         <a class="dropdown-item py-2 d-flex align-items-center" href="/Service/Details/@svc.ServiceTypeId">
                                             <i class="fa-solid @svcIcon @svcColor me-3" style="width: 20px; text-align: center;"></i>
@@ -137,13 +136,7 @@
                                         </a>
                                     </li>
                                 }
-                                @* <li><hr class="dropdown-divider"></li>
-                                <li>
-                                    <a class="dropdown-item py-2 fw-bold text-danger d-flex align-items-center" href="/Appointment/Booking">
-                                        <i class="fa-regular fa-calendar-check me-3" style="width: 20px; text-align: center;"></i>
-                                        <span>ĐẶT LỊCH NGAY</span>
-                                    </a>
-                                </li> *@
+                                
                             }
                             else
                             {
@@ -280,6 +273,7 @@
             </div>
         </div>
     </div>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/microsoft-signalr/7.0.5/signalr.min.js"></script>
     <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>

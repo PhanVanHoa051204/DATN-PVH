@@ -14,45 +14,15 @@
     <form asp-area="Admin" asp-controller="Order" method="post">
         @* Input ẩn dùng chung cho cả 2 hành động *@
         <input type="hidden" name="OrderId" value="@Model.OrderId" />
-        <input type="hidden" name="orderId" value="@Model.OrderId" /> @* Dự phòng cho hàm ProcessCancelRequest dùng chữ o thường *@
+        <input type="hidden" name="orderId" value="@Model.OrderId" />
 
         <div class="row">
-            @* CỘT TRÁI: THÔNG TIN GIAO HÀNG *@
-            <div class="col-lg-4 mb-4">
-                <div class="card rounded-0 border shadow-sm h-100">
-                    <div class="card-header bg-dark text-white rounded-0 text-uppercase fw-bold">Thông tin giao hàng</div>
-                    <div class="card-body">
-                        <div class="mb-3">
-                            <label class="fw-bold mb-1"><i class="fa-solid fa-location-dot me-1"></i> Địa chỉ nhận hàng:</label>
-                            <input type="text" name="ShippingAddress" class="form-control rounded-0" value="@Model.ShippingAddress" />
-                        </div>
-
-                        <p class="mb-3 small"><strong>Ngày đặt đơn:</strong> @Model.OrderDate?.ToString("dd/MM/yyyy HH:mm")</p>
-
-                        <div class="mb-3">
-                            <label class="fw-bold mb-1"><i class="fa-solid fa-pen-to-square me-1"></i> Ghi chú & Lý do (Hệ thống):</label>
-                            @* Quan trọng: Ô này sẽ gửi dữ liệu cho cả EditOrder và ProcessCancelRequest (làm adminNote) *@
-                            <textarea name="CustomerNote" id="adminNote" class="form-control rounded-0 small" rows="8" style="font-size: 13px; line-height: 1.5;">@Model.CustomerNote</textarea>
-                            <input type="hidden" name="adminNote" id="hiddenAdminNote" value="" />
-                        </div>
-
-                        <hr />
-                        <p class="mb-2"><strong>Phương thức TT:</strong> <span class="badge bg-secondary">@Model.PaymentMethod</span></p>
-                        <p class="mb-2"><strong>Trạng thái TT:</strong> <span class="fw-bold @(Model.PaymentStatus == "Success" ? "text-success" : "text-warning")">@Model.PaymentStatus</span></p>
-                        <p class="mb-4"><strong>Trạng thái ĐH:</strong> <span class="badge bg-warning text-dark fs-6">@Model.OrderStatus</span></p>
-
-                        <div class="d-grid">
-                            @* Nút này gửi đến EditOrder *@
-                            <button type="submit" asp-action="EditOrder" class="btn btn-primary rounded-0 fw-bold">
-                                <i class="fa-solid fa-floppy-disk me-2"></i> LƯU THAY ĐỔI
-                            </button>
-                        </div>
-                    </div>
-                </div>
-            </div>
-
-            @* CỘT PHẢI: XỬ LÝ HỦY & DANH SÁCH SẢN PHẨM *@
+            @* ========================================== *@
+            @* CỘT TRÁI (COL-8): THÔNG TIN GIAO HÀNG & SẢN PHẨM *@
+            @* ========================================== *@
             <div class="col-lg-8 mb-4">
+
+                @* KHỐI XỬ LÝ HỦY ĐƠN (Chỉ hiện khi khách yêu cầu hủy) *@
                 @if (Model.OrderStatus == "PendingCancel")
                 {
                     <div class="card border-warning shadow-sm mb-4 rounded-0">
@@ -61,21 +31,33 @@
                         </div>
                         <div class="card-body bg-light">
                             <div class="alert alert-white border mb-3">
-                                <strong class="d-block mb-2 text-primary">Nội dung khách gửi:</strong>
-                                <div style="white-space: pre-line; font-size: 13px;">
-                                    @Model.CustomerNote
-                                </div>
+                                <strong class="d-block mb-2 text-primary">Lý do khách gửi:</strong>
+                                <div style="white-space: pre-line; font-size: 13px;">@Model.CustomerNote</div>
                             </div>
                             <div class="d-flex gap-2">
-                                @* Dùng formaction để điều hướng nút bấm đến đúng hàm xử lý *@
                                 <button type="submit" formaction="/Admin/Order/ProcessCancelRequest?actionType=Approve" class="btn btn-danger px-4 rounded-0">Chấp nhận hủy</button>
                                 <button type="submit" formaction="/Admin/Order/ProcessCancelRequest?actionType=Reject" class="btn btn-secondary px-4 rounded-0">Từ chối</button>
                             </div>
-                            <small class="text-muted d-block mt-2">Lưu ý: Nội dung trong ô Ghi chú bên trái sẽ được dùng làm phản hồi cho khách.</small>
+                            <small class="text-muted d-block mt-2">Lưu ý: Nội dung trong ô "Ghi chú & Phản hồi" bên phải sẽ được dùng làm câu trả lời cho khách.</small>
                         </div>
                     </div>
                 }
 
+                @* KHỐI THÔNG TIN GIAO HÀNG *@
+                <div class="card rounded-0 border shadow-sm mb-4">
+                    <div class="card-header bg-white text-dark rounded-0 text-uppercase fw-bold">
+                        <i class="fa-solid fa-truck-fast text-success me-2"></i> Thông tin Giao hàng
+                    </div>
+                    <div class="card-body">
+                        <div class="mb-3">
+                            <label class="fw-bold mb-1"><i class="fa-solid fa-location-dot text-danger me-1"></i> Địa chỉ nhận hàng:</label>
+                            <input type="text" name="ShippingAddress" class="form-control rounded-0 bg-light" value="@Model.ShippingAddress" readonly />
+                            <small class="text-muted mt-1 d-block">Ngày đặt: @Model.OrderDate?.ToString("dd/MM/yyyy HH:mm")</small>
+                        </div>
+                    </div>
+                </div>
+
+                @* KHỐI DANH SÁCH SẢN PHẨM *@
                 <div class="card rounded-0 border shadow-sm">
                     <div class="card-header bg-dark text-white rounded-0 text-uppercase fw-bold">Sản phẩm đã đặt</div>
                     <div class="card-body p-0">
@@ -104,19 +86,88 @@
                                         </td>
                                         <td class="text-center">@string.Format("{0:N0} ₫", item.UnitPrice)</td>
                                         <td class="text-center fw-bold">x @item.Quantity</td>
-                                        <td class="text-end pe-4 fw-bold text-danger">@string.Format("{0:N0} ₫", item.UnitPrice * item.Quantity)</td>
+                                        <td class="text-end pe-4 fw-bold text-dark">@string.Format("{0:N0} ₫", item.UnitPrice * item.Quantity)</td>
                                     </tr>
                                 }
                             </tbody>
-                            <tfoot class="bg-light">
-                                <tr>
-                                    <td colspan="3" class="text-end fw-bold py-3">TỔNG CỘNG ĐƠN HÀNG:</td>
-                                    <td class="text-end fw-bold text-danger fs-5 pe-4 py-3">@string.Format("{0:N0} ₫", Model.TotalAmount)</td>
-                                </tr>
-                            </tfoot>
                         </table>
                     </div>
                 </div>
+            </div>
+
+            @* ========================================== *@
+            @* CỘT PHẢI (COL-4): THANH TOÁN, TRẠNG THÁI & GHI CHÚ *@
+            @* ========================================== *@
+            <div class="col-lg-4 mb-4">
+
+                @* KHỐI GHI CHÚ & PHẢN HỒI *@
+                <div class="card rounded-0 border shadow-sm mb-4">
+                    <div class="card-header bg-white text-dark rounded-0 text-uppercase fw-bold">
+                        <i class="fa-solid fa-pen-to-square text-primary me-2"></i> Ghi chú & Phản hồi
+                    </div>
+                    <div class="card-body">
+                        <div class="p-2 mb-3 bg-light border" style="max-height: 150px; overflow-y: auto;">
+                            <span style="white-space: pre-line; font-size: 14px;">@Model.CustomerNote</span>
+                        </div>
+
+                        <label class="fw-bold mb-1 text-primary">Viết phản hồi cho khách:</label>
+                        <textarea name="adminNote" class="form-control rounded-0" rows="3" placeholder="Nhập câu trả lời..."></textarea>
+                         <small class="text-muted mt-1 d-block">Bỏ trống nếu không muốn phản hồi thêm.</small>
+                    </div>
+                </div>
+
+                @* KHỐI THANH TOÁN & TRẠNG THÁI *@
+                <div class="card rounded-0 border shadow-sm mb-4">
+                    <div class="card-header bg-white text-dark rounded-0 text-uppercase fw-bold">
+                        <i class="fa-solid fa-credit-card text-info me-2"></i> Trạng thái & Thanh toán
+                    </div>
+                    <div class="card-body">
+                        <div class="d-flex justify-content-between mb-2">
+                            <span class="fw-bold">Phương thức TT:</span>
+                            <span class="badge bg-secondary">@(Model.PaymentMethod == "BANK" ? "VNPAY" : "Thu hộ (COD)")</span>
+                        </div>
+                        <div class="d-flex justify-content-between mb-3 border-bottom pb-3">
+                            <span class="fw-bold">Trạng thái TT:</span>
+                            <span class="fw-bold @(Model.PaymentStatus == "Success" ? "text-success" : "text-warning")">
+                                @(Model.PaymentStatus == "Success" ? "Đã thanh toán" : "Chờ thanh toán")
+                            </span>
+                        </div>
+
+                        <div class="mb-3">
+                            <label class="fw-bold mb-1">Cập nhật trạng thái ĐH:</label>
+                            <select name="OrderStatus" class="form-select rounded-0 border-primary">
+                                <option value="New" selected="@(Model.OrderStatus == "New")">Đơn mới</option>
+                                <option value="Processing" selected="@(Model.OrderStatus == "Processing")">Đang xử lý</option>
+                                <option value="Shipping" selected="@(Model.OrderStatus == "Shipping")">Đang giao hàng</option>
+                                <option value="Completed" selected="@(Model.OrderStatus == "Completed")">Hoàn thành</option>
+                                <option value="Cancelled" selected="@(Model.OrderStatus == "Cancelled")">Đã hủy</option>
+                            </select>
+                        </div>
+
+                        <button type="submit" asp-action="EditOrder" class="btn btn-primary w-100 rounded-0 fw-bold">
+                            <i class="fa-solid fa-floppy-disk me-2"></i> LƯU THAY ĐỔI
+                        </button>
+                    </div>
+                </div>
+
+                @* KHỐI TỔNG TIỀN *@
+                <div class="card rounded-0 border shadow-sm border-top border-4 border-danger">
+                    <div class="card-body">
+                        <div class="d-flex justify-content-between mb-2 text-muted small">
+                            <span>Tổng tiền hàng:</span>
+                            <span>@string.Format("{0:N0} ₫", Model.TotalAmount - (Model.ShippingFee ?? 0))</span>
+                        </div>
+                        <div class="d-flex justify-content-between mb-3 text-muted small border-bottom pb-3">
+                            <span>Phí giao hàng:</span>
+                            <span>@string.Format("{0:N0} ₫", Model.ShippingFee ?? 0)</span>
+                        </div>
+                        <div class="d-flex justify-content-between mt-2">
+                            <h5 class="fw-bold mb-0">TỔNG CỘNG:</h5>
+                            <h5 class="fw-bold text-danger mb-0">@string.Format("{0:N0} ₫", Model.TotalAmount)</h5>
+                        </div>
+                    </div>
+                </div>
+
             </div>
         </div>
     </form>
@@ -125,20 +176,19 @@
 @section Scripts {
     <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
-
     <script>
         $(document).ready(function () {
         @if (TempData["SuccessMsg"] != null)
         {
             <text>
-                    Swal.fire({
-                        toast: true,
-                        position: 'top-end',
-                        icon: 'success',
-                        title: '@Html.Raw(TempData["SuccessMsg"])',
-                        showConfirmButton: false,
-                        timer: 3000,
-                        timerProgressBar: true
+                    Swal.fire({ 
+                    toast: true,
+                    position: 'top-end',
+                    icon: 'success',
+                    title: '@Html.Raw(TempData["SuccessMsg"])',
+                    showConfirmButton: false,
+                    timer: 3000,
+                    timerProgressBar: true 
                     });
             </text>
         }

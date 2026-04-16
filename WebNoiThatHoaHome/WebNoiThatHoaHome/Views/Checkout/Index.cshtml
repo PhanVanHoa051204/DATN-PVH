@@ -47,10 +47,36 @@
                     <input type="text" class="form-control rounded-0" name="AddressDetail" placeholder="Số nhà, tên đường..." required>
                 </div>
 
-                <h5 class="fw-bold mb-4 text-uppercase">Thông tin thêm</h5>
-                <div class="mb-5">
-                    <label class="form-label text-muted" style="font-size: 13px;">Lưu ý cho đơn hàng (tuỳ chọn)</label>
-                    <textarea class="form-control rounded-0" name="OrderNote" rows="3" placeholder="Ví dụ: Giao hàng vào giờ hành chính..."></textarea>
+                <h5 class="fw-bold mb-3 text-uppercase mt-4">Thông tin thêm</h5>
+
+                <div class="mb-4">
+                    <label class="form-label text-muted small mb-2">Lưu ý cho đơn hàng (tuỳ chọn)</label>
+                    <textarea class="form-control rounded-0" name="Note" rows="3" placeholder="Ví dụ: Giao hàng vào giờ hành chính..."></textarea>
+                </div>
+
+                <div class="mb-4">
+                    <h5 class="fw-bold mb-3 fs-6 text-uppercase">Hình thức giao hàng</h5>
+                    <div class="border p-3 rounded-0 bg-light">
+
+                        <div class="form-check mb-2">
+                            <input class="form-check-input shipping-method" type="radio" name="ShippingMethod" id="shipStandard" value="Tiêu chuẩn" data-fee="0" checked>
+                            <label class="form-check-label d-flex justify-content-between w-100" for="shipStandard" style="font-size: 14px;">
+                                <span><i class="fa-solid fa-truck me-2 text-muted"></i>Giao hàng tiêu chuẩn (3-5 ngày)</span>
+                                <span class="fw-bold text-success">Miễn phí</span>
+                            </label>
+                        </div>
+
+                        <hr class="text-muted my-2">
+
+                        <div class="form-check">
+                            <input class="form-check-input shipping-method" type="radio" name="ShippingMethod" id="shipExpress" value="Hỏa tốc" data-fee="@ViewBag.ExpressFee">
+                            <label class="form-check-label d-flex justify-content-between w-100" for="shipExpress" style="font-size: 14px;">
+                                <span><i class="fa-solid fa-bolt me-2 text-warning"></i>Giao hàng hỏa tốc (Trong 24h)</span>
+                                <span class="fw-bold">@string.Format("{0:N0}", ViewBag.ExpressFee) đ</span>
+                            </label>
+                        </div>
+
+                    </div>
                 </div>
 
                 <div class="payment-methods mb-4">
@@ -67,7 +93,7 @@
 
             </div>
 
-            <div class="col-lg-5">
+            <div class="col-lg-5" style="position: sticky; top: 20px; z-index: 10;">
                 <div class="bg-light p-4 rounded-0 sticky-top" style="top: 100px;">
                     <h5 class="fw-bold mb-4 text-uppercase border-bottom pb-3">Tóm tắt đơn hàng</h5>
 
@@ -93,19 +119,21 @@
 
                     <div class="d-flex justify-content-between mb-3 border-top pt-3" style="font-size: 14px;">
                         <span class="text-muted">Tạm tính</span>
-                        <span class="fw-bold">@string.Format("{0:N0} ₫", totalCartPrice)</span>
+                        <span class="fw-bold">@string.Format("{0:N0}", totalCartPrice) đ</span>
                     </div>
 
-                    <div class="d-flex justify-content-between mb-4 pb-3 border-bottom" style="font-size: 14px;">
+                    <div class="d-flex justify-content-between mb-3 border-bottom pb-3" style="font-size: 14px;">
                         <span class="text-muted">Vận chuyển</span>
-                        <span class="text-end" style="font-size: 12px;">Phí giao hàng tính theo thực tế.</span>
+                        <span class="fw-bold" id="displayShippingFee">0 đ</span>
                     </div>
 
-                    <div class="d-flex justify-content-between mb-4">
-                        <span class="fw-bold text-uppercase">Tổng cộng</span>
-                        <span class="fw-bold text-danger fs-5">@string.Format("{0:N0} ₫", totalCartPrice)</span>
+                    <div class="d-flex justify-content-between mb-4 mt-3">
+                        <h5 class="fw-bold text-uppercase mb-0">Tổng cộng</h5>
+                        <h5 class="fw-bold text-danger mb-0" id="displayTotal" data-subtotal="@totalCartPrice">
+                            @string.Format("{0:N0}", totalCartPrice) đ
+                        </h5>
                     </div>
-
+                  
                     <div class="form-check mb-4">
                         <input class="form-check-input" type="checkbox" id="agreeTerms" required>
                         <label class="form-check-label text-muted" for="agreeTerms" style="font-size: 12px;">
@@ -136,6 +164,20 @@
                         cityDropdown.append(option);
                     });
                 }
+            });
+            $('.shipping-method').on('change', function () {
+                // Lấy phí ship từ thuộc tính data-fee của ô đang được chọn
+                var fee = parseInt($(this).data('fee')) || 0;
+
+                // Lấy giá trị tiền hàng tạm tính (đã gài sẵn ở thuộc tính data-subtotal)
+                var subtotal = parseInt($('#displayTotal').data('subtotal')) || 0;
+
+                // Tính tổng mới
+                var newTotal = subtotal + fee;
+
+                // Cập nhật giao diện hiển thị (Định dạng phân cách hàng nghìn)
+                $('#displayShippingFee').text(fee.toLocaleString('vi-VN') + ' đ');
+                $('#displayTotal').text(newTotal.toLocaleString('vi-VN') + ' đ');
             });
 
             $('#cityDropdown').change(function() {

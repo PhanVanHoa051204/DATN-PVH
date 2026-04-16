@@ -46,7 +46,7 @@
                                         </div>
                                         <div class="text-end">
                                             <span class="fw-bold text-danger d-block">@string.Format("{0:N0} ₫", order.TotalAmount)</span>
-                                            <span class="badge bg-dark rounded-0 mt-1">@TranslateOrderStatus(order.OrderStatus)</span>
+                                            <span id="status-badge-@order.OrderId" class="badge @GetStatusColor(order.OrderStatus) rounded-0 mt-1">@TranslateOrderStatus(order.OrderStatus)</span>
                                         </div>
                                     </div>
                                 </button>
@@ -88,38 +88,48 @@
                                     <div class="mt-3 border-top pt-3 d-flex justify-content-between align-items-center">
                                         <strong>Tổng tiền: <span class="text-danger">@string.Format("{0:N0} ₫", order.TotalAmount)</span></strong>
 
-                                        @if (order.OrderStatus == "New" || order.OrderStatus == "Processing")
-                                        {
-                                            <button type="button" class="btn btn-outline-danger btn-sm rounded-0" data-bs-toggle="modal" data-bs-target="#modalCancel-@order.OrderId">
-                                                <i class="fa-solid fa-xmark me-1"></i> Yêu cầu hủy đơn
-                                            </button>
+                                        <div class="d-flex gap-2">
+                                            @if (order.PaymentMethod == "BANK" && order.PaymentStatus != "Success" && order.OrderStatus != "Cancelled")
+                                            {
+                                                <a href="@Url.Action("RePayment", "Checkout", new { orderId = order.OrderId })"
+                                                   class="btn btn-primary btn-sm rounded-0">
+                                                    <i class="fa-solid fa-credit-card me-1"></i> Thanh toán ngay
+                                                </a>
+                                            }
 
-                                            <div class="modal fade" id="modalCancel-@order.OrderId" tabindex="-1" aria-hidden="true">
-                                                <div class="modal-dialog modal-dialog-centered">
-                                                    <div class="modal-content border-0 shadow rounded-0">
-                                                        <div class="modal-header bg-danger text-white rounded-0">
-                                                            <h5 class="modal-title fw-bold">Hủy đơn hàng #@order.OrderId</h5>
-                                                            <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal"></button>
+                                            @if (order.OrderStatus == "New" || order.OrderStatus == "Processing")
+                                            {
+                                                <button type="button" class="btn btn-danger btn-sm rounded-0" data-bs-toggle="modal" data-bs-target="#modalCancel-@order.OrderId">
+                                                    <i class="fa-solid fa-xmark me-1"></i> Yêu cầu hủy đơn
+                                                </button>
+
+                                                <div class="modal fade" id="modalCancel-@order.OrderId" tabindex="-1" aria-hidden="true">
+                                                    <div class="modal-dialog modal-dialog-centered">
+                                                        <div class="modal-content border-0 shadow rounded-0">
+                                                            <div class="modal-header bg-danger text-white rounded-0">
+                                                                <h5 class="modal-title fw-bold">Hủy đơn hàng #@order.OrderId</h5>
+                                                                <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal"></button>
+                                                            </div>
+                                                            <form asp-action="RequestCancel" asp-controller="Account" method="post">
+                                                                <input type="hidden" name="orderId" value="@order.OrderId" />
+                                                                <div class="modal-body text-start">
+                                                                    <label class="form-label fw-bold text-dark">Lý do hủy đơn:</label>
+                                                                    <textarea name="reason" class="form-control" rows="3" required placeholder="Vui lòng nhập lý do hủy..."></textarea>
+                                                                </div>
+                                                                <div class="modal-footer">
+                                                                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Đóng</button>
+                                                                    <button type="submit" class="btn btn-danger">Gửi yêu cầu</button>
+                                                                </div>
+                                                            </form>
                                                         </div>
-                                                        @* Tìm dòng này và sửa asp-controller *@
-                                                        <form asp-action="RequestCancel" asp-controller="Account" method="post">
-                                                            <input type="hidden" name="orderId" value="@order.OrderId" />
-                                                            <div class="modal-body text-start">
-                                                                <label class="form-label fw-bold">Lý do hủy đơn:</label>
-                                                                <textarea name="reason" class="form-control" rows="3" required></textarea>
-                                                            </div>
-                                                            <div class="modal-footer">
-                                                                <button type="submit" class="btn btn-danger">Gửi yêu cầu</button>
-                                                            </div>
-                                                        </form>
                                                     </div>
                                                 </div>
-                                            </div>
-                                        }
-                                        else if (order.OrderStatus == "PendingCancel")
-                                        {
-                                            <span class="badge bg-warning text-dark py-2 px-3 rounded-0">Đang chờ duyệt hủy</span>
-                                        }
+                                            }
+                                            else if (order.OrderStatus == "PendingCancel")
+                                            {
+                                                <span class="badge bg-warning text-dark py-2 px-3 rounded-0">Đang chờ duyệt hủy</span>
+                                            }
+                                        </div>
                                     </div>
 
                                     @if (!string.IsNullOrEmpty(order.CustomerNote))
@@ -173,13 +183,28 @@
         {
             case "New": return "Chờ xác nhận";
             case "Processing": return "Đang xử lý";
-            case "Delivering": return "Đang giao hàng";
+            case "Shipping": return "Đang giao hàng";
             case "Completed": return "Đã hoàn thành";
             case "Cancelled": return "Đã hủy";
             case "PendingCancel": return "Chờ duyệt hủy";
             default: return status;
         }
     }
+
+    public string GetStatusColor(string status)
+    {
+        switch (status)
+        {
+            case "New": return "bg-secondary";
+            case "Processing": return "bg-info text-dark";
+            case "Shipping": return "bg-primary";
+            case "Completed": return "bg-success";
+            case "Cancelled": return "bg-danger";
+            case "PendingCancel": return "bg-warning text-dark";
+            default: return "bg-dark";
+        }
+    }
+
     public string TranslatePaymentStatus(string status)
     {
         switch (status)
@@ -194,20 +219,62 @@
 
 @section Scripts {
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/microsoft-signalr/7.0.5/signalr.min.js"></script>
+
     <script>
         $(document).ready(function () {
+            // Hiển thị thông báo TempData
         @if (TempData["SuccessMsg"] != null)
         {
-            <text>
-                    Swal.fire({ toast: true, position: 'top-end', icon: 'success', title: '@Html.Raw(TempData["SuccessMsg"])', showConfirmButton: false, timer: 3000 });
-            </text>
+            <text>Swal.fire({ toast: true, position: 'top-end', icon: 'success', title: '@Html.Raw(TempData["SuccessMsg"])', showConfirmButton: false, timer: 3000 });</text>
         }
         @if (TempData["ErrorMsg"] != null)
         {
-            <text>
-                    Swal.fire({ toast: true, position: 'top-end', icon: 'error', title: '@Html.Raw(TempData["ErrorMsg"])', showConfirmButton: false, timer: 3000 });
-            </text>
+            <text>Swal.fire({ toast: true, position: 'top-end', icon: 'error', title: '@Html.Raw(TempData["ErrorMsg"])', showConfirmButton: false, timer: 3000 });</text>
         }
+        });
+
+        // ==========================================
+        // CẤU HÌNH SIGNALR NGAY TRONG CÙNG KHỐI SCRIPT
+        // ==========================================
+        const connection = new signalR.HubConnectionBuilder()
+            .withUrl("/orderHub")
+            .build();
+
+        connection.on("ReceiveStatusChange", function (orderId, newStatus) {
+
+            // 1. Dịch chữ tiếng Việt
+            var statusText = "";
+            var badgeClass = "";
+            switch(newStatus) {
+                case "New": statusText = "Chờ xác nhận"; badgeClass = "bg-secondary"; break;
+                case "Processing": statusText = "Đang xử lý"; badgeClass = "bg-info text-dark"; break;
+                case "Shipping": statusText = "Đang giao hàng"; badgeClass = "bg-primary"; break;
+                case "Completed": statusText = "Đã hoàn thành"; badgeClass = "bg-success"; break;
+                case "Cancelled": statusText = "Đã hủy"; badgeClass = "bg-danger"; break;
+                case "PendingCancel": statusText = "Chờ duyệt hủy"; badgeClass = "bg-warning text-dark"; break;
+            }
+
+            // 2. Tìm thẻ Badge trên màn hình và cập nhật KHÔNG CẦN F5
+            var badge = document.getElementById("status-badge-" + orderId);
+            if (badge) {
+                badge.innerText = statusText;
+                badge.className = "badge rounded-0 mt-1 " + badgeClass;
+
+                // Bắn thông báo SweetAlert góc phải thay vì dùng Alert() cục súc
+                Swal.fire({
+                    toast: true,
+                    position: 'bottom-end',
+                    icon: 'info',
+                    title: 'Đơn #' + orderId + ' vừa chuyển sang: ' + statusText,
+                    showConfirmButton: false,
+                    timer: 5000
+                });
+            }
+        });
+
+        connection.start().catch(function (err) {
+            return console.error(err.toString());
         });
     </script>
 }

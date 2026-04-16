@@ -48,24 +48,38 @@ namespace WebNoiThatHoaHome.Areas.Admin.Controllers
         // 2. CẬP NHẬT NHANH (ĐIỀU PHỐI & TRẠNG THÁI)
         // ==========================================
         [HttpPost]
-        public async Task<IActionResult> QuickUpdate(int AppointmentId, int? EmployeeId, string Status)
+        public async Task<IActionResult> QuickUpdate(int appointmentId, int? employeeId)
         {
-            var appointment = await _context.Appointments.FindAsync(AppointmentId);
-            if (appointment == null) return NotFound();
+            var appointment = await _context.Appointments.FindAsync(appointmentId);
 
-            appointment.EmployeeId = EmployeeId;
-            appointment.Status = Status;
-            appointment.UpdatedAt = DateTime.Now;
-
-            // Auto-assign: Nếu có thợ thì chuyển sang "Assigned"
-            if (EmployeeId.HasValue && (Status == "Pending" || string.IsNullOrEmpty(Status)))
+            if (appointment != null)
             {
-                appointment.Status = "Assigned";
+                // 1. Cập nhật nhân viên Sếp vừa chọn
+                appointment.EmployeeId = employeeId;
+
+                // 2. XỬ LÝ LOGIC TRẠNG THÁI THÔNG MINH VÀ CHẶT CHẼ HƠN
+                if (employeeId.HasValue)
+                {
+                    // CHỈ tự động nhảy sang "Đã phân công" nếu lịch hẹn đang "Chờ duyệt"
+                    // Nếu Sếp đã tự tay chỉnh nó thành "Đang thi công" hoặc "Hoàn thành" rồi thì GIỮ NGUYÊN!
+                    if (string.IsNullOrEmpty(appointment.Status) || appointment.Status == "Pending")
+                    {
+                        appointment.Status = "Assigned";
+                    }
+                }
+                else
+                {
+                    // Nếu xóa tên nhân viên (chọn -- Chọn NV --) -> Chắc chắn phải quay về Chờ duyệt
+                    appointment.Status = "Pending";
+                }
+
+                appointment.UpdatedAt = DateTime.Now;
+                await _context.SaveChangesAsync();
+
+                TempData["SuccessMsg"] = $"Đã cập nhật nhân sự cho lịch hẹn #{appointmentId}!";
             }
 
-            await _context.SaveChangesAsync();
-            TempData["SuccessMsg"] = $"Đã cập nhật lịch hẹn #{AppointmentId} thành công!";
-            return RedirectToAction(nameof(Index));
+            return RedirectToAction("Index");
         }
 
         // ==========================================
@@ -119,6 +133,22 @@ namespace WebNoiThatHoaHome.Areas.Admin.Controllers
                 TempData["SuccessMsg"] = $"Đã khôi phục thành công lịch hẹn #{id}!";
             }
             return RedirectToAction(nameof(Trash));
+        }
+        [HttpPost]
+        public async Task<IActionResult> UpdateStatus(int appointmentId, string newStatus)
+        {
+            var appointment = await _context.Appointments.FindAsync(appointmentId);
+
+            if (appointment != null)
+            {
+                appointment.Status = newStatus;
+                appointment.UpdatedAt = DateTime.Now;
+
+                await _context.SaveChangesAsync();
+                TempData["SuccessMsg"] = $"Đã chuyển trạng thái lịch hẹn #{appointmentId} thành công!";
+            }
+
+            return RedirectToAction("Index");
         }
     }
 }

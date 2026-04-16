@@ -3,64 +3,132 @@
   "WorkspaceRootPath": "D:\\\u0110\u1ED3 \u00E1n t\u1ED1t nghi\u1EC7p PVH\\WebNoiThatHoaHome\\",
   "Documents": [
     {
-      "AbsoluteMoniker": "D:0:0:{116CBB3C-6ED3-42F3-A577-A80A6F16F407}|WebNoiThatHoaHome\\WebNoiThatHoaHome.csproj|d:\\\u0111\u1ED3 \u00E1n t\u1ED1t nghi\u1EC7p pvh\\webnoithathoahome\\webnoithathoahome\\areas\\admin\\views\\appointment\\trash.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
-      "RelativeMoniker": "D:0:0:{116CBB3C-6ED3-42F3-A577-A80A6F16F407}|WebNoiThatHoaHome\\WebNoiThatHoaHome.csproj|solutionrelative:webnoithathoahome\\areas\\admin\\views\\appointment\\trash.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{116CBB3C-6ED3-42F3-A577-A80A6F16F407}|WebNoiThatHoaHome\\WebNoiThatHoaHome.csproj|d:\\\u0111\u1ED3 \u00E1n t\u1ED1t nghi\u1EC7p pvh\\webnoithathoahome\\webnoithathoahome\\areas\\admin\\views\\appointment\\index.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
-      "RelativeMoniker": "D:0:0:{116CBB3C-6ED3-42F3-A577-A80A6F16F407}|WebNoiThatHoaHome\\WebNoiThatHoaHome.csproj|solutionrelative:webnoithathoahome\\areas\\admin\\views\\appointment\\index.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{116CBB3C-6ED3-42F3-A577-A80A6F16F407}|WebNoiThatHoaHome\\WebNoiThatHoaHome.csproj|d:\\\u0111\u1ED3 \u00E1n t\u1ED1t nghi\u1EC7p pvh\\webnoithathoahome\\webnoithathoahome\\areas\\admin\\controllers\\appointmentcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{116CBB3C-6ED3-42F3-A577-A80A6F16F407}|WebNoiThatHoaHome\\WebNoiThatHoaHome.csproj|solutionrelative:webnoithathoahome\\areas\\admin\\controllers\\appointmentcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{116CBB3C-6ED3-42F3-A577-A80A6F16F407}|WebNoiThatHoaHome\\WebNoiThatHoaHome.csproj|d:\\\u0111\u1ED3 \u00E1n t\u1ED1t nghi\u1EC7p pvh\\webnoithathoahome\\webnoithathoahome\\views\\account\\appointments.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
-      "RelativeMoniker": "D:0:0:{116CBB3C-6ED3-42F3-A577-A80A6F16F407}|WebNoiThatHoaHome\\WebNoiThatHoaHome.csproj|solutionrelative:webnoithathoahome\\views\\account\\appointments.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{116CBB3C-6ED3-42F3-A577-A80A6F16F407}|WebNoiThatHoaHome\\WebNoiThatHoaHome.csproj|d:\\\u0111\u1ED3 \u00E1n t\u1ED1t nghi\u1EC7p pvh\\webnoithathoahome\\webnoithathoahome\\controllers\\appointmentcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{116CBB3C-6ED3-42F3-A577-A80A6F16F407}|WebNoiThatHoaHome\\WebNoiThatHoaHome.csproj|solutionrelative:webnoithathoahome\\controllers\\appointmentcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{116CBB3C-6ED3-42F3-A577-A80A6F16F407}|WebNoiThatHoaHome\\WebNoiThatHoaHome.csproj|d:\\\u0111\u1ED3 \u00E1n t\u1ED1t nghi\u1EC7p pvh\\webnoithathoahome\\webnoithathoahome\\controllers\\accountcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{116CBB3C-6ED3-42F3-A577-A80A6F16F407}|WebNoiThatHoaHome\\WebNoiThatHoaHome.csproj|solutionrelative:webnoithathoahome\\controllers\\accountcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{116CBB3C-6ED3-42F3-A577-A80A6F16F407}|WebNoiThatHoaHome\\WebNoiThatHoaHome.csproj|d:\\\u0111\u1ED3 \u00E1n t\u1ED1t nghi\u1EC7p pvh\\webnoithathoahome\\webnoithathoahome\\views\\account\\wishlist.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
-      "RelativeMoniker": "D:0:0:{116CBB3C-6ED3-42F3-A577-A80A6F16F407}|WebNoiThatHoaHome\\WebNoiThatHoaHome.csproj|solutionrelative:webnoithathoahome\\views\\account\\wishlist.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+      "AbsoluteMoniker": "D:0:0:{116CBB3C-6ED3-42F3-A577-A80A6F16F407}|WebNoiThatHoaHome\\WebNoiThatHoaHome.csproj|d:\\\u0111\u1ED3 \u00E1n t\u1ED1t nghi\u1EC7p pvh\\webnoithathoahome\\webnoithathoahome\\views\\account\\profile.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{116CBB3C-6ED3-42F3-A577-A80A6F16F407}|WebNoiThatHoaHome\\WebNoiThatHoaHome.csproj|solutionrelative:webnoithathoahome\\views\\account\\profile.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
     },
     {
       "AbsoluteMoniker": "D:0:0:{116CBB3C-6ED3-42F3-A577-A80A6F16F407}|WebNoiThatHoaHome\\WebNoiThatHoaHome.csproj|d:\\\u0111\u1ED3 \u00E1n t\u1ED1t nghi\u1EC7p pvh\\webnoithathoahome\\webnoithathoahome\\views\\account\\orders.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
       "RelativeMoniker": "D:0:0:{116CBB3C-6ED3-42F3-A577-A80A6F16F407}|WebNoiThatHoaHome\\WebNoiThatHoaHome.csproj|solutionrelative:webnoithathoahome\\views\\account\\orders.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{116CBB3C-6ED3-42F3-A577-A80A6F16F407}|WebNoiThatHoaHome\\WebNoiThatHoaHome.csproj|d:\\\u0111\u1ED3 \u00E1n t\u1ED1t nghi\u1EC7p pvh\\webnoithathoahome\\webnoithathoahome\\views\\account\\profile.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
-      "RelativeMoniker": "D:0:0:{116CBB3C-6ED3-42F3-A577-A80A6F16F407}|WebNoiThatHoaHome\\WebNoiThatHoaHome.csproj|solutionrelative:webnoithathoahome\\views\\account\\profile.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+      "AbsoluteMoniker": "D:0:0:{116CBB3C-6ED3-42F3-A577-A80A6F16F407}|WebNoiThatHoaHome\\WebNoiThatHoaHome.csproj|d:\\\u0111\u1ED3 \u00E1n t\u1ED1t nghi\u1EC7p pvh\\webnoithathoahome\\webnoithathoahome\\controllers\\checkoutcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{116CBB3C-6ED3-42F3-A577-A80A6F16F407}|WebNoiThatHoaHome\\WebNoiThatHoaHome.csproj|solutionrelative:webnoithathoahome\\controllers\\checkoutcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{116CBB3C-6ED3-42F3-A577-A80A6F16F407}|WebNoiThatHoaHome\\WebNoiThatHoaHome.csproj|d:\\\u0111\u1ED3 \u00E1n t\u1ED1t nghi\u1EC7p pvh\\webnoithathoahome\\webnoithathoahome\\views\\account\\login.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
-      "RelativeMoniker": "D:0:0:{116CBB3C-6ED3-42F3-A577-A80A6F16F407}|WebNoiThatHoaHome\\WebNoiThatHoaHome.csproj|solutionrelative:webnoithathoahome\\views\\account\\login.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+      "AbsoluteMoniker": "D:0:0:{116CBB3C-6ED3-42F3-A577-A80A6F16F407}|WebNoiThatHoaHome\\WebNoiThatHoaHome.csproj|d:\\\u0111\u1ED3 \u00E1n t\u1ED1t nghi\u1EC7p pvh\\webnoithathoahome\\webnoithathoahome\\areas\\admin\\controllers\\appointmentcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{116CBB3C-6ED3-42F3-A577-A80A6F16F407}|WebNoiThatHoaHome\\WebNoiThatHoaHome.csproj|solutionrelative:webnoithathoahome\\areas\\admin\\controllers\\appointmentcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{116CBB3C-6ED3-42F3-A577-A80A6F16F407}|WebNoiThatHoaHome\\WebNoiThatHoaHome.csproj|d:\\\u0111\u1ED3 \u00E1n t\u1ED1t nghi\u1EC7p pvh\\webnoithathoahome\\webnoithathoahome\\views\\account\\register.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
-      "RelativeMoniker": "D:0:0:{116CBB3C-6ED3-42F3-A577-A80A6F16F407}|WebNoiThatHoaHome\\WebNoiThatHoaHome.csproj|solutionrelative:webnoithathoahome\\views\\account\\register.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+      "AbsoluteMoniker": "D:0:0:{116CBB3C-6ED3-42F3-A577-A80A6F16F407}|WebNoiThatHoaHome\\WebNoiThatHoaHome.csproj|d:\\\u0111\u1ED3 \u00E1n t\u1ED1t nghi\u1EC7p pvh\\webnoithathoahome\\webnoithathoahome\\areas\\admin\\controllers\\categorycontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{116CBB3C-6ED3-42F3-A577-A80A6F16F407}|WebNoiThatHoaHome\\WebNoiThatHoaHome.csproj|solutionrelative:webnoithathoahome\\areas\\admin\\controllers\\categorycontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{116CBB3C-6ED3-42F3-A577-A80A6F16F407}|WebNoiThatHoaHome\\WebNoiThatHoaHome.csproj|d:\\\u0111\u1ED3 \u00E1n t\u1ED1t nghi\u1EC7p pvh\\webnoithathoahome\\webnoithathoahome\\views\\shared\\_layout.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
-      "RelativeMoniker": "D:0:0:{116CBB3C-6ED3-42F3-A577-A80A6F16F407}|WebNoiThatHoaHome\\WebNoiThatHoaHome.csproj|solutionrelative:webnoithathoahome\\views\\shared\\_layout.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+      "AbsoluteMoniker": "D:0:0:{116CBB3C-6ED3-42F3-A577-A80A6F16F407}|WebNoiThatHoaHome\\WebNoiThatHoaHome.csproj|d:\\\u0111\u1ED3 \u00E1n t\u1ED1t nghi\u1EC7p pvh\\webnoithathoahome\\webnoithathoahome\\areas\\admin\\views\\appointment\\index.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{116CBB3C-6ED3-42F3-A577-A80A6F16F407}|WebNoiThatHoaHome\\WebNoiThatHoaHome.csproj|solutionrelative:webnoithathoahome\\areas\\admin\\views\\appointment\\index.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{116CBB3C-6ED3-42F3-A577-A80A6F16F407}|WebNoiThatHoaHome\\WebNoiThatHoaHome.csproj|d:\\\u0111\u1ED3 \u00E1n t\u1ED1t nghi\u1EC7p pvh\\webnoithathoahome\\webnoithathoahome\\views\\account\\appointments.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{116CBB3C-6ED3-42F3-A577-A80A6F16F407}|WebNoiThatHoaHome\\WebNoiThatHoaHome.csproj|solutionrelative:webnoithathoahome\\views\\account\\appointments.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
     },
     {
       "AbsoluteMoniker": "D:0:0:{116CBB3C-6ED3-42F3-A577-A80A6F16F407}|WebNoiThatHoaHome\\WebNoiThatHoaHome.csproj|d:\\\u0111\u1ED3 \u00E1n t\u1ED1t nghi\u1EC7p pvh\\webnoithathoahome\\webnoithathoahome\\views\\appointment\\booking.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
       "RelativeMoniker": "D:0:0:{116CBB3C-6ED3-42F3-A577-A80A6F16F407}|WebNoiThatHoaHome\\WebNoiThatHoaHome.csproj|solutionrelative:webnoithathoahome\\views\\appointment\\booking.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{116CBB3C-6ED3-42F3-A577-A80A6F16F407}|WebNoiThatHoaHome\\WebNoiThatHoaHome.csproj|d:\\\u0111\u1ED3 \u00E1n t\u1ED1t nghi\u1EC7p pvh\\webnoithathoahome\\webnoithathoahome\\controllers\\servicecontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{116CBB3C-6ED3-42F3-A577-A80A6F16F407}|WebNoiThatHoaHome\\WebNoiThatHoaHome.csproj|solutionrelative:webnoithathoahome\\controllers\\servicecontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{116CBB3C-6ED3-42F3-A577-A80A6F16F407}|WebNoiThatHoaHome\\WebNoiThatHoaHome.csproj|d:\\\u0111\u1ED3 \u00E1n t\u1ED1t nghi\u1EC7p pvh\\webnoithathoahome\\webnoithathoahome\\views\\shared\\_layout.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{116CBB3C-6ED3-42F3-A577-A80A6F16F407}|WebNoiThatHoaHome\\WebNoiThatHoaHome.csproj|solutionrelative:webnoithathoahome\\views\\shared\\_layout.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
     },
     {
       "AbsoluteMoniker": "D:0:0:{116CBB3C-6ED3-42F3-A577-A80A6F16F407}|WebNoiThatHoaHome\\WebNoiThatHoaHome.csproj|d:\\\u0111\u1ED3 \u00E1n t\u1ED1t nghi\u1EC7p pvh\\webnoithathoahome\\webnoithathoahome\\areas\\admin\\views\\shared\\_layout.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
       "RelativeMoniker": "D:0:0:{116CBB3C-6ED3-42F3-A577-A80A6F16F407}|WebNoiThatHoaHome\\WebNoiThatHoaHome.csproj|solutionrelative:webnoithathoahome\\areas\\admin\\views\\shared\\_layout.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{116CBB3C-6ED3-42F3-A577-A80A6F16F407}|WebNoiThatHoaHome\\WebNoiThatHoaHome.csproj|d:\\\u0111\u1ED3 \u00E1n t\u1ED1t nghi\u1EC7p pvh\\webnoithathoahome\\webnoithathoahome\\areas\\admin\\controllers\\ordercontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{116CBB3C-6ED3-42F3-A577-A80A6F16F407}|WebNoiThatHoaHome\\WebNoiThatHoaHome.csproj|solutionrelative:webnoithathoahome\\areas\\admin\\controllers\\ordercontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{116CBB3C-6ED3-42F3-A577-A80A6F16F407}|WebNoiThatHoaHome\\WebNoiThatHoaHome.csproj|d:\\\u0111\u1ED3 \u00E1n t\u1ED1t nghi\u1EC7p pvh\\webnoithathoahome\\webnoithathoahome\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{116CBB3C-6ED3-42F3-A577-A80A6F16F407}|WebNoiThatHoaHome\\WebNoiThatHoaHome.csproj|solutionrelative:webnoithathoahome\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{116CBB3C-6ED3-42F3-A577-A80A6F16F407}|WebNoiThatHoaHome\\WebNoiThatHoaHome.csproj|d:\\\u0111\u1ED3 \u00E1n t\u1ED1t nghi\u1EC7p pvh\\webnoithathoahome\\webnoithathoahome\\hubs\\orderhub.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{116CBB3C-6ED3-42F3-A577-A80A6F16F407}|WebNoiThatHoaHome\\WebNoiThatHoaHome.csproj|solutionrelative:webnoithathoahome\\hubs\\orderhub.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{116CBB3C-6ED3-42F3-A577-A80A6F16F407}|WebNoiThatHoaHome\\WebNoiThatHoaHome.csproj|d:\\\u0111\u1ED3 \u00E1n t\u1ED1t nghi\u1EC7p pvh\\webnoithathoahome\\webnoithathoahome\\views\\checkout\\index.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{116CBB3C-6ED3-42F3-A577-A80A6F16F407}|WebNoiThatHoaHome\\WebNoiThatHoaHome.csproj|solutionrelative:webnoithathoahome\\views\\checkout\\index.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{116CBB3C-6ED3-42F3-A577-A80A6F16F407}|WebNoiThatHoaHome\\WebNoiThatHoaHome.csproj|d:\\\u0111\u1ED3 \u00E1n t\u1ED1t nghi\u1EC7p pvh\\webnoithathoahome\\webnoithathoahome\\areas\\admin\\views\\order\\index.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{116CBB3C-6ED3-42F3-A577-A80A6F16F407}|WebNoiThatHoaHome\\WebNoiThatHoaHome.csproj|solutionrelative:webnoithathoahome\\areas\\admin\\views\\order\\index.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{116CBB3C-6ED3-42F3-A577-A80A6F16F407}|WebNoiThatHoaHome\\WebNoiThatHoaHome.csproj|d:\\\u0111\u1ED3 \u00E1n t\u1ED1t nghi\u1EC7p pvh\\webnoithathoahome\\webnoithathoahome\\areas\\admin\\views\\order\\details.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{116CBB3C-6ED3-42F3-A577-A80A6F16F407}|WebNoiThatHoaHome\\WebNoiThatHoaHome.csproj|solutionrelative:webnoithathoahome\\areas\\admin\\views\\order\\details.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{116CBB3C-6ED3-42F3-A577-A80A6F16F407}|WebNoiThatHoaHome\\WebNoiThatHoaHome.csproj|d:\\\u0111\u1ED3 \u00E1n t\u1ED1t nghi\u1EC7p pvh\\webnoithathoahome\\webnoithathoahome\\models\\producteditviewmodel.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{116CBB3C-6ED3-42F3-A577-A80A6F16F407}|WebNoiThatHoaHome\\WebNoiThatHoaHome.csproj|solutionrelative:webnoithathoahome\\models\\producteditviewmodel.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{116CBB3C-6ED3-42F3-A577-A80A6F16F407}|WebNoiThatHoaHome\\WebNoiThatHoaHome.csproj|d:\\\u0111\u1ED3 \u00E1n t\u1ED1t nghi\u1EC7p pvh\\webnoithathoahome\\webnoithathoahome\\models\\productcreateviewmodel.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{116CBB3C-6ED3-42F3-A577-A80A6F16F407}|WebNoiThatHoaHome\\WebNoiThatHoaHome.csproj|solutionrelative:webnoithathoahome\\models\\productcreateviewmodel.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{116CBB3C-6ED3-42F3-A577-A80A6F16F407}|WebNoiThatHoaHome\\WebNoiThatHoaHome.csproj|d:\\\u0111\u1ED3 \u00E1n t\u1ED1t nghi\u1EC7p pvh\\webnoithathoahome\\webnoithathoahome\\views\\checkout\\ordersuccess.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{116CBB3C-6ED3-42F3-A577-A80A6F16F407}|WebNoiThatHoaHome\\WebNoiThatHoaHome.csproj|solutionrelative:webnoithathoahome\\views\\checkout\\ordersuccess.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{116CBB3C-6ED3-42F3-A577-A80A6F16F407}|WebNoiThatHoaHome\\WebNoiThatHoaHome.csproj|d:\\\u0111\u1ED3 \u00E1n t\u1ED1t nghi\u1EC7p pvh\\webnoithathoahome\\webnoithathoahome\\controllers\\cartcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{116CBB3C-6ED3-42F3-A577-A80A6F16F407}|WebNoiThatHoaHome\\WebNoiThatHoaHome.csproj|solutionrelative:webnoithathoahome\\controllers\\cartcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{116CBB3C-6ED3-42F3-A577-A80A6F16F407}|WebNoiThatHoaHome\\WebNoiThatHoaHome.csproj|d:\\\u0111\u1ED3 \u00E1n t\u1ED1t nghi\u1EC7p pvh\\webnoithathoahome\\webnoithathoahome\\controllers\\accountcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{116CBB3C-6ED3-42F3-A577-A80A6F16F407}|WebNoiThatHoaHome\\WebNoiThatHoaHome.csproj|solutionrelative:webnoithathoahome\\controllers\\accountcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{116CBB3C-6ED3-42F3-A577-A80A6F16F407}|WebNoiThatHoaHome\\WebNoiThatHoaHome.csproj|d:\\\u0111\u1ED3 \u00E1n t\u1ED1t nghi\u1EC7p pvh\\webnoithathoahome\\webnoithathoahome\\controllers\\wishlistcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{116CBB3C-6ED3-42F3-A577-A80A6F16F407}|WebNoiThatHoaHome\\WebNoiThatHoaHome.csproj|solutionrelative:webnoithathoahome\\controllers\\wishlistcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{116CBB3C-6ED3-42F3-A577-A80A6F16F407}|WebNoiThatHoaHome\\WebNoiThatHoaHome.csproj|d:\\\u0111\u1ED3 \u00E1n t\u1ED1t nghi\u1EC7p pvh\\webnoithathoahome\\webnoithathoahome\\controllers\\servicecontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{116CBB3C-6ED3-42F3-A577-A80A6F16F407}|WebNoiThatHoaHome\\WebNoiThatHoaHome.csproj|solutionrelative:webnoithathoahome\\controllers\\servicecontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{116CBB3C-6ED3-42F3-A577-A80A6F16F407}|WebNoiThatHoaHome\\WebNoiThatHoaHome.csproj|d:\\\u0111\u1ED3 \u00E1n t\u1ED1t nghi\u1EC7p pvh\\webnoithathoahome\\webnoithathoahome\\controllers\\productcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{116CBB3C-6ED3-42F3-A577-A80A6F16F407}|WebNoiThatHoaHome\\WebNoiThatHoaHome.csproj|solutionrelative:webnoithathoahome\\controllers\\productcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{116CBB3C-6ED3-42F3-A577-A80A6F16F407}|WebNoiThatHoaHome\\WebNoiThatHoaHome.csproj|d:\\\u0111\u1ED3 \u00E1n t\u1ED1t nghi\u1EC7p pvh\\webnoithathoahome\\webnoithathoahome\\controllers\\homecontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{116CBB3C-6ED3-42F3-A577-A80A6F16F407}|WebNoiThatHoaHome\\WebNoiThatHoaHome.csproj|solutionrelative:webnoithathoahome\\controllers\\homecontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{116CBB3C-6ED3-42F3-A577-A80A6F16F407}|WebNoiThatHoaHome\\WebNoiThatHoaHome.csproj|d:\\\u0111\u1ED3 \u00E1n t\u1ED1t nghi\u1EC7p pvh\\webnoithathoahome\\webnoithathoahome\\controllers\\appointmentcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{116CBB3C-6ED3-42F3-A577-A80A6F16F407}|WebNoiThatHoaHome\\WebNoiThatHoaHome.csproj|solutionrelative:webnoithathoahome\\controllers\\appointmentcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{116CBB3C-6ED3-42F3-A577-A80A6F16F407}|WebNoiThatHoaHome\\WebNoiThatHoaHome.csproj|d:\\\u0111\u1ED3 \u00E1n t\u1ED1t nghi\u1EC7p pvh\\webnoithathoahome\\webnoithathoahome\\views\\service\\details.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{116CBB3C-6ED3-42F3-A577-A80A6F16F407}|WebNoiThatHoaHome\\WebNoiThatHoaHome.csproj|solutionrelative:webnoithathoahome\\views\\service\\details.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{116CBB3C-6ED3-42F3-A577-A80A6F16F407}|WebNoiThatHoaHome\\WebNoiThatHoaHome.csproj|d:\\\u0111\u1ED3 \u00E1n t\u1ED1t nghi\u1EC7p pvh\\webnoithathoahome\\webnoithathoahome\\views\\home\\index.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{116CBB3C-6ED3-42F3-A577-A80A6F16F407}|WebNoiThatHoaHome\\WebNoiThatHoaHome.csproj|solutionrelative:webnoithathoahome\\views\\home\\index.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{116CBB3C-6ED3-42F3-A577-A80A6F16F407}|WebNoiThatHoaHome\\WebNoiThatHoaHome.csproj|d:\\\u0111\u1ED3 \u00E1n t\u1ED1t nghi\u1EC7p pvh\\webnoithathoahome\\webnoithathoahome\\views\\account\\login.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{116CBB3C-6ED3-42F3-A577-A80A6F16F407}|WebNoiThatHoaHome\\WebNoiThatHoaHome.csproj|solutionrelative:webnoithathoahome\\views\\account\\login.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{116CBB3C-6ED3-42F3-A577-A80A6F16F407}|WebNoiThatHoaHome\\WebNoiThatHoaHome.csproj|d:\\\u0111\u1ED3 \u00E1n t\u1ED1t nghi\u1EC7p pvh\\webnoithathoahome\\webnoithathoahome\\areas\\admin\\views\\appointment\\trash.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{116CBB3C-6ED3-42F3-A577-A80A6F16F407}|WebNoiThatHoaHome\\WebNoiThatHoaHome.csproj|solutionrelative:webnoithathoahome\\areas\\admin\\views\\appointment\\trash.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{116CBB3C-6ED3-42F3-A577-A80A6F16F407}|WebNoiThatHoaHome\\WebNoiThatHoaHome.csproj|d:\\\u0111\u1ED3 \u00E1n t\u1ED1t nghi\u1EC7p pvh\\webnoithathoahome\\webnoithathoahome\\views\\account\\wishlist.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{116CBB3C-6ED3-42F3-A577-A80A6F16F407}|WebNoiThatHoaHome\\WebNoiThatHoaHome.csproj|solutionrelative:webnoithathoahome\\views\\account\\wishlist.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{116CBB3C-6ED3-42F3-A577-A80A6F16F407}|WebNoiThatHoaHome\\WebNoiThatHoaHome.csproj|d:\\\u0111\u1ED3 \u00E1n t\u1ED1t nghi\u1EC7p pvh\\webnoithathoahome\\webnoithathoahome\\views\\account\\register.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{116CBB3C-6ED3-42F3-A577-A80A6F16F407}|WebNoiThatHoaHome\\WebNoiThatHoaHome.csproj|solutionrelative:webnoithathoahome\\views\\account\\register.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
     },
     {
       "AbsoluteMoniker": "D:0:0:{116CBB3C-6ED3-42F3-A577-A80A6F16F407}|WebNoiThatHoaHome\\WebNoiThatHoaHome.csproj|d:\\\u0111\u1ED3 \u00E1n t\u1ED1t nghi\u1EC7p pvh\\webnoithathoahome\\webnoithathoahome\\areas\\admin\\controllers\\productcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
@@ -69,10 +137,6 @@
     {
       "AbsoluteMoniker": "D:0:0:{116CBB3C-6ED3-42F3-A577-A80A6F16F407}|WebNoiThatHoaHome\\WebNoiThatHoaHome.csproj|d:\\\u0111\u1ED3 \u00E1n t\u1ED1t nghi\u1EC7p pvh\\webnoithathoahome\\webnoithathoahome\\areas\\admin\\views\\product\\index.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
       "RelativeMoniker": "D:0:0:{116CBB3C-6ED3-42F3-A577-A80A6F16F407}|WebNoiThatHoaHome\\WebNoiThatHoaHome.csproj|solutionrelative:webnoithathoahome\\areas\\admin\\views\\product\\index.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{116CBB3C-6ED3-42F3-A577-A80A6F16F407}|WebNoiThatHoaHome\\WebNoiThatHoaHome.csproj|d:\\\u0111\u1ED3 \u00E1n t\u1ED1t nghi\u1EC7p pvh\\webnoithathoahome\\webnoithathoahome\\views\\service\\details.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
-      "RelativeMoniker": "D:0:0:{116CBB3C-6ED3-42F3-A577-A80A6F16F407}|WebNoiThatHoaHome\\WebNoiThatHoaHome.csproj|solutionrelative:webnoithathoahome\\views\\service\\details.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
     },
     {
       "AbsoluteMoniker": "D:0:0:{116CBB3C-6ED3-42F3-A577-A80A6F16F407}|WebNoiThatHoaHome\\WebNoiThatHoaHome.csproj|d:\\\u0111\u1ED3 \u00E1n t\u1ED1t nghi\u1EC7p pvh\\webnoithathoahome\\webnoithathoahome\\areas\\admin\\controllers\\employeecontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
@@ -107,28 +171,12 @@
       "RelativeMoniker": "D:0:0:{116CBB3C-6ED3-42F3-A577-A80A6F16F407}|WebNoiThatHoaHome\\WebNoiThatHoaHome.csproj|solutionrelative:webnoithathoahome\\models\\user.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{116CBB3C-6ED3-42F3-A577-A80A6F16F407}|WebNoiThatHoaHome\\WebNoiThatHoaHome.csproj|d:\\\u0111\u1ED3 \u00E1n t\u1ED1t nghi\u1EC7p pvh\\webnoithathoahome\\webnoithathoahome\\areas\\admin\\controllers\\ordercontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{116CBB3C-6ED3-42F3-A577-A80A6F16F407}|WebNoiThatHoaHome\\WebNoiThatHoaHome.csproj|solutionrelative:webnoithathoahome\\areas\\admin\\controllers\\ordercontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
       "AbsoluteMoniker": "D:0:0:{116CBB3C-6ED3-42F3-A577-A80A6F16F407}|WebNoiThatHoaHome\\WebNoiThatHoaHome.csproj|d:\\\u0111\u1ED3 \u00E1n t\u1ED1t nghi\u1EC7p pvh\\webnoithathoahome\\webnoithathoahome\\areas\\admin\\controllers\\servicetypecontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{116CBB3C-6ED3-42F3-A577-A80A6F16F407}|WebNoiThatHoaHome\\WebNoiThatHoaHome.csproj|solutionrelative:webnoithathoahome\\areas\\admin\\controllers\\servicetypecontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{116CBB3C-6ED3-42F3-A577-A80A6F16F407}|WebNoiThatHoaHome\\WebNoiThatHoaHome.csproj|d:\\\u0111\u1ED3 \u00E1n t\u1ED1t nghi\u1EC7p pvh\\webnoithathoahome\\webnoithathoahome\\areas\\admin\\views\\order\\details.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
-      "RelativeMoniker": "D:0:0:{116CBB3C-6ED3-42F3-A577-A80A6F16F407}|WebNoiThatHoaHome\\WebNoiThatHoaHome.csproj|solutionrelative:webnoithathoahome\\areas\\admin\\views\\order\\details.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{116CBB3C-6ED3-42F3-A577-A80A6F16F407}|WebNoiThatHoaHome\\WebNoiThatHoaHome.csproj|d:\\\u0111\u1ED3 \u00E1n t\u1ED1t nghi\u1EC7p pvh\\webnoithathoahome\\webnoithathoahome\\areas\\admin\\views\\order\\index.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
-      "RelativeMoniker": "D:0:0:{116CBB3C-6ED3-42F3-A577-A80A6F16F407}|WebNoiThatHoaHome\\WebNoiThatHoaHome.csproj|solutionrelative:webnoithathoahome\\areas\\admin\\views\\order\\index.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
-    },
-    {
       "AbsoluteMoniker": "D:0:0:{116CBB3C-6ED3-42F3-A577-A80A6F16F407}|WebNoiThatHoaHome\\WebNoiThatHoaHome.csproj|d:\\\u0111\u1ED3 \u00E1n t\u1ED1t nghi\u1EC7p pvh\\webnoithathoahome\\webnoithathoahome\\areas\\admin\\views\\product\\trash.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
       "RelativeMoniker": "D:0:0:{116CBB3C-6ED3-42F3-A577-A80A6F16F407}|WebNoiThatHoaHome\\WebNoiThatHoaHome.csproj|solutionrelative:webnoithathoahome\\areas\\admin\\views\\product\\trash.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{116CBB3C-6ED3-42F3-A577-A80A6F16F407}|WebNoiThatHoaHome\\WebNoiThatHoaHome.csproj|d:\\\u0111\u1ED3 \u00E1n t\u1ED1t nghi\u1EC7p pvh\\webnoithathoahome\\webnoithathoahome\\areas\\admin\\controllers\\categorycontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{116CBB3C-6ED3-42F3-A577-A80A6F16F407}|WebNoiThatHoaHome\\WebNoiThatHoaHome.csproj|solutionrelative:webnoithathoahome\\areas\\admin\\controllers\\categorycontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
       "AbsoluteMoniker": "D:0:0:{116CBB3C-6ED3-42F3-A577-A80A6F16F407}|WebNoiThatHoaHome\\WebNoiThatHoaHome.csproj|d:\\\u0111\u1ED3 \u00E1n t\u1ED1t nghi\u1EC7p pvh\\webnoithathoahome\\webnoithathoahome\\areas\\admin\\views\\category\\trash.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
@@ -167,38 +215,6 @@
       "RelativeMoniker": "D:0:0:{116CBB3C-6ED3-42F3-A577-A80A6F16F407}|WebNoiThatHoaHome\\WebNoiThatHoaHome.csproj|solutionrelative:webnoithathoahome\\views\\cart\\index.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{116CBB3C-6ED3-42F3-A577-A80A6F16F407}|WebNoiThatHoaHome\\WebNoiThatHoaHome.csproj|d:\\\u0111\u1ED3 \u00E1n t\u1ED1t nghi\u1EC7p pvh\\webnoithathoahome\\webnoithathoahome\\controllers\\cartcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{116CBB3C-6ED3-42F3-A577-A80A6F16F407}|WebNoiThatHoaHome\\WebNoiThatHoaHome.csproj|solutionrelative:webnoithathoahome\\controllers\\cartcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{116CBB3C-6ED3-42F3-A577-A80A6F16F407}|WebNoiThatHoaHome\\WebNoiThatHoaHome.csproj|d:\\\u0111\u1ED3 \u00E1n t\u1ED1t nghi\u1EC7p pvh\\webnoithathoahome\\webnoithathoahome\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{116CBB3C-6ED3-42F3-A577-A80A6F16F407}|WebNoiThatHoaHome\\WebNoiThatHoaHome.csproj|solutionrelative:webnoithathoahome\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{116CBB3C-6ED3-42F3-A577-A80A6F16F407}|WebNoiThatHoaHome\\WebNoiThatHoaHome.csproj|d:\\\u0111\u1ED3 \u00E1n t\u1ED1t nghi\u1EC7p pvh\\webnoithathoahome\\webnoithathoahome\\hubs\\orderhub.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{116CBB3C-6ED3-42F3-A577-A80A6F16F407}|WebNoiThatHoaHome\\WebNoiThatHoaHome.csproj|solutionrelative:webnoithathoahome\\hubs\\orderhub.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{116CBB3C-6ED3-42F3-A577-A80A6F16F407}|WebNoiThatHoaHome\\WebNoiThatHoaHome.csproj|d:\\\u0111\u1ED3 \u00E1n t\u1ED1t nghi\u1EC7p pvh\\webnoithathoahome\\webnoithathoahome\\views\\home\\index.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
-      "RelativeMoniker": "D:0:0:{116CBB3C-6ED3-42F3-A577-A80A6F16F407}|WebNoiThatHoaHome\\WebNoiThatHoaHome.csproj|solutionrelative:webnoithathoahome\\views\\home\\index.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{116CBB3C-6ED3-42F3-A577-A80A6F16F407}|WebNoiThatHoaHome\\WebNoiThatHoaHome.csproj|d:\\\u0111\u1ED3 \u00E1n t\u1ED1t nghi\u1EC7p pvh\\webnoithathoahome\\webnoithathoahome\\controllers\\wishlistcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{116CBB3C-6ED3-42F3-A577-A80A6F16F407}|WebNoiThatHoaHome\\WebNoiThatHoaHome.csproj|solutionrelative:webnoithathoahome\\controllers\\wishlistcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{116CBB3C-6ED3-42F3-A577-A80A6F16F407}|WebNoiThatHoaHome\\WebNoiThatHoaHome.csproj|d:\\\u0111\u1ED3 \u00E1n t\u1ED1t nghi\u1EC7p pvh\\webnoithathoahome\\webnoithathoahome\\controllers\\productcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{116CBB3C-6ED3-42F3-A577-A80A6F16F407}|WebNoiThatHoaHome\\WebNoiThatHoaHome.csproj|solutionrelative:webnoithathoahome\\controllers\\productcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{116CBB3C-6ED3-42F3-A577-A80A6F16F407}|WebNoiThatHoaHome\\WebNoiThatHoaHome.csproj|d:\\\u0111\u1ED3 \u00E1n t\u1ED1t nghi\u1EC7p pvh\\webnoithathoahome\\webnoithathoahome\\controllers\\homecontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{116CBB3C-6ED3-42F3-A577-A80A6F16F407}|WebNoiThatHoaHome\\WebNoiThatHoaHome.csproj|solutionrelative:webnoithathoahome\\controllers\\homecontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{116CBB3C-6ED3-42F3-A577-A80A6F16F407}|WebNoiThatHoaHome\\WebNoiThatHoaHome.csproj|d:\\\u0111\u1ED3 \u00E1n t\u1ED1t nghi\u1EC7p pvh\\webnoithathoahome\\webnoithathoahome\\controllers\\checkoutcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{116CBB3C-6ED3-42F3-A577-A80A6F16F407}|WebNoiThatHoaHome\\WebNoiThatHoaHome.csproj|solutionrelative:webnoithathoahome\\controllers\\checkoutcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
       "AbsoluteMoniker": "D:0:0:{116CBB3C-6ED3-42F3-A577-A80A6F16F407}|WebNoiThatHoaHome\\WebNoiThatHoaHome.csproj|d:\\\u0111\u1ED3 \u00E1n t\u1ED1t nghi\u1EC7p pvh\\webnoithathoahome\\webnoithathoahome\\models\\userdetailviewmodel.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{116CBB3C-6ED3-42F3-A577-A80A6F16F407}|WebNoiThatHoaHome\\WebNoiThatHoaHome.csproj|solutionrelative:webnoithathoahome\\models\\userdetailviewmodel.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
@@ -227,20 +243,8 @@
       "RelativeMoniker": "D:0:0:{116CBB3C-6ED3-42F3-A577-A80A6F16F407}|WebNoiThatHoaHome\\WebNoiThatHoaHome.csproj|solutionrelative:webnoithathoahome\\models\\productlistviewmodel.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{116CBB3C-6ED3-42F3-A577-A80A6F16F407}|WebNoiThatHoaHome\\WebNoiThatHoaHome.csproj|d:\\\u0111\u1ED3 \u00E1n t\u1ED1t nghi\u1EC7p pvh\\webnoithathoahome\\webnoithathoahome\\models\\producteditviewmodel.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{116CBB3C-6ED3-42F3-A577-A80A6F16F407}|WebNoiThatHoaHome\\WebNoiThatHoaHome.csproj|solutionrelative:webnoithathoahome\\models\\producteditviewmodel.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{116CBB3C-6ED3-42F3-A577-A80A6F16F407}|WebNoiThatHoaHome\\WebNoiThatHoaHome.csproj|d:\\\u0111\u1ED3 \u00E1n t\u1ED1t nghi\u1EC7p pvh\\webnoithathoahome\\webnoithathoahome\\models\\productcreateviewmodel.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{116CBB3C-6ED3-42F3-A577-A80A6F16F407}|WebNoiThatHoaHome\\WebNoiThatHoaHome.csproj|solutionrelative:webnoithathoahome\\models\\productcreateviewmodel.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
       "AbsoluteMoniker": "D:0:0:{116CBB3C-6ED3-42F3-A577-A80A6F16F407}|WebNoiThatHoaHome\\WebNoiThatHoaHome.csproj|d:\\\u0111\u1ED3 \u00E1n t\u1ED1t nghi\u1EC7p pvh\\webnoithathoahome\\webnoithathoahome\\appsettings.json||{90A6B3A7-C1A3-4009-A288-E2FF89E96FA0}",
       "RelativeMoniker": "D:0:0:{116CBB3C-6ED3-42F3-A577-A80A6F16F407}|WebNoiThatHoaHome\\WebNoiThatHoaHome.csproj|solutionrelative:webnoithathoahome\\appsettings.json||{90A6B3A7-C1A3-4009-A288-E2FF89E96FA0}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{116CBB3C-6ED3-42F3-A577-A80A6F16F407}|WebNoiThatHoaHome\\WebNoiThatHoaHome.csproj|d:\\\u0111\u1ED3 \u00E1n t\u1ED1t nghi\u1EC7p pvh\\webnoithathoahome\\webnoithathoahome\\views\\checkout\\ordersuccess.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
-      "RelativeMoniker": "D:0:0:{116CBB3C-6ED3-42F3-A577-A80A6F16F407}|WebNoiThatHoaHome\\WebNoiThatHoaHome.csproj|solutionrelative:webnoithathoahome\\views\\checkout\\ordersuccess.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
     },
     {
       "AbsoluteMoniker": "D:0:0:{116CBB3C-6ED3-42F3-A577-A80A6F16F407}|WebNoiThatHoaHome\\WebNoiThatHoaHome.csproj|d:\\\u0111\u1ED3 \u00E1n t\u1ED1t nghi\u1EC7p pvh\\webnoithathoahome\\webnoithathoahome\\services\\vnpaylibrary.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
@@ -249,10 +253,6 @@
     {
       "AbsoluteMoniker": "D:0:0:{116CBB3C-6ED3-42F3-A577-A80A6F16F407}|WebNoiThatHoaHome\\WebNoiThatHoaHome.csproj|d:\\\u0111\u1ED3 \u00E1n t\u1ED1t nghi\u1EC7p pvh\\webnoithathoahome\\webnoithathoahome\\views\\checkout.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
       "RelativeMoniker": "D:0:0:{116CBB3C-6ED3-42F3-A577-A80A6F16F407}|WebNoiThatHoaHome\\WebNoiThatHoaHome.csproj|solutionrelative:webnoithathoahome\\views\\checkout.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{116CBB3C-6ED3-42F3-A577-A80A6F16F407}|WebNoiThatHoaHome\\WebNoiThatHoaHome.csproj|d:\\\u0111\u1ED3 \u00E1n t\u1ED1t nghi\u1EC7p pvh\\webnoithathoahome\\webnoithathoahome\\views\\checkout\\index.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
-      "RelativeMoniker": "D:0:0:{116CBB3C-6ED3-42F3-A577-A80A6F16F407}|WebNoiThatHoaHome\\WebNoiThatHoaHome.csproj|solutionrelative:webnoithathoahome\\views\\checkout\\index.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
     },
     {
       "AbsoluteMoniker": "D:0:0:{116CBB3C-6ED3-42F3-A577-A80A6F16F407}|WebNoiThatHoaHome\\WebNoiThatHoaHome.csproj|d:\\\u0111\u1ED3 \u00E1n t\u1ED1t nghi\u1EC7p pvh\\webnoithathoahome\\webnoithathoahome\\views\\product\\category.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
@@ -318,56 +318,30 @@
       "DocumentGroups": [
         {
           "DockedWidth": 200,
-          "SelectedChildIndex": 0,
+          "SelectedChildIndex": 8,
           "Children": [
             {
               "$type": "Document",
-              "DocumentIndex": 0,
-              "Title": "Trash.cshtml",
-              "DocumentMoniker": "D:\\\u0110\u1ED3 \u00E1n t\u1ED1t nghi\u1EC7p PVH\\WebNoiThatHoaHome\\WebNoiThatHoaHome\\Areas\\Admin\\Views\\Appointment\\Trash.cshtml",
-              "RelativeDocumentMoniker": "WebNoiThatHoaHome\\Areas\\Admin\\Views\\Appointment\\Trash.cshtml",
-              "ToolTip": "D:\\\u0110\u1ED3 \u00E1n t\u1ED1t nghi\u1EC7p PVH\\WebNoiThatHoaHome\\WebNoiThatHoaHome\\Areas\\Admin\\Views\\Appointment\\Trash.cshtml",
-              "RelativeToolTip": "WebNoiThatHoaHome\\Areas\\Admin\\Views\\Appointment\\Trash.cshtml",
-              "ViewState": "AgIAAEIAAAAAAAAAAAAcwGUAAAAoAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
-              "WhenOpened": "2026-04-14T19:16:31.633Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 3,
-              "Title": "Appointments.cshtml",
-              "DocumentMoniker": "D:\\\u0110\u1ED3 \u00E1n t\u1ED1t nghi\u1EC7p PVH\\WebNoiThatHoaHome\\WebNoiThatHoaHome\\Views\\Account\\Appointments.cshtml",
-              "RelativeDocumentMoniker": "WebNoiThatHoaHome\\Views\\Account\\Appointments.cshtml",
-              "ToolTip": "D:\\\u0110\u1ED3 \u00E1n t\u1ED1t nghi\u1EC7p PVH\\WebNoiThatHoaHome\\WebNoiThatHoaHome\\Views\\Account\\Appointments.cshtml",
-              "RelativeToolTip": "WebNoiThatHoaHome\\Views\\Account\\Appointments.cshtml",
-              "ViewState": "AgIAAE8AAAAAAAAAAAAUwGIAAAAxAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
-              "WhenOpened": "2026-04-14T18:27:32.101Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 4,
-              "Title": "AppointmentController.cs",
-              "DocumentMoniker": "D:\\\u0110\u1ED3 \u00E1n t\u1ED1t nghi\u1EC7p PVH\\WebNoiThatHoaHome\\WebNoiThatHoaHome\\Controllers\\AppointmentController.cs",
-              "RelativeDocumentMoniker": "WebNoiThatHoaHome\\Controllers\\AppointmentController.cs",
-              "ToolTip": "D:\\\u0110\u1ED3 \u00E1n t\u1ED1t nghi\u1EC7p PVH\\WebNoiThatHoaHome\\WebNoiThatHoaHome\\Controllers\\AppointmentController.cs",
-              "RelativeToolTip": "WebNoiThatHoaHome\\Controllers\\AppointmentController.cs",
-              "ViewState": "AgIAAEgAAAAAAAAAAAAcwGYAAAA0AAAAAAAAAA==",
+              "DocumentIndex": 2,
+              "Title": "CheckoutController.cs",
+              "DocumentMoniker": "D:\\\u0110\u1ED3 \u00E1n t\u1ED1t nghi\u1EC7p PVH\\WebNoiThatHoaHome\\WebNoiThatHoaHome\\Controllers\\CheckoutController.cs",
+              "RelativeDocumentMoniker": "WebNoiThatHoaHome\\Controllers\\CheckoutController.cs",
+              "ToolTip": "D:\\\u0110\u1ED3 \u00E1n t\u1ED1t nghi\u1EC7p PVH\\WebNoiThatHoaHome\\WebNoiThatHoaHome\\Controllers\\CheckoutController.cs",
+              "RelativeToolTip": "WebNoiThatHoaHome\\Controllers\\CheckoutController.cs",
+              "ViewState": "AgIAAKIAAAAAAAAAAIAwwL0AAAANAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-04-14T18:10:05.007Z",
+              "WhenOpened": "2026-04-10T15:52:21.315Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 7,
+              "DocumentIndex": 1,
               "Title": "Orders.cshtml",
               "DocumentMoniker": "D:\\\u0110\u1ED3 \u00E1n t\u1ED1t nghi\u1EC7p PVH\\WebNoiThatHoaHome\\WebNoiThatHoaHome\\Views\\Account\\Orders.cshtml",
               "RelativeDocumentMoniker": "WebNoiThatHoaHome\\Views\\Account\\Orders.cshtml",
               "ToolTip": "D:\\\u0110\u1ED3 \u00E1n t\u1ED1t nghi\u1EC7p PVH\\WebNoiThatHoaHome\\WebNoiThatHoaHome\\Views\\Account\\Orders.cshtml",
               "RelativeToolTip": "WebNoiThatHoaHome\\Views\\Account\\Orders.cshtml",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAABAAAAASAAAAAAAAAA==",
+              "ViewState": "AgIAAF0AAAAAAAAAAAAcwIQAAAAqAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
               "WhenOpened": "2026-04-10T16:31:21.924Z",
               "EditorCaption": ""
@@ -375,123 +349,266 @@
             {
               "$type": "Document",
               "DocumentIndex": 8,
-              "Title": "Profile.cshtml",
-              "DocumentMoniker": "D:\\\u0110\u1ED3 \u00E1n t\u1ED1t nghi\u1EC7p PVH\\WebNoiThatHoaHome\\WebNoiThatHoaHome\\Views\\Account\\Profile.cshtml",
-              "RelativeDocumentMoniker": "WebNoiThatHoaHome\\Views\\Account\\Profile.cshtml",
-              "ToolTip": "D:\\\u0110\u1ED3 \u00E1n t\u1ED1t nghi\u1EC7p PVH\\WebNoiThatHoaHome\\WebNoiThatHoaHome\\Views\\Account\\Profile.cshtml",
-              "RelativeToolTip": "WebNoiThatHoaHome\\Views\\Account\\Profile.cshtml",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAABIAAACBAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
-              "WhenOpened": "2026-04-09T16:08:38.185Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 6,
-              "Title": "Wishlist.cshtml",
-              "DocumentMoniker": "D:\\\u0110\u1ED3 \u00E1n t\u1ED1t nghi\u1EC7p PVH\\WebNoiThatHoaHome\\WebNoiThatHoaHome\\Views\\Account\\Wishlist.cshtml",
-              "RelativeDocumentMoniker": "WebNoiThatHoaHome\\Views\\Account\\Wishlist.cshtml",
-              "ToolTip": "D:\\\u0110\u1ED3 \u00E1n t\u1ED1t nghi\u1EC7p PVH\\WebNoiThatHoaHome\\WebNoiThatHoaHome\\Views\\Account\\Wishlist.cshtml",
-              "RelativeToolTip": "WebNoiThatHoaHome\\Views\\Account\\Wishlist.cshtml",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAABEAAAAOAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
-              "WhenOpened": "2026-04-10T17:32:22.67Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 5,
-              "Title": "AccountController.cs",
-              "DocumentMoniker": "D:\\\u0110\u1ED3 \u00E1n t\u1ED1t nghi\u1EC7p PVH\\WebNoiThatHoaHome\\WebNoiThatHoaHome\\Controllers\\AccountController.cs",
-              "RelativeDocumentMoniker": "WebNoiThatHoaHome\\Controllers\\AccountController.cs",
-              "ToolTip": "D:\\\u0110\u1ED3 \u00E1n t\u1ED1t nghi\u1EC7p PVH\\WebNoiThatHoaHome\\WebNoiThatHoaHome\\Controllers\\AccountController.cs",
-              "RelativeToolTip": "WebNoiThatHoaHome\\Controllers\\AccountController.cs",
-              "ViewState": "AgIAACYAAAAAAAAAAAAmwDcAAACEAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-04-02T16:17:56.392Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 9,
-              "Title": "Login.cshtml",
-              "DocumentMoniker": "D:\\\u0110\u1ED3 \u00E1n t\u1ED1t nghi\u1EC7p PVH\\WebNoiThatHoaHome\\WebNoiThatHoaHome\\Views\\Account\\Login.cshtml",
-              "RelativeDocumentMoniker": "WebNoiThatHoaHome\\Views\\Account\\Login.cshtml",
-              "ToolTip": "D:\\\u0110\u1ED3 \u00E1n t\u1ED1t nghi\u1EC7p PVH\\WebNoiThatHoaHome\\WebNoiThatHoaHome\\Views\\Account\\Login.cshtml",
-              "RelativeToolTip": "WebNoiThatHoaHome\\Views\\Account\\Login.cshtml",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAACEAAAAZAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
-              "WhenOpened": "2026-04-02T16:22:10.104Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 2,
-              "Title": "AppointmentController.cs",
-              "DocumentMoniker": "D:\\\u0110\u1ED3 \u00E1n t\u1ED1t nghi\u1EC7p PVH\\WebNoiThatHoaHome\\WebNoiThatHoaHome\\Areas\\Admin\\Controllers\\AppointmentController.cs",
-              "RelativeDocumentMoniker": "WebNoiThatHoaHome\\Areas\\Admin\\Controllers\\AppointmentController.cs",
-              "ToolTip": "D:\\\u0110\u1ED3 \u00E1n t\u1ED1t nghi\u1EC7p PVH\\WebNoiThatHoaHome\\WebNoiThatHoaHome\\Areas\\Admin\\Controllers\\AppointmentController.cs",
-              "RelativeToolTip": "WebNoiThatHoaHome\\Areas\\Admin\\Controllers\\AppointmentController.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAHgAAAAzAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-04-14T17:03:52.27Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 1,
-              "Title": "Index.cshtml",
-              "DocumentMoniker": "D:\\\u0110\u1ED3 \u00E1n t\u1ED1t nghi\u1EC7p PVH\\WebNoiThatHoaHome\\WebNoiThatHoaHome\\Areas\\Admin\\Views\\Appointment\\Index.cshtml",
-              "RelativeDocumentMoniker": "WebNoiThatHoaHome\\Areas\\Admin\\Views\\Appointment\\Index.cshtml",
-              "ToolTip": "D:\\\u0110\u1ED3 \u00E1n t\u1ED1t nghi\u1EC7p PVH\\WebNoiThatHoaHome\\WebNoiThatHoaHome\\Areas\\Admin\\Views\\Appointment\\Index.cshtml",
-              "RelativeToolTip": "WebNoiThatHoaHome\\Areas\\Admin\\Views\\Appointment\\Index.cshtml",
-              "ViewState": "AgIAAJYAAAAAAAAAAAAAABYAAAAKAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
-              "WhenOpened": "2026-04-14T17:04:26.508Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 10,
-              "Title": "Register.cshtml",
-              "DocumentMoniker": "D:\\\u0110\u1ED3 \u00E1n t\u1ED1t nghi\u1EC7p PVH\\WebNoiThatHoaHome\\WebNoiThatHoaHome\\Views\\Account\\Register.cshtml",
-              "RelativeDocumentMoniker": "WebNoiThatHoaHome\\Views\\Account\\Register.cshtml",
-              "ToolTip": "D:\\\u0110\u1ED3 \u00E1n t\u1ED1t nghi\u1EC7p PVH\\WebNoiThatHoaHome\\WebNoiThatHoaHome\\Views\\Account\\Register.cshtml",
-              "RelativeToolTip": "WebNoiThatHoaHome\\Views\\Account\\Register.cshtml",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAACsAAAAZAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
-              "WhenOpened": "2026-04-02T16:22:39.166Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 11,
               "Title": "_Layout.cshtml",
               "DocumentMoniker": "D:\\\u0110\u1ED3 \u00E1n t\u1ED1t nghi\u1EC7p PVH\\WebNoiThatHoaHome\\WebNoiThatHoaHome\\Views\\Shared\\_Layout.cshtml",
               "RelativeDocumentMoniker": "WebNoiThatHoaHome\\Views\\Shared\\_Layout.cshtml",
               "ToolTip": "D:\\\u0110\u1ED3 \u00E1n t\u1ED1t nghi\u1EC7p PVH\\WebNoiThatHoaHome\\WebNoiThatHoaHome\\Views\\Shared\\_Layout.cshtml",
               "RelativeToolTip": "WebNoiThatHoaHome\\Views\\Shared\\_Layout.cshtml",
-              "ViewState": "AgIAAJkAAAAAAAAAAAAAALoAAABjAAAAAAAAAA==",
+              "ViewState": "AgIAAFMBAAAAAAAAAAAcwGQBAAAEAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
               "WhenOpened": "2026-04-02T17:05:00.322Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 12,
+              "DocumentIndex": 6,
+              "Title": "Appointments.cshtml",
+              "DocumentMoniker": "D:\\\u0110\u1ED3 \u00E1n t\u1ED1t nghi\u1EC7p PVH\\WebNoiThatHoaHome\\WebNoiThatHoaHome\\Views\\Account\\Appointments.cshtml",
+              "RelativeDocumentMoniker": "WebNoiThatHoaHome\\Views\\Account\\Appointments.cshtml",
+              "ToolTip": "D:\\\u0110\u1ED3 \u00E1n t\u1ED1t nghi\u1EC7p PVH\\WebNoiThatHoaHome\\WebNoiThatHoaHome\\Views\\Account\\Appointments.cshtml",
+              "RelativeToolTip": "WebNoiThatHoaHome\\Views\\Account\\Appointments.cshtml",
+              "ViewState": "AgIAAEIAAAAAAAAAAAAAADgAAAAmAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
+              "WhenOpened": "2026-04-14T18:27:32.101Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 7,
               "Title": "Booking.cshtml",
               "DocumentMoniker": "D:\\\u0110\u1ED3 \u00E1n t\u1ED1t nghi\u1EC7p PVH\\WebNoiThatHoaHome\\WebNoiThatHoaHome\\Views\\Appointment\\Booking.cshtml",
               "RelativeDocumentMoniker": "WebNoiThatHoaHome\\Views\\Appointment\\Booking.cshtml",
               "ToolTip": "D:\\\u0110\u1ED3 \u00E1n t\u1ED1t nghi\u1EC7p PVH\\WebNoiThatHoaHome\\WebNoiThatHoaHome\\Views\\Appointment\\Booking.cshtml",
               "RelativeToolTip": "WebNoiThatHoaHome\\Views\\Appointment\\Booking.cshtml",
-              "ViewState": "AgIAAB0AAAAAAAAAAAAUwDEAAAAAAAAAAAAAAA==",
+              "ViewState": "AgIAACcAAAAAAAAAAAAAABkAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
               "WhenOpened": "2026-04-14T18:10:41.159Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
+              "DocumentIndex": 5,
+              "Title": "Index.cshtml",
+              "DocumentMoniker": "D:\\\u0110\u1ED3 \u00E1n t\u1ED1t nghi\u1EC7p PVH\\WebNoiThatHoaHome\\WebNoiThatHoaHome\\Areas\\Admin\\Views\\Appointment\\Index.cshtml",
+              "RelativeDocumentMoniker": "WebNoiThatHoaHome\\Areas\\Admin\\Views\\Appointment\\Index.cshtml",
+              "ToolTip": "D:\\\u0110\u1ED3 \u00E1n t\u1ED1t nghi\u1EC7p PVH\\WebNoiThatHoaHome\\WebNoiThatHoaHome\\Areas\\Admin\\Views\\Appointment\\Index.cshtml",
+              "RelativeToolTip": "WebNoiThatHoaHome\\Areas\\Admin\\Views\\Appointment\\Index.cshtml",
+              "ViewState": "AgIAADkAAAAAAAAAAAAAAFcAAABsAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
+              "WhenOpened": "2026-04-14T17:04:26.508Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 3,
+              "Title": "AppointmentController.cs",
+              "DocumentMoniker": "D:\\\u0110\u1ED3 \u00E1n t\u1ED1t nghi\u1EC7p PVH\\WebNoiThatHoaHome\\WebNoiThatHoaHome\\Areas\\Admin\\Controllers\\AppointmentController.cs",
+              "RelativeDocumentMoniker": "WebNoiThatHoaHome\\Areas\\Admin\\Controllers\\AppointmentController.cs",
+              "ToolTip": "D:\\\u0110\u1ED3 \u00E1n t\u1ED1t nghi\u1EC7p PVH\\WebNoiThatHoaHome\\WebNoiThatHoaHome\\Areas\\Admin\\Controllers\\AppointmentController.cs",
+              "RelativeToolTip": "WebNoiThatHoaHome\\Areas\\Admin\\Controllers\\AppointmentController.cs",
+              "ViewState": "AgIAAEMAAAAAAAAAAAAcwFoAAABCAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-04-14T17:03:52.27Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 4,
+              "Title": "CategoryController.cs",
+              "DocumentMoniker": "D:\\\u0110\u1ED3 \u00E1n t\u1ED1t nghi\u1EC7p PVH\\WebNoiThatHoaHome\\WebNoiThatHoaHome\\Areas\\Admin\\Controllers\\CategoryController.cs",
+              "RelativeDocumentMoniker": "WebNoiThatHoaHome\\Areas\\Admin\\Controllers\\CategoryController.cs",
+              "ToolTip": "D:\\\u0110\u1ED3 \u00E1n t\u1ED1t nghi\u1EC7p PVH\\WebNoiThatHoaHome\\WebNoiThatHoaHome\\Areas\\Admin\\Controllers\\CategoryController.cs",
+              "RelativeToolTip": "WebNoiThatHoaHome\\Areas\\Admin\\Controllers\\CategoryController.cs",
+              "ViewState": "AgIAABcAAAAAAAAAAAAqwC8AAAASAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-04-07T17:12:21.255Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 0,
+              "Title": "Profile.cshtml",
+              "DocumentMoniker": "D:\\\u0110\u1ED3 \u00E1n t\u1ED1t nghi\u1EC7p PVH\\WebNoiThatHoaHome\\WebNoiThatHoaHome\\Views\\Account\\Profile.cshtml",
+              "RelativeDocumentMoniker": "WebNoiThatHoaHome\\Views\\Account\\Profile.cshtml",
+              "ToolTip": "D:\\\u0110\u1ED3 \u00E1n t\u1ED1t nghi\u1EC7p PVH\\WebNoiThatHoaHome\\WebNoiThatHoaHome\\Views\\Account\\Profile.cshtml",
+              "RelativeToolTip": "WebNoiThatHoaHome\\Views\\Account\\Profile.cshtml",
+              "ViewState": "AgIAAAYAAAAAAAAAAAAAACEAAABrAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
+              "WhenOpened": "2026-04-09T16:08:38.185Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 9,
+              "Title": "_Layout.cshtml",
+              "DocumentMoniker": "D:\\\u0110\u1ED3 \u00E1n t\u1ED1t nghi\u1EC7p PVH\\WebNoiThatHoaHome\\WebNoiThatHoaHome\\Areas\\Admin\\Views\\Shared\\_Layout.cshtml",
+              "RelativeDocumentMoniker": "WebNoiThatHoaHome\\Areas\\Admin\\Views\\Shared\\_Layout.cshtml",
+              "ToolTip": "D:\\\u0110\u1ED3 \u00E1n t\u1ED1t nghi\u1EC7p PVH\\WebNoiThatHoaHome\\WebNoiThatHoaHome\\Areas\\Admin\\Views\\Shared\\_Layout.cshtml",
+              "RelativeToolTip": "WebNoiThatHoaHome\\Areas\\Admin\\Views\\Shared\\_Layout.cshtml",
+              "ViewState": "AgIAAM8AAAAAAAAAAAAAAPsAAAALAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
+              "WhenOpened": "2026-04-02T14:14:20.377Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 10,
+              "Title": "OrderController.cs",
+              "DocumentMoniker": "D:\\\u0110\u1ED3 \u00E1n t\u1ED1t nghi\u1EC7p PVH\\WebNoiThatHoaHome\\WebNoiThatHoaHome\\Areas\\Admin\\Controllers\\OrderController.cs",
+              "RelativeDocumentMoniker": "WebNoiThatHoaHome\\Areas\\Admin\\Controllers\\OrderController.cs",
+              "ToolTip": "D:\\\u0110\u1ED3 \u00E1n t\u1ED1t nghi\u1EC7p PVH\\WebNoiThatHoaHome\\WebNoiThatHoaHome\\Areas\\Admin\\Controllers\\OrderController.cs",
+              "RelativeToolTip": "WebNoiThatHoaHome\\Areas\\Admin\\Controllers\\OrderController.cs",
+              "ViewState": "AgIAACQAAAAAAAAAAAAowEAAAAAhAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-04-10T16:38:23.737Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 11,
+              "Title": "Program.cs",
+              "DocumentMoniker": "D:\\\u0110\u1ED3 \u00E1n t\u1ED1t nghi\u1EC7p PVH\\WebNoiThatHoaHome\\WebNoiThatHoaHome\\Program.cs",
+              "RelativeDocumentMoniker": "WebNoiThatHoaHome\\Program.cs",
+              "ToolTip": "D:\\\u0110\u1ED3 \u00E1n t\u1ED1t nghi\u1EC7p PVH\\WebNoiThatHoaHome\\WebNoiThatHoaHome\\Program.cs",
+              "RelativeToolTip": "WebNoiThatHoaHome\\Program.cs",
+              "ViewState": "AgIAAAoAAAAAAAAAAAAcwC0AAABAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-04-02T14:15:48.474Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 12,
+              "Title": "OrderHub.cs",
+              "DocumentMoniker": "D:\\\u0110\u1ED3 \u00E1n t\u1ED1t nghi\u1EC7p PVH\\WebNoiThatHoaHome\\WebNoiThatHoaHome\\Hubs\\OrderHub.cs",
+              "RelativeDocumentMoniker": "WebNoiThatHoaHome\\Hubs\\OrderHub.cs",
+              "ToolTip": "D:\\\u0110\u1ED3 \u00E1n t\u1ED1t nghi\u1EC7p PVH\\WebNoiThatHoaHome\\WebNoiThatHoaHome\\Hubs\\OrderHub.cs",
+              "RelativeToolTip": "WebNoiThatHoaHome\\Hubs\\OrderHub.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAgAAAABAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-04-13T16:13:49.205Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
               "DocumentIndex": 13,
+              "Title": "Index.cshtml",
+              "DocumentMoniker": "D:\\\u0110\u1ED3 \u00E1n t\u1ED1t nghi\u1EC7p PVH\\WebNoiThatHoaHome\\WebNoiThatHoaHome\\Views\\Checkout\\Index.cshtml",
+              "RelativeDocumentMoniker": "WebNoiThatHoaHome\\Views\\Checkout\\Index.cshtml",
+              "ToolTip": "D:\\\u0110\u1ED3 \u00E1n t\u1ED1t nghi\u1EC7p PVH\\WebNoiThatHoaHome\\WebNoiThatHoaHome\\Views\\Checkout\\Index.cshtml",
+              "RelativeToolTip": "WebNoiThatHoaHome\\Views\\Checkout\\Index.cshtml",
+              "ViewState": "AgIAABgAAAAAAAAAAAAAAEMAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
+              "WhenOpened": "2026-04-10T16:08:48.665Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 14,
+              "Title": "Index.cshtml",
+              "DocumentMoniker": "D:\\\u0110\u1ED3 \u00E1n t\u1ED1t nghi\u1EC7p PVH\\WebNoiThatHoaHome\\WebNoiThatHoaHome\\Areas\\Admin\\Views\\Order\\Index.cshtml",
+              "RelativeDocumentMoniker": "WebNoiThatHoaHome\\Areas\\Admin\\Views\\Order\\Index.cshtml",
+              "ToolTip": "D:\\\u0110\u1ED3 \u00E1n t\u1ED1t nghi\u1EC7p PVH\\WebNoiThatHoaHome\\WebNoiThatHoaHome\\Areas\\Admin\\Views\\Order\\Index.cshtml",
+              "RelativeToolTip": "WebNoiThatHoaHome\\Areas\\Admin\\Views\\Order\\Index.cshtml",
+              "ViewState": "AgIAAEcAAAAAAAAAAAAcwEMAAAAxAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
+              "WhenOpened": "2026-04-10T16:39:43.796Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 15,
+              "Title": "Details.cshtml",
+              "DocumentMoniker": "D:\\\u0110\u1ED3 \u00E1n t\u1ED1t nghi\u1EC7p PVH\\WebNoiThatHoaHome\\WebNoiThatHoaHome\\Areas\\Admin\\Views\\Order\\Details.cshtml",
+              "RelativeDocumentMoniker": "WebNoiThatHoaHome\\Areas\\Admin\\Views\\Order\\Details.cshtml",
+              "ToolTip": "D:\\\u0110\u1ED3 \u00E1n t\u1ED1t nghi\u1EC7p PVH\\WebNoiThatHoaHome\\WebNoiThatHoaHome\\Areas\\Admin\\Views\\Order\\Details.cshtml",
+              "RelativeToolTip": "WebNoiThatHoaHome\\Areas\\Admin\\Views\\Order\\Details.cshtml",
+              "ViewState": "AgIAAFIAAAAAAAAAAAAcwHUAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
+              "WhenOpened": "2026-04-10T16:40:47.195Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 16,
+              "Title": "ProductEditViewModel.cs",
+              "DocumentMoniker": "D:\\\u0110\u1ED3 \u00E1n t\u1ED1t nghi\u1EC7p PVH\\WebNoiThatHoaHome\\WebNoiThatHoaHome\\Models\\ProductEditViewModel.cs",
+              "RelativeDocumentMoniker": "WebNoiThatHoaHome\\Models\\ProductEditViewModel.cs",
+              "ToolTip": "D:\\\u0110\u1ED3 \u00E1n t\u1ED1t nghi\u1EC7p PVH\\WebNoiThatHoaHome\\WebNoiThatHoaHome\\Models\\ProductEditViewModel.cs",
+              "RelativeToolTip": "WebNoiThatHoaHome\\Models\\ProductEditViewModel.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAA0AAAArAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-04-07T16:08:14.23Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 17,
+              "Title": "ProductCreateViewModel.cs",
+              "DocumentMoniker": "D:\\\u0110\u1ED3 \u00E1n t\u1ED1t nghi\u1EC7p PVH\\WebNoiThatHoaHome\\WebNoiThatHoaHome\\Models\\ProductCreateViewModel.cs",
+              "RelativeDocumentMoniker": "WebNoiThatHoaHome\\Models\\ProductCreateViewModel.cs",
+              "ToolTip": "D:\\\u0110\u1ED3 \u00E1n t\u1ED1t nghi\u1EC7p PVH\\WebNoiThatHoaHome\\WebNoiThatHoaHome\\Models\\ProductCreateViewModel.cs",
+              "RelativeToolTip": "WebNoiThatHoaHome\\Models\\ProductCreateViewModel.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAA4AAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-04-07T14:38:05.038Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 18,
+              "Title": "OrderSuccess.cshtml",
+              "DocumentMoniker": "D:\\\u0110\u1ED3 \u00E1n t\u1ED1t nghi\u1EC7p PVH\\WebNoiThatHoaHome\\WebNoiThatHoaHome\\Views\\Checkout\\OrderSuccess.cshtml",
+              "RelativeDocumentMoniker": "WebNoiThatHoaHome\\Views\\Checkout\\OrderSuccess.cshtml",
+              "ToolTip": "D:\\\u0110\u1ED3 \u00E1n t\u1ED1t nghi\u1EC7p PVH\\WebNoiThatHoaHome\\WebNoiThatHoaHome\\Views\\Checkout\\OrderSuccess.cshtml",
+              "RelativeToolTip": "WebNoiThatHoaHome\\Views\\Checkout\\OrderSuccess.cshtml",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAcAAABWAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
+              "WhenOpened": "2026-04-10T16:22:59.128Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 19,
+              "Title": "CartController.cs",
+              "DocumentMoniker": "D:\\\u0110\u1ED3 \u00E1n t\u1ED1t nghi\u1EC7p PVH\\WebNoiThatHoaHome\\WebNoiThatHoaHome\\Controllers\\CartController.cs",
+              "RelativeDocumentMoniker": "WebNoiThatHoaHome\\Controllers\\CartController.cs",
+              "ToolTip": "D:\\\u0110\u1ED3 \u00E1n t\u1ED1t nghi\u1EC7p PVH\\WebNoiThatHoaHome\\WebNoiThatHoaHome\\Controllers\\CartController.cs",
+              "RelativeToolTip": "WebNoiThatHoaHome\\Controllers\\CartController.cs",
+              "ViewState": "AgIAAGEAAAAAAAAAAAAgwJUAAAA0AAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-04-09T15:35:06.181Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 20,
+              "Title": "AccountController.cs",
+              "DocumentMoniker": "D:\\\u0110\u1ED3 \u00E1n t\u1ED1t nghi\u1EC7p PVH\\WebNoiThatHoaHome\\WebNoiThatHoaHome\\Controllers\\AccountController.cs",
+              "RelativeDocumentMoniker": "WebNoiThatHoaHome\\Controllers\\AccountController.cs",
+              "ToolTip": "D:\\\u0110\u1ED3 \u00E1n t\u1ED1t nghi\u1EC7p PVH\\WebNoiThatHoaHome\\WebNoiThatHoaHome\\Controllers\\AccountController.cs",
+              "RelativeToolTip": "WebNoiThatHoaHome\\Controllers\\AccountController.cs",
+              "ViewState": "AgIAABgBAAAAAAAAAAAAAAsBAAANAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-04-02T16:17:56.392Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 21,
+              "Title": "WishlistController.cs",
+              "DocumentMoniker": "D:\\\u0110\u1ED3 \u00E1n t\u1ED1t nghi\u1EC7p PVH\\WebNoiThatHoaHome\\WebNoiThatHoaHome\\Controllers\\WishlistController.cs",
+              "RelativeDocumentMoniker": "WebNoiThatHoaHome\\Controllers\\WishlistController.cs",
+              "ToolTip": "D:\\\u0110\u1ED3 \u00E1n t\u1ED1t nghi\u1EC7p PVH\\WebNoiThatHoaHome\\WebNoiThatHoaHome\\Controllers\\WishlistController.cs",
+              "RelativeToolTip": "WebNoiThatHoaHome\\Controllers\\WishlistController.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAqwDsAAAAxAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-04-08T15:11:46.159Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 22,
               "Title": "ServiceController.cs",
               "DocumentMoniker": "D:\\\u0110\u1ED3 \u00E1n t\u1ED1t nghi\u1EC7p PVH\\WebNoiThatHoaHome\\WebNoiThatHoaHome\\Controllers\\ServiceController.cs",
               "RelativeDocumentMoniker": "WebNoiThatHoaHome\\Controllers\\ServiceController.cs",
@@ -504,7 +621,121 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 15,
+              "DocumentIndex": 23,
+              "Title": "ProductController.cs",
+              "DocumentMoniker": "D:\\\u0110\u1ED3 \u00E1n t\u1ED1t nghi\u1EC7p PVH\\WebNoiThatHoaHome\\WebNoiThatHoaHome\\Controllers\\ProductController.cs",
+              "RelativeDocumentMoniker": "WebNoiThatHoaHome\\Controllers\\ProductController.cs",
+              "ToolTip": "D:\\\u0110\u1ED3 \u00E1n t\u1ED1t nghi\u1EC7p PVH\\WebNoiThatHoaHome\\WebNoiThatHoaHome\\Controllers\\ProductController.cs",
+              "RelativeToolTip": "WebNoiThatHoaHome\\Controllers\\ProductController.cs",
+              "ViewState": "AgIAABAAAAAAAAAAAAAgwA8AAABEAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-04-08T07:10:35.862Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 24,
+              "Title": "HomeController.cs",
+              "DocumentMoniker": "D:\\\u0110\u1ED3 \u00E1n t\u1ED1t nghi\u1EC7p PVH\\WebNoiThatHoaHome\\WebNoiThatHoaHome\\Controllers\\HomeController.cs",
+              "RelativeDocumentMoniker": "WebNoiThatHoaHome\\Controllers\\HomeController.cs",
+              "ToolTip": "D:\\\u0110\u1ED3 \u00E1n t\u1ED1t nghi\u1EC7p PVH\\WebNoiThatHoaHome\\WebNoiThatHoaHome\\Controllers\\HomeController.cs",
+              "RelativeToolTip": "WebNoiThatHoaHome\\Controllers\\HomeController.cs",
+              "ViewState": "AgIAAB4AAAAAAAAAAAAowBgAAAAxAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-04-07T17:52:30.654Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 25,
+              "Title": "AppointmentController.cs",
+              "DocumentMoniker": "D:\\\u0110\u1ED3 \u00E1n t\u1ED1t nghi\u1EC7p PVH\\WebNoiThatHoaHome\\WebNoiThatHoaHome\\Controllers\\AppointmentController.cs",
+              "RelativeDocumentMoniker": "WebNoiThatHoaHome\\Controllers\\AppointmentController.cs",
+              "ToolTip": "D:\\\u0110\u1ED3 \u00E1n t\u1ED1t nghi\u1EC7p PVH\\WebNoiThatHoaHome\\WebNoiThatHoaHome\\Controllers\\AppointmentController.cs",
+              "RelativeToolTip": "WebNoiThatHoaHome\\Controllers\\AppointmentController.cs",
+              "ViewState": "AgIAAEgAAAAAAAAAAAAcwGYAAAA0AAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-04-14T18:10:05.007Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 26,
+              "Title": "Details.cshtml",
+              "DocumentMoniker": "D:\\\u0110\u1ED3 \u00E1n t\u1ED1t nghi\u1EC7p PVH\\WebNoiThatHoaHome\\WebNoiThatHoaHome\\Views\\Service\\Details.cshtml",
+              "RelativeDocumentMoniker": "WebNoiThatHoaHome\\Views\\Service\\Details.cshtml",
+              "ToolTip": "D:\\\u0110\u1ED3 \u00E1n t\u1ED1t nghi\u1EC7p PVH\\WebNoiThatHoaHome\\WebNoiThatHoaHome\\Views\\Service\\Details.cshtml",
+              "RelativeToolTip": "WebNoiThatHoaHome\\Views\\Service\\Details.cshtml",
+              "ViewState": "AgIAAD8AAAAAAAAAAAAAAGAAAAAGAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
+              "WhenOpened": "2026-04-14T17:27:35.272Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 27,
+              "Title": "Index.cshtml",
+              "DocumentMoniker": "D:\\\u0110\u1ED3 \u00E1n t\u1ED1t nghi\u1EC7p PVH\\WebNoiThatHoaHome\\WebNoiThatHoaHome\\Views\\Home\\Index.cshtml",
+              "RelativeDocumentMoniker": "WebNoiThatHoaHome\\Views\\Home\\Index.cshtml",
+              "ToolTip": "D:\\\u0110\u1ED3 \u00E1n t\u1ED1t nghi\u1EC7p PVH\\WebNoiThatHoaHome\\WebNoiThatHoaHome\\Views\\Home\\Index.cshtml",
+              "RelativeToolTip": "WebNoiThatHoaHome\\Views\\Home\\Index.cshtml",
+              "ViewState": "AgIAADMAAAAAAAAAAAAAAA8AAAAxAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
+              "WhenOpened": "2026-04-02T17:02:33.982Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 28,
+              "Title": "Login.cshtml",
+              "DocumentMoniker": "D:\\\u0110\u1ED3 \u00E1n t\u1ED1t nghi\u1EC7p PVH\\WebNoiThatHoaHome\\WebNoiThatHoaHome\\Views\\Account\\Login.cshtml",
+              "RelativeDocumentMoniker": "WebNoiThatHoaHome\\Views\\Account\\Login.cshtml",
+              "ToolTip": "D:\\\u0110\u1ED3 \u00E1n t\u1ED1t nghi\u1EC7p PVH\\WebNoiThatHoaHome\\WebNoiThatHoaHome\\Views\\Account\\Login.cshtml",
+              "RelativeToolTip": "WebNoiThatHoaHome\\Views\\Account\\Login.cshtml",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAACEAAAAZAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
+              "WhenOpened": "2026-04-02T16:22:10.104Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 30,
+              "Title": "Wishlist.cshtml",
+              "DocumentMoniker": "D:\\\u0110\u1ED3 \u00E1n t\u1ED1t nghi\u1EC7p PVH\\WebNoiThatHoaHome\\WebNoiThatHoaHome\\Views\\Account\\Wishlist.cshtml",
+              "RelativeDocumentMoniker": "WebNoiThatHoaHome\\Views\\Account\\Wishlist.cshtml",
+              "ToolTip": "D:\\\u0110\u1ED3 \u00E1n t\u1ED1t nghi\u1EC7p PVH\\WebNoiThatHoaHome\\WebNoiThatHoaHome\\Views\\Account\\Wishlist.cshtml",
+              "RelativeToolTip": "WebNoiThatHoaHome\\Views\\Account\\Wishlist.cshtml",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAABEAAAAOAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
+              "WhenOpened": "2026-04-10T17:32:22.67Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 29,
+              "Title": "Trash.cshtml",
+              "DocumentMoniker": "D:\\\u0110\u1ED3 \u00E1n t\u1ED1t nghi\u1EC7p PVH\\WebNoiThatHoaHome\\WebNoiThatHoaHome\\Areas\\Admin\\Views\\Appointment\\Trash.cshtml",
+              "RelativeDocumentMoniker": "WebNoiThatHoaHome\\Areas\\Admin\\Views\\Appointment\\Trash.cshtml",
+              "ToolTip": "D:\\\u0110\u1ED3 \u00E1n t\u1ED1t nghi\u1EC7p PVH\\WebNoiThatHoaHome\\WebNoiThatHoaHome\\Areas\\Admin\\Views\\Appointment\\Trash.cshtml",
+              "RelativeToolTip": "WebNoiThatHoaHome\\Areas\\Admin\\Views\\Appointment\\Trash.cshtml",
+              "ViewState": "AgIAAAkAAAAAAAAAAAAcwGUAAAAoAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
+              "WhenOpened": "2026-04-14T19:16:31.633Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 31,
+              "Title": "Register.cshtml",
+              "DocumentMoniker": "D:\\\u0110\u1ED3 \u00E1n t\u1ED1t nghi\u1EC7p PVH\\WebNoiThatHoaHome\\WebNoiThatHoaHome\\Views\\Account\\Register.cshtml",
+              "RelativeDocumentMoniker": "WebNoiThatHoaHome\\Views\\Account\\Register.cshtml",
+              "ToolTip": "D:\\\u0110\u1ED3 \u00E1n t\u1ED1t nghi\u1EC7p PVH\\WebNoiThatHoaHome\\WebNoiThatHoaHome\\Views\\Account\\Register.cshtml",
+              "RelativeToolTip": "WebNoiThatHoaHome\\Views\\Account\\Register.cshtml",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAACsAAAAZAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
+              "WhenOpened": "2026-04-02T16:22:39.166Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 32,
               "Title": "ProductController.cs",
               "DocumentMoniker": "D:\\\u0110\u1ED3 \u00E1n t\u1ED1t nghi\u1EC7p PVH\\WebNoiThatHoaHome\\WebNoiThatHoaHome\\Areas\\Admin\\Controllers\\ProductController.cs",
               "RelativeDocumentMoniker": "WebNoiThatHoaHome\\Areas\\Admin\\Controllers\\ProductController.cs",
@@ -512,25 +743,11 @@
               "RelativeToolTip": "WebNoiThatHoaHome\\Areas\\Admin\\Controllers\\ProductController.cs",
               "ViewState": "AgIAACcAAAAAAAAAAAAowEYAAAAUAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-04-07T14:24:59.623Z",
-              "EditorCaption": ""
+              "WhenOpened": "2026-04-07T14:24:59.623Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 17,
-              "Title": "Details.cshtml",
-              "DocumentMoniker": "D:\\\u0110\u1ED3 \u00E1n t\u1ED1t nghi\u1EC7p PVH\\WebNoiThatHoaHome\\WebNoiThatHoaHome\\Views\\Service\\Details.cshtml",
-              "RelativeDocumentMoniker": "WebNoiThatHoaHome\\Views\\Service\\Details.cshtml",
-              "ToolTip": "D:\\\u0110\u1ED3 \u00E1n t\u1ED1t nghi\u1EC7p PVH\\WebNoiThatHoaHome\\WebNoiThatHoaHome\\Views\\Service\\Details.cshtml",
-              "RelativeToolTip": "WebNoiThatHoaHome\\Views\\Service\\Details.cshtml",
-              "ViewState": "AgIAACEAAAAAAAAAAAAAAEoAAAASAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
-              "WhenOpened": "2026-04-14T17:27:35.272Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 18,
+              "DocumentIndex": 34,
               "Title": "EmployeeController.cs",
               "DocumentMoniker": "D:\\\u0110\u1ED3 \u00E1n t\u1ED1t nghi\u1EC7p PVH\\WebNoiThatHoaHome\\WebNoiThatHoaHome\\Areas\\Admin\\Controllers\\EmployeeController.cs",
               "RelativeDocumentMoniker": "WebNoiThatHoaHome\\Areas\\Admin\\Controllers\\EmployeeController.cs",
@@ -538,12 +755,11 @@
               "RelativeToolTip": "WebNoiThatHoaHome\\Areas\\Admin\\Controllers\\EmployeeController.cs",
               "ViewState": "AgIAAD8AAAAAAAAAAAAcwGwAAAAJAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-04-14T15:55:36.63Z",
-              "EditorCaption": ""
+              "WhenOpened": "2026-04-14T15:55:36.63Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 16,
+              "DocumentIndex": 33,
               "Title": "Index.cshtml",
               "DocumentMoniker": "D:\\\u0110\u1ED3 \u00E1n t\u1ED1t nghi\u1EC7p PVH\\WebNoiThatHoaHome\\WebNoiThatHoaHome\\Areas\\Admin\\Views\\Product\\Index.cshtml",
               "RelativeDocumentMoniker": "WebNoiThatHoaHome\\Areas\\Admin\\Views\\Product\\Index.cshtml",
@@ -551,25 +767,11 @@
               "RelativeToolTip": "WebNoiThatHoaHome\\Areas\\Admin\\Views\\Product\\Index.cshtml",
               "ViewState": "AgIAAJEAAAAAAAAAAAAcwLIAAAAdAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
-              "WhenOpened": "2026-04-07T14:27:39.53Z",
-              "EditorCaption": ""
+              "WhenOpened": "2026-04-07T14:27:39.53Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 14,
-              "Title": "_Layout.cshtml",
-              "DocumentMoniker": "D:\\\u0110\u1ED3 \u00E1n t\u1ED1t nghi\u1EC7p PVH\\WebNoiThatHoaHome\\WebNoiThatHoaHome\\Areas\\Admin\\Views\\Shared\\_Layout.cshtml",
-              "RelativeDocumentMoniker": "WebNoiThatHoaHome\\Areas\\Admin\\Views\\Shared\\_Layout.cshtml",
-              "ToolTip": "D:\\\u0110\u1ED3 \u00E1n t\u1ED1t nghi\u1EC7p PVH\\WebNoiThatHoaHome\\WebNoiThatHoaHome\\Areas\\Admin\\Views\\Shared\\_Layout.cshtml",
-              "RelativeToolTip": "WebNoiThatHoaHome\\Areas\\Admin\\Views\\Shared\\_Layout.cshtml",
-              "ViewState": "AgIAAFEAAAAAAAAAAAAAAGAAAABFAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
-              "WhenOpened": "2026-04-02T14:14:20.377Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 19,
+              "DocumentIndex": 35,
               "Title": "Edit.cshtml",
               "DocumentMoniker": "D:\\\u0110\u1ED3 \u00E1n t\u1ED1t nghi\u1EC7p PVH\\WebNoiThatHoaHome\\WebNoiThatHoaHome\\Areas\\Admin\\Views\\Employee\\Edit.cshtml",
               "RelativeDocumentMoniker": "WebNoiThatHoaHome\\Areas\\Admin\\Views\\Employee\\Edit.cshtml",
@@ -577,12 +779,11 @@
               "RelativeToolTip": "WebNoiThatHoaHome\\Areas\\Admin\\Views\\Employee\\Edit.cshtml",
               "ViewState": "AgIAAAQAAAAAAAAAAAAUwCQAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
-              "WhenOpened": "2026-04-14T16:41:34.543Z",
-              "EditorCaption": ""
+              "WhenOpened": "2026-04-14T16:41:34.543Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 20,
+              "DocumentIndex": 36,
               "Title": "Create.cshtml",
               "DocumentMoniker": "D:\\\u0110\u1ED3 \u00E1n t\u1ED1t nghi\u1EC7p PVH\\WebNoiThatHoaHome\\WebNoiThatHoaHome\\Areas\\Admin\\Views\\Employee\\Create.cshtml",
               "RelativeDocumentMoniker": "WebNoiThatHoaHome\\Areas\\Admin\\Views\\Employee\\Create.cshtml",
@@ -590,12 +791,11 @@
               "RelativeToolTip": "WebNoiThatHoaHome\\Areas\\Admin\\Views\\Employee\\Create.cshtml",
               "ViewState": "AgIAAA0AAAAAAAAAAAAUwCYAAAAeAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
-              "WhenOpened": "2026-04-14T15:59:05.467Z",
-              "EditorCaption": ""
+              "WhenOpened": "2026-04-14T15:59:05.467Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 21,
+              "DocumentIndex": 37,
               "Title": "Index.cshtml",
               "DocumentMoniker": "D:\\\u0110\u1ED3 \u00E1n t\u1ED1t nghi\u1EC7p PVH\\WebNoiThatHoaHome\\WebNoiThatHoaHome\\Areas\\Admin\\Views\\Employee\\Index.cshtml",
               "RelativeDocumentMoniker": "WebNoiThatHoaHome\\Areas\\Admin\\Views\\Employee\\Index.cshtml",
@@ -603,37 +803,11 @@
               "RelativeToolTip": "WebNoiThatHoaHome\\Areas\\Admin\\Views\\Employee\\Index.cshtml",
               "ViewState": "AgIAADwAAAAAAAAAAAAcwFUAAAAhAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
-              "WhenOpened": "2026-04-14T16:08:58.571Z",
-              "EditorCaption": ""
+              "WhenOpened": "2026-04-14T16:08:58.571Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 26,
-              "Title": "OrderController.cs",
-              "DocumentMoniker": "D:\\\u0110\u1ED3 \u00E1n t\u1ED1t nghi\u1EC7p PVH\\WebNoiThatHoaHome\\WebNoiThatHoaHome\\Areas\\Admin\\Controllers\\OrderController.cs",
-              "RelativeDocumentMoniker": "WebNoiThatHoaHome\\Areas\\Admin\\Controllers\\OrderController.cs",
-              "ToolTip": "D:\\\u0110\u1ED3 \u00E1n t\u1ED1t nghi\u1EC7p PVH\\WebNoiThatHoaHome\\WebNoiThatHoaHome\\Areas\\Admin\\Controllers\\OrderController.cs",
-              "RelativeToolTip": "WebNoiThatHoaHome\\Areas\\Admin\\Controllers\\OrderController.cs",
-              "ViewState": "AgIAAEgAAAAAAAAAAAAowGAAAAAWAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-04-10T16:38:23.737Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 28,
-              "Title": "Details.cshtml",
-              "DocumentMoniker": "D:\\\u0110\u1ED3 \u00E1n t\u1ED1t nghi\u1EC7p PVH\\WebNoiThatHoaHome\\WebNoiThatHoaHome\\Areas\\Admin\\Views\\Order\\Details.cshtml",
-              "RelativeDocumentMoniker": "WebNoiThatHoaHome\\Areas\\Admin\\Views\\Order\\Details.cshtml",
-              "ToolTip": "D:\\\u0110\u1ED3 \u00E1n t\u1ED1t nghi\u1EC7p PVH\\WebNoiThatHoaHome\\WebNoiThatHoaHome\\Areas\\Admin\\Views\\Order\\Details.cshtml",
-              "RelativeToolTip": "WebNoiThatHoaHome\\Areas\\Admin\\Views\\Order\\Details.cshtml",
-              "ViewState": "AgIAAE4AAAAAAAAAAAAUwJIAAAABAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
-              "WhenOpened": "2026-04-10T16:40:47.195Z"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 25,
+              "DocumentIndex": 41,
               "Title": "User.cs",
               "DocumentMoniker": "D:\\\u0110\u1ED3 \u00E1n t\u1ED1t nghi\u1EC7p PVH\\WebNoiThatHoaHome\\WebNoiThatHoaHome\\Models\\User.cs",
               "RelativeDocumentMoniker": "WebNoiThatHoaHome\\Models\\User.cs",
@@ -641,12 +815,11 @@
               "RelativeToolTip": "WebNoiThatHoaHome\\Models\\User.cs",
               "ViewState": "AgIAAAYAAAAAAAAAAAAmwBYAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-04-06T16:43:50.751Z",
-              "EditorCaption": ""
+              "WhenOpened": "2026-04-06T16:43:50.751Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 22,
+              "DocumentIndex": 38,
               "Title": "UserController.cs",
               "DocumentMoniker": "D:\\\u0110\u1ED3 \u00E1n t\u1ED1t nghi\u1EC7p PVH\\WebNoiThatHoaHome\\WebNoiThatHoaHome\\Areas\\Admin\\Controllers\\UserController.cs",
               "RelativeDocumentMoniker": "WebNoiThatHoaHome\\Areas\\Admin\\Controllers\\UserController.cs",
@@ -654,12 +827,11 @@
               "RelativeToolTip": "WebNoiThatHoaHome\\Areas\\Admin\\Controllers\\UserController.cs",
               "ViewState": "AgIAABAAAAAAAAAAAAAgwDAAAAAwAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-04-06T10:49:33.175Z",
-              "EditorCaption": ""
+              "WhenOpened": "2026-04-06T10:49:33.175Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 24,
+              "DocumentIndex": 40,
               "Title": "HomeController.cs",
               "DocumentMoniker": "D:\\\u0110\u1ED3 \u00E1n t\u1ED1t nghi\u1EC7p PVH\\WebNoiThatHoaHome\\WebNoiThatHoaHome\\Areas\\Admin\\Controllers\\HomeController.cs",
               "RelativeDocumentMoniker": "WebNoiThatHoaHome\\Areas\\Admin\\Controllers\\HomeController.cs",
@@ -667,12 +839,11 @@
               "RelativeToolTip": "WebNoiThatHoaHome\\Areas\\Admin\\Controllers\\HomeController.cs",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAABoAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-04-02T15:43:44.482Z",
-              "EditorCaption": ""
+              "WhenOpened": "2026-04-02T15:43:44.482Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 23,
+              "DocumentIndex": 39,
               "Title": "Index.cshtml",
               "DocumentMoniker": "D:\\\u0110\u1ED3 \u00E1n t\u1ED1t nghi\u1EC7p PVH\\WebNoiThatHoaHome\\WebNoiThatHoaHome\\Areas\\Admin\\Views\\User\\Index.cshtml",
               "RelativeDocumentMoniker": "WebNoiThatHoaHome\\Areas\\Admin\\Views\\User\\Index.cshtml",
@@ -680,24 +851,11 @@
               "RelativeToolTip": "WebNoiThatHoaHome\\Areas\\Admin\\Views\\User\\Index.cshtml",
               "ViewState": "AgIAALMAAAAAAAAAAAAcwNcAAAABAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
-              "WhenOpened": "2026-04-06T10:51:23.806Z",
-              "EditorCaption": ""
+              "WhenOpened": "2026-04-06T10:51:23.806Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 29,
-              "Title": "Index.cshtml",
-              "DocumentMoniker": "D:\\\u0110\u1ED3 \u00E1n t\u1ED1t nghi\u1EC7p PVH\\WebNoiThatHoaHome\\WebNoiThatHoaHome\\Areas\\Admin\\Views\\Order\\Index.cshtml",
-              "RelativeDocumentMoniker": "WebNoiThatHoaHome\\Areas\\Admin\\Views\\Order\\Index.cshtml",
-              "ToolTip": "D:\\\u0110\u1ED3 \u00E1n t\u1ED1t nghi\u1EC7p PVH\\WebNoiThatHoaHome\\WebNoiThatHoaHome\\Areas\\Admin\\Views\\Order\\Index.cshtml",
-              "RelativeToolTip": "WebNoiThatHoaHome\\Areas\\Admin\\Views\\Order\\Index.cshtml",
-              "ViewState": "AgIAAEgAAAAAAAAAAAAAAGcAAAA2AAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
-              "WhenOpened": "2026-04-10T16:39:43.796Z"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 30,
+              "DocumentIndex": 43,
               "Title": "Trash.cshtml",
               "DocumentMoniker": "D:\\\u0110\u1ED3 \u00E1n t\u1ED1t nghi\u1EC7p PVH\\WebNoiThatHoaHome\\WebNoiThatHoaHome\\Areas\\Admin\\Views\\Product\\Trash.cshtml",
               "RelativeDocumentMoniker": "WebNoiThatHoaHome\\Areas\\Admin\\Views\\Product\\Trash.cshtml",
@@ -709,7 +867,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 27,
+              "DocumentIndex": 42,
               "Title": "ServiceTypeController.cs",
               "DocumentMoniker": "D:\\\u0110\u1ED3 \u00E1n t\u1ED1t nghi\u1EC7p PVH\\WebNoiThatHoaHome\\WebNoiThatHoaHome\\Areas\\Admin\\Controllers\\ServiceTypeController.cs",
               "RelativeDocumentMoniker": "WebNoiThatHoaHome\\Areas\\Admin\\Controllers\\ServiceTypeController.cs",
@@ -717,12 +875,11 @@
               "RelativeToolTip": "WebNoiThatHoaHome\\Areas\\Admin\\Controllers\\ServiceTypeController.cs",
               "ViewState": "AgIAACEAAAAAAAAAAAAowFwAAAAJAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-04-13T17:02:41.893Z",
-              "EditorCaption": ""
+              "WhenOpened": "2026-04-13T17:02:41.893Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 33,
+              "DocumentIndex": 45,
               "Title": "Create.cshtml",
               "DocumentMoniker": "D:\\\u0110\u1ED3 \u00E1n t\u1ED1t nghi\u1EC7p PVH\\WebNoiThatHoaHome\\WebNoiThatHoaHome\\Areas\\Admin\\Views\\Category\\Create.cshtml",
               "RelativeDocumentMoniker": "WebNoiThatHoaHome\\Areas\\Admin\\Views\\Category\\Create.cshtml",
@@ -734,7 +891,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 32,
+              "DocumentIndex": 44,
               "Title": "Trash.cshtml",
               "DocumentMoniker": "D:\\\u0110\u1ED3 \u00E1n t\u1ED1t nghi\u1EC7p PVH\\WebNoiThatHoaHome\\WebNoiThatHoaHome\\Areas\\Admin\\Views\\Category\\Trash.cshtml",
               "RelativeDocumentMoniker": "WebNoiThatHoaHome\\Areas\\Admin\\Views\\Category\\Trash.cshtml",
@@ -746,19 +903,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 31,
-              "Title": "CategoryController.cs",
-              "DocumentMoniker": "D:\\\u0110\u1ED3 \u00E1n t\u1ED1t nghi\u1EC7p PVH\\WebNoiThatHoaHome\\WebNoiThatHoaHome\\Areas\\Admin\\Controllers\\CategoryController.cs",
-              "RelativeDocumentMoniker": "WebNoiThatHoaHome\\Areas\\Admin\\Controllers\\CategoryController.cs",
-              "ToolTip": "D:\\\u0110\u1ED3 \u00E1n t\u1ED1t nghi\u1EC7p PVH\\WebNoiThatHoaHome\\WebNoiThatHoaHome\\Areas\\Admin\\Controllers\\CategoryController.cs",
-              "RelativeToolTip": "WebNoiThatHoaHome\\Areas\\Admin\\Controllers\\CategoryController.cs",
-              "ViewState": "AgIAABcAAAAAAAAAAAAqwC8AAAASAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-04-07T17:12:21.255Z"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 34,
+              "DocumentIndex": 46,
               "Title": "Index.cshtml",
               "DocumentMoniker": "D:\\\u0110\u1ED3 \u00E1n t\u1ED1t nghi\u1EC7p PVH\\WebNoiThatHoaHome\\WebNoiThatHoaHome\\Areas\\Admin\\Views\\Category\\Index.cshtml",
               "RelativeDocumentMoniker": "WebNoiThatHoaHome\\Areas\\Admin\\Views\\Category\\Index.cshtml",
@@ -770,7 +915,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 35,
+              "DocumentIndex": 47,
               "Title": "Details.cshtml",
               "DocumentMoniker": "D:\\\u0110\u1ED3 \u00E1n t\u1ED1t nghi\u1EC7p PVH\\WebNoiThatHoaHome\\WebNoiThatHoaHome\\Areas\\Admin\\Views\\User\\Details.cshtml",
               "RelativeDocumentMoniker": "WebNoiThatHoaHome\\Areas\\Admin\\Views\\User\\Details.cshtml",
@@ -782,7 +927,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 36,
+              "DocumentIndex": 48,
               "Title": "Index.cshtml",
               "DocumentMoniker": "D:\\\u0110\u1ED3 \u00E1n t\u1ED1t nghi\u1EC7p PVH\\WebNoiThatHoaHome\\WebNoiThatHoaHome\\Areas\\Admin\\Views\\ServiceType\\Index.cshtml",
               "RelativeDocumentMoniker": "WebNoiThatHoaHome\\Areas\\Admin\\Views\\ServiceType\\Index.cshtml",
@@ -794,7 +939,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 37,
+              "DocumentIndex": 49,
               "Title": "Create.cshtml",
               "DocumentMoniker": "D:\\\u0110\u1ED3 \u00E1n t\u1ED1t nghi\u1EC7p PVH\\WebNoiThatHoaHome\\WebNoiThatHoaHome\\Areas\\Admin\\Views\\User\\Create.cshtml",
               "RelativeDocumentMoniker": "WebNoiThatHoaHome\\Areas\\Admin\\Views\\User\\Create.cshtml",
@@ -806,7 +951,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 38,
+              "DocumentIndex": 50,
               "Title": "Index.cshtml",
               "DocumentMoniker": "D:\\\u0110\u1ED3 \u00E1n t\u1ED1t nghi\u1EC7p PVH\\WebNoiThatHoaHome\\WebNoiThatHoaHome\\Areas\\Admin\\Views\\Home\\Index.cshtml",
               "RelativeDocumentMoniker": "WebNoiThatHoaHome\\Areas\\Admin\\Views\\Home\\Index.cshtml",
@@ -818,7 +963,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 39,
+              "DocumentIndex": 51,
               "Title": "Trash.cshtml",
               "DocumentMoniker": "D:\\\u0110\u1ED3 \u00E1n t\u1ED1t nghi\u1EC7p PVH\\WebNoiThatHoaHome\\WebNoiThatHoaHome\\Areas\\Admin\\Views\\ServiceType\\Trash.cshtml",
               "RelativeDocumentMoniker": "WebNoiThatHoaHome\\Areas\\Admin\\Views\\ServiceType\\Trash.cshtml",
@@ -830,55 +975,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 42,
-              "Title": "Program.cs",
-              "DocumentMoniker": "D:\\\u0110\u1ED3 \u00E1n t\u1ED1t nghi\u1EC7p PVH\\WebNoiThatHoaHome\\WebNoiThatHoaHome\\Program.cs",
-              "RelativeDocumentMoniker": "WebNoiThatHoaHome\\Program.cs",
-              "ToolTip": "D:\\\u0110\u1ED3 \u00E1n t\u1ED1t nghi\u1EC7p PVH\\WebNoiThatHoaHome\\WebNoiThatHoaHome\\Program.cs",
-              "RelativeToolTip": "WebNoiThatHoaHome\\Program.cs",
-              "ViewState": "AgIAAAoAAAAAAAAAAAAcwCkAAABFAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-04-02T14:15:48.474Z"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 44,
-              "Title": "Index.cshtml",
-              "DocumentMoniker": "D:\\\u0110\u1ED3 \u00E1n t\u1ED1t nghi\u1EC7p PVH\\WebNoiThatHoaHome\\WebNoiThatHoaHome\\Views\\Home\\Index.cshtml",
-              "RelativeDocumentMoniker": "WebNoiThatHoaHome\\Views\\Home\\Index.cshtml",
-              "ToolTip": "D:\\\u0110\u1ED3 \u00E1n t\u1ED1t nghi\u1EC7p PVH\\WebNoiThatHoaHome\\WebNoiThatHoaHome\\Views\\Home\\Index.cshtml",
-              "RelativeToolTip": "WebNoiThatHoaHome\\Views\\Home\\Index.cshtml",
-              "ViewState": "AgIAABsAAAAAAAAAAAAAAA8AAAAxAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
-              "WhenOpened": "2026-04-02T17:02:33.982Z"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 46,
-              "Title": "ProductController.cs",
-              "DocumentMoniker": "D:\\\u0110\u1ED3 \u00E1n t\u1ED1t nghi\u1EC7p PVH\\WebNoiThatHoaHome\\WebNoiThatHoaHome\\Controllers\\ProductController.cs",
-              "RelativeDocumentMoniker": "WebNoiThatHoaHome\\Controllers\\ProductController.cs",
-              "ToolTip": "D:\\\u0110\u1ED3 \u00E1n t\u1ED1t nghi\u1EC7p PVH\\WebNoiThatHoaHome\\WebNoiThatHoaHome\\Controllers\\ProductController.cs",
-              "RelativeToolTip": "WebNoiThatHoaHome\\Controllers\\ProductController.cs",
-              "ViewState": "AgIAABAAAAAAAAAAAAAgwA8AAABEAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-04-08T07:10:35.862Z"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 41,
-              "Title": "CartController.cs",
-              "DocumentMoniker": "D:\\\u0110\u1ED3 \u00E1n t\u1ED1t nghi\u1EC7p PVH\\WebNoiThatHoaHome\\WebNoiThatHoaHome\\Controllers\\CartController.cs",
-              "RelativeDocumentMoniker": "WebNoiThatHoaHome\\Controllers\\CartController.cs",
-              "ToolTip": "D:\\\u0110\u1ED3 \u00E1n t\u1ED1t nghi\u1EC7p PVH\\WebNoiThatHoaHome\\WebNoiThatHoaHome\\Controllers\\CartController.cs",
-              "RelativeToolTip": "WebNoiThatHoaHome\\Controllers\\CartController.cs",
-              "ViewState": "AgIAAHoAAAAAAAAAAAAwwJUAAAA0AAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-04-09T15:35:06.181Z"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 40,
+              "DocumentIndex": 52,
               "Title": "Index.cshtml",
               "DocumentMoniker": "D:\\\u0110\u1ED3 \u00E1n t\u1ED1t nghi\u1EC7p PVH\\WebNoiThatHoaHome\\WebNoiThatHoaHome\\Views\\Cart\\Index.cshtml",
               "RelativeDocumentMoniker": "WebNoiThatHoaHome\\Views\\Cart\\Index.cshtml",
@@ -890,55 +987,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 47,
-              "Title": "HomeController.cs",
-              "DocumentMoniker": "D:\\\u0110\u1ED3 \u00E1n t\u1ED1t nghi\u1EC7p PVH\\WebNoiThatHoaHome\\WebNoiThatHoaHome\\Controllers\\HomeController.cs",
-              "RelativeDocumentMoniker": "WebNoiThatHoaHome\\Controllers\\HomeController.cs",
-              "ToolTip": "D:\\\u0110\u1ED3 \u00E1n t\u1ED1t nghi\u1EC7p PVH\\WebNoiThatHoaHome\\WebNoiThatHoaHome\\Controllers\\HomeController.cs",
-              "RelativeToolTip": "WebNoiThatHoaHome\\Controllers\\HomeController.cs",
-              "ViewState": "AgIAAB4AAAAAAAAAAAAowBgAAAAxAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-04-07T17:52:30.654Z"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 48,
-              "Title": "CheckoutController.cs",
-              "DocumentMoniker": "D:\\\u0110\u1ED3 \u00E1n t\u1ED1t nghi\u1EC7p PVH\\WebNoiThatHoaHome\\WebNoiThatHoaHome\\Controllers\\CheckoutController.cs",
-              "RelativeDocumentMoniker": "WebNoiThatHoaHome\\Controllers\\CheckoutController.cs",
-              "ToolTip": "D:\\\u0110\u1ED3 \u00E1n t\u1ED1t nghi\u1EC7p PVH\\WebNoiThatHoaHome\\WebNoiThatHoaHome\\Controllers\\CheckoutController.cs",
-              "RelativeToolTip": "WebNoiThatHoaHome\\Controllers\\CheckoutController.cs",
-              "ViewState": "AgIAAEUAAAAAAAAAAAAqwKgAAAAVAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-04-10T15:52:21.315Z"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 43,
-              "Title": "OrderHub.cs",
-              "DocumentMoniker": "D:\\\u0110\u1ED3 \u00E1n t\u1ED1t nghi\u1EC7p PVH\\WebNoiThatHoaHome\\WebNoiThatHoaHome\\Hubs\\OrderHub.cs",
-              "RelativeDocumentMoniker": "WebNoiThatHoaHome\\Hubs\\OrderHub.cs",
-              "ToolTip": "D:\\\u0110\u1ED3 \u00E1n t\u1ED1t nghi\u1EC7p PVH\\WebNoiThatHoaHome\\WebNoiThatHoaHome\\Hubs\\OrderHub.cs",
-              "RelativeToolTip": "WebNoiThatHoaHome\\Hubs\\OrderHub.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAgAAAABAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-04-13T16:13:49.205Z"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 45,
-              "Title": "WishlistController.cs",
-              "DocumentMoniker": "D:\\\u0110\u1ED3 \u00E1n t\u1ED1t nghi\u1EC7p PVH\\WebNoiThatHoaHome\\WebNoiThatHoaHome\\Controllers\\WishlistController.cs",
-              "RelativeDocumentMoniker": "WebNoiThatHoaHome\\Controllers\\WishlistController.cs",
-              "ToolTip": "D:\\\u0110\u1ED3 \u00E1n t\u1ED1t nghi\u1EC7p PVH\\WebNoiThatHoaHome\\WebNoiThatHoaHome\\Controllers\\WishlistController.cs",
-              "RelativeToolTip": "WebNoiThatHoaHome\\Controllers\\WishlistController.cs",
-              "ViewState": "AgIAAAsAAAAAAAAAAAAQwDsAAAAxAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-04-08T15:11:46.159Z"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 49,
+              "DocumentIndex": 53,
               "Title": "UserDetailViewModel.cs",
               "DocumentMoniker": "D:\\\u0110\u1ED3 \u00E1n t\u1ED1t nghi\u1EC7p PVH\\WebNoiThatHoaHome\\WebNoiThatHoaHome\\Models\\UserDetailViewModel.cs",
               "RelativeDocumentMoniker": "WebNoiThatHoaHome\\Models\\UserDetailViewModel.cs",
@@ -950,7 +999,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 50,
+              "DocumentIndex": 54,
               "Title": "CategoryViewModel.cs",
               "DocumentMoniker": "D:\\\u0110\u1ED3 \u00E1n t\u1ED1t nghi\u1EC7p PVH\\WebNoiThatHoaHome\\WebNoiThatHoaHome\\Models\\CategoryViewModel.cs",
               "RelativeDocumentMoniker": "WebNoiThatHoaHome\\Models\\CategoryViewModel.cs",
@@ -962,7 +1011,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 51,
+              "DocumentIndex": 55,
               "Title": "AdminDashboardViewModel.cs",
               "DocumentMoniker": "D:\\\u0110\u1ED3 \u00E1n t\u1ED1t nghi\u1EC7p PVH\\WebNoiThatHoaHome\\WebNoiThatHoaHome\\Models\\AdminDashboardViewModel.cs",
               "RelativeDocumentMoniker": "WebNoiThatHoaHome\\Models\\AdminDashboardViewModel.cs",
@@ -974,7 +1023,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 52,
+              "DocumentIndex": 56,
               "Title": "AccountViewModels.cs",
               "DocumentMoniker": "D:\\\u0110\u1ED3 \u00E1n t\u1ED1t nghi\u1EC7p PVH\\WebNoiThatHoaHome\\WebNoiThatHoaHome\\Models\\AccountViewModels.cs",
               "RelativeDocumentMoniker": "WebNoiThatHoaHome\\Models\\AccountViewModels.cs",
@@ -986,7 +1035,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 53,
+              "DocumentIndex": 57,
               "Title": "UserCreateViewModel.cs",
               "DocumentMoniker": "D:\\\u0110\u1ED3 \u00E1n t\u1ED1t nghi\u1EC7p PVH\\WebNoiThatHoaHome\\WebNoiThatHoaHome\\Models\\UserCreateViewModel.cs",
               "RelativeDocumentMoniker": "WebNoiThatHoaHome\\Models\\UserCreateViewModel.cs",
@@ -998,7 +1047,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 54,
+              "DocumentIndex": 58,
               "Title": "Wishlist.cs",
               "DocumentMoniker": "D:\\\u0110\u1ED3 \u00E1n t\u1ED1t nghi\u1EC7p PVH\\WebNoiThatHoaHome\\WebNoiThatHoaHome\\Models\\Wishlist.cs",
               "RelativeDocumentMoniker": "WebNoiThatHoaHome\\Models\\Wishlist.cs",
@@ -1010,7 +1059,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 55,
+              "DocumentIndex": 59,
               "Title": "ProductListViewModel.cs",
               "DocumentMoniker": "D:\\\u0110\u1ED3 \u00E1n t\u1ED1t nghi\u1EC7p PVH\\WebNoiThatHoaHome\\WebNoiThatHoaHome\\Models\\ProductListViewModel.cs",
               "RelativeDocumentMoniker": "WebNoiThatHoaHome\\Models\\ProductListViewModel.cs",
@@ -1022,31 +1071,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 56,
-              "Title": "ProductEditViewModel.cs",
-              "DocumentMoniker": "D:\\\u0110\u1ED3 \u00E1n t\u1ED1t nghi\u1EC7p PVH\\WebNoiThatHoaHome\\WebNoiThatHoaHome\\Models\\ProductEditViewModel.cs",
-              "RelativeDocumentMoniker": "WebNoiThatHoaHome\\Models\\ProductEditViewModel.cs",
-              "ToolTip": "D:\\\u0110\u1ED3 \u00E1n t\u1ED1t nghi\u1EC7p PVH\\WebNoiThatHoaHome\\WebNoiThatHoaHome\\Models\\ProductEditViewModel.cs",
-              "RelativeToolTip": "WebNoiThatHoaHome\\Models\\ProductEditViewModel.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAA0AAAArAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-04-07T16:08:14.23Z"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 57,
-              "Title": "ProductCreateViewModel.cs",
-              "DocumentMoniker": "D:\\\u0110\u1ED3 \u00E1n t\u1ED1t nghi\u1EC7p PVH\\WebNoiThatHoaHome\\WebNoiThatHoaHome\\Models\\ProductCreateViewModel.cs",
-              "RelativeDocumentMoniker": "WebNoiThatHoaHome\\Models\\ProductCreateViewModel.cs",
-              "ToolTip": "D:\\\u0110\u1ED3 \u00E1n t\u1ED1t nghi\u1EC7p PVH\\WebNoiThatHoaHome\\WebNoiThatHoaHome\\Models\\ProductCreateViewModel.cs",
-              "RelativeToolTip": "WebNoiThatHoaHome\\Models\\ProductCreateViewModel.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAA4AAAAAAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-04-07T14:38:05.038Z"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 58,
+              "DocumentIndex": 60,
               "Title": "appsettings.json",
               "DocumentMoniker": "D:\\\u0110\u1ED3 \u00E1n t\u1ED1t nghi\u1EC7p PVH\\WebNoiThatHoaHome\\WebNoiThatHoaHome\\appsettings.json",
               "RelativeDocumentMoniker": "WebNoiThatHoaHome\\appsettings.json",
@@ -1058,19 +1083,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 59,
-              "Title": "OrderSuccess.cshtml",
-              "DocumentMoniker": "D:\\\u0110\u1ED3 \u00E1n t\u1ED1t nghi\u1EC7p PVH\\WebNoiThatHoaHome\\WebNoiThatHoaHome\\Views\\Checkout\\OrderSuccess.cshtml",
-              "RelativeDocumentMoniker": "WebNoiThatHoaHome\\Views\\Checkout\\OrderSuccess.cshtml",
-              "ToolTip": "D:\\\u0110\u1ED3 \u00E1n t\u1ED1t nghi\u1EC7p PVH\\WebNoiThatHoaHome\\WebNoiThatHoaHome\\Views\\Checkout\\OrderSuccess.cshtml",
-              "RelativeToolTip": "WebNoiThatHoaHome\\Views\\Checkout\\OrderSuccess.cshtml",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAABIAAAAAAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
-              "WhenOpened": "2026-04-10T16:22:59.128Z"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 60,
+              "DocumentIndex": 61,
               "Title": "VnPayLibrary.cs",
               "DocumentMoniker": "D:\\\u0110\u1ED3 \u00E1n t\u1ED1t nghi\u1EC7p PVH\\WebNoiThatHoaHome\\WebNoiThatHoaHome\\Services\\VnPayLibrary.cs",
               "RelativeDocumentMoniker": "WebNoiThatHoaHome\\Services\\VnPayLibrary.cs",
@@ -1082,7 +1095,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 61,
+              "DocumentIndex": 62,
               "Title": "Checkout.cshtml",
               "DocumentMoniker": "D:\\\u0110\u1ED3 \u00E1n t\u1ED1t nghi\u1EC7p PVH\\WebNoiThatHoaHome\\WebNoiThatHoaHome\\Views\\Checkout.cshtml",
               "RelativeDocumentMoniker": "WebNoiThatHoaHome\\Views\\Checkout.cshtml",
@@ -1091,18 +1104,6 @@
               "ViewState": "AgIAAHAAAAAAAAAAAAAUwIsAAAA0AAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
               "WhenOpened": "2026-04-10T15:52:50.159Z"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 62,
-              "Title": "Index.cshtml",
-              "DocumentMoniker": "D:\\\u0110\u1ED3 \u00E1n t\u1ED1t nghi\u1EC7p PVH\\WebNoiThatHoaHome\\WebNoiThatHoaHome\\Views\\Checkout\\Index.cshtml",
-              "RelativeDocumentMoniker": "WebNoiThatHoaHome\\Views\\Checkout\\Index.cshtml",
-              "ToolTip": "D:\\\u0110\u1ED3 \u00E1n t\u1ED1t nghi\u1EC7p PVH\\WebNoiThatHoaHome\\WebNoiThatHoaHome\\Views\\Checkout\\Index.cshtml",
-              "RelativeToolTip": "WebNoiThatHoaHome\\Views\\Checkout\\Index.cshtml",
-              "ViewState": "AgIAACcAAAAAAAAAAAAAAEEAAAAWAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
-              "WhenOpened": "2026-04-10T16:08:48.665Z"
             },
             {
               "$type": "Document",

@@ -2,6 +2,8 @@
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using WebNoiThatHoaHome.Models;
+using Microsoft.AspNetCore.SignalR; 
+using WebNoiThatHoaHome.Hubs;       
 
 namespace WebNoiThatHoaHome.Areas.Admin.Controllers
 {
@@ -10,10 +12,12 @@ namespace WebNoiThatHoaHome.Areas.Admin.Controllers
     public class OrderController : Controller
     {
         private readonly HoaHomeDbContext _context;
+        private readonly IHubContext<OrderHub> _hubContext;
 
-        public OrderController(HoaHomeDbContext context)
+        public OrderController(HoaHomeDbContext context, IHubContext<OrderHub> hubContext)
         {
             _context = context;
+            _hubContext = hubContext;
         }
 
         // 1. DANH SÁCH ĐƠN HÀNG + TÌM KIẾM THEO USER
@@ -52,6 +56,7 @@ namespace WebNoiThatHoaHome.Areas.Admin.Controllers
                 order.OrderStatus = newStatus;
                 order.UpdatedAt = DateTime.Now;
                 await _context.SaveChangesAsync();
+                await _hubContext.Clients.All.SendAsync("ReceiveStatusChange", orderId, newStatus);
                 TempData["SuccessMsg"] = $"Đã chuyển trạng thái đơn hàng #{orderId} sang [{newStatus}].";
             }
             return RedirectToAction("Index");
@@ -67,6 +72,7 @@ namespace WebNoiThatHoaHome.Areas.Admin.Controllers
                 order.PaymentStatus = newPaymentStatus;
                 order.UpdatedAt = DateTime.Now;
                 await _context.SaveChangesAsync();
+                await _hubContext.Clients.All.SendAsync("ReceiveStatusChange", orderId, newPaymentStatus);
                 TempData["SuccessMsg"] = $"Đã cập nhật thanh toán đơn #{orderId} thành [{newPaymentStatus}].";
             }
             return RedirectToAction("Index");
@@ -86,9 +92,10 @@ namespace WebNoiThatHoaHome.Areas.Admin.Controllers
 
                 if (actionType == "Approve") order.OrderStatus = "Cancelled";
                 else if (actionType == "Reject") order.OrderStatus = "Processing";
-
+                
                 order.UpdatedAt = DateTime.Now;
                 await _context.SaveChangesAsync();
+                await _hubContext.Clients.All.SendAsync("ReceiveStatusChange", orderId, actionType);
                 TempData["SuccessMsg"] = "Đã xử lý yêu cầu hủy đơn thành công!";
             }
             return RedirectToAction("Index");
@@ -106,23 +113,24 @@ namespace WebNoiThatHoaHome.Areas.Admin.Controllers
             return View(order);
         }
         [HttpPost]
-        public async Task<IActionResult> EditOrder(int OrderId, string ShippingAddress, string CustomerNote)
+        public async Task<IActionResult> EditOrder(int orderId, string OrderStatus, string adminNote) 
         {
-            var order = await _context.Orders.FindAsync(OrderId);
-            if (order == null) return NotFound();
+            var order = await _context.Orders.FindAsync(orderId);
+            if (order != null)
+            {
+                order.OrderStatus = OrderStatus;
 
-            // Cập nhật thông tin
-            order.ShippingAddress = ShippingAddress;
-            order.CustomerNote = CustomerNote;
-            order.UpdatedAt = DateTime.Now;
+                if (!string.IsNullOrWhiteSpace(adminNote))
+                {
+                    order.CustomerNote += "\n\n[Phản hồi Admin]: " + adminNote; 
+                }
 
-            await _context.SaveChangesAsync();
-
-            // Bắn thông báo thành công
-            TempData["SuccessMsg"] = "Đã cập nhật thông tin đơn hàng thành công!";
-
-            // SỬA DÒNG NÀY: Thay vì RedirectToAction("Index"), hãy quay lại chính trang Details của đơn đó
-            return RedirectToAction("Details", new { id = OrderId });
+                order.UpdatedAt = DateTime.Now;
+                await _context.SaveChangesAsync();
+                await _hubContext.Clients.All.SendAsync("ReceiveStatusChange", orderId, OrderStatus);
+                TempData["SuccessMsg"] = "Đã cập nhật trạng thái đơn hàng!";
+            }
+            return RedirectToAction("Details", new { id = orderId });
         }
     }
 }

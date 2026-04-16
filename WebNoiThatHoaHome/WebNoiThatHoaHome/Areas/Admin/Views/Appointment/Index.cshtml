@@ -62,13 +62,17 @@
 
                                     @* Cột Nhân sự: Dùng Form riêng trong cell để tránh vỡ HTML *@
                                     <td>
-                                        <form asp-action="QuickUpdate" method="post" class="d-inline">
-                                            <input type="hidden" name="AppointmentId" value="@item.AppointmentId" />
-                                            <select name="EmployeeId" class="form-select form-select-sm border-primary-subtle shadow-sm" onchange="this.form.submit()">
+                                        <form asp-action="QuickUpdate" method="post" class="m-0">
+                                            <input type="hidden" name="appointmentId" value="@item.AppointmentId" />
+
+                                            <select name="employeeId" class="form-select form-select-sm" onchange="this.form.submit()">
                                                 <option value="">-- Chọn NV --</option>
-                                                @foreach (var emp in employeeList)
+
+                                                @foreach (var emp in ViewBag.Employees)
                                                 {
-                                                    <option value="@emp.Value" selected="@(item.EmployeeId?.ToString() == emp.Value)">@emp.Text</option>
+                                                    <option value="@emp.Value" selected="@(item.EmployeeId?.ToString() == emp.Value)">
+                                                        @emp.Text
+                                                    </option>
                                                 }
                                             </select>
                                         </form>
@@ -76,19 +80,22 @@
 
                                     @* Cột Trạng thái: Dùng Form riêng *@
                                     <td>
-                                        <form asp-action="QuickUpdate" method="post" class="d-inline">
-                                            <input type="hidden" name="AppointmentId" value="@item.AppointmentId" />
-                                            <select name="Status" class="form-select form-select-sm fw-bold shadow-sm
-                                                @(item.Status == "Pending" ? "bg-warning text-dark" :
-                                                  item.Status == "Assigned" ? "bg-info text-dark" :
-                                                  item.Status == "Completed" ? "bg-success text-white" :
-                                                  item.Status == "Cancelled" ? "bg-danger text-white" : "bg-secondary text-white")"
+                                        <form asp-action="UpdateStatus" method="post" class="m-0">
+                                            <input type="hidden" name="appointmentId" value="@item.AppointmentId" />
+
+                                            <select name="newStatus" class="form-select form-select-sm fw-bold
+                                                @(item.Status == "Completed" ? "text-success border-success" :
+                                                  item.Status == "Cancelled" ? "text-danger border-danger" :
+                                                  item.Status == "InProgress" ? "text-primary border-primary" :
+                                                  item.Status == "Assigned" ? "text-info border-info" : "text-warning border-warning")"
                                                     onchange="this.form.submit()">
-                                                <option value="Pending" selected="@(item.Status == "Pending")">⏳ Chờ duyệt</option>
-                                                <option value="Assigned" selected="@(item.Status == "Assigned")">👨‍🔧 Đã phân công</option>
-                                                <option value="Processing" selected="@(item.Status == "Processing")">🛠 Đang thi công</option>
-                                                <option value="Completed" selected="@(item.Status == "Completed")">✅ Hoàn thành</option>
-                                                <option value="Cancelled" selected="@(item.Status == "Cancelled")">❌ Đã hủy</option>
+
+                                                <option value="Pending" selected="@(item.Status == "Pending")">Chờ duyệt</option>
+                                                <option value="Assigned" selected="@(item.Status == "Assigned")">Đã phân công</option>
+                                                <option value="InProgress" selected="@(item.Status == "InProgress")">Đang thi công</option>
+                                                <option value="Completed" selected="@(item.Status == "Completed")">Hoàn thành</option>
+                                                <option value="Cancelled" selected="@(item.Status == "Cancelled")">Đã hủy</option>
+
                                             </select>
                                         </form>
                                     </td>

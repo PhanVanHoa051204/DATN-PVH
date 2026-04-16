@@ -59,7 +59,9 @@
                                         <select name="newStatus" class="form-select form-select-sm" onchange="this.form.submit()">
                                             <option value="New" selected="@(item.OrderStatus == "New")">Chờ xác nhận</option>
                                             <option value="Processing" selected="@(item.OrderStatus == "Processing")">Đang xử lý</option>
-                                            <option value="Delivering" selected="@(item.OrderStatus == "Delivering")">Đang giao hàng</option>
+
+                                            <option value="Shipping" selected="@(item.OrderStatus == "Shipping")">Đang giao hàng</option>
+
                                             <option value="Completed" selected="@(item.OrderStatus == "Completed")">Đã hoàn thành</option>
                                             <option value="Cancelled" selected="@(item.OrderStatus == "Cancelled")">Đã hủy</option>
                                             <option value="PendingCancel" selected="@(item.OrderStatus == "PendingCancel")">Khách yêu cầu hủy</option>

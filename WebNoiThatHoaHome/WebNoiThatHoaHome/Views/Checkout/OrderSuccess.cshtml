@@ -22,3 +22,27 @@
         <a href="/Account/Orders" class="btn btn-dark rounded-0 px-4 py-2 fw-bold">XEM ĐƠN HÀNG CỦA TÔI</a>
     </div>
 </div>
+@section Scripts {
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+
+    <script>
+        $(document).ready(function () {
+            // Kiểm tra xem có thông báo đặt hàng thành công không
+        @if (TempData["OrderSuccess"] != null)
+        {
+            <text>
+                Swal.fire({
+                toast: true,
+                position: 'top-end',
+                icon: 'success',
+                title: 'Đã chốt đơn!',
+                text: '@Html.Raw(TempData["OrderSuccess"])',
+                showConfirmButton: false,
+                timer: 4000, // Tự tắt sau 4 giây
+                timerProgressBar: true
+            });
+            </text>
+        }
+        });
+    </script>
+}
