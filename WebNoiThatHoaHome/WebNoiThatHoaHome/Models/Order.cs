@@ -38,4 +38,10 @@ public partial class Order
     public virtual ICollection<PaymentLog> PaymentLogs { get; set; } = new List<PaymentLog>();
 
     public virtual User? User { get; set; }
+
+    public int? VoucherId { get; set; }
+    
+    public decimal? DiscountAmount { get; set; }
+
+    public virtual Voucher? Voucher { get; set; }
 }

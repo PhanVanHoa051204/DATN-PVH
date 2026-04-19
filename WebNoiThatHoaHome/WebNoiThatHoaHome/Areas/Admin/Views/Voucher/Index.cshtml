@@ -1,0 +1,168 @@
+﻿@model IEnumerable<WebNoiThatHoaHome.Models.Voucher>
+
+@{
+    ViewData["Title"] = "Quản lý Mã giảm giá";
+    Layout = "~/Areas/Admin/Views/Shared/_Layout.cshtml";
+}
+
+<div class="container-fluid px-4 mt-4">
+    <div class="d-flex justify-content-between align-items-center mb-4">
+        <h3 class="fw-bold m-0">🎫 Quản lý Mã Giảm Giá</h3>
+        <a asp-action="Create" class="btn btn-primary shadow-sm">
+            <i class="fa-solid fa-plus me-1"></i> Thêm mã mới
+        </a>
+    </div>
+
+    <div class="card border-0 shadow-sm rounded-3">
+        <div class="card-body p-0">
+            <div class="table-responsive">
+                <table class="table table-hover table-striped align-middle m-0">
+                    <thead class="table-dark">
+                        <tr>
+                            <th class="ps-3">Mã Code</th>
+                            <th>Loại giảm</th>
+                            <th>Giá trị</th>
+                            <th>Đơn tối thiểu</th>
+                            <th class="text-center">Đã dùng / Giới hạn</th>
+                            <th>Thời gian</th>
+                            <th>Trạng thái</th>
+                            <th class="text-center bg-dark text-white" style="background-color: #212529 !important; color: white !important;">Thao tác</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @if (!Model.Any())
+                        {
+                            <tr><td colspan="8" class="text-center py-4">Chưa có mã giảm giá nào!</td></tr>
+                        }
+
+                        @foreach (var item in Model)
+                        {
+                            <tr>
+                                <td class="ps-3 fw-bold text-danger fs-5">@item.Code</td>
+                                <td>
+                                    <span class="badge bg-info text-dark">
+                                        @(item.DiscountType == "Percent" ? "Giảm %" : "Trừ thẳng tiền")
+                                    </span>
+                                </td>
+                                <td class="fw-bold">
+                                    @if (item.DiscountType == "Percent")
+                                    {
+                                        <span>@item.DiscountValue %</span>
+                                    }
+                                    else
+                                    {
+                                        <span>@string.Format("{0:N0} đ", item.DiscountValue)</span>
+                                    }
+                                </td>
+                                <td>@string.Format("{0:N0} đ", item.MinOrderValue)</td>
+                                <td class="text-center">
+                                    <span class="badge bg-secondary fs-6">
+                                        @item.UsedCount / @(item.UsageLimit == 0 ? "∞" : item.UsageLimit.ToString())
+                                    </span>
+                                </td>
+                                <td style="font-size: 0.85rem;">
+                                    <div><span class="text-muted">Từ:</span> @item.StartDate.ToString("dd/MM/yyyy HH:mm")</div>
+                                    <div><span class="text-muted">Đến:</span> @item.EndDate.ToString("dd/MM/yyyy HH:mm")</div>
+                                </td>
+                                <td>
+                                    @if (item.IsActive && item.EndDate > DateTime.Now)
+                                    {
+                                        <span class="badge bg-success"><i class="fa-solid fa-circle-play me-1"></i> Đang chạy</span>
+                                    }
+                                    else if (!item.IsActive)
+                                    {
+                                        <span class="badge bg-danger"><i class="fa-solid fa-lock me-1"></i> Đã khóa</span>
+                                    }
+                                    else
+                                    {
+                                        <span class="badge bg-warning text-dark"><i class="fa-solid fa-clock me-1"></i> Hết hạn</span>
+                                    }
+                                </td>
+
+                                <td class="text-center pe-3">
+                                    <div class="d-flex justify-content-center gap-2">
+                                        <form asp-action="LockVoucher" asp-route-id="@item.VoucherId" method="post" class="m-0"
+                                              onsubmit="return xacNhanKhoa(event, this, '@item.Code', '@(item.IsActive ? "khóa" : "mở khóa")');">
+
+                                            <button type="submit" class="btn btn-sm @(item.IsActive ? "btn-outline-danger" : "btn-outline-success")"
+                                                    title="@(item.IsActive ? "Khóa mã này" : "Mở khóa mã này")">
+                                                <i class="fa-solid @(item.IsActive ? "fa-lock" : "fa-unlock")"></i>
+                                            </button>
+
+                                        </form>
+
+                                        <a asp-action="Edit" asp-route-id="@item.VoucherId" class="btn btn-sm btn-outline-primary" title="Chỉnh sửa">
+                                            <i class="fa-solid fa-pen-to-square"></i>
+                                        </a>
+
+                                        @* <button type="button" class="btn btn-sm btn-outline-dark" title="Xóa mã">
+                                            <i class="fa-solid fa-trash-can"></i>
+                                        </button> *@
+                                    </div>
+                                </td>
+                            </tr>
+                        }
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/microsoft-signalr/7.0.5/signalr.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+
+@section Scripts {
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+
+    <script>
+        // =========================================================
+        // 1. BẮT THÔNG BÁO TỪ SERVER SAU KHI TẢI LẠI TRANG
+        // (Áp dụng cho Thêm, Khóa, Sửa, Xóa thành công)
+        // =========================================================
+        document.addEventListener("DOMContentLoaded", function () {
+            var successMsg = '@Html.Raw(TempData["SuccessMsg"])';
+
+            if (successMsg && successMsg.trim() !== '') {
+                Swal.fire({
+                    icon: 'success',
+                    title: 'Thành công!',
+                    text: successMsg,
+                    toast: true,               // Thu nhỏ thành dạng Toast báo cáo
+                    position: 'top-end',       // Trượt từ góc trên bên phải ra
+                    showConfirmButton: false,  // Ẩn nút OK để tự nó tắt
+                    timer: 3000,               // Tự động biến mất sau 3 giây
+                    timerProgressBar: true     // Có thanh chạy thời gian cực xịn
+                });
+            }
+        });
+
+        // =========================================================
+        // 2. HÀM XÁC NHẬN TRƯỚC KHI KHÓA / MỞ KHÓA
+        // =========================================================
+        function xacNhanKhoa(e, form, maCode, hanhDong) {
+            e.preventDefault();
+
+            var mauNut = (hanhDong === 'khóa') ? '#dc3545' : '#198754';
+            var iconHienThi = (hanhDong === 'khóa') ? 'warning' : 'question';
+
+            Swal.fire({
+                title: 'Xác nhận thao tác?',
+                html: "Bạn có chắc muốn <b>" + hanhDong + "</b> mã [ <b class='text-danger'>" + maCode + "</b> ] này không?",
+                icon: iconHienThi,
+                showCancelButton: true,
+                confirmButtonColor: mauNut,
+                cancelButtonColor: '#6c757d',
+                confirmButtonText: 'Đồng ý ' + hanhDong,
+                cancelButtonText: 'Hủy bỏ',
+                reverseButtons: true
+            }).then((result) => {
+                if (result.isConfirmed) {
+                    form.submit();
+                }
+            });
+
+            return false;
+        }
+    </script>
+}

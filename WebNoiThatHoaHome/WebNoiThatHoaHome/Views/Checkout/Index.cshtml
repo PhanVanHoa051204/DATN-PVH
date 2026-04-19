@@ -1,158 +1,237 @@
 ﻿@model WebNoiThatHoaHome.Models.User
+@using System.Security.Claims
+@inject WebNoiThatHoaHome.Models.HoaHomeDbContext _context
+
 @{
     ViewData["Title"] = "Thanh toán";
-    decimal totalCartPrice = 0;
+
+    // 1. Lấy ID khách hàng và tính tiền hàng thực tế từ Database
+    var userIdString = User.FindFirstValue(ClaimTypes.NameIdentifier);
+    decimal realSubTotal = 0;
+
+    if (int.TryParse(userIdString, out int userId))
+    {
+        realSubTotal = _context.CartItems
+            .Where(c => c.Cart.UserId == userId)
+            .Sum(c => c.Quantity * (c.Product.Price));
+    }
+
+    // Phí ship hỏa tốc (Lấy từ ViewBag hoặc đặt cứng nếu chưa có)
+    decimal expressFee = ViewBag.ExpressFee ?? 200000;
 }
 
 <div class="container my-5">
-    <form action="/Checkout/PlaceOrder" method="post">
+    <form action="/Checkout/PlaceOrder" method="post" id="checkoutForm">
         <div class="row">
-
             <div class="col-lg-7 pe-lg-5 mb-4">
                 <h5 class="fw-bold mb-4 text-uppercase">Địa chỉ giao hàng</h5>
 
                 <div class="mb-3">
-                    <label class="form-label text-muted" style="font-size: 13px;">Họ và tên *</label>
+                    <label class="form-label text-muted small">Họ và tên *</label>
                     <input type="text" class="form-control rounded-0" name="CustomerName" value="@Model.FullName" required>
                 </div>
 
                 <div class="row mb-3">
                     <div class="col-md-6 mb-3 mb-md-0">
-                        <label class="form-label text-muted" style="font-size: 13px;">Số điện thoại *</label>
+                        <label class="form-label text-muted small">Số điện thoại *</label>
                         <input type="text" class="form-control rounded-0" name="Phone" value="@Model.Phone" required>
                     </div>
                     <div class="col-md-6">
-                        <label class="form-label text-muted" style="font-size: 13px;">Địa chỉ email (tuỳ chọn)</label>
+                        <label class="form-label text-muted small">Địa chỉ email</label>
                         <input type="email" class="form-control rounded-0 bg-light" value="@Model.Email" readonly>
                     </div>
                 </div>
 
                 <div class="row mb-3">
                     <div class="col-md-6 mb-3 mb-md-0">
-                        <label class="form-label text-muted" style="font-size: 13px;">Tỉnh / Thành phố *</label>
+                        <label class="form-label text-muted small">Tỉnh / Thành phố *</label>
                         <select class="form-select rounded-0" name="City" id="cityDropdown" required>
                             <option value="">Chọn Tỉnh/Thành phố...</option>
                         </select>
                     </div>
                     <div class="col-md-6">
-                        <label class="form-label text-muted" style="font-size: 13px;">Phường/Xã *</label>
-                        <select class="form-select rounded-0" name="Ward" id="districtDropdown" required>
+                        <label class="form-label text-muted small">Quận / Huyện *</label>
+                        <select class="form-select rounded-0" name="District" id="districtDropdown" required>
                             <option value="">Chọn Quận/Huyện...</option>
                         </select>
                     </div>
                 </div>
 
                 <div class="mb-5">
-                    <label class="form-label text-muted" style="font-size: 13px;">Địa chỉ chi tiết *</label>
+                    <label class="form-label text-muted small">Địa chỉ chi tiết *</label>
                     <input type="text" class="form-control rounded-0" name="AddressDetail" placeholder="Số nhà, tên đường..." required>
                 </div>
 
-                <h5 class="fw-bold mb-3 text-uppercase mt-4">Thông tin thêm</h5>
-
-                <div class="mb-4">
-                    <label class="form-label text-muted small mb-2">Lưu ý cho đơn hàng (tuỳ chọn)</label>
-                    <textarea class="form-control rounded-0" name="Note" rows="3" placeholder="Ví dụ: Giao hàng vào giờ hành chính..."></textarea>
-                </div>
-
-                <div class="mb-4">
-                    <h5 class="fw-bold mb-3 fs-6 text-uppercase">Hình thức giao hàng</h5>
-                    <div class="border p-3 rounded-0 bg-light">
-
-                        <div class="form-check mb-2">
-                            <input class="form-check-input shipping-method" type="radio" name="ShippingMethod" id="shipStandard" value="Tiêu chuẩn" data-fee="0" checked>
-                            <label class="form-check-label d-flex justify-content-between w-100" for="shipStandard" style="font-size: 14px;">
-                                <span><i class="fa-solid fa-truck me-2 text-muted"></i>Giao hàng tiêu chuẩn (3-5 ngày)</span>
-                                <span class="fw-bold text-success">Miễn phí</span>
-                            </label>
-                        </div>
-
-                        <hr class="text-muted my-2">
-
-                        <div class="form-check">
-                            <input class="form-check-input shipping-method" type="radio" name="ShippingMethod" id="shipExpress" value="Hỏa tốc" data-fee="@ViewBag.ExpressFee">
-                            <label class="form-check-label d-flex justify-content-between w-100" for="shipExpress" style="font-size: 14px;">
-                                <span><i class="fa-solid fa-bolt me-2 text-warning"></i>Giao hàng hỏa tốc (Trong 24h)</span>
-                                <span class="fw-bold">@string.Format("{0:N0}", ViewBag.ExpressFee) đ</span>
-                            </label>
-                        </div>
-
+                <h5 class="fw-bold mb-3 text-uppercase">Hình thức giao hàng</h5>
+                <div class="border p-3 rounded-0 bg-light mb-4">
+                    <div class="form-check mb-2">
+                        <input class="form-check-input shipping-method" type="radio" name="ShippingMethod" id="shipStandard" value="Tiêu chuẩn" data-fee="0" checked>
+                        <label class="form-check-label d-flex justify-content-between w-100" for="shipStandard">
+                            <span>Giao hàng tiêu chuẩn (3-5 ngày)</span>
+                            <span class="fw-bold text-success">Miễn phí</span>
+                        </label>
+                    </div>
+                    <hr class="my-2">
+                    <div class="form-check">
+                        <input class="form-check-input shipping-method" type="radio" name="ShippingMethod" id="shipExpress" value="Hỏa tốc" data-fee="@expressFee">
+                        <label class="form-check-label d-flex justify-content-between w-100" for="shipExpress">
+                            <span>Giao hàng hỏa tốc (Trong 24h)</span>
+                            <span class="fw-bold">@expressFee.ToString("N0") đ</span>
+                        </label>
                     </div>
                 </div>
 
-                <div class="payment-methods mb-4">
-                    <h6 class="fw-bold border-bottom pb-2">Phương thức thanh toán</h6>
+                <h5 class="fw-bold mb-3 text-uppercase">Phương thức thanh toán</h5>
+                <div class="border p-3 rounded-0 mb-4">
                     <div class="form-check mb-2">
                         <input class="form-check-input" type="radio" name="paymentMethod" id="paymentCOD" value="COD" checked>
                         <label class="form-check-label" for="paymentCOD">Thanh toán khi nhận hàng (COD)</label>
                     </div>
                     <div class="form-check">
                         <input class="form-check-input" type="radio" name="paymentMethod" id="paymentVNPAY" value="BANK">
-                        <label class="form-check-label" for="paymentVNPAY">Thanh toán qua VNPAY (Ngân hàng/QR)</label>
+                        <label class="form-check-label" for="paymentVNPAY">Thanh toán qua VNPAY</label>
                     </div>
                 </div>
-
             </div>
 
-            <div class="col-lg-5" style="position: sticky; top: 20px; z-index: 10;">
-                <div class="bg-light p-4 rounded-0 sticky-top" style="top: 100px;">
+            <div class="col-lg-5" style="position: sticky; top: 20px; z-index: 1;">
+                <div class="bg-light p-4 border sticky-top" style="top: 100px;">
                     <h5 class="fw-bold mb-4 text-uppercase border-bottom pb-3">Tóm tắt đơn hàng</h5>
 
-                    <div class="mb-4">
+                    <div class="mb-4" style="max-height: 300px; overflow-y: auto;">
                         @foreach (var item in Model.Cart.CartItems)
                         {
                             var mainImg = item.Product?.ProductImages?.FirstOrDefault(i => i.IsMain == true)?.ImageUrl ?? "/images/no-image.png";
-                            decimal itemTotal = (item.Product?.Price ?? 0) * item.Quantity;
-                            totalCartPrice += itemTotal;
-
                             <div class="d-flex justify-content-between align-items-center mb-3">
                                 <div class="d-flex align-items-center">
-                                    <img src="@mainImg" alt="ảnh" style="width: 50px; height: 50px; object-fit: cover;" class="me-3 border">
+                                    <img src="@mainImg" style="width: 50px; height: 50px; object-fit: cover;" class="me-3 border">
                                     <div>
-                                        <div class="fw-bold" style="font-size: 13px;">@item.Product?.ProductName</div>
-                                        <div class="text-muted" style="font-size: 12px;">x @item.Quantity</div>
+                                        <div class="fw-bold small">@item.Product?.ProductName</div>
+                                        <div class="text-muted small">x @item.Quantity</div>
                                     </div>
                                 </div>
-                                <div class="fw-bold" style="font-size: 14px;">@string.Format("{0:N0} ₫", itemTotal)</div>
+                                <div class="fw-bold small">@((item.Product?.Price * item.Quantity)?.ToString("N0")) ₫</div>
                             </div>
                         }
                     </div>
 
-                    <div class="d-flex justify-content-between mb-3 border-top pt-3" style="font-size: 14px;">
-                        <span class="text-muted">Tạm tính</span>
-                        <span class="fw-bold">@string.Format("{0:N0}", totalCartPrice) đ</span>
+                    <div class="voucher-section my-3 p-3 bg-white border">
+                        <label class="form-label fw-bold mb-2 small text-uppercase">Mã giảm giá</label>
+                        <div class="input-group">
+                            <input type="text" id="voucherInput" class="form-control rounded-0" placeholder="Nhập mã...">
+                            <button type="button" class="btn btn-dark rounded-0 px-3" onclick="apDungMa()">ÁP DỤNG</button>
+                        </div>
+                        <div id="voucherMessage" class="mt-2 small"></div>
                     </div>
 
-                    <div class="d-flex justify-content-between mb-3 border-bottom pb-3" style="font-size: 14px;">
-                        <span class="text-muted">Vận chuyển</span>
-                        <span class="fw-bold" id="displayShippingFee">0 đ</span>
+                    <div class="mt-4">
+                        <div class="d-flex justify-content-between mb-2">
+                            <span class="text-muted">Tạm tính</span>
+                            <span class="fw-bold" id="subTotal" data-value="@realSubTotal.ToString("0")">@realSubTotal.ToString("N0") đ</span>
+                        </div>
+
+                        <div class="d-flex justify-content-between mb-2 text-success d-none" id="discountRow">
+                            <span>Giảm giá</span>
+                            <span class="fw-bold" id="discountValue">- 0 đ</span>
+                        </div>
+
+                        <div class="d-flex justify-content-between mb-3">
+                            <span class="text-muted">Vận chuyển</span>
+                            <span class="fw-bold" id="displayShippingFee">0 đ</span>
+                        </div>
+
+                        <div class="d-flex justify-content-between border-top pt-3 mb-4">
+                            <h5 class="fw-bold text-uppercase">Tổng cộng</h5>
+                            <h5 class="fw-bold text-danger" id="displayTotal">@realSubTotal.ToString("N0") đ</h5>
+                        </div>
                     </div>
 
-                    <div class="d-flex justify-content-between mb-4 mt-3">
-                        <h5 class="fw-bold text-uppercase mb-0">Tổng cộng</h5>
-                        <h5 class="fw-bold text-danger mb-0" id="displayTotal" data-subtotal="@totalCartPrice">
-                            @string.Format("{0:N0}", totalCartPrice) đ
-                        </h5>
-                    </div>
-                  
                     <div class="form-check mb-4">
                         <input class="form-check-input" type="checkbox" id="agreeTerms" required>
-                        <label class="form-check-label text-muted" for="agreeTerms" style="font-size: 12px;">
-                            Tôi đã đọc và đồng ý điều kiện đổi trả hàng, giao hàng, chính sách bảo mật, điều khoản dịch vụ mua hàng online *
+                        <label class="form-check-label text-muted small" for="agreeTerms">
+                            Tôi đồng ý với điều khoản mua hàng của HoaHome.
                         </label>
                     </div>
 
                     <button type="submit" class="btn btn-dark w-100 py-3 rounded-0 fw-bold fs-5">ĐẶT MUA</button>
                 </div>
             </div>
-
         </div>
     </form>
 </div>
 
 @section Scripts {
     <script>
-        // Copy lại đoạn Script gọi API Tỉnh/Thành phố y hệt như bên Profile.cshtml sang đây
+        // HÀM TÍNH TỔNG TIỀN (Sử dụng ID đồng bộ)
+        function tinhTongCuoiCung() {
+            // 1. Tiền hàng gốc từ Database
+            var subTotal = parseFloat($('#subTotal').attr('data-value')) || 0;
+
+            // 2. Tiền ship từ radio được chọn
+            var shippingFee = parseFloat($('.shipping-method:checked').data('fee')) || 0;
+
+            // 3. Tiền giảm giá (nếu đang có dòng giảm giá)
+            var discount = 0;
+            if (!$('#discountRow').hasClass('d-none')) {
+                var discountText = $('#discountValue').text().replace(/[^0-9]/g, '');
+                discount = parseFloat(discountText) || 0;
+            }
+
+            // 4. Cập nhật giao diện
+            var finalTotal = subTotal + shippingFee - discount;
+            $('#displayShippingFee').text(shippingFee.toLocaleString('vi-VN') + ' đ');
+            $('#displayTotal').text(finalTotal.toLocaleString('vi-VN') + ' đ');
+        }
+
+        // HÀM ÁP MÃ
+        function apDungMa() {
+            var code = $('#voucherInput').val().trim();
+            var subTotal = parseFloat($('#subTotal').attr('data-value')) || 0;
+
+            if (code === "") {
+                Swal.fire('Nhắc nhở', 'Vui lòng nhập mã giảm giá!', 'info');
+                return;
+            }
+
+            $.ajax({
+                url: '/Checkout/CheckVoucher',
+                type: 'POST',
+                data: { code: code, totalAmount: subTotal },
+                success: function (res) {
+                    if (res.success) {
+                        $('#discountRow').removeClass('d-none');
+                        $('#discountValue').text('- ' + res.discountAmount.toLocaleString() + ' đ');
+
+                        tinhTongCuoiCung(); // Tính lại tổng sau khi có giảm giá
+
+                        // Gài ID vào form để gửi lên Server
+                        if ($('#appliedVoucherId').length == 0) {
+                            $('#checkoutForm').append('<input type="hidden" name="AppliedVoucherId" id="appliedVoucherId" value="' + res.voucherId + '">');
+                        } else {
+                            $('#appliedVoucherId').val(res.voucherId);
+                        }
+
+                        $('#voucherMessage').html('<span class="text-success fw-bold">✓ ' + res.message + '</span>');
+                        Swal.fire('Thành công', res.message, 'success');
+                    } else {
+                        Swal.fire('Lỗi', res.message, 'error');
+                        $('#discountRow').addClass('d-none');
+                        tinhTongCuoiCung();
+                    }
+                }
+            });
+        }
+
         $(document).ready(function() {
+            // Khi đổi ship -> Tính lại tiền ngay
+            $('.shipping-method').on('change', function () {
+                tinhTongCuoiCung();
+            });
+
+            // Tự động chạy lần đầu để hiện đúng số tiền từ Database
+            tinhTongCuoiCung();
+
+            // API Tỉnh thành
             $.ajax({
                 url: 'https://provinces.open-api.vn/api/?depth=2',
                 method: 'GET',
@@ -165,26 +244,11 @@
                     });
                 }
             });
-            $('.shipping-method').on('change', function () {
-                // Lấy phí ship từ thuộc tính data-fee của ô đang được chọn
-                var fee = parseInt($(this).data('fee')) || 0;
-
-                // Lấy giá trị tiền hàng tạm tính (đã gài sẵn ở thuộc tính data-subtotal)
-                var subtotal = parseInt($('#displayTotal').data('subtotal')) || 0;
-
-                // Tính tổng mới
-                var newTotal = subtotal + fee;
-
-                // Cập nhật giao diện hiển thị (Định dạng phân cách hàng nghìn)
-                $('#displayShippingFee').text(fee.toLocaleString('vi-VN') + ' đ');
-                $('#displayTotal').text(newTotal.toLocaleString('vi-VN') + ' đ');
-            });
 
             $('#cityDropdown').change(function() {
                 let districtDropdown = $('#districtDropdown');
                 districtDropdown.empty().append('<option value="">Chọn Quận/Huyện...</option>');
-                let selectedOption = $(this).find('option:selected');
-                let districts = selectedOption.data('districts');
+                let districts = $(this).find('option:selected').data('districts');
                 if (districts) {
                     $.each(districts, function(index, district) {
                         districtDropdown.append($('<option></option>').val(district.name).text(district.name));

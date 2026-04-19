@@ -44,84 +44,129 @@ namespace WebNoiThatHoaHome.Controllers
             var expressShipping = await _context.ServiceTypes
             .FirstOrDefaultAsync(s => s.TypeName.Contains("hoả tốc") && s.IsDeleted != true);
             decimal expressFee = expressShipping != null ? (expressShipping.BasePrice ?? 0) : 200000;
+
             ViewBag.ExpressFee = expressFee;
             return View(user);
         }
 
         [HttpPost]
-        public async Task<IActionResult> PlaceOrder(string CustomerName, string Phone, string City, string Ward, string AddressDetail, string OrderNote, string PaymentMethod, string ShippingMethod)
+        public async Task<IActionResult> PlaceOrder(string CustomerName, string Phone, string City, string Ward, string AddressDetail, string OrderNote, string PaymentMethod, string ShippingMethod, int? AppliedVoucherId)
         {
             var userIdString = User.FindFirstValue(ClaimTypes.NameIdentifier);
             if (string.IsNullOrEmpty(userIdString)) return RedirectToAction("Login", "Account");
             int userId = int.Parse(userIdString);
 
-            var cart = await _context.Carts
-                .Include(c => c.CartItems)
-                .ThenInclude(ci => ci.Product)
-                .FirstOrDefaultAsync(c => c.UserId == userId);
-
-            if (cart == null || !cart.CartItems.Any())
+            // Dùng Transaction để bảo vệ dữ liệu
+            using (var transaction = await _context.Database.BeginTransactionAsync())
             {
-                return RedirectToAction("Index", "Cart");
-            }
-
-            decimal shippingFee = 0;
-            string phuongThucGiao = "Giao hàng tiêu chuẩn";
-
-            if (ShippingMethod == "Hỏa tốc")
-            {
-                var expressShipping = await _context.ServiceTypes
-                    .FirstOrDefaultAsync(s => s.TypeName.Contains("hoả tốc") && s.IsDeleted != true);
-
-                shippingFee = expressShipping != null ? (expressShipping.BasePrice ?? 0) : 200000;
-                phuongThucGiao = "Giao hàng hỏa tốc";
-            }
-
-            string finalNote = $"[🚛 {phuongThucGiao}] {(string.IsNullOrEmpty(OrderNote) ? "Không có ghi chú" : OrderNote)}";
-            string fullShippingAddress = $"{CustomerName} - SĐT: {Phone} - {AddressDetail}, {Ward}, {City}";
-            decimal totalAmount = cart.CartItems.Sum(i => (i.Product?.Price ?? 0) * i.Quantity) + shippingFee;
-
-            var newOrder = new Order
-            {
-                UserId = userId,
-                OrderDate = DateTime.Now,
-                TotalAmount = totalAmount,
-                ShippingFee = shippingFee,
-                ShippingAddress = fullShippingAddress,
-                CustomerNote = finalNote,
-                PaymentMethod = PaymentMethod,
-                PaymentStatus = "Pending",
-                OrderStatus = "New",
-                UpdatedAt = DateTime.Now
-            };
-
-            _context.Orders.Add(newOrder);
-            await _context.SaveChangesAsync();
-            await _hubContext.Clients.All.SendAsync("ReceiveNewOrder", newOrder.OrderId, newOrder.TotalAmount);
-
-            foreach (var item in cart.CartItems)
-            {
-                var orderDetail = new OrderItem
+                try
                 {
-                    OrderId = newOrder.OrderId,
-                    ProductId = item.ProductId ?? 0,
-                    Quantity = item.Quantity,
-                    UnitPrice = item.Product?.Price ?? 0
-                };
-                _context.OrderItems.Add(orderDetail);
+                    // 1. Lấy giỏ hàng
+                    var cart = await _context.Carts
+                        .Include(c => c.CartItems).ThenInclude(ci => ci.Product)
+                        .FirstOrDefaultAsync(c => c.UserId == userId);
+
+                    if (cart == null || !cart.CartItems.Any()) return RedirectToAction("Index", "Cart");
+
+                    // 2. Tính toán tiền và Check Voucher lần cuối (Bảo mật Server-side)
+                    decimal subTotal = cart.CartItems.Sum(i => (i.Product?.Price ?? 0) * i.Quantity);
+                    decimal shippingFee = 0;
+                    if (ShippingMethod == "Hỏa tốc")
+                    {
+                        var express = await _context.ServiceTypes.FirstOrDefaultAsync(s => s.TypeName.Contains("hoả tốc") && s.IsDeleted != true);
+                        shippingFee = express?.BasePrice ?? 200000;
+                    }
+
+                    decimal discountAmount = 0;
+                    if (AppliedVoucherId.HasValue)
+                    {
+                        var voucher = await _context.Vouchers.FindAsync(AppliedVoucherId.Value);
+                        if (voucher != null && voucher.IsActive == true && (voucher.UsageLimit == 0 || voucher.UsedCount < voucher.UsageLimit))
+                        {
+                            discountAmount = (voucher.DiscountType == "Percent") ? subTotal * (voucher.DiscountValue / 100) : voucher.DiscountValue;
+                            voucher.UsedCount += 1; // Trừ lượt voucher
+                            _context.Update(voucher);
+                        }
+                    }
+
+                    decimal totalFinal = subTotal + shippingFee - discountAmount;
+
+                    // 3. Tạo đơn hàng chính
+                    var newOrder = new Order
+                    {
+                        UserId = userId,
+                        OrderDate = DateTime.Now,
+                        TotalAmount = totalFinal,
+                        ShippingFee = shippingFee,
+                        ShippingAddress = $"{CustomerName} - {Phone} - {AddressDetail}, {Ward}, {City}",
+                        CustomerNote = $"[{ShippingMethod}] {OrderNote}",
+                        PaymentMethod = PaymentMethod,
+                        PaymentStatus = "Pending",
+                        OrderStatus = "New",
+                        VoucherId = AppliedVoucherId,
+                        UpdatedAt = DateTime.Now
+                    };
+
+                    _context.Orders.Add(newOrder);
+                    await _context.SaveChangesAsync(); // Lưu để lấy ID cho OrderItem
+
+                    // ==========================================================
+                    // 4. LƯU CHI TIẾT ĐƠN VÀ TRỪ TỒN KHO (ĐÃ FIX)
+                    // ==========================================================
+                    foreach (var item in cart.CartItems)
+                    {
+                        if (item.Product == null) continue;
+
+                        // 4.1 KIỂM TRA KHO: Đề phòng khách treo giỏ hàng từ hôm qua, nay mới đặt mà hàng đã hết
+                        
+                        if (item.Product.StockQuantity < item.Quantity)
+                        {
+                            await transaction.RollbackAsync(); // Hủy toàn bộ giao dịch
+                            TempData["ErrorMsg"] = $"Rất tiếc! Sản phẩm '{item.Product.ProductName}' chỉ còn {item.Product.StockQuantity} cái trong kho. Vui lòng điều chỉnh lại giỏ hàng.";
+                            return RedirectToAction("Index", "Cart"); // Đẩy về trang giỏ hàng
+                        }
+
+                        // 4.2 LƯU CHI TIẾT
+                        _context.OrderItems.Add(new OrderItem
+                        {
+                            OrderId = newOrder.OrderId,
+                            ProductId = item.ProductId ?? 0,
+                            Quantity = item.Quantity,
+                            UnitPrice = item.Product.Price
+                        });
+
+                        // 4.3 TRỪ KHO NGAY LẬP TỨC
+                        item.Product.StockQuantity = (item.Product.StockQuantity ?? 0) - item.Quantity;
+                        _context.Products.Update(item.Product);
+                    }
+
+                    // 5. Xóa giỏ hàng
+                    _context.CartItems.RemoveRange(cart.CartItems);
+
+                    // Chốt hạ: Lưu tất cả thay đổi
+                    await _context.SaveChangesAsync();
+
+                    // Nếu mọi thứ ok, commit transaction
+                    await transaction.CommitAsync();
+
+                    // 6. Thông báo SignalR và Xử lý thanh toán
+                    await _hubContext.Clients.All.SendAsync("ReceiveNewOrder", newOrder.OrderId, newOrder.TotalAmount);
+
+                    if (PaymentMethod == "BANK")
+                    {
+                        return Redirect(CreateVnpayPaymentUrl(newOrder.OrderId, (double)totalFinal));
+                    }
+                    TempData["OrderSuccess"] = "Tuyệt vời! Đơn hàng của bạn đã được đặt thành công.";
+                    return RedirectToAction("OrderSuccess", new { orderId = newOrder.OrderId });
+                }
+                catch (Exception ex)
+                {
+                    // Nếu có bất kỳ lỗi gì, Rollback lại toàn bộ (Voucher không bị trừ, giỏ hàng không bị xóa, kho không bị trừ)
+                    await transaction.RollbackAsync();
+                    TempData["ErrorMsg"] = "Có lỗi xảy ra trong quá trình đặt hàng. Vui lòng thử lại!";
+                    return RedirectToAction("Index");
+                }
             }
-
-            _context.CartItems.RemoveRange(cart.CartItems);
-            await _context.SaveChangesAsync();
-
-            if (PaymentMethod == "BANK")
-            {
-                string vnpayUrl = CreateVnpayPaymentUrl(newOrder.OrderId, (double)totalAmount);
-                return Redirect(vnpayUrl);
-            }
-
-            TempData["OrderSuccess"] = "Tuyệt vời! Đơn hàng của bạn đã được đặt thành công.";
-            return RedirectToAction("OrderSuccess", new { orderId = newOrder.OrderId });
         }
 
         // ==============================================================
@@ -270,5 +315,45 @@ namespace WebNoiThatHoaHome.Controllers
             ViewBag.OrderId = orderId;
             return View();
         }
+        [HttpPost]
+        public async Task<IActionResult> CheckVoucher(string code, decimal totalAmount)
+        {
+            var voucher = await _context.Vouchers
+                .FirstOrDefaultAsync(v => v.Code == code && v.IsActive == true);
+
+            // 1. Kiểm tra tồn tại
+            if (voucher == null) return Json(new { success = false, message = "Mã giảm giá không tồn tại!" });
+
+            // 2. Kiểm tra hạn sử dụng
+            if (voucher.EndDate < DateTime.Now) return Json(new { success = false, message = "Mã này đã hết hạn sử dụng!" });
+
+            // 3. Kiểm tra số lượt dùng
+            if (voucher.UsageLimit > 0 && voucher.UsedCount >= voucher.UsageLimit)
+                return Json(new { success = false, message = "Mã này đã hết lượt sử dụng!" });
+
+            // 4. Kiểm tra đơn hàng tối thiểu
+            if (totalAmount < voucher.MinOrderValue)
+                return Json(new { success = false, message = $"Đơn hàng tối thiểu {voucher.MinOrderValue:N0}đ để dùng mã này!" });
+
+            // 5. Tính toán số tiền giảm
+            decimal discount = 0;
+            if (voucher.DiscountType == "Percent")
+            {
+                discount = totalAmount * (voucher.DiscountValue / 100);
+            }
+            else
+            {
+                discount = voucher.DiscountValue;
+            }
+
+            return Json(new
+            {
+                success = true,
+                discountAmount = discount,
+                voucherId = voucher.VoucherId,
+                message = $"Đã áp dụng mã {code} thành công!"
+            });
+        }
+
     }
 }

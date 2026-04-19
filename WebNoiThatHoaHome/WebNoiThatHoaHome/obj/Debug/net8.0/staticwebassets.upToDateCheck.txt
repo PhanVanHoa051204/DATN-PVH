@@ -1,5 +1,9 @@
 wwwroot\css\site.css
 wwwroot\favicon.ico
+wwwroot\images\favicon.jpg
+wwwroot\images\trangchu\banner_bep.jpg
+wwwroot\images\trangchu\banner_phongkhach.jpg
+wwwroot\images\trangchu\banner_phongngu.jpg
 wwwroot\images\trangchu\phong-an.jpg
 wwwroot\images\trangchu\phong-khach.jpg
 wwwroot\images\trangchu\phong-ngu.jpg
@@ -93,4 +97,5 @@ wwwroot\uploads\products\Category_6\bc08e700-7cb6-4928-8f19-aa5fa8dfefdf_Binh-Ch
 wwwroot\uploads\products\Category_6\bf564945-5b7e-488b-9df6-3463412981b4_BINH-CYLINDER-GL-GREEN-S-16X16X32-3704J-2.jpg
 wwwroot\uploads\products\Category_7\0583bb51-f965-4979-a094-86144c889d08_80846-1000-nhaxinh-hang-ngoai-troi-ghe.jpg
 wwwroot\uploads\products\Category_7\ce413d2c-e71a-4e36-b068-348a4c91a0be_Goi-Lorette-68X44-Green-271310-1.jpg
+wwwroot\uploads\products\Category_7\eee429d5-e275-410b-966c-1185277237fa_tuong-ca-xanh-bac.webp
 wwwroot\uploads\products\Category_7\f77b129c-0de7-4369-a8cb-3dd27d7d7ae4_DEN-SAN-MARIPOSA-BRASS-160-52931K-3-2.jpg

@@ -1,0 +1,78 @@
+﻿@model IEnumerable<WebNoiThatHoaHome.Models.ProductReview>
+@{
+    ViewData["Title"] = "Đánh giá của tôi";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div class="container my-5">
+    <div class="row">
+        <div class="col-md-3 mb-4">
+            <h5 class="fw-bold mb-4 ps-3 border-start border-dark border-3">Tài khoản cá nhân</h5>
+            <div class="list-group list-group-flush rounded-0">
+                <a href="/Account/Profile" class="list-group-item list-group-item-action border-0 py-2">Thông tin của tôi</a>
+                <a href="/Account/Orders" class="list-group-item list-group-item-action border-0 py-2">Đơn hàng của tôi</a>
+                <a href="/Account/Appointments" class="list-group-item list-group-item-action border-0 py-2">Lịch hẹn của tôi</a>
+
+                <a href="/Account/MyReviews" class="list-group-item list-group-item-action border-0 fw-bold py-2">Đánh giá sản phẩm</a>
+
+                <a href="/Account/Wishlist" class="list-group-item list-group-item-action border-0 py-2">Danh sách yêu thích</a>
+                <a href="/Account/Logout" class="list-group-item list-group-item-action border-0 py-2 text-danger">Đăng xuất</a>
+            </div>
+        </div>
+
+        <div class="col-md-9 ps-md-5">
+            <h5 class="fw-bold mb-4 text-uppercase">Đánh giá sản phẩm</h5>
+
+            @if (!Model.Any())
+            {
+                <div class="text-center py-5 bg-light border">
+                    <i class="fa-regular fa-comment-dots text-muted mb-3" style="font-size: 3rem;"></i>
+                    <p class="text-muted">Bạn chưa viết đánh giá nào.</p>
+                </div>
+            }
+            else
+            {
+                <div class="review-list">
+                    @foreach (var item in Model)
+                    {
+                        <div class="card rounded-0 border mb-3 shadow-none">
+                            <div class="card-body">
+                                <div class="row align-items-center">
+                                    <div class="col-md-2 text-center mb-3 mb-md-0">
+                                        @if (item.Product?.ProductImages?.Any() == true)
+                                        {
+                                            <img src="@item.Product.ProductImages.First().ImageUrl" class="img-fluid border" style="max-height: 80px; object-fit: cover;" />
+                                        }
+                                    </div>
+                                    <div class="col-md-10">
+                                        <div class="d-flex justify-content-between align-items-center">
+                                            <h6 class="mb-1 fw-bold text-dark">@item.Product?.ProductName</h6>
+                                            <small class="text-muted">@item.CreatedAt.ToString("dd/MM/yyyy HH:mm")</small>
+                                        </div>
+
+                                        <div class="text-warning mb-2" style="font-size: 0.9rem;">
+                                            @for (int i = 1; i <= 5; i++)
+                                            {
+                                                <i class="@(i <= item.Rating ? "fa-solid" : "fa-regular") fa-star"></i>
+                                            }
+                                        </div>
+
+                                        <p class="mb-1 text-dark" style="font-size: 14px;">"@item.Comment"</p>
+
+                                        @if (!string.IsNullOrEmpty(item.AdminReply))
+                                        {
+                                            <div class="mt-3 p-3 bg-light border-start border-info border-3" style="font-size: 13px;">
+                                                <strong class="text-dark"><i class="fa-solid fa-reply text-info me-1"></i> Shop trả lời:</strong>
+                                                <p class="mb-0 mt-1 text-muted">@item.AdminReply</p>
+                                            </div>
+                                        }
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    }
+                </div>
+            }
+        </div>
+    </div>
+</div>

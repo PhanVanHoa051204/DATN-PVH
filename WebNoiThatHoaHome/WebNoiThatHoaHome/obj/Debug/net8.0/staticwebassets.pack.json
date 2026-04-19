@@ -13,6 +13,22 @@
       "PackagePath": "staticwebassets\\favicon.ico"
     },
     {
+      "Id": "D:\\Đồ án tốt nghiệp PVH\\WebNoiThatHoaHome\\WebNoiThatHoaHome\\wwwroot\\images\\favicon.jpg",
+      "PackagePath": "staticwebassets\\images\\favicon.jpg"
+    },
+    {
+      "Id": "D:\\Đồ án tốt nghiệp PVH\\WebNoiThatHoaHome\\WebNoiThatHoaHome\\wwwroot\\images\\trangchu\\banner_bep.jpg",
+      "PackagePath": "staticwebassets\\images\\trangchu\\banner_bep.jpg"
+    },
+    {
+      "Id": "D:\\Đồ án tốt nghiệp PVH\\WebNoiThatHoaHome\\WebNoiThatHoaHome\\wwwroot\\images\\trangchu\\banner_phongkhach.jpg",
+      "PackagePath": "staticwebassets\\images\\trangchu\\banner_phongkhach.jpg"
+    },
+    {
+      "Id": "D:\\Đồ án tốt nghiệp PVH\\WebNoiThatHoaHome\\WebNoiThatHoaHome\\wwwroot\\images\\trangchu\\banner_phongngu.jpg",
+      "PackagePath": "staticwebassets\\images\\trangchu\\banner_phongngu.jpg"
+    },
+    {
       "Id": "D:\\Đồ án tốt nghiệp PVH\\WebNoiThatHoaHome\\WebNoiThatHoaHome\\wwwroot\\images\\trangchu\\phong-an.jpg",
       "PackagePath": "staticwebassets\\images\\trangchu\\phong-an.jpg"
     },
@@ -383,6 +399,10 @@
     {
       "Id": "D:\\Đồ án tốt nghiệp PVH\\WebNoiThatHoaHome\\WebNoiThatHoaHome\\wwwroot\\uploads\\products\\Category_7\\ce413d2c-e71a-4e36-b068-348a4c91a0be_Goi-Lorette-68X44-Green-271310-1.jpg",
       "PackagePath": "staticwebassets\\uploads\\products\\Category_7\\ce413d2c-e71a-4e36-b068-348a4c91a0be_Goi-Lorette-68X44-Green-271310-1.jpg"
+    },
+    {
+      "Id": "D:\\Đồ án tốt nghiệp PVH\\WebNoiThatHoaHome\\WebNoiThatHoaHome\\wwwroot\\uploads\\products\\Category_7\\eee429d5-e275-410b-966c-1185277237fa_tuong-ca-xanh-bac.webp",
+      "PackagePath": "staticwebassets\\uploads\\products\\Category_7\\eee429d5-e275-410b-966c-1185277237fa_tuong-ca-xanh-bac.webp"
     },
     {
       "Id": "D:\\Đồ án tốt nghiệp PVH\\WebNoiThatHoaHome\\WebNoiThatHoaHome\\wwwroot\\uploads\\products\\Category_7\\f77b129c-0de7-4369-a8cb-3dd27d7d7ae4_DEN-SAN-MARIPOSA-BRASS-160-52931K-3-2.jpg",

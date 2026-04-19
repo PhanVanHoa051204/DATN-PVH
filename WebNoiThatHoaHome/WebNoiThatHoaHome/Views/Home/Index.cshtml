@@ -1,14 +1,62 @@
 ﻿@model WebNoiThatHoaHome.Models.HomeViewModel
 @{
-    ViewData["Title"] = "Trang chủ - HoaHome";
+    ViewData["Title"] = "Trang chủ";
 }
 
-<div class="hero-banner container-fluid px-0">
-    <h1 class="hero-title">Chào Mừng Đến Với Nội Thất Hoà Home</h1>
-    <p class="hero-subtitle">Khi Không Gian Sống Trở Thành Cảm Hứng</p>
-    
-</div>
+<style>
+    .text-shadow-custom {
+        text-shadow: 2px 2px 10px rgba(0, 0, 0, 0.8);
+    }
+</style>
 
+<div id="heroCarousel" class="carousel slide carousel-fade" data-bs-ride="carousel" data-bs-interval="4000">
+    <div class="carousel-indicators">
+        <button type="button" data-bs-target="#heroCarousel" data-bs-slide-to="0" class="active"></button>
+        <button type="button" data-bs-target="#heroCarousel" data-bs-slide-to="1"></button>
+        <button type="button" data-bs-target="#heroCarousel" data-bs-slide-to="2"></button>
+    </div>
+
+    <div class="carousel-inner">
+        <div class="carousel-item active">
+            <img src="~/images/trangchu/banner_phongkhach.jpg" class="d-block w-100 object-fit-cover" style="height: 80vh;" alt="Phòng khách">
+
+            <div class="carousel-caption d-flex flex-column justify-content-center align-items-center h-100" style="top: 0;">
+                <h1 class="fw-bold display-4 text-white text-shadow-custom">Chào Mừng Đến Với Nội Thất HoaHome</h1>
+                <p class="fs-4 text-white text-shadow-custom mt-2">Khi Không Gian Sống Trở Thành Cảm Hứng</p>
+                <a href="/Product" class="btn btn-light rounded-0 px-4 py-2 mt-4 fw-bold text-uppercase" style="letter-spacing: 1px;">Khám phá ngay</a>
+            </div>
+        </div>
+
+        <div class="carousel-item">
+            <img src="~/images/trangchu/banner_phongngu.jpg" class="d-block w-100 object-fit-cover" style="height: 80vh;" alt="Phòng ngủ">
+
+            <div class="carousel-caption d-flex flex-column justify-content-center align-items-center h-100" style="top: 0;">
+                <h1 class="fw-bold display-4 text-white text-shadow-custom">Bộ Sưu Tập Tinh Tế</h1>
+                <p class="fs-4 text-white text-shadow-custom mt-2">Đánh thức mọi giác quan trong ngôi nhà bạn</p>
+                <a href="/Product" class="btn btn-light rounded-0 px-4 py-2 mt-4 fw-bold text-uppercase" style="letter-spacing: 1px;">Xem bộ sưu tập</a>
+            </div>
+        </div>
+
+        <div class="carousel-item">
+            <img src="~/images/trangchu/banner_bep.jpg" class="d-block w-100 object-fit-cover" style="height: 80vh;" alt="Nhà bếp">
+
+            <div class="carousel-caption d-flex flex-column justify-content-center align-items-center h-100" style="top: 0;">
+                <h1 class="fw-bold display-4 text-white text-shadow-custom">Hiện Đại & Đẳng Cấp</h1>
+                <p class="fs-4 text-white text-shadow-custom mt-2">Kiến tạo không gian hoàn mỹ</p>
+                <a href="/Product/NewProducts" class="btn btn-outline-light rounded-0 px-4 py-2 mt-4 fw-bold text-uppercase border-2" style="letter-spacing: 1px;">Sản phẩm mới</a>
+            </div>
+        </div>
+    </div>
+
+    <button class="carousel-control-prev" type="button" data-bs-target="#heroCarousel" data-bs-slide="prev">
+        <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+        <span class="visually-hidden">Previous</span>
+    </button>
+    <button class="carousel-control-next" type="button" data-bs-target="#heroCarousel" data-bs-slide="next">
+        <span class="carousel-control-next-icon" aria-hidden="true"></span>
+        <span class="visually-hidden">Next</span>
+    </button>
+</div>
 <div class="container mt-5">
     <div class="row g-4">
         @if (Model.Categories != null && Model.Categories.Any())
@@ -19,7 +67,7 @@
                     <a href="/Product/Category/@cat.CategoryId" class="text-decoration-none">
                         <div class="category-block text-center">
                             <div class="img-wrapper mb-3">
-                                
+
                                 @if (cat.CategoryName.Contains("Phòng khách", StringComparison.OrdinalIgnoreCase))
                                 {
                                     <img src="~/images/trangchu/phong-khach.jpg" alt="@cat.CategoryName" style="width: 100%; height: 350px; object-fit: cover; display: block;">
@@ -54,7 +102,7 @@
     <div class="d-flex justify-content-between align-items-end mb-4 border-bottom pb-2">
         <h3 class="mb-0 fw-bold fs-5 text-uppercase">Sản phẩm mới</h3>
 
-        <a href="/Product/NewProducts" class="text-decoration-none text-muted" style="font-size: 13px;">xem tất cả <i class="fa-solid fa-chevron-right fs-6"></i></a>
+        @* <a href="/Product/NewProducts" class="text-decoration-none text-muted" style="font-size: 13px;">xem tất cả <i class="fa-solid fa-chevron-right fs-6"></i></a> *@
     </div>
     <div class="row g-4">
         @if (Model.NewProducts != null && Model.NewProducts.Any())
@@ -98,44 +146,44 @@
     </div>
 </div>
 
-<footer class="footer-dark">
+<footer class="footer-dark mt-5 pt-5 pb-3" style="background-color: #212529;">
     <div class="container">
         <div class="row">
             <div class="col-md-3 mb-4">
-                <h6 class="text-uppercase mb-4">Kết nối với HoaHome</h6>
+                <h6 class="text-uppercase mb-4 text-white">Kết nối với HoaHome</h6>
                 <h2 class="text-white border border-white d-inline-block p-2 mb-4" style="letter-spacing: 2px;">HOAHOME</h2>
                 <p class="text-muted" style="font-size: 13px;">FOLLOW US<br>Instagram - Youtube - Facebook</p>
                 <a href="#" class="btn btn-outline-light rounded-0 mt-2 text-uppercase" style="font-size: 12px; letter-spacing: 1px;">Hệ thống cửa hàng</a>
             </div>
 
             <div class="col-md-3 mb-4">
-                <h6 class="text-uppercase mb-4">HoaHome</h6>
-                <ul>
-                    <li><a href="#">Giới thiệu</a></li>
-                    <li><a href="#">Chuyện HoaHome</a></li>
-                    <li><a href="#">Tổng công ty</a></li>
-                    <li><a href="#">Tuyển dụng</a></li>
-                    <li><a href="#">Thẻ hội viên</a></li>
-                    <li><a href="#">Đổi trả hàng</a></li>
+                <h6 class="text-uppercase mb-4 text-white">HoaHome</h6>
+                <ul class="list-unstyled">
+                    <li class="mb-2"><a href="#" class="text-muted text-decoration-none">Giới thiệu</a></li>
+                    <li class="mb-2"><a href="#" class="text-muted text-decoration-none">Chuyện HoaHome</a></li>
+                    <li class="mb-2"><a href="#" class="text-muted text-decoration-none">Tổng công ty</a></li>
+                    <li class="mb-2"><a href="#" class="text-muted text-decoration-none">Tuyển dụng</a></li>
+                    <li class="mb-2"><a href="#" class="text-muted text-decoration-none">Thẻ hội viên</a></li>
+                    <li class="mb-2"><a href="#" class="text-muted text-decoration-none">Đổi trả hàng</a></li>
                 </ul>
             </div>
 
             <div class="col-md-3 mb-4">
-                <h6 class="text-uppercase mb-4">Cảm hứng #HoaHome</h6>
-                <ul>
-                    <li><a href="#">Sản phẩm</a></li>
-                    <li><a href="#">Ý tưởng và cảm hứng</a></li>
+                <h6 class="text-uppercase mb-4 text-white">Cảm hứng #HoaHome</h6>
+                <ul class="list-unstyled">
+                    <li class="mb-2"><a href="#" class="text-muted text-decoration-none">Sản phẩm</a></li>
+                    <li class="mb-2"><a href="#" class="text-muted text-decoration-none">Ý tưởng và cảm hứng</a></li>
                 </ul>
             </div>
 
             <div class="col-md-3 mb-4">
-                <h6 class="text-uppercase mb-4">Newsletter</h6>
+                <h6 class="text-uppercase mb-4 text-white">Newsletter</h6>
                 <p style="font-size: 13px; color: #bbb; line-height: 1.8;">Hãy để lại email của bạn để nhận được những ý tưởng trang trí mới và những thông tin, ưu đãi từ HoaHome</p>
                 <p style="font-size: 13px; color: #bbb;">Email: info@hoahome.com.vn<br>Hotline: 0345 033 641</p>
 
                 <form class="input-group mt-3">
                     <input type="email" class="form-control rounded-0 bg-secondary border-0 text-white" placeholder="Nhập email của bạn" style="font-size: 13px;">
-                    <button class="btn btn-dark rounded-0 text-uppercase" type="submit" style="font-size: 13px; letter-spacing: 1px;">Đăng ký</button>
+                    <button class="btn btn-light rounded-0 text-uppercase fw-bold" type="submit" style="font-size: 13px; letter-spacing: 1px;">Đăng ký</button>
                 </form>
             </div>
         </div>

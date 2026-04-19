@@ -1,0 +1,182 @@
+﻿@model IEnumerable<WebNoiThatHoaHome.Models.ProductReview>
+
+@{
+    ViewData["Title"] = "Quản lý đánh giá sản phẩm";
+    Layout = "~/Areas/Admin/Views/Shared/_Layout.cshtml";
+}
+
+<div class="container-fluid px-4">
+    <h1 class="mt-4">Quản lý đánh giá sản phẩm</h1>
+    <ol class="breadcrumb mb-4">
+        <li class="breadcrumb-item"><a href="@Url.Action("Index", "Home")" class="text-decoration-none">Tổng quan</a></li>
+
+        <li class="breadcrumb-item active">
+            <a href="@Url.Action("Index", "Review")" class="text-decoration-none fw-bold" title="Tải lại trang">Đánh giá</a>
+        </li>
+    </ol>
+
+    <div class="card mb-4 shadow-sm border-0">
+        <div class="card-body bg-light">
+            <form method="get" asp-action="Index">
+                <div class="row g-2">
+                    <div class="col-md-5">
+                        <input type="text" name="searchString" class="form-control" placeholder="Tìm tên khách, sản phẩm, nội dung..." value="@ViewBag.SearchString">
+                    </div>
+                    <div class="col-md-3">
+                        <select name="ratingFilter" class="form-select">
+                            <option value="">-- Tất cả số sao --</option>
+                            <!option value="5" @(ViewBag.RatingFilter == 5 ? "selected" : "")>5 Sao (Rất tốt)</!option>
+                            <!option value="4" @(ViewBag.RatingFilter == 4 ? "selected" : "")>4 Sao (Tốt)</!option>
+                            <!option value="3" @(ViewBag.RatingFilter == 3 ? "selected" : "")>3 Sao (Bình thường)</!option>
+                            <!option value="2" @(ViewBag.RatingFilter == 2 ? "selected" : "")>2 Sao (Tệ)</!option>
+                            <!option value="1" @(ViewBag.RatingFilter == 1 ? "selected" : "")>1 Sao (Rất tệ)</!option>
+                        </select>
+                    </div>
+                    <div class="col-md-2">
+                        <button type="submit" class="btn btn-primary w-100"><i class="fa-solid fa-filter"></i> Lọc kết quả</button>
+                    </div>
+                    <div class="col-md-2">
+                        <a href="/Admin/Review/Index" class="btn btn-secondary w-100">Xóa lọc</a>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <div class="card mb-4">
+        <div class="card-header">
+            <i class="fas fa-star me-1"></i>
+            Danh sách đánh giá mới nhất
+        </div>
+        <div class="card-body">
+            <table class="table table-hover align-middle">
+                <thead class="table-dark">
+                    <tr>
+                        <th>Khách hàng</th>
+                        <th>Sản phẩm</th>
+                        <th>Đánh giá</th>
+                        <th>Nội dung</th>
+                        <th>Trạng thái</th>
+                        <th>Thao tác</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @if (!Model.Any())
+                    {
+                        <tr>
+                            <td colspan="6" class="text-center py-5">
+                                <i class="fas fa-comment-slash fa-3x text-muted mb-3"></i>
+                                <p class="text-muted">Chưa có đánh giá nào từ khách hàng.</p>
+                            </td>
+                        </tr>
+                    }
+                    else
+                    {
+                        @foreach (var item in Model)
+                        {
+                            <tr>
+                                <td>
+                                    <strong>@item.User?.FullName</strong><br />
+                                    <small class="text-muted">@item.CreatedAt.ToString("dd/MM/yyyy HH:mm")</small>
+                                </td>
+                                <td>
+                                    <div class="d-flex align-items-center">
+                                        <span class="text-truncate" style="max-width: 150px;">@item.Product?.ProductName</span>
+                                    </div>
+                                </td>
+                                <td>
+                                    <div class="text-warning">
+                                        @for (int i = 1; i <= 5; i++)
+                                        {
+                                            <i class="@(i <= item.Rating ? "fas" : "far") fa-star"></i>
+                                        }
+                                    </div>
+                                </td>
+                                <td>
+                                    <p class="mb-0 small">@item.Comment</p>
+                                    @if (!string.IsNullOrEmpty(item.AdminReply))
+                                    {
+                                        <div class="mt-2 p-2 bg-light border-start border-primary border-3">
+                                            <small><strong>Admin:</strong> @item.AdminReply</small>
+                                        </div>
+                                    }
+                                </td>
+                                <td>
+                                    @if (item.IsApproved)
+                                    {
+                                        <span class="badge bg-success">Đã duyệt</span>
+                                    }
+                                    else
+                                    {
+                                        <span class="badge bg-warning text-dark">Chờ duyệt</span>
+                                    }
+                                </td>
+                                <td>
+                                    <div class="btn-group">
+                                        @if (!item.IsApproved)
+                                        {
+                                            <form asp-action="Approve" asp-route-id="@item.ReviewId" method="post" style="display:inline;">
+                                                <button type="submit" class="btn btn-sm btn-outline-success" title="Duyệt đánh giá">
+                                                    <i class="fas fa-check"></i>
+                                                </button>
+                                            </form>
+                                        }
+                                        <button type="button" class="btn btn-sm btn-outline-primary ms-1"
+                                                data-bs-toggle="modal" data-bs-target="#replyModal-@item.ReviewId" title="Phản hồi">
+                                            <i class="fas fa-reply"></i>
+                                        </button>
+                                    </div>
+
+                                    <div class="modal fade" id="replyModal-@item.ReviewId" tabindex="-1">
+                                        <div class="modal-dialog">
+                                            <form asp-action="Reply" method="post">
+                                                <input type="hidden" name="id" value="@item.ReviewId" />
+                                                <div class="modal-content">
+                                                    <div class="modal-header">
+                                                        <h5 class="modal-title">Phản hồi khách hàng</h5>
+                                                        <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+                                                    </div>
+                                                    <div class="modal-body">
+                                                        <p><strong>Khách hàng:</strong> @item.User?.FullName</p>
+                                                        <p><strong>Nội dung:</strong> "@item.Comment"</p>
+                                                        <div class="mb-3">
+                                                            <label class="form-label">Nội dung phản hồi của Admin:</label>
+                                                            <textarea name="adminReply" class="form-control" rows="3" required>@item.AdminReply</textarea>
+                                                        </div>
+                                                    </div>
+                                                    <div class="modal-footer">
+                                                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Đóng</button>
+                                                        <button type="submit" class="btn btn-primary">Gửi phản hồi</button>
+                                                    </div>
+                                                </div>
+                                            </form>
+                                        </div>
+                                    </div>
+                                </td>
+                            </tr>
+                        }
+                    }
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
+
+@if (TempData["SuccessMsg"] != null)
+{
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    <script>
+        // Dùng Vanilla JS thay vì jQuery (document.ready) để đảm bảo không bị lỗi do thứ tự load thư viện
+        document.addEventListener("DOMContentLoaded", function() {
+            Swal.fire({
+                toast: true,
+                position: 'top-end',
+                icon: 'success',
+                title: '@Html.Raw(TempData["SuccessMsg"])',
+                showConfirmButton: false,
+                timer: 3000,
+                timerProgressBar: true
+            });
+        });
+    </script>
+}

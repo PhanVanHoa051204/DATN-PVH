@@ -94,7 +94,7 @@
                     </div>
                 </div>
             </div>
-
+            
             @* ========================================== *@
             @* CỘT PHẢI (COL-4): THANH TOÁN, TRẠNG THÁI & GHI CHÚ *@
             @* ========================================== *@
@@ -151,23 +151,50 @@
                 </div>
 
                 @* KHỐI TỔNG TIỀN *@
-                <div class="card rounded-0 border shadow-sm border-top border-4 border-danger">
-                    <div class="card-body">
-                        <div class="d-flex justify-content-between mb-2 text-muted small">
-                            <span>Tổng tiền hàng:</span>
-                            <span>@string.Format("{0:N0} ₫", Model.TotalAmount - (Model.ShippingFee ?? 0))</span>
+                @{
+                    // Tính lại tiền hàng gốc (chưa trừ giảm giá)
+                    decimal originalSubTotal = Model.OrderItems.Sum(i => i.UnitPrice * i.Quantity);
+
+                    // Tính số tiền đã giảm
+                    decimal discountAmount = 0;
+                    if (Model.Voucher != null)
+                    {
+                        if (Model.Voucher.DiscountType == "Percent")
+                        {
+                            discountAmount = originalSubTotal * (Model.Voucher.DiscountValue / 100);
+                        }
+                        else
+                        {
+                            discountAmount = Model.Voucher.DiscountValue;
+                        }
+                    }
+                }
+
+                <div class="border-top pt-3 mt-3">
+                    <div class="d-flex justify-content-between mb-2" style="font-size: 15px;">
+                        <span class="text-muted">Tổng tiền hàng:</span>
+                        <span class="fw-bold">@originalSubTotal.ToString("N0") đ</span>
+                    </div>
+
+                    @if (Model.Voucher != null)
+                    {
+                        <div class="d-flex justify-content-between mb-2 text-success" style="font-size: 15px;">
+                            <span>Mã giảm giá <b class="border px-1 rounded bg-light text-success">@Model.Voucher.Code</b>:</span>
+                            <span class="fw-bold">- @discountAmount.ToString("N0") đ</span>
                         </div>
-                        <div class="d-flex justify-content-between mb-3 text-muted small border-bottom pb-3">
-                            <span>Phí giao hàng:</span>
-                            <span>@string.Format("{0:N0} ₫", Model.ShippingFee ?? 0)</span>
-                        </div>
-                        <div class="d-flex justify-content-between mt-2">
-                            <h5 class="fw-bold mb-0">TỔNG CỘNG:</h5>
-                            <h5 class="fw-bold text-danger mb-0">@string.Format("{0:N0} ₫", Model.TotalAmount)</h5>
-                        </div>
+                    }
+
+                    <div class="d-flex justify-content-between mb-3" style="font-size: 15px;">
+                        <span class="text-muted">Phí giao hàng:</span>
+                        <span class="fw-bold">@((Model.ShippingFee ?? 0).ToString("N0")) đ</span>
+                    </div>
+
+                    <div class="d-flex justify-content-between mt-3 pt-3 border-top">
+                        <h5 class="fw-bold mb-0">TỔNG CỘNG:</h5>
+                        <h5 class="fw-bold text-danger mb-0">@Model.TotalAmount?.ToString("N0") đ</h5>
                     </div>
                 </div>
-
+                
             </div>
         </div>
     </form>

@@ -116,10 +116,6 @@ namespace WebNoiThatHoaHome.Controllers
             return RedirectToAction("Index", "Home");
         }
 
-        // ==========================================
-        // CÁC HÀM CŨ CỦA SẾP (GIỮ NGUYÊN KHÔNG ĐỔI)
-        // ==========================================
-
         public async Task<IActionResult> Profile()
         {
             var userIdString = User.FindFirstValue(ClaimTypes.NameIdentifier);
@@ -205,7 +201,12 @@ namespace WebNoiThatHoaHome.Controllers
                 .Where(o => o.UserId == userId)
                 .OrderByDescending(o => o.OrderDate)
                 .ToListAsync();
+            var reviewedIds = await _context.ProductReviews
+            .Where(r => r.UserId == userId)
+            .Select(r => r.ProductId)
+            .ToListAsync();
 
+            ViewBag.ReviewedProductIds = reviewedIds;
             return View(orders);
         }
 
@@ -312,6 +313,24 @@ namespace WebNoiThatHoaHome.Controllers
                 .ToListAsync();
 
             return View(myAppointments);
+        }
+
+        [Authorize]
+        public async Task<IActionResult> MyReviews()
+        {
+            var userIdString = User.FindFirstValue(ClaimTypes.NameIdentifier);
+            if (string.IsNullOrEmpty(userIdString)) return RedirectToAction("Login");
+            int userId = int.Parse(userIdString);
+
+            // Lấy lịch sử đánh giá của khách hàng này
+            var reviews = await _context.ProductReviews
+                .Include(r => r.Product)
+                    .ThenInclude(p => p.ProductImages)
+                .Where(r => r.UserId == userId)
+                .OrderByDescending(r => r.CreatedAt)
+                .ToListAsync();
+
+            return View(reviews);
         }
     }
 }

@@ -12,6 +12,7 @@
                 <a href="/Account/Profile" class="list-group-item list-group-item-action border-0 py-2">Thông tin của tôi</a>
                 <a href="/Account/Orders" class="list-group-item list-group-item-action border-0 fw-bold py-2">Đơn hàng của tôi</a>
                 <a href="/Account/Appointments" class="list-group-item list-group-item-action border-0 py-2">Lịch hẹn của tôi</a>
+                <a href="/Account/MyReviews" class="list-group-item list-group-item-action border-0">Đánh giá sản phẩm</a>
                 <a href="/Account/Wishlist" class="list-group-item list-group-item-action border-0 py-2">Danh sách yêu thích</a>
                 <a href="/Account/Logout" class="list-group-item list-group-item-action border-0 py-2 text-danger">Đăng xuất</a>
             </div>
@@ -76,7 +77,33 @@
                                                     var img = item.Product?.ProductImages?.FirstOrDefault(i => i.IsMain == true)?.ImageUrl ?? "/images/no-image.png";
                                                     <tr>
                                                         <td style="width: 60px;"><img src="@img" style="width: 50px; height: 50px; object-fit: cover;" class="border"></td>
-                                                        <td><a href="/Product/Details/@item.ProductId" class="text-dark text-decoration-none fw-bold" style="font-size: 13px;">@item.Product?.ProductName</a></td>
+                                                        <td>
+                                                            <a href="/Product/Details/@item.ProductId" class="text-dark text-decoration-none fw-bold" style="font-size: 13px;">
+                                                                @item.Product?.ProductName
+                                                            </a>
+
+                                                            @if (order.OrderStatus == "Completed")
+                                                            {
+                                                                
+                                                                var reviewedList = ViewBag.ReviewedProductIds as List<int> ?? new List<int>();
+
+                                                                <div class="mt-2">
+                                                                    @if (item.ProductId.HasValue && reviewedList.Contains(item.ProductId.Value))
+                                                                    {
+                                                                        <span class="text-success fw-bold" style="font-size: 11px;">
+                                                                            <i class="fa-solid fa-check-circle"></i> Đã đánh giá
+                                                                        </span>
+                                                                    }
+                                                                    else
+                                                                    {
+                                                                        <a href="/Product/WriteReview?orderId=@order.OrderId&productId=@item.ProductId"
+                                                                           class="btn btn-outline-dark rounded-0" style="font-size: 11px; padding: 3px 8px;">
+                                                                            <i class="fa-regular fa-star text-warning"></i> Viết đánh giá
+                                                                        </a>
+                                                                    }
+                                                                </div>
+                                                            }
+                                                        </td>
                                                         <td class="text-center text-muted" style="font-size: 13px;">SL: @item.Quantity</td>
                                                         <td class="text-end fw-bold" style="font-size: 13px;">@string.Format("{0:N0} ₫", item.UnitPrice * item.Quantity)</td>
                                                     </tr>
@@ -138,22 +165,17 @@
                                             <strong class="text-dark"><i class="fa-solid fa-envelope-open-text text-info me-2"></i> Thông tin ghi chú & Phản hồi:</strong>
                                             <div class="mt-2" style="line-height: 1.6;">
                                                 @{
-                                                    // 1. Lấy dữ liệu thô và thay thế các từ khóa cho thân thiện với khách
                                                     var rawNote = order.CustomerNote ?? "";
                                                     var friendlyNote = rawNote.Replace("[Phản hồi Admin]:", "[Shop trả lời]:")
                                                     .Replace("[Phản hồi từ Admin]:", "[Shop trả lời]:")
                                                     .Replace("[Phản hồi từ Shop]:", "[Shop trả lời]:");
 
-                                                    // 2. Tự động thêm dấu phân tách | trước mỗi dấu [
                                                     var formattedNote = friendlyNote.Replace("[", "|[");
-
-                                                    // 3. Tách thành các mảng dựa trên dấu |
                                                     var parts = formattedNote.Split('|', StringSplitOptions.RemoveEmptyEntries);
                                                 }
 
                                                 @foreach (var p in parts)
                                                 {
-                                                    @* Kiểm tra nếu là dòng của Shop trả lời thì cho chữ đậm hơn hoặc đổi màu *@
                                                     if (p.Contains("[Shop trả lời]:"))
                                                     {
                                                         <p class="mb-1 text-primary fw-bold">@p.Trim()</p>
@@ -223,7 +245,6 @@
 
     <script>
         $(document).ready(function () {
-            // Hiển thị thông báo TempData
         @if (TempData["SuccessMsg"] != null)
         {
             <text>Swal.fire({ toast: true, position: 'top-end', icon: 'success', title: '@Html.Raw(TempData["SuccessMsg"])', showConfirmButton: false, timer: 3000 });</text>
@@ -234,16 +255,11 @@
         }
         });
 
-        // ==========================================
-        // CẤU HÌNH SIGNALR NGAY TRONG CÙNG KHỐI SCRIPT
-        // ==========================================
         const connection = new signalR.HubConnectionBuilder()
             .withUrl("/orderHub")
             .build();
 
         connection.on("ReceiveStatusChange", function (orderId, newStatus) {
-
-            // 1. Dịch chữ tiếng Việt
             var statusText = "";
             var badgeClass = "";
             switch(newStatus) {
@@ -255,13 +271,11 @@
                 case "PendingCancel": statusText = "Chờ duyệt hủy"; badgeClass = "bg-warning text-dark"; break;
             }
 
-            // 2. Tìm thẻ Badge trên màn hình và cập nhật KHÔNG CẦN F5
             var badge = document.getElementById("status-badge-" + orderId);
             if (badge) {
                 badge.innerText = statusText;
                 badge.className = "badge rounded-0 mt-1 " + badgeClass;
 
-                // Bắn thông báo SweetAlert góc phải thay vì dùng Alert() cục súc
                 Swal.fire({
                     toast: true,
                     position: 'bottom-end',
@@ -270,6 +284,11 @@
                     showConfirmButton: false,
                     timer: 5000
                 });
+
+                // Nếu trạng thái đổi thành Đã hoàn thành, reload lại trang để hiện nút Đánh giá
+                if (newStatus === "Completed") {
+                    setTimeout(() => location.reload(), 2000);
+                }
             }
         });
 

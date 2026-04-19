@@ -177,6 +177,10 @@
         <a href="/Admin/Order/Index" class="@(Context.Request.Path.StartsWithSegments("/Admin/Order") ? "active" : "")">
             <i class="fa-solid fa-cart-shopping"></i> Quản lý Đơn hàng
         </a>
+
+        <a href="/Admin/Voucher/Index" class="@(Context.Request.Path.StartsWithSegments("/Admin/Voucher") ? "active" : "")">
+            <i class="fa-solid fa-ticket-simple"></i> Quản lý Mã giảm giá
+        </a>
         <hr class="text-secondary border-2 opacity-50 my-2">
         <div class="text-secondary fw-bold mb-2 ms-3 mt-3" style="font-size: 11px; text-transform: uppercase;">Dịch vụ & Lịch hẹn</div>
 
@@ -187,7 +191,9 @@
         <a href="/Admin/Employee/Index" class="@(Context.Request.Path.StartsWithSegments("/Admin/Employee") ? "active" : "")">
             <i class="fa-solid fa-users-gear"></i> Quản lý Nhân sự
         </a>
-
+        <a href="/Admin/Review/Index" class="@(Context.Request.Path.StartsWithSegments("/Admin/Review") ? "active" : "")">
+            <i class="fa-solid fa-ticket-simple"></i> Đánh giá sản phẩm
+        </a>
         <a href="/Admin/Appointment/Index" class="@(Context.Request.Path.StartsWithSegments("/Admin/Appointment") ? "active" : "text-warning fw-bold")">
             <i class="fa-solid fa-calendar-check"></i> Điều phối Lịch hẹn
         </a>
