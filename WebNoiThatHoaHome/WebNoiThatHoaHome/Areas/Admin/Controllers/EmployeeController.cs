@@ -16,23 +16,16 @@ namespace WebNoiThatHoaHome.Areas.Admin.Controllers
         {
             _context = context;
         }
-
-        // =======================================================
         // 1. DANH SÁCH NHÂN VIÊN
-        // =======================================================
         public async Task<IActionResult> Index()
         {
             var employees = await _context.Employees
                 .Include(e => e.User) // Lấy thông tin User (Tên, SĐT, Email)
                 .Where(e => e.IsDeleted != true)
                 .ToListAsync();
-
             return View(employees);
         }
-
-        // =======================================================
         // 2. FORM THÊM NHÂN VIÊN MỚI (GET)
-        // =======================================================
         public IActionResult Create()
         {
             // Lấy danh sách các User chưa tồn tại trong bảng Employee
@@ -50,10 +43,7 @@ namespace WebNoiThatHoaHome.Areas.Admin.Controllers
 
             return View();
         }
-
-        // =======================================================
         // 3. XỬ LÝ LƯU NHÂN VIÊN MỚI (POST)
-        // =======================================================
         [HttpPost]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Create(Employee employee)
@@ -75,25 +65,19 @@ namespace WebNoiThatHoaHome.Areas.Admin.Controllers
                     employee.IsDeleted = false;
                     _context.Employees.Add(employee);
                 }
-
-                // ===============================================================
                 // BỔ SUNG: ĐỒNG BỘ QUYỀN (ROLE) NGƯỢC LẠI BẢNG USER LÀ NHÂN VIÊN
-                // ===============================================================
                 var userToUpdate = await _context.Users.FindAsync(employee.UserId);
                 if (userToUpdate != null)
                 {
                     userToUpdate.RoleId = 16; // Gắn mác Nhân viên cho User này
                 }
-                // ===============================================================
-
-                // Lưu tất cả thay đổi (cả Employee và User) vào Database cùng lúc
+                // Lưu tất cả thay đổi (cả Employee và User) vào db cùng lúc
                 await _context.SaveChangesAsync();
 
                 TempData["SuccessMsg"] = "Đã thêm nhân sự và cấp quyền thành công!";
                 return RedirectToAction(nameof(Index));
             }
-
-            // Nếu form lỗi, load lại dropdown
+            // Nếu form có lỗi, nạp lại Dropdown
             var availableUsers = _context.Users
                 .Where(u => !_context.Employees.Any(e => e.UserId == u.UserId && e.IsDeleted != true))
                 .Select(u => new
@@ -107,9 +91,7 @@ namespace WebNoiThatHoaHome.Areas.Admin.Controllers
 
             return View(employee);
         }
-        // =======================================================
         // 4. CẬP NHẬT TRẠNG THÁI NHANH TỪ DROPDOWN
-        // =======================================================
         [HttpPost]
         public async Task<IActionResult> UpdateStatus(int id, string status)
         {
@@ -122,10 +104,7 @@ namespace WebNoiThatHoaHome.Areas.Admin.Controllers
             }
             return RedirectToAction(nameof(Index));
         }
-
-        // =======================================================
         // 5. FORM CHỈNH SỬA NHÂN VIÊN (GET)
-        // =======================================================
         [HttpGet]
         public async Task<IActionResult> Edit(int id)
         {
@@ -137,10 +116,7 @@ namespace WebNoiThatHoaHome.Areas.Admin.Controllers
             if (emp == null) return NotFound();
             return View(emp);
         }
-
-        // =======================================================
-        // 6. LƯU CHỈNH SỬA NHÂN VIÊN (POST)
-        // =======================================================
+        // 6. XỬ LÝ LƯU THAY ĐỔI NHÂN VIÊN (POST)
         [HttpPost]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Edit(int EmployeeId, string Specialization, string Status)
@@ -155,10 +131,7 @@ namespace WebNoiThatHoaHome.Areas.Admin.Controllers
             TempData["SuccessMsg"] = "Cập nhật thông tin nhân sự thành công!";
             return RedirectToAction(nameof(Index));
         }
-
-        // =======================================================
         // 7. XÓA NHÂN SỰ (Khôi phục quyền về Khách hàng)
-        // =======================================================
         [HttpPost]
         public async Task<IActionResult> Delete(int id)
         {
@@ -171,9 +144,8 @@ namespace WebNoiThatHoaHome.Areas.Admin.Controllers
                 var user = await _context.Users.FindAsync(emp.UserId);
                 if (user != null)
                 {
-                    user.RoleId = 2; // Trả về làm "dân thường"
+                    user.RoleId = 2; // Trả về làm kh
                 }
-
                 await _context.SaveChangesAsync();
                 TempData["SuccessMsg"] = "Đã xóa nhân sự và thu hồi quyền thành công!";
             }

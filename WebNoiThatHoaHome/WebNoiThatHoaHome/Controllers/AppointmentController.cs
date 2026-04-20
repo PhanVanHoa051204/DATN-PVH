@@ -15,7 +15,7 @@ namespace WebNoiThatHoaHome.Controllers
             _context = context;
         }
 
-        // 1. HIỆN FORM ĐẶT LỊCH
+        // 1. HIỂN THỊ FORM ĐẶT LỊCH 
         [HttpGet]
         public async Task<IActionResult> Booking(int? serviceId)
         {
@@ -30,14 +30,14 @@ namespace WebNoiThatHoaHome.Controllers
 
             ViewBag.Services = services;
 
-            // TẠO THỜI GIAN MẶC ĐỊNH LÀ NGÀY MAI (NHƯNG BỎ SỐ GIÂY ĐI)
+            // TẠO THỜI GIAN MẶC ĐỊNH LÀ NGÀY MAI 
             var tomorrow = DateTime.Now.AddDays(1);
             var cleanDate = new DateTime(tomorrow.Year, tomorrow.Month, tomorrow.Day, tomorrow.Hour, tomorrow.Minute, 0); // Ép số giây về 0
 
             var model = new Appointment
             {
                 ServiceTypeId = serviceId,
-                AppointmentDate = cleanDate // Truyền cái ngày đã làm sạch vào
+                AppointmentDate = cleanDate 
             };
 
             return View(model);
@@ -50,20 +50,18 @@ namespace WebNoiThatHoaHome.Controllers
         {
             if (ModelState.IsValid)
             {
-                // ==============================================================
-                // MÓC ID CỦA KHÁCH ĐANG ĐĂNG NHẬP (TỪ CLAIMS) ĐỂ LƯU VÀO ĐƠN
-                // ==============================================================
+                // lấy ID CỦA KHÁCH ĐANG ĐĂNG NHẬP ĐỂ LƯU VÀO ĐƠN
                 var userIdString = User.FindFirstValue(ClaimTypes.NameIdentifier);
 
                 if (!string.IsNullOrEmpty(userIdString))
                 {
-                    model.CustomerId = int.Parse(userIdString); // Gắn đúng ID của khách
+                    model.CustomerId = int.Parse(userIdString); // Gắn ID của khách vào lịch hẹn
                 }
                 else
                 {
                     // Trúng trường hợp khách chưa đăng nhập mà mò vào Đặt lịch
                     TempData["LoginError"] = "Vui lòng đăng nhập để đặt lịch dịch vụ!";
-                    return RedirectToAction("Login", "Account"); // Đá về trang đăng nhập
+                    return RedirectToAction("Login", "Account"); // Chuyển về trang đăng nhập
                 }
 
                 model.Status = "Pending"; // Trạng thái "Chờ duyệt"
@@ -85,6 +83,7 @@ namespace WebNoiThatHoaHome.Controllers
 
             return View(model);
         }
+        // 3. HỦY LỊCH HẸN CHỈ CHO HỦY KHI CHƯA ĐƯỢC DUYỆT
         [HttpPost]
         public async Task<IActionResult> Cancel(int id)
         {
@@ -93,7 +92,7 @@ namespace WebNoiThatHoaHome.Controllers
             if (string.IsNullOrEmpty(userIdString)) return RedirectToAction("Login", "Account");
             int customerId = int.Parse(userIdString);
 
-            // 2. Tìm lịch hẹn (Phải đúng ID và đúng của Khách đó thì mới cho hủy - Bảo mật)
+            // 2. Tìm lịch hẹn phải đúng ID và đúng của Khách đó thì mới cho hủy 
             var appointment = await _context.Appointments
                 .FirstOrDefaultAsync(a => a.AppointmentId == id && a.CustomerId == customerId);
 

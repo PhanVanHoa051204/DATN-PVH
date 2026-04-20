@@ -1,6 +1,6 @@
 ﻿using System.Diagnostics;
 using Microsoft.AspNetCore.Mvc;
-using Microsoft.EntityFrameworkCore; // Nhớ có dòng này để dùng Include và ToListAsync
+using Microsoft.EntityFrameworkCore; 
 using WebNoiThatHoaHome.Models;
 
 namespace WebNoiThatHoaHome.Controllers
@@ -8,29 +8,28 @@ namespace WebNoiThatHoaHome.Controllers
     public class HomeController : Controller
     {
         private readonly ILogger<HomeController> _logger;
-        private readonly HoaHomeDbContext _context; // Thêm DbContext để gọi Database
+        private readonly HoaHomeDbContext _context; 
 
-        // Gộp cả 2 công cụ vào hàm khởi tạo
         public HomeController(ILogger<HomeController> logger, HoaHomeDbContext context)
         {
             _logger = logger;
             _context = context;
         }
 
-        // --- NÂNG CẤP TRANG CHỦ LẤY DỮ LIỆU ---
+        // Trang chủ hiển thị danh mục và sản phẩm mới nhất
         public async Task<IActionResult> Index()
         {
-            // 1. Lấy danh sách danh mục (không bị xóa) - Lấy 3 cái để hiển thị 3 khối to
+            // 1. Lấy danh sách danh mục 
             var categories = await _context.Categories
                 .Where(c => c.IsDeleted == false)
                 .Take(3)
                 .ToListAsync();
 
-            // 2. Lấy 8 sản phẩm mới nhất (đang bán và không bị xóa)
+            // 2. Lấy 8 sản phẩm mới nhất 
             var newProducts = await _context.Products
                 .Include(p => p.ProductImages)
                 .Where(p => p.IsDeleted == false && p.IsActive == true)
-                .OrderByDescending(p => p.ProductId) // ID to nhất (mới nhất) lên đầu
+                .OrderByDescending(p => p.ProductId) // ID mới nhất lên đầu
                 .Take(8)
                 .Select(p => new ProductListViewModel
                 {
@@ -52,7 +51,7 @@ namespace WebNoiThatHoaHome.Controllers
             return View(viewModel); // Truyền dữ liệu ra View
         }
 
-        // --- GIỮ NGUYÊN CÁC TRANG CŨ CỦA BẠN ---
+        // Trang chính sách bảo mật
         public IActionResult Privacy()
         {
             return View();

@@ -19,14 +19,14 @@ namespace WebNoiThatHoaHome.Areas.Admin.Controllers
             _context = context;
             _hubContext = hubContext;
         }
-
+        // 1. DANH SÁCH ĐƠN HÀNG + TÌM KIẾM + LỌC THEO PHƯƠNG THỨC THANH TOÁN
         public async Task<IActionResult> Index(string searchString, string paymentType = "All")
         {
             ViewData["CurrentSearch"] = searchString;
             ViewBag.CurrentPaymentType = paymentType;
 
             var query = _context.Orders.Include(o => o.User).AsQueryable();
-
+            // TÌM KIẾM: Cho phép tìm theo OrderId hoặc tên khách hàng (User.FullName)
             if (!string.IsNullOrEmpty(searchString))
             {
                 string keyword = searchString.Trim().ToLower();
@@ -35,14 +35,13 @@ namespace WebNoiThatHoaHome.Areas.Admin.Controllers
                     (o.User != null && o.User.FullName.ToLower().Contains(keyword))
                 );
             }
-
+            // LỌC THEO PHƯƠNG THỨC THANH TOÁN
             if (paymentType == "COD") query = query.Where(o => o.PaymentMethod == "COD");
             else if (paymentType == "VNPAY") query = query.Where(o => o.PaymentMethod == "BANK");
 
             var orders = await query.OrderByDescending(o => o.OrderDate).ToListAsync();
             return View(orders);
         }
-
         // 2. CẬP NHẬT TRẠNG THÁI (Danh sách)
         [HttpPost]
         public async Task<IActionResult> UpdateStatus(int orderId, string newStatus)
@@ -53,7 +52,7 @@ namespace WebNoiThatHoaHome.Areas.Admin.Controllers
 
             if (order != null)
             {
-                // KIỂM TRA CẢ 2 TRƯỜNG HỢP TIẾNG ANH/VIỆT CHO CHẮC
+                // KIỂM TRA CẢ 2 TRƯỜNG HỢP TIẾNG ANH/VIỆT
                 if ((newStatus == "Đã hủy" || newStatus == "Cancelled" || newStatus == "Canceled") && order.OrderStatus != "Đã hủy")
                 {
                     foreach (var item in order.OrderItems)
@@ -66,7 +65,6 @@ namespace WebNoiThatHoaHome.Areas.Admin.Controllers
                         }
                     }
                 }
-
                 order.OrderStatus = newStatus;
                 order.UpdatedAt = DateTime.Now;
                 await _context.SaveChangesAsync();
@@ -75,11 +73,12 @@ namespace WebNoiThatHoaHome.Areas.Admin.Controllers
             }
             return RedirectToAction("Index");
         }
-
+        // 3. CẬP NHẬT TRẠNG THÁI THANH TOÁN (Danh sách)
         [HttpPost]
         public async Task<IActionResult> UpdatePaymentStatus(int orderId, string newPaymentStatus)
         {
             var order = await _context.Orders.FindAsync(orderId);
+            // KIỂM TRA CÁC TRẠNG THÁI THANH TOÁN HỢP LỆ 
             if (order != null)
             {
                 order.PaymentStatus = newPaymentStatus;
@@ -90,8 +89,7 @@ namespace WebNoiThatHoaHome.Areas.Admin.Controllers
             }
             return RedirectToAction("Index");
         }
-
-        // 4. XỬ LÝ YÊU CẦU HỦY ĐƠN (Khách gửi yêu cầu)
+        // 4. XỬ LÝ YÊU CẦU HỦY ĐƠN 
         [HttpPost]
         public async Task<IActionResult> ProcessCancelRequest(int orderId, string actionType, string adminNote)
         {
@@ -100,7 +98,7 @@ namespace WebNoiThatHoaHome.Areas.Admin.Controllers
                 .FirstOrDefaultAsync(o => o.OrderId == orderId);
 
             if (order == null) return NotFound();
-
+            // CHỈ XỬ LÝ KHI ĐƠN HÀNG Ở TRẠNG THÁI "PendingCancel" (Đang chờ hủy)
             if (order.OrderStatus == "PendingCancel")
             {
                 if (!string.IsNullOrWhiteSpace(adminNote))
@@ -133,7 +131,7 @@ namespace WebNoiThatHoaHome.Areas.Admin.Controllers
             }
             return RedirectToAction("Index");
         }
-
+        // 5. TRANG CHI TIẾT ĐƠN HÀNG
         public async Task<IActionResult> Details(int id)
         {
             var order = await _context.Orders

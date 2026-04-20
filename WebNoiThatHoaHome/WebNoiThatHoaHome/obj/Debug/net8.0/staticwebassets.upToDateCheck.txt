@@ -1,6 +1,11 @@
 wwwroot\css\site.css
 wwwroot\favicon.ico
 wwwroot\images\favicon.jpg
+wwwroot\images\products\1cc4b20f-ebf4-4e20-8f1f-5cff3bede534_Ban-an-6-cho-Coastal-1.jpg
+wwwroot\images\products\2ceb4386-1c12-4518-a1d3-1f16ae33ee78_daybed-nest-beige-1-1.webp
+wwwroot\images\products\43695d9c-c269-4b51-9656-7fba41c43b65_phong-khach-tet-hien-dai-1.jpg
+wwwroot\images\products\6e99dd9b-b208-415e-8fa4-e312652f3a5a_phong-an-coastal (1).jpg
+wwwroot\images\products\dadfbdd9-ea56-4b3f-b4dc-e4521da99f86_phong-khach-tet-hien-dai.jpg
 wwwroot\images\trangchu\banner_bep.jpg
 wwwroot\images\trangchu\banner_phongkhach.jpg
 wwwroot\images\trangchu\banner_phongngu.jpg

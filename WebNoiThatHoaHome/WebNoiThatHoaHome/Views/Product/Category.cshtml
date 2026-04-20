@@ -89,8 +89,8 @@
                                     bool isWishlisted = wishlistedIds.Contains(item.ProductId);
                                 }
 
-                                <button class="btn btn-wishlist border-0 bg-transparent p-0 float-end" data-product-id="@item.ProductId">
-                                    <i class="@(isWishlisted ? "fa-solid fa-heart text-danger" : "fa-regular fa-heart")" style="font-size: 1.2rem; cursor: pointer;"></i>
+                                <button type="button" class="btn btn-wishlist border-0 bg-transparent p-0 float-end" onclick="toggleWishlist(@item.ProductId)">
+                                    <i class="fa-regular fa-heart heart-icon-@item.ProductId" style="font-size: 1.2rem; cursor: pointer;"></i>
                                 </button>
                             </div>
 

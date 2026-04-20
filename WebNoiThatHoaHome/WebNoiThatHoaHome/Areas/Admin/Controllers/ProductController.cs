@@ -18,35 +18,28 @@ namespace WebNoiThatHoaHome.Areas.Admin.Controllers
             _context = context;
             _webHostEnvironment = webHostEnvironment;
         }
-
-        // ==========================================
-        // 1. DANH SÁCH SẢN PHẨM (ĐÃ TÍCH HỢP LỌC TAB)
-        // ==========================================
+        // 1. DANH SÁCH SẢN PHẨM 
         [HttpGet]
         public async Task<IActionResult> Index(string searchString, int? categoryId)
         {
             ViewData["CurrentSearch"] = searchString;
-            ViewBag.CurrentCategory = categoryId; // Lưu trạng thái Tab đang bấm
-
-            // Lấy danh sách Danh mục ném ra View để làm bộ nút Tabs
+            ViewBag.CurrentCategory = categoryId; // Lưu trạng thái 
+            // Lấy danh sách Danh mục ném ra View 
             ViewBag.Categories = await _context.Categories
                 .Where(c => c.IsDeleted != true)
                 .ToListAsync();
-
             // Kết nối 3 bảng: Products + Categories + Product_Images
             var query = _context.Products
                 .Include(p => p.Category)
                 .Include(p => p.ProductImages)
                 .Where(p => p.IsDeleted == false)
                 .AsQueryable();
-
-            // LỌC THEO DANH MỤC (Khi Sếp bấm vào Tabs)
+            // LỌC THEO DANH MỤC 
             if (categoryId.HasValue)
             {
                 query = query.Where(p => p.CategoryId == categoryId.Value);
             }
-
-            // NÂNG CẤP XỬ LÝ TÌM KIẾM
+            // XỬ LÝ TÌM KIẾM
             if (!string.IsNullOrEmpty(searchString))
             {
                 string searchLower = searchString.ToLower();
@@ -55,7 +48,6 @@ namespace WebNoiThatHoaHome.Areas.Admin.Controllers
                     (p.Category != null && p.Category.CategoryName.ToLower().Contains(searchLower))
                 );
             }
-
             // Chuyển dữ liệu sang ViewModel
             var products = await query.Select(p => new ProductListViewModel
             {
@@ -68,15 +60,11 @@ namespace WebNoiThatHoaHome.Areas.Admin.Controllers
                 MainImageUrl = p.ProductImages.FirstOrDefault(i => i.IsMain == true).ImageUrl ?? "/images/no-image.png",
                 IsActive = p.IsActive ?? false
             })
-            .OrderBy(p => p.ProductId) // Đổi nhẹ thành OrderByDescending để SP mới lên đầu
+            .OrderBy(p => p.ProductId)
             .ToListAsync();
-
             return View(products);
         }
-
-        // ==========================================
         // 2. HIỂN THỊ FORM THÊM MỚI
-        // ==========================================
         [HttpGet]
         public async Task<IActionResult> Create()
         {
@@ -92,19 +80,15 @@ namespace WebNoiThatHoaHome.Areas.Admin.Controllers
                 Categories = categories,
                 StockQuantity = 1 // Mặc định số lượng là 1
             };
-
             return View(model);
         }
-
-        // ==========================================
         // 3. LƯU SẢN PHẨM VÀ ẢNH VÀO DATABASE
-        // ==========================================
         [HttpPost]
         public async Task<IActionResult> Create(ProductCreateViewModel model)
         {
             if (ModelState.IsValid)
             {
-                // Bước 1: Lưu thông tin Sản phẩm (chưa có ảnh)
+                //  Lưu thông tin Sản phẩm 
                 var product = new Product
                 {
                     ProductName = model.ProductName,
@@ -121,9 +105,9 @@ namespace WebNoiThatHoaHome.Areas.Admin.Controllers
                 };
 
                 _context.Products.Add(product);
-                await _context.SaveChangesAsync(); // Lưu để SQL cấp mã ProductId mới
+                await _context.SaveChangesAsync(); // Lưu để db cấp mã ProductId mới
 
-                // Bước 2: Xử lý lưu các file ảnh theo Danh mục
+                // Xử lý lưu các file ảnh theo Danh mục
                 if (model.UploadedImages != null && model.UploadedImages.Count > 0)
                 {
                     string categoryFolderName = "Category_" + model.CategoryId;
@@ -175,16 +159,13 @@ namespace WebNoiThatHoaHome.Areas.Admin.Controllers
 
             return View(model);
         }
-
-        // ==========================================
         // 4. HIỂN THỊ FORM CHỈNH SỬA SẢN PHẨM
-        // ==========================================
         [HttpGet]
         public async Task<IActionResult> Edit(int id)
         {
-            var product = await _context.Products.FindAsync(id);
+            var product = await _context.Products.Include(p => p.ProductImages).FirstOrDefaultAsync(p => p.ProductId == id);
             if (product == null || product.IsDeleted == true) return NotFound();
-
+            // Lấy danh sách Danh mục từ Database nạp vào Dropdown
             var categories = await _context.Categories.Select(c => new SelectListItem
             {
                 Value = c.CategoryId.ToString(),
@@ -202,23 +183,25 @@ namespace WebNoiThatHoaHome.Areas.Admin.Controllers
                 Material = product.Material,
                 Description = product.Description,
                 IsActive = product.IsActive ?? false,
-                Categories = categories
+                Categories = categories,
+
+                ProductImages = product.ProductImages.ToList()
             };
 
             return View(model);
         }
-
-        // ==========================================
         // 5. LƯU THAY ĐỔI VÀO DATABASE
-        // ==========================================
         [HttpPost]
-        public async Task<IActionResult> Edit(ProductEditViewModel model)
+        [ValidateAntiForgeryToken]
+        public async Task<IActionResult> Edit(ProductEditViewModel model, List<IFormFile> uploadImages)
         {
             if (ModelState.IsValid)
             {
+                // 1. Tìm sản phẩm cũ trong DB
                 var product = await _context.Products.FindAsync(model.ProductId);
                 if (product == null) return NotFound();
 
+                // 2. Cập nhật các thông tin dạng chữ/số
                 product.ProductName = model.ProductName;
                 product.CategoryId = model.CategoryId;
                 product.Price = model.Price;
@@ -229,18 +212,60 @@ namespace WebNoiThatHoaHome.Areas.Admin.Controllers
                 product.IsActive = model.IsActive;
                 product.UpdatedAt = DateTime.Now;
 
+                // 3. XỬ LÝ LƯU ẢNH MỚI (Nếu Admin có bấm chọn file)
+                if (uploadImages != null && uploadImages.Count > 0)
+                {
+                    // Kiểm tra xem sản phẩm này đã có ảnh chính chưa?
+                    bool hasMainImage = await _context.ProductImages.AnyAsync(i => i.ProductId == model.ProductId && i.IsMain == true);
+                    bool isFirstNewImage = !hasMainImage; // Nếu chưa có thì ảnh mới up lên sẽ làm ảnh chính
+
+                    // Chuẩn bị thư mục lưu file
+                    var uploadPath = Path.Combine(Directory.GetCurrentDirectory(), "wwwroot", "images", "products");
+                    if (!Directory.Exists(uploadPath)) Directory.CreateDirectory(uploadPath);
+
+                    foreach (var file in uploadImages)
+                    {
+                        if (file.Length > 0)
+                        {
+                            // Đổi tên file để không bị trùng
+                            string fileName = Guid.NewGuid().ToString() + "_" + file.FileName;
+                            var filePath = Path.Combine(uploadPath, fileName);
+
+                            // Lưu file vật lý vào ổ cứng
+                            using (var stream = new FileStream(filePath, FileMode.Create))
+                            {
+                                await file.CopyToAsync(stream);
+                            }
+
+                            // Lưu đường dẫn vào bảng ProductImage
+                            var newImage = new ProductImage
+                            {
+                                ProductId = product.ProductId,
+                                ImageUrl = "/images/products/" + fileName,
+                                IsMain = isFirstNewImage,
+                                CreatedAt = DateTime.Now
+                            };
+                            _context.ProductImages.Add(newImage);
+
+                            isFirstNewImage = false; // Các ảnh sau tự động thành ảnh phụ
+                        }
+                    }
+                }
+
+                // 4. Lưu toàn bộ thay đổi (Cả chữ và ảnh) xuống Database
                 await _context.SaveChangesAsync();
                 TempData["SuccessMsg"] = $"Cập nhật sản phẩm [{product.ProductName}] thành công!";
                 return RedirectToAction("Index");
             }
-            // Nếu lỗi, nạp lại Dropdown
-            model.Categories = await _context.Categories.Select(c => new SelectListItem { Value = c.CategoryId.ToString(), Text = c.CategoryName }).ToListAsync();
+
+            // Nếu form bị lỗi (ví dụ chưa nhập tên), nạp lại Dropdown danh mục để view không bị sập
+            model.Categories = await _context.Categories
+                .Select(c => new SelectListItem { Value = c.CategoryId.ToString(), Text = c.CategoryName })
+                .ToListAsync();
+
             return View(model);
         }
-
-        // ==========================================
         // 6. XÓA MỀM SẢN PHẨM
-        // ==========================================
         [HttpPost]
         public async Task<IActionResult> Delete(int id)
         {
@@ -255,10 +280,7 @@ namespace WebNoiThatHoaHome.Areas.Admin.Controllers
             }
             return RedirectToAction("Index");
         }
-
-        // ==========================================
         // 7. TRANG DANH SÁCH SẢN PHẨM ĐÃ XÓA (Thùng rác)
-        // ==========================================
         [HttpGet]
         public async Task<IActionResult> Trash()
         {
@@ -280,10 +302,7 @@ namespace WebNoiThatHoaHome.Areas.Admin.Controllers
 
             return View(deletedProducts);
         }
-
-        // ==========================================
         // 8. LỆNH KHÔI PHỤC SẢN PHẨM
-        // ==========================================
         [HttpPost]
         public async Task<IActionResult> Restore(int id)
         {

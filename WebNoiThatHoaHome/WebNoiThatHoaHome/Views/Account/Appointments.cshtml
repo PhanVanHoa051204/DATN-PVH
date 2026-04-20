@@ -97,7 +97,7 @@
         switch (status)
         {
             case "Pending": return "bg-secondary";
-            case "Assigned": return "bg-info text-dark"; // Màu xanh lơ cho Đã phân công
+            case "Assigned": return "bg-info text-dark"; 
             case "InProgress":
             case "Processing": return "bg-primary";
             case "Completed": return "bg-success";
@@ -131,7 +131,7 @@
                 });
             });
 
-            // 2. Hiện thông báo Toast từ TempData (nếu có)
+            // 2. Hiện thông báo Toast từ TempData 
         @if (TempData["SuccessMsg"] != null)
         {
             <text>

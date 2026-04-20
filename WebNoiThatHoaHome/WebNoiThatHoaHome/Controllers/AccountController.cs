@@ -31,10 +31,8 @@ namespace WebNoiThatHoaHome.Controllers
                     .FirstOrDefaultAsync(u => u.Email == model.Email && u.PasswordHash == model.Password);
 
                 if (user != null)
-                {
-                    // =======================================================
-                    // 👇 TRẠM KIỂM SOÁT: TÀI KHOẢN CÓ BỊ KHÓA KHÔNG?
-                    // =======================================================
+                {                   
+                    // TÀI KHOẢN CÓ BỊ KHÓA KHÔNG?                    
                     if (user.IsDeleted == true)
                     {
                         // Bị khóa -> Báo lỗi đúng bệnh và đuổi ra ngoài ngay lập tức
@@ -45,12 +43,12 @@ namespace WebNoiThatHoaHome.Controllers
 
                     // Nếu an toàn đi qua trạm kiểm soát trên thì mới cấp "Vé" (Cookie)
                     var claims = new List<Claim>
-            {
-                new Claim(ClaimTypes.NameIdentifier, user.UserId.ToString()),
-                new Claim(ClaimTypes.Name, user.FullName ?? ""),
-                new Claim(ClaimTypes.Email, user.Email ?? ""),
-                new Claim(ClaimTypes.Role, user.Role?.RoleName ?? "Customer")
-            };
+                    {
+                        new Claim(ClaimTypes.NameIdentifier, user.UserId.ToString()),
+                        new Claim(ClaimTypes.Name, user.FullName ?? ""),
+                        new Claim(ClaimTypes.Email, user.Email ?? ""),
+                        new Claim(ClaimTypes.Role, user.Role?.RoleName ?? "Customer")
+                    };
 
                     var identity = new ClaimsIdentity(claims, CookieAuthenticationDefaults.AuthenticationScheme);
                     await HttpContext.SignInAsync(CookieAuthenticationDefaults.AuthenticationScheme, new ClaimsPrincipal(identity));                 
@@ -109,7 +107,7 @@ namespace WebNoiThatHoaHome.Controllers
             TempData["RegisterError"] = "Thông tin đăng ký chưa hợp lệ!";
             return RedirectToAction("Index", "Home");
         }
-
+        // Xử lý đăng xuất: Xóa cookie và đẩy về trang chủ
         public async Task<IActionResult> Logout()
         {
             await HttpContext.SignOutAsync(CookieAuthenticationDefaults.AuthenticationScheme);
@@ -127,7 +125,7 @@ namespace WebNoiThatHoaHome.Controllers
 
             return View(user);
         }
-
+        // Xử lý cập nhật thông tin cá nhân và đổi mật khẩu
         [HttpPost]
         public async Task<IActionResult> UpdateProfile(string FirstName, string LastName, string CurrentPassword, string NewPassword, string ConfirmPassword)
         {
@@ -159,7 +157,7 @@ namespace WebNoiThatHoaHome.Controllers
             }
             return RedirectToAction("Profile");
         }
-
+        // Xử lý cập nhật địa chỉ giao hàng
         [HttpPost]
         public async Task<IActionResult> UpdateAddress(string DeliveryName, string Phone, string City, string Ward, string AddressDetail)
         {
@@ -186,7 +184,7 @@ namespace WebNoiThatHoaHome.Controllers
             }
             return RedirectToAction("Profile");
         }
-
+        // Xử lý hiển thị lịch sử đơn hàng của khách
         [HttpGet]
         public async Task<IActionResult> Orders()
         {
@@ -209,7 +207,7 @@ namespace WebNoiThatHoaHome.Controllers
             ViewBag.ReviewedProductIds = reviewedIds;
             return View(orders);
         }
-
+        // Xử lý hiển thị danh sách yêu thích của khách
         [Authorize]
         public async Task<IActionResult> Wishlist()
         {
@@ -226,7 +224,7 @@ namespace WebNoiThatHoaHome.Controllers
             }
             return RedirectToAction("Login");
         }
-
+        // Xử lý xóa sản phẩm khỏi danh sách yêu thích
         [HttpPost]
         [Authorize]
         public async Task<IActionResult> RemoveWishlist(int productId)
@@ -246,6 +244,7 @@ namespace WebNoiThatHoaHome.Controllers
             }
             return RedirectToAction("Wishlist");
         }
+        // Xử lý yêu cầu hủy đơn hàng của khách
         [HttpPost]
         [Authorize]
         public async Task<IActionResult> RequestCancelOrder(int orderId)
@@ -261,7 +260,6 @@ namespace WebNoiThatHoaHome.Controllers
             if (order == null) return NotFound();
 
             // 3. CHẶN: Chỉ cho phép hủy nếu đơn hàng đang "Chờ xử lý" hoặc "Chưa thanh toán"
-            // Lưu ý: Sếp tự đổi chữ "Chờ xử lý" thành đúng cái chữ Sếp đang lưu trong Database nhé
             if (order.OrderStatus == "Đã hoàn thành" || order.OrderStatus == "Đang giao" || order.OrderStatus == "Đã hủy")
             {
                 TempData["ErrorMsg"] = "Đơn hàng này đang được xử lý hoặc đã hoàn thành, không thể hủy!";
@@ -275,6 +273,7 @@ namespace WebNoiThatHoaHome.Controllers
             TempData["SuccessMsg"] = "Đã gửi yêu cầu hủy! Vui lòng chờ Admin phê duyệt.";
             return RedirectToAction("Orders");
         }
+        // Xử lý yêu cầu hủy đơn hàng của khách kèm thêm lý do
         [HttpPost]
         public async Task<IActionResult> RequestCancel(int orderId, string reason)
         {
@@ -288,8 +287,9 @@ namespace WebNoiThatHoaHome.Controllers
                 await _context.SaveChangesAsync();
                 TempData["SuccessMsg"] = "Đã gửi yêu cầu hủy đơn thành công!";
             }
-            return RedirectToAction("Orders"); // Vì đang ở trong AccountController nên chỉ cần tên Action
+            return RedirectToAction("Orders"); 
         }
+        // Xử lý hiển thị lịch sử đặt lịch hẹn của khách
         [HttpGet]
         public async Task<IActionResult> Appointments()
         {
@@ -298,13 +298,10 @@ namespace WebNoiThatHoaHome.Controllers
 
             if (string.IsNullOrEmpty(userIdString))
             {
-                // Nếu không tìm thấy thẻ căn cước -> Chưa đăng nhập
                 return RedirectToAction("Login", "Account");
             }
 
-            // Ép kiểu chữ sang số
             int customerId = int.Parse(userIdString);
-
             // Kéo danh sách lịch hẹn của Khách này
             var myAppointments = await _context.Appointments
                 .Include(a => a.ServiceType)
@@ -314,7 +311,7 @@ namespace WebNoiThatHoaHome.Controllers
 
             return View(myAppointments);
         }
-
+        // Xử lý hiển thị lịch sử đánh giá sản phẩm của khách
         [Authorize]
         public async Task<IActionResult> MyReviews()
         {

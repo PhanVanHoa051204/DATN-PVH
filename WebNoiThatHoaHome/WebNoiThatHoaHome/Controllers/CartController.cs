@@ -41,7 +41,7 @@ namespace WebNoiThatHoaHome.Controllers
 
             // 4. Tìm Giỏ hàng của người dùng này. Nếu chưa có thì tạo mới.
             var cart = await _context.Carts
-                .Include(c => c.CartItems) // Kéo theo các món hàng đang có sẵn trong giỏ
+                .Include(c => c.CartItems) 
                 .FirstOrDefaultAsync(c => c.UserId == userId);
 
             if (cart == null)
@@ -53,7 +53,7 @@ namespace WebNoiThatHoaHome.Controllers
                     UpdatedAt = DateTime.Now
                 };
                 _context.Carts.Add(cart);
-                await _context.SaveChangesAsync(); // Phải Save ở đây để Database cấp mã CartId
+                await _context.SaveChangesAsync(); 
             }
 
             // 5. Kiểm tra xem sản phẩm khách muốn mua đã có trong giỏ chưa
@@ -66,8 +66,6 @@ namespace WebNoiThatHoaHome.Controllers
                 {
                     return Json(new { success = false, message = $"Bạn đã có {cartItem.Quantity} sản phẩm này trong giỏ. Kho chỉ còn tổng {product.StockQuantity.Value} sản phẩm!" });
                 }
-
-                // Không lố thì cộng dồn số lượng
                 cartItem.Quantity += quantity;
             }
             else
@@ -77,8 +75,6 @@ namespace WebNoiThatHoaHome.Controllers
                 {
                     return Json(new { success = false, message = $"Kho hiện tại chỉ còn {product.StockQuantity.Value} sản phẩm!" });
                 }
-
-                // Không lố thì thêm món mới vào giỏ
                 var newCartItem = new CartItem
                 {
                     CartId = cart.CartId,
@@ -90,11 +86,7 @@ namespace WebNoiThatHoaHome.Controllers
 
             // 6. Cập nhật lại thời gian giỏ hàng có biến động
             cart.UpdatedAt = DateTime.Now;
-
-            // Chốt hạ lưu vào Database
             await _context.SaveChangesAsync();
-
-            // Báo tin vui về cho AJAX
             return Json(new { success = true });
         }
 
@@ -107,18 +99,16 @@ namespace WebNoiThatHoaHome.Controllers
             if (string.IsNullOrEmpty(userIdString)) return RedirectToAction("Login", "Account");
             int userId = int.Parse(userIdString);
 
-            // Kéo dữ liệu Giỏ hàng của người dùng, bao gồm cả Món hàng, Thông tin Sản phẩm và Ảnh
+            // Kéo dữ liệu Giỏ hàng của người dùng
             var cart = await _context.Carts
                 .Include(c => c.CartItems)
                     .ThenInclude(ci => ci.Product)
                         .ThenInclude(p => p.ProductImages)
                 .FirstOrDefaultAsync(c => c.UserId == userId);
-
-            // Trả về View (Nếu cart null thì truyền vào một cái Cart rỗng để view không bị lỗi)
             return View(cart ?? new Cart { CartItems = new List<CartItem>() });
         }
 
-        // 2. Hàm Cập nhật số lượng (dùng cho nút + / -)
+        // 2. Hàm Cập nhật số lượng 
         [HttpPost]
         public async Task<IActionResult> UpdateQuantity(int cartItemId, int quantity)
         {
@@ -149,8 +139,6 @@ namespace WebNoiThatHoaHome.Controllers
             {
                 _context.CartItems.Remove(cartItem);
                 await _context.SaveChangesAsync();
-
-                // Trả về JSON để AJAX bắt được
                 return Json(new { success = true, message = "Xóa sản phẩm thành công khỏi giỏ hàng!" });
             }
             return Json(new { success = false, message = "Lỗi: Không tìm thấy sản phẩm!" });

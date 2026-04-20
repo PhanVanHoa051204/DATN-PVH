@@ -16,10 +16,7 @@ namespace WebNoiThatHoaHome.Areas.Admin.Controllers
         {
             _context = context;
         }
-
-        // ==========================================
         // 1. TRANG DANH SÁCH NGƯỜI DÙNG (CÓ BỘ LỌC)
-        // ==========================================
         [HttpGet]
         public async Task<IActionResult> Index(string searchString, int? roleFilter)
         {
@@ -38,21 +35,15 @@ namespace WebNoiThatHoaHome.Areas.Admin.Controllers
                     u.Email.ToLower().Replace("@gmail.com", "").Contains(keyword)
                 );
             }
-
             // LỌC THEO PHÂN QUYỀN (Admin/Nhân viên/Khách hàng)
             if (roleFilter.HasValue)
             {
                 usersQuery = usersQuery.Where(u => u.RoleId == roleFilter.Value);
             }
-
-            // Sắp xếp người mới nhất lên đầu
             var users = await usersQuery.OrderBy(u => u.CreatedAt).ToListAsync();
             return View(users);
         }
-
-        // ==========================================
         // 2. TRANG CHI TIẾT (CHỈNH SỬA & CẤP QUYỀN)
-        // ==========================================
         [HttpGet]
         public async Task<IActionResult> Details(int id)
         {
@@ -80,7 +71,7 @@ namespace WebNoiThatHoaHome.Areas.Admin.Controllers
 
             return View(model);
         }
-
+        // XỬ LÝ CẬP NHẬT THÔNG TIN VÀ PHÂN QUYỀN KHI ADMIN BẤM NÚT LƯU
         [HttpPost]
         public async Task<IActionResult> Details(UserDetailViewModel model)
         {
@@ -93,7 +84,6 @@ namespace WebNoiThatHoaHome.Areas.Admin.Controllers
             user.RoleId = model.RoleId;
             user.IsDeleted = model.IsDeleted;
             user.UpdatedAt = DateTime.Now;
-
             // ĐỔI MẬT KHẨU NẾU ADMIN NHẬP PASS MỚI
             if (!string.IsNullOrEmpty(model.NewPassword))
             {
@@ -109,24 +99,19 @@ namespace WebNoiThatHoaHome.Areas.Admin.Controllers
                     var newEmployee = new Employee
                     {
                         UserId = user.UserId,
-                        Specialization = "Chưa phân công", // Sếp có thể vào bên Quản lý NS sửa sau
+                        Specialization = "Chưa phân công",
                         Status = "Available",
                         IsDeleted = false
                     };
                     _context.Employees.Add(newEmployee);
                 }
             }
-
             await _context.SaveChangesAsync();
 
             TempData["SuccessMsg"] = "Cập nhật thông tin và phân quyền thành công!";
             return RedirectToAction("Index");
         }
-
-
-        // ==========================================
         // 3. THÊM MỚI NGƯỜI DÙNG
-        // ==========================================
         [HttpGet]
         public async Task<IActionResult> Create()
         {
@@ -139,7 +124,7 @@ namespace WebNoiThatHoaHome.Areas.Admin.Controllers
 
             return View(model);
         }
-
+        // XỬ LÝ LƯU NGƯỜI DÙNG MỚI
         [HttpPost]
         public async Task<IActionResult> Create(UserCreateViewModel model)
         {
@@ -153,7 +138,6 @@ namespace WebNoiThatHoaHome.Areas.Admin.Controllers
                     model.Roles = await _context.Roles.Select(r => new SelectListItem { Value = r.RoleId.ToString(), Text = r.RoleName }).ToListAsync();
                     return View(model);
                 }
-
                 // TẠO TÀI KHOẢN MỚI
                 var newUser = new User
                 {
@@ -166,20 +150,20 @@ namespace WebNoiThatHoaHome.Areas.Admin.Controllers
                 };
 
                 _context.Users.Add(newUser);
-                await _context.SaveChangesAsync(); // Lưu để SQL Server đẻ ra được UserId
+                await _context.SaveChangesAsync(); 
 
-                // --- LOGIC TỰ ĐỘNG TẠO NHÂN SỰ NẾU CHỌN LUÔN QUYỀN LÀ EMPLOYEE (ID = 16) ---
+                // TỰ ĐỘNG TẠO NHÂN SỰ NẾU CHỌN LUÔN QUYỀN LÀ EMPLOYEE (ID = 16) 
                 if (newUser.RoleId == 16)
                 {
                     var newEmployee = new Employee
                     {
-                        UserId = newUser.UserId, // Đã lấy được UserId sau lệnh SaveChanges ở trên
+                        UserId = newUser.UserId, // Đã lấy được UserId 
                         Specialization = "Chưa phân công",
                         Status = "Available",
                         IsDeleted = false
                     };
                     _context.Employees.Add(newEmployee);
-                    await _context.SaveChangesAsync(); // Lưu thêm phát nữa cho bảng Employee
+                    await _context.SaveChangesAsync();
                 }
 
                 TempData["SuccessMsg"] = "Đã thêm người dùng mới thành công!";
@@ -189,10 +173,7 @@ namespace WebNoiThatHoaHome.Areas.Admin.Controllers
             model.Roles = await _context.Roles.Select(r => new SelectListItem { Value = r.RoleId.ToString(), Text = r.RoleName }).ToListAsync();
             return View(model);
         }
-
-        // ==========================================
         // 4. KHÓA / MỞ KHÓA TÀI KHOẢN
-        // ==========================================
         [HttpPost]
         public async Task<IActionResult> Delete(int id)
         {

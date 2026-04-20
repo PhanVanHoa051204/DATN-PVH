@@ -9,7 +9,6 @@ public class VoucherController : Controller
     private readonly HoaHomeDbContext _context;
 
     public VoucherController(HoaHomeDbContext context) => _context = context;
-
     // Hiển thị danh sách mã cho khách lấy
     public async Task<IActionResult> Index()
     {

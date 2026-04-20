@@ -24,5 +24,6 @@ namespace WebNoiThatHoaHome.Models
 
         // Thêm biến này để bật/tắt trạng thái Đang bán - Tạm ẩn
         public bool IsActive { get; set; }
+        public List<ProductImage>? ProductImages { get; set; }
     }
 }

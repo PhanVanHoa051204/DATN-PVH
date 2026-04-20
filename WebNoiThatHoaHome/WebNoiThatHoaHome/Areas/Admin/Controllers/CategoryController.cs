@@ -13,38 +13,30 @@ namespace WebNoiThatHoaHome.Areas.Admin.Controllers
         {
             _context = context;
         }
-
-        // ==========================================
         // 1. DANH SÁCH DANH MỤC
-        // ==========================================
         [HttpGet]
         public async Task<IActionResult> Index(string searchString)
         {
             ViewData["CurrentSearch"] = searchString;
-
             // Lấy các danh mục chưa bị xóa (IsDeleted == false hoặc null)
             var query = _context.Categories.Where(c => c.IsDeleted == false || c.IsDeleted == null).AsQueryable();
 
             if (!string.IsNullOrEmpty(searchString))
             {
-                // Áp dụng bài học tìm kiếm: Cắt khoảng trắng và đưa về chữ thường
+                // Chuyển searchString về chữ thường và loại bỏ khoảng trắng để tìm kiếm không phân biệt hoa thường và khoảng trắng
                 string keyword = searchString.Trim().ToLower();
                 query = query.Where(c => c.CategoryName.ToLower().Contains(keyword));
             }
-
             var categories = await query.OrderBy(c => c.CategoryId).ToListAsync();
             return View(categories);
         }
-
-        // ==========================================
         // 2. THÊM MỚI
-        // ==========================================
         [HttpGet]
         public IActionResult Create()
         {
             return View();
         }
-
+        // Xử lý POST khi người dùng submit form tạo mới
         [HttpPost]
         public async Task<IActionResult> Create(CategoryViewModel model)
         {
@@ -67,10 +59,7 @@ namespace WebNoiThatHoaHome.Areas.Admin.Controllers
             }
             return View(model);
         }
-
-        // ==========================================
         // 3. CHỈNH SỬA
-        // ==========================================
         [HttpGet]
         public async Task<IActionResult> Edit(int id)
         {
@@ -86,7 +75,7 @@ namespace WebNoiThatHoaHome.Areas.Admin.Controllers
 
             return View(model);
         }
-
+        // Xử lý POST khi người dùng submit form chỉnh sửa
         [HttpPost]
         public async Task<IActionResult> Edit(CategoryViewModel model)
         {
@@ -105,10 +94,7 @@ namespace WebNoiThatHoaHome.Areas.Admin.Controllers
             }
             return View(model);
         }
-
-        // ==========================================
         // 4. XÓA MỀM (Chuyển vào Thùng rác)
-        // ==========================================
         [HttpPost]
         public async Task<IActionResult> Delete(int id)
         {
@@ -124,10 +110,7 @@ namespace WebNoiThatHoaHome.Areas.Admin.Controllers
             }
             return RedirectToAction("Index");
         }
-
-        // ==========================================
         // 5. TRANG THÙNG RÁC
-        // ==========================================
         [HttpGet]
         public async Task<IActionResult> Trash()
         {
@@ -138,10 +121,7 @@ namespace WebNoiThatHoaHome.Areas.Admin.Controllers
                                         .ToListAsync();
             return View(deletedCategories);
         }
-
-        // ==========================================
         // 6. KHÔI PHỤC TỪ THÙNG RÁC
-        // ==========================================
         [HttpPost]
         public async Task<IActionResult> Restore(int id)
         {

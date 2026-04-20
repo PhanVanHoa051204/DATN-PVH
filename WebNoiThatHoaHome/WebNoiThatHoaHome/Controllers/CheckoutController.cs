@@ -5,8 +5,7 @@ using WebNoiThatHoaHome.Models;
 using WebNoiThatHoaHome.Services;
 using Microsoft.AspNetCore.SignalR;
 using WebNoiThatHoaHome.Hubs;
-using Microsoft.AspNetCore.Authorization; // Thêm thư viện này cho [Authorize]
-
+using Microsoft.AspNetCore.Authorization;
 namespace WebNoiThatHoaHome.Controllers
 {
     public class CheckoutController : Controller
@@ -14,14 +13,14 @@ namespace WebNoiThatHoaHome.Controllers
         private readonly HoaHomeDbContext _context;
         private readonly IConfiguration _configuration;
         private readonly IHubContext<OrderHub> _hubContext;
-
+        
         public CheckoutController(HoaHomeDbContext context, IConfiguration configuration, IHubContext<OrderHub> hubContext)
         {
             _context = context;
             _configuration = configuration;
             _hubContext = hubContext;
         }
-
+        
         [HttpGet]
         public async Task<IActionResult> Index()
         {
@@ -48,7 +47,7 @@ namespace WebNoiThatHoaHome.Controllers
             ViewBag.ExpressFee = expressFee;
             return View(user);
         }
-
+        // Hàm xử lý đặt hàng, tạo đơn và thanh toán
         [HttpPost]
         public async Task<IActionResult> PlaceOrder(string CustomerName, string Phone, string City, string Ward, string AddressDetail, string OrderNote, string PaymentMethod, string ShippingMethod, int? AppliedVoucherId)
         {
@@ -68,7 +67,7 @@ namespace WebNoiThatHoaHome.Controllers
 
                     if (cart == null || !cart.CartItems.Any()) return RedirectToAction("Index", "Cart");
 
-                    // 2. Tính toán tiền và Check Voucher lần cuối (Bảo mật Server-side)
+                    // 2. Tính toán tiền và Check Voucher lần cuối 
                     decimal subTotal = cart.CartItems.Sum(i => (i.Product?.Price ?? 0) * i.Quantity);
                     decimal shippingFee = 0;
                     if (ShippingMethod == "Hỏa tốc")
@@ -109,15 +108,12 @@ namespace WebNoiThatHoaHome.Controllers
 
                     _context.Orders.Add(newOrder);
                     await _context.SaveChangesAsync(); // Lưu để lấy ID cho OrderItem
-
-                    // ==========================================================
-                    // 4. LƯU CHI TIẾT ĐƠN VÀ TRỪ TỒN KHO (ĐÃ FIX)
-                    // ==========================================================
+                    // 4. LƯU CHI TIẾT ĐƠN VÀ TRỪ TỒN KHO 
                     foreach (var item in cart.CartItems)
                     {
                         if (item.Product == null) continue;
 
-                        // 4.1 KIỂM TRA KHO: Đề phòng khách treo giỏ hàng từ hôm qua, nay mới đặt mà hàng đã hết
+                        // KIỂM TRA KHO: Đề phòng khách treo giỏ hàng từ hôm qua, nay mới đặt mà hàng đã hết
                         
                         if (item.Product.StockQuantity < item.Quantity)
                         {
@@ -125,8 +121,7 @@ namespace WebNoiThatHoaHome.Controllers
                             TempData["ErrorMsg"] = $"Rất tiếc! Sản phẩm '{item.Product.ProductName}' chỉ còn {item.Product.StockQuantity} cái trong kho. Vui lòng điều chỉnh lại giỏ hàng.";
                             return RedirectToAction("Index", "Cart"); // Đẩy về trang giỏ hàng
                         }
-
-                        // 4.2 LƯU CHI TIẾT
+                        // LƯU CHI TIẾT
                         _context.OrderItems.Add(new OrderItem
                         {
                             OrderId = newOrder.OrderId,
@@ -134,21 +129,15 @@ namespace WebNoiThatHoaHome.Controllers
                             Quantity = item.Quantity,
                             UnitPrice = item.Product.Price
                         });
-
-                        // 4.3 TRỪ KHO NGAY LẬP TỨC
+                        // TRỪ KHO NGAY LẬP TỨC
                         item.Product.StockQuantity = (item.Product.StockQuantity ?? 0) - item.Quantity;
                         _context.Products.Update(item.Product);
                     }
 
                     // 5. Xóa giỏ hàng
                     _context.CartItems.RemoveRange(cart.CartItems);
-
-                    // Chốt hạ: Lưu tất cả thay đổi
                     await _context.SaveChangesAsync();
-
-                    // Nếu mọi thứ ok, commit transaction
                     await transaction.CommitAsync();
-
                     // 6. Thông báo SignalR và Xử lý thanh toán
                     await _hubContext.Clients.All.SendAsync("ReceiveNewOrder", newOrder.OrderId, newOrder.TotalAmount);
 
@@ -168,10 +157,7 @@ namespace WebNoiThatHoaHome.Controllers
                 }
             }
         }
-
-        // ==============================================================
-        // [ĐÃ FIX] HÀM TẠO URL THANH TOÁN (CÓ GẮN ĐUÔI THỜI GIAN CHỐNG LỖI)
-        // ==============================================================
+        // HÀM TẠO URL THANH TOÁN 
         private string CreateVnpayPaymentUrl(int orderId, double totalAmount)
         {
             var vnp_TmnCode = _configuration["Vnpay:TmnCode"];
@@ -194,16 +180,12 @@ namespace WebNoiThatHoaHome.Controllers
             pay.AddRequestData("vnp_OrderType", "other");
             pay.AddRequestData("vnp_ReturnUrl", vnp_Returnurl);
 
-            // GẮN ĐUÔI THỜI GIAN LÊN ĐƠN MỚI
             string tick = DateTime.Now.ToString("HHmmss");
             pay.AddRequestData("vnp_TxnRef", orderId.ToString() + "_" + tick);
 
             return pay.CreateRequestUrl(vnp_Url, vnp_HashSecret);
         }
-
-        // ==============================================================
-        // [ĐÃ THÊM MỚI] HÀM THANH TOÁN LẠI
-        // ==============================================================
+        // HÀM THANH TOÁN LẠI
         [Authorize]
         public async Task<IActionResult> RePayment(int orderId)
         {
@@ -242,7 +224,7 @@ namespace WebNoiThatHoaHome.Controllers
             string paymentUrl = vnpay.CreateRequestUrl(vnp_Url, vnp_HashSecret);
             return Redirect(paymentUrl);
         }
-
+        // Hàm xử lý callback từ VNPAY sau khi khách thanh toán xong (hoặc hủy)
         [HttpGet]
         public async Task<IActionResult> PaymentCallback()
         {
@@ -263,9 +245,7 @@ namespace WebNoiThatHoaHome.Controllers
 
             if (checkSignature)
             {
-                // ==============================================================
-                // [ĐÃ FIX] CHẶT ĐUÔI THỜI GIAN ĐỂ TÌM ĐÚNG ID GỐC
-                // ==============================================================
+                // TÌM ĐÚNG ID GỐC
                 string txnRef = pay.GetResponseData("vnp_TxnRef");
                 int orderId = int.Parse(txnRef.Split('_')[0]);
 
@@ -297,9 +277,7 @@ namespace WebNoiThatHoaHome.Controllers
                     }
                     else
                     {
-                        // ==============================================================
-                        // [ĐÃ FIX] ĐÓNG DẤU FAILED CHO ĐƠN HÀNG LỖI
-                        // ==============================================================
+                        // ĐÓNG DẤU FAILED CHO ĐƠN HÀNG LỖI
                         order.PaymentStatus = "Failed";
                         await _context.SaveChangesAsync();
                     }
@@ -309,32 +287,28 @@ namespace WebNoiThatHoaHome.Controllers
             TempData["ErrorMsg"] = "Thanh toán không thành công hoặc đã bị hủy.";
             return RedirectToAction("Orders", "Account"); // Đẩy về trang Đơn hàng của tôi để khách bấm "Thanh toán lại"
         }
-
+        // Trang hiển thị sau khi đặt hàng thành công
         public IActionResult OrderSuccess(int orderId)
         {
             ViewBag.OrderId = orderId;
             return View();
         }
+        // Hàm xử lý AJAX kiểm tra voucher khi khách nhập mã giảm giá ở trang Checkout
         [HttpPost]
         public async Task<IActionResult> CheckVoucher(string code, decimal totalAmount)
         {
             var voucher = await _context.Vouchers
                 .FirstOrDefaultAsync(v => v.Code == code && v.IsActive == true);
-
             // 1. Kiểm tra tồn tại
             if (voucher == null) return Json(new { success = false, message = "Mã giảm giá không tồn tại!" });
-
             // 2. Kiểm tra hạn sử dụng
             if (voucher.EndDate < DateTime.Now) return Json(new { success = false, message = "Mã này đã hết hạn sử dụng!" });
-
             // 3. Kiểm tra số lượt dùng
             if (voucher.UsageLimit > 0 && voucher.UsedCount >= voucher.UsageLimit)
                 return Json(new { success = false, message = "Mã này đã hết lượt sử dụng!" });
-
             // 4. Kiểm tra đơn hàng tối thiểu
             if (totalAmount < voucher.MinOrderValue)
                 return Json(new { success = false, message = $"Đơn hàng tối thiểu {voucher.MinOrderValue:N0}đ để dùng mã này!" });
-
             // 5. Tính toán số tiền giảm
             decimal discount = 0;
             if (voucher.DiscountType == "Percent")

@@ -11,9 +11,9 @@
                 <h5 class="mb-0 fw-bold"><i class="fa-solid fa-pen-to-square text-primary me-2"></i> Chỉnh sửa Sản phẩm #@Model.ProductId</h5>
             </div>
             <div class="card-body p-4">
-                <form asp-action="Edit" method="post">
+                <form asp-action="Edit" method="post" enctype="multipart/form-data">
+                    @Html.AntiForgeryToken()
                     <input type="hidden" asp-for="ProductId" />
-
                     <div class="row mb-3">
                         <div class="col-md-8">
                             <label class="form-label fw-bold">Tên sản phẩm *</label>
@@ -52,16 +52,41 @@
                             </div>
                         </div>
                     </div>
+                    <form asp-action="Edit" method="post" enctype="multipart/form-data">
+                        <div class="form-group mb-4 p-3 border rounded bg-light">
+                            <label class="control-label fw-bold text-primary mb-2">Hình ảnh hiện tại của sản phẩm</label>
 
-                    <div class="mb-4">
-                        <label class="form-label fw-bold">Mô tả sản phẩm</label>
-                        <textarea asp-for="Description" class="form-control" rows="4"></textarea>
-                    </div>
+                            <div class="d-flex gap-2 mb-3 overflow-auto pb-2">
+                                @if (Model.ProductImages != null && Model.ProductImages.Any())
+                                {
+                                    foreach (var img in Model.ProductImages)
+                                    {
+                                        <div class="position-relative border bg-white p-1">
+                                            <img src="@img.ImageUrl" class="img-thumbnail border-0" style="width: 100px; height: 100px; object-fit: cover;" />
+                                            @if (img.IsMain == true)
+                                            {
+                                                <span class="badge bg-danger position-absolute top-0 start-0">Ảnh chính</span>
+                                            }
+                                        </div>
+                                    }
+                                }
+                                else
+                                {
+                                    <span class="text-muted fst-italic">Sản phẩm này chưa có ảnh nào.</span>
+                                }
+                            </div>
 
-                    <div class="d-flex justify-content-end">
-                        <a href="/Admin/Product/Index" class="btn btn-outline-secondary me-2">Hủy bỏ</a>
-                        <button type="submit" class="btn btn-primary fw-bold"><i class="fa-solid fa-floppy-disk me-1"></i> Lưu thay đổi</button>
-                    </div>
+                            <label class="control-label fw-bold">Tải thêm ảnh mới (Tùy chọn)</label>
+                            <input type="file" name="uploadImages" class="form-control" accept="image/*" multiple />
+                            <small class="text-muted">Bạn có thể chọn nhiều ảnh cùng lúc để thêm vào sản phẩm này.</small>
+                        </div>
+                        <div class="mb-4">
+                            <label class="form-label fw-bold">Mô tả sản phẩm</label>
+                            <textarea asp-for="Description" class="form-control" rows="4"></textarea>
+                        </div>
+                        <button type="submit" class="btn btn-primary">Lưu thay đổi</button>
+                    </form>
+                                       
                 </form>
             </div>
         </div>

@@ -12,12 +12,11 @@ namespace WebNoiThatHoaHome.Controllers // Chú ý: Không có chữ .Areas.Admi
         {
             _context = context;
         }
-
         // Hiện chi tiết một Dịch vụ
         [HttpGet]
         public async Task<IActionResult> Details(int id)
         {
-            // 1. Lấy dịch vụ hiện tại (để hiển thị nội dung bên phải)
+            // 1. Lấy dịch vụ hiện tại
             var service = await _context.ServiceTypes
                 .FirstOrDefaultAsync(s => s.ServiceTypeId == id && s.IsDeleted != true);
 
@@ -25,8 +24,7 @@ namespace WebNoiThatHoaHome.Controllers // Chú ý: Không có chữ .Areas.Admi
             {
                 return NotFound("Dịch vụ này không tồn tại hoặc đã bị gỡ bỏ.");
             }
-
-            // 2. LẤY TẤT CẢ DỊCH VỤ (để làm Menu dọc bên trái)
+            // 2. LẤY TẤT CẢ DỊCH VỤ
             ViewBag.AllServices = await _context.ServiceTypes
                 .Where(s => s.IsDeleted != true)
                 .ToListAsync();

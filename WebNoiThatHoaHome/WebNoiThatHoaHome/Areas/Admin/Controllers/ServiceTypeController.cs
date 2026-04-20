@@ -15,20 +15,16 @@ namespace WebNoiThatHoaHome.Areas.Admin.Controllers
         {
             _context = context;
         }
-
         // 1. HIỂN THỊ DANH SÁCH DỊCH VỤ
         public async Task<IActionResult> Index()
         {
-            // BÍ QUYẾT Ở DÒNG WHERE NÀY ĐÂY SẾP: 
-            // Chỉ lấy ra những dịch vụ có IsDeleted là false (hoặc null do chưa bị động tới bao giờ)
+            // Chỉ lấy ra những dịch vụ có IsDeleted là false
             var services = await _context.ServiceTypes
                                          .Where(s => s.IsDeleted == false || s.IsDeleted == null)
                                          .ToListAsync();
-
             return View(services);
         }
-
-        // 2. LƯU DỊCH VỤ MỚI (Xử lý form Thêm)
+        // 2. LƯU DỊCH VỤ MỚI
         [HttpPost]
         public async Task<IActionResult> Create(ServiceType model)
         {
@@ -44,7 +40,6 @@ namespace WebNoiThatHoaHome.Areas.Admin.Controllers
             TempData["ErrorMsg"] = "Lỗi: Vui lòng kiểm tra lại thông tin!";
             return RedirectToAction("Index");
         }
-
         // 3. XÓA MỀM DỊCH VỤ
         [HttpPost]
         public async Task<IActionResult> Delete(int id)
@@ -52,19 +47,19 @@ namespace WebNoiThatHoaHome.Areas.Admin.Controllers
             var service = await _context.ServiceTypes.FindAsync(id);
             if (service != null)
             {
-                service.IsDeleted = true; // Chỉ đánh dấu xóa, không xóa thật trong CSDL
+                service.IsDeleted = true; // Chỉ đánh dấu xóa, không xóa thật trong db
                 await _context.SaveChangesAsync();
                 TempData["SuccessMsg"] = "Đã xóa dịch vụ!";
             }
             return RedirectToAction("Index");
         }
-        // 4. CẬP NHẬT DỊCH VỤ (Chỉnh sửa)
+        // 4. CẬP NHẬT DỊCH VỤ 
         [HttpPost]
         public async Task<IActionResult> Edit(ServiceType model)
         {
             if (ModelState.IsValid)
             {
-                // Tìm dịch vụ cũ trong Database
+                // Tìm dịch vụ cũ trong db để cập nhật
                 var service = await _context.ServiceTypes.FindAsync(model.ServiceTypeId);
                 if (service != null)
                 {
@@ -72,9 +67,6 @@ namespace WebNoiThatHoaHome.Areas.Admin.Controllers
                     service.TypeName = model.TypeName;
                     service.BasePrice = model.BasePrice;
                     service.Description = model.Description;
-
-                    // Lưu ý: Không đụng đến biến IsDeleted ở đây
-
                     await _context.SaveChangesAsync();
                     TempData["SuccessMsg"] = "Đã cập nhật thông tin dịch vụ thành công!";
                     return RedirectToAction("Index");
@@ -91,7 +83,6 @@ namespace WebNoiThatHoaHome.Areas.Admin.Controllers
                                                 .ToListAsync();
             return View(trashedServices);
         }
-
         // 6. KHÔI PHỤC DỊCH VỤ
         [HttpPost]
         public async Task<IActionResult> Restore(int id)
@@ -99,7 +90,7 @@ namespace WebNoiThatHoaHome.Areas.Admin.Controllers
             var service = await _context.ServiceTypes.FindAsync(id);
             if (service != null && service.IsDeleted == true)
             {
-                service.IsDeleted = false; // Đổi trạng thái về lại như cũ
+                service.IsDeleted = false;
                 await _context.SaveChangesAsync();
                 TempData["SuccessMsg"] = "Đã khôi phục dịch vụ thành công!";
             }
@@ -107,8 +98,6 @@ namespace WebNoiThatHoaHome.Areas.Admin.Controllers
             {
                 TempData["ErrorMsg"] = "Lỗi: Không tìm thấy dịch vụ để khôi phục!";
             }
-
-            // Khôi phục xong thì cho load lại trang Thùng rác
             return RedirectToAction("Trash");
         }
     }

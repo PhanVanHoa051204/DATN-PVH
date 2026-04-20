@@ -12,15 +12,14 @@ namespace WebNoiThatHoaHome.Areas.Admin.Controllers
         private readonly HoaHomeDbContext _context;
         public ReviewController(HoaHomeDbContext context) => _context = context;
 
-        // BẢN NÂNG CẤP: Đã thêm chức năng Lọc và Tìm kiếm
+        // chức năng Lọc và Tìm kiếm
         public async Task<IActionResult> Index(string searchString, int? ratingFilter)
         {
             var reviews = _context.ProductReviews
                 .Include(r => r.Product)
                 .Include(r => r.User)
                 .AsQueryable();
-
-            // 1. Lọc theo chữ (Tên khách, Tên SP, hoặc Nội dung)
+            //Lọc theo chữ (Tên khách, Tên SP, hoặc Nội dung)
             if (!string.IsNullOrEmpty(searchString))
             {
                 reviews = reviews.Where(r =>
@@ -28,13 +27,11 @@ namespace WebNoiThatHoaHome.Areas.Admin.Controllers
                     (r.Product != null && r.Product.ProductName.Contains(searchString)) ||
                     r.Comment.Contains(searchString));
             }
-
-            // 2. Lọc theo số sao
+            // Lọc theo số sao
             if (ratingFilter.HasValue && ratingFilter.Value > 0)
             {
                 reviews = reviews.Where(r => r.Rating == ratingFilter.Value);
             }
-
             // Lưu lại giá trị để hiển thị ra ô input ở View
             ViewBag.SearchString = searchString;
             ViewBag.RatingFilter = ratingFilter;
@@ -42,8 +39,7 @@ namespace WebNoiThatHoaHome.Areas.Admin.Controllers
             var result = await reviews.OrderByDescending(r => r.CreatedAt).ToListAsync();
             return View(result);
         }
-
-        // Duyệt đánh giá (Cho hiện lên web)
+        // Duyệt đánh giá 
         [HttpPost]
         public async Task<IActionResult> Approve(int id)
         {
@@ -52,11 +48,10 @@ namespace WebNoiThatHoaHome.Areas.Admin.Controllers
             {
                 review.IsApproved = true;
                 await _context.SaveChangesAsync();
-                TempData["SuccessMsg"] = "Đã duyệt đánh giá thành công!"; // Thêm luôn quả thông báo cho xịn
+                TempData["SuccessMsg"] = "Đã duyệt đánh giá thành công!"; 
             }
             return RedirectToAction("Index");
         }
-
         // Admin trả lời đánh giá
         [HttpPost]
         public async Task<IActionResult> Reply(int id, string adminReply)

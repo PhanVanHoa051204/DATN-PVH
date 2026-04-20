@@ -165,8 +165,11 @@
                     </div>
                     <div class="nav-icons d-flex align-items-center">
                         <a href="#"><i class="fa-solid fa-location-dot"></i></a>
-                        <a href="/Account/Wishlist" class="text-dark me-3" style="font-size: 18px;" title="Danh sách yêu thích">
-                            <i class="fa-regular fa-heart"></i>
+                        <a href="/Account/Wishlist" class="nav-link text-dark position-relative me-3">
+                            <i class="fa-regular fa-heart fs-5"></i>
+                            <span id="wishlist-count" class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger" style="font-size: 10px;">
+                                0
+                            </span>
                         </a>
                         <a href="/Cart/Index" class="text-dark me-3 position-relative" style="font-size: 18px;" title="Giỏ hàng của tôi">
                             <i class="fa-solid fa-bag-shopping"></i>
@@ -319,47 +322,66 @@
 
     <script>
         $(document).ready(function () {
-            $(document).on('click', '.btn-wishlist', function (e) {
-                e.preventDefault();
-                e.stopPropagation();
-
-                var productId = $(this).data('product-id');
-                var icon = $(this).find('i');
-
-                $.ajax({
-                    url: '/Wishlist/ToggleWishlist',
-                    type: 'POST',
-                    data: { id: productId },
-                    success: function (response) {
-                        if (response.success) {
-                            
-                            if (window.location.pathname.toLowerCase().includes('/wishlist')) {
-                                window.location.reload();
-                                return; 
-                            }
-
-                            if (response.isAdded) {
-                                icon.removeClass('fa-regular').addClass('fa-solid text-danger');
-                            } else {
-                                icon.removeClass('fa-solid text-danger').addClass('fa-regular');
-                            }
-                        } else {
-
-                            $('#authModal').modal('show');
-                        }
-                    },
-                    error: function () {
-
-                        Swal.fire({
-                            icon: 'error',
-                            title: 'Ôi hỏng!',
-                            text: 'Có lỗi xảy ra, vui lòng thử lại!',
-                            confirmButtonColor: '#212529'
-                        });
-                    }
-                });
+            $.ajax({
+                url: '/Wishlist/GetWishlistCount',
+                type: 'GET',
+                success: function (count) {
+                    // Lấy con số từ Controller đắp vào cục màu đỏ
+                    $('#wishlist-count').text(count);
+                }
             });
         });
+        function toggleWishlist(productId) {
+            $.ajax({
+                url: '/Wishlist/ToggleWishlist',
+                type: 'POST',
+                data: { id: productId },
+                success: function (res) {
+                    if (res.success) {
+                        // 1. CẬP NHẬT SỐ LƯỢNG TRÊN CỤC ĐỎ
+                        $('#wishlist-count').text(res.totalCount);
+
+                        // 2. HIỆN THÔNG BÁO & ĐỔI MÀU TIM
+                        if (res.isAdded) {
+                            // Thêm tim: Tim đặc, màu đỏ
+                            $('.heart-icon-' + productId).removeClass('fa-regular').addClass('fa-solid text-danger');
+
+                            // Thông báo mượt mà góc màn hình
+                            Swal.fire({
+                                toast: true,
+                                position: 'top-end',
+                                icon: 'success',
+                                title: 'Đã thêm vào danh sách yêu thích',
+                                showConfirmButton: false,
+                                timer: 2000
+                                
+                            });
+                        } else {
+                            // Bỏ tim: Tim rỗng, viền đen
+                            $('.heart-icon-' + productId).removeClass('fa-solid text-danger').addClass('fa-regular');
+
+                            Swal.fire({
+                                toast: true,
+                                position: 'top-end',
+                                icon: 'info',
+                                title: 'Đã bỏ khỏi danh sách yêu thích',
+                                showConfirmButton: false,
+                                timer: 2000
+                                
+                            });
+                        }
+                    } else {
+                        // Chưa đăng nhập thì đá về trang Login
+                        if (res.message === "Not logged in") {
+                            window.location.href = '/Account/Login';
+                        }
+                    }
+                },
+                error: function () {
+                    alert('Có lỗi xảy ra, vui lòng thử lại!');
+                }
+            });
+        }
     </script>
     
 </body>

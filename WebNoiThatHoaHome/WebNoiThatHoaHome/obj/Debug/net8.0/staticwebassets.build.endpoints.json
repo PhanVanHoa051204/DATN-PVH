@@ -331,6 +331,416 @@
       ]
     },
     {
+      "Route": "images/products/1cc4b20f-ebf4-4e20-8f1f-5cff3bede534_Ban-an-6-cho-Coastal-1.jpg",
+      "AssetFile": "images/products/1cc4b20f-ebf4-4e20-8f1f-5cff3bede534_Ban-an-6-cho-Coastal-1.jpg",
+      "Selectors": [],
+      "ResponseHeaders": [
+        {
+          "Name": "Accept-Ranges",
+          "Value": "bytes"
+        },
+        {
+          "Name": "Cache-Control",
+          "Value": "max-age=3600, must-revalidate"
+        },
+        {
+          "Name": "Content-Length",
+          "Value": "209437"
+        },
+        {
+          "Name": "Content-Type",
+          "Value": "image/jpeg"
+        },
+        {
+          "Name": "ETag",
+          "Value": "\"odpM2YvAHKJcXZXb4uyUwkj/8NXuQ4O5b6N+E873PrU=\""
+        },
+        {
+          "Name": "Last-Modified",
+          "Value": "Mon, 20 Apr 2026 10:49:50 GMT"
+        }
+      ],
+      "EndpointProperties": [
+        {
+          "Name": "integrity",
+          "Value": "sha256-odpM2YvAHKJcXZXb4uyUwkj/8NXuQ4O5b6N+E873PrU="
+        }
+      ]
+    },
+    {
+      "Route": "images/products/1cc4b20f-ebf4-4e20-8f1f-5cff3bede534_Ban-an-6-cho-Coastal-1.p6jaroknlu.jpg",
+      "AssetFile": "images/products/1cc4b20f-ebf4-4e20-8f1f-5cff3bede534_Ban-an-6-cho-Coastal-1.jpg",
+      "Selectors": [],
+      "ResponseHeaders": [
+        {
+          "Name": "Accept-Ranges",
+          "Value": "bytes"
+        },
+        {
+          "Name": "Cache-Control",
+          "Value": "max-age=31536000, immutable"
+        },
+        {
+          "Name": "Content-Length",
+          "Value": "209437"
+        },
+        {
+          "Name": "Content-Type",
+          "Value": "image/jpeg"
+        },
+        {
+          "Name": "ETag",
+          "Value": "\"odpM2YvAHKJcXZXb4uyUwkj/8NXuQ4O5b6N+E873PrU=\""
+        },
+        {
+          "Name": "Last-Modified",
+          "Value": "Mon, 20 Apr 2026 10:49:50 GMT"
+        }
+      ],
+      "EndpointProperties": [
+        {
+          "Name": "fingerprint",
+          "Value": "p6jaroknlu"
+        },
+        {
+          "Name": "integrity",
+          "Value": "sha256-odpM2YvAHKJcXZXb4uyUwkj/8NXuQ4O5b6N+E873PrU="
+        },
+        {
+          "Name": "label",
+          "Value": "images/products/1cc4b20f-ebf4-4e20-8f1f-5cff3bede534_Ban-an-6-cho-Coastal-1.jpg"
+        }
+      ]
+    },
+    {
+      "Route": "images/products/2ceb4386-1c12-4518-a1d3-1f16ae33ee78_daybed-nest-beige-1-1.3hukica366.webp",
+      "AssetFile": "images/products/2ceb4386-1c12-4518-a1d3-1f16ae33ee78_daybed-nest-beige-1-1.webp",
+      "Selectors": [],
+      "ResponseHeaders": [
+        {
+          "Name": "Accept-Ranges",
+          "Value": "bytes"
+        },
+        {
+          "Name": "Cache-Control",
+          "Value": "max-age=31536000, immutable"
+        },
+        {
+          "Name": "Content-Length",
+          "Value": "31348"
+        },
+        {
+          "Name": "Content-Type",
+          "Value": "image/webp"
+        },
+        {
+          "Name": "ETag",
+          "Value": "\"Rzm7iPe+MWoQvAjLEAgywC3S7xQ031O9p4aGEPrGFRc=\""
+        },
+        {
+          "Name": "Last-Modified",
+          "Value": "Mon, 20 Apr 2026 10:45:14 GMT"
+        }
+      ],
+      "EndpointProperties": [
+        {
+          "Name": "fingerprint",
+          "Value": "3hukica366"
+        },
+        {
+          "Name": "integrity",
+          "Value": "sha256-Rzm7iPe+MWoQvAjLEAgywC3S7xQ031O9p4aGEPrGFRc="
+        },
+        {
+          "Name": "label",
+          "Value": "images/products/2ceb4386-1c12-4518-a1d3-1f16ae33ee78_daybed-nest-beige-1-1.webp"
+        }
+      ]
+    },
+    {
+      "Route": "images/products/2ceb4386-1c12-4518-a1d3-1f16ae33ee78_daybed-nest-beige-1-1.webp",
+      "AssetFile": "images/products/2ceb4386-1c12-4518-a1d3-1f16ae33ee78_daybed-nest-beige-1-1.webp",
+      "Selectors": [],
+      "ResponseHeaders": [
+        {
+          "Name": "Accept-Ranges",
+          "Value": "bytes"
+        },
+        {
+          "Name": "Cache-Control",
+          "Value": "max-age=3600, must-revalidate"
+        },
+        {
+          "Name": "Content-Length",
+          "Value": "31348"
+        },
+        {
+          "Name": "Content-Type",
+          "Value": "image/webp"
+        },
+        {
+          "Name": "ETag",
+          "Value": "\"Rzm7iPe+MWoQvAjLEAgywC3S7xQ031O9p4aGEPrGFRc=\""
+        },
+        {
+          "Name": "Last-Modified",
+          "Value": "Mon, 20 Apr 2026 10:45:14 GMT"
+        }
+      ],
+      "EndpointProperties": [
+        {
+          "Name": "integrity",
+          "Value": "sha256-Rzm7iPe+MWoQvAjLEAgywC3S7xQ031O9p4aGEPrGFRc="
+        }
+      ]
+    },
+    {
+      "Route": "images/products/43695d9c-c269-4b51-9656-7fba41c43b65_phong-khach-tet-hien-dai-1.j7u6o56lp1.jpg",
+      "AssetFile": "images/products/43695d9c-c269-4b51-9656-7fba41c43b65_phong-khach-tet-hien-dai-1.jpg",
+      "Selectors": [],
+      "ResponseHeaders": [
+        {
+          "Name": "Accept-Ranges",
+          "Value": "bytes"
+        },
+        {
+          "Name": "Cache-Control",
+          "Value": "max-age=31536000, immutable"
+        },
+        {
+          "Name": "Content-Length",
+          "Value": "48343"
+        },
+        {
+          "Name": "Content-Type",
+          "Value": "image/jpeg"
+        },
+        {
+          "Name": "ETag",
+          "Value": "\"kTUsA53lxp+hz0eWE9gLThH3h4mHT7G91oBoosOOR2w=\""
+        },
+        {
+          "Name": "Last-Modified",
+          "Value": "Mon, 20 Apr 2026 10:47:24 GMT"
+        }
+      ],
+      "EndpointProperties": [
+        {
+          "Name": "fingerprint",
+          "Value": "j7u6o56lp1"
+        },
+        {
+          "Name": "integrity",
+          "Value": "sha256-kTUsA53lxp+hz0eWE9gLThH3h4mHT7G91oBoosOOR2w="
+        },
+        {
+          "Name": "label",
+          "Value": "images/products/43695d9c-c269-4b51-9656-7fba41c43b65_phong-khach-tet-hien-dai-1.jpg"
+        }
+      ]
+    },
+    {
+      "Route": "images/products/43695d9c-c269-4b51-9656-7fba41c43b65_phong-khach-tet-hien-dai-1.jpg",
+      "AssetFile": "images/products/43695d9c-c269-4b51-9656-7fba41c43b65_phong-khach-tet-hien-dai-1.jpg",
+      "Selectors": [],
+      "ResponseHeaders": [
+        {
+          "Name": "Accept-Ranges",
+          "Value": "bytes"
+        },
+        {
+          "Name": "Cache-Control",
+          "Value": "max-age=3600, must-revalidate"
+        },
+        {
+          "Name": "Content-Length",
+          "Value": "48343"
+        },
+        {
+          "Name": "Content-Type",
+          "Value": "image/jpeg"
+        },
+        {
+          "Name": "ETag",
+          "Value": "\"kTUsA53lxp+hz0eWE9gLThH3h4mHT7G91oBoosOOR2w=\""
+        },
+        {
+          "Name": "Last-Modified",
+          "Value": "Mon, 20 Apr 2026 10:47:24 GMT"
+        }
+      ],
+      "EndpointProperties": [
+        {
+          "Name": "integrity",
+          "Value": "sha256-kTUsA53lxp+hz0eWE9gLThH3h4mHT7G91oBoosOOR2w="
+        }
+      ]
+    },
+    {
+      "Route": "images/products/6e99dd9b-b208-415e-8fa4-e312652f3a5a_phong-an-coastal (1).9s6t84h3wv.jpg",
+      "AssetFile": "images/products/6e99dd9b-b208-415e-8fa4-e312652f3a5a_phong-an-coastal (1).jpg",
+      "Selectors": [],
+      "ResponseHeaders": [
+        {
+          "Name": "Accept-Ranges",
+          "Value": "bytes"
+        },
+        {
+          "Name": "Cache-Control",
+          "Value": "max-age=31536000, immutable"
+        },
+        {
+          "Name": "Content-Length",
+          "Value": "73646"
+        },
+        {
+          "Name": "Content-Type",
+          "Value": "image/jpeg"
+        },
+        {
+          "Name": "ETag",
+          "Value": "\"Z9C8yAk1eAeCA4wlSolwOhcEfZr0ru+QFrEshwosNbo=\""
+        },
+        {
+          "Name": "Last-Modified",
+          "Value": "Mon, 20 Apr 2026 10:50:18 GMT"
+        }
+      ],
+      "EndpointProperties": [
+        {
+          "Name": "fingerprint",
+          "Value": "9s6t84h3wv"
+        },
+        {
+          "Name": "integrity",
+          "Value": "sha256-Z9C8yAk1eAeCA4wlSolwOhcEfZr0ru+QFrEshwosNbo="
+        },
+        {
+          "Name": "label",
+          "Value": "images/products/6e99dd9b-b208-415e-8fa4-e312652f3a5a_phong-an-coastal (1).jpg"
+        }
+      ]
+    },
+    {
+      "Route": "images/products/6e99dd9b-b208-415e-8fa4-e312652f3a5a_phong-an-coastal (1).jpg",
+      "AssetFile": "images/products/6e99dd9b-b208-415e-8fa4-e312652f3a5a_phong-an-coastal (1).jpg",
+      "Selectors": [],
+      "ResponseHeaders": [
+        {
+          "Name": "Accept-Ranges",
+          "Value": "bytes"
+        },
+        {
+          "Name": "Cache-Control",
+          "Value": "max-age=3600, must-revalidate"
+        },
+        {
+          "Name": "Content-Length",
+          "Value": "73646"
+        },
+        {
+          "Name": "Content-Type",
+          "Value": "image/jpeg"
+        },
+        {
+          "Name": "ETag",
+          "Value": "\"Z9C8yAk1eAeCA4wlSolwOhcEfZr0ru+QFrEshwosNbo=\""
+        },
+        {
+          "Name": "Last-Modified",
+          "Value": "Mon, 20 Apr 2026 10:50:18 GMT"
+        }
+      ],
+      "EndpointProperties": [
+        {
+          "Name": "integrity",
+          "Value": "sha256-Z9C8yAk1eAeCA4wlSolwOhcEfZr0ru+QFrEshwosNbo="
+        }
+      ]
+    },
+    {
+      "Route": "images/products/dadfbdd9-ea56-4b3f-b4dc-e4521da99f86_phong-khach-tet-hien-dai.ci4uip7khm.jpg",
+      "AssetFile": "images/products/dadfbdd9-ea56-4b3f-b4dc-e4521da99f86_phong-khach-tet-hien-dai.jpg",
+      "Selectors": [],
+      "ResponseHeaders": [
+        {
+          "Name": "Accept-Ranges",
+          "Value": "bytes"
+        },
+        {
+          "Name": "Cache-Control",
+          "Value": "max-age=31536000, immutable"
+        },
+        {
+          "Name": "Content-Length",
+          "Value": "65879"
+        },
+        {
+          "Name": "Content-Type",
+          "Value": "image/jpeg"
+        },
+        {
+          "Name": "ETag",
+          "Value": "\"rMcTHhdGs+GkTQNTpcYM5JAv7BC6AWkUq2N4gNSHepU=\""
+        },
+        {
+          "Name": "Last-Modified",
+          "Value": "Mon, 20 Apr 2026 10:47:33 GMT"
+        }
+      ],
+      "EndpointProperties": [
+        {
+          "Name": "fingerprint",
+          "Value": "ci4uip7khm"
+        },
+        {
+          "Name": "integrity",
+          "Value": "sha256-rMcTHhdGs+GkTQNTpcYM5JAv7BC6AWkUq2N4gNSHepU="
+        },
+        {
+          "Name": "label",
+          "Value": "images/products/dadfbdd9-ea56-4b3f-b4dc-e4521da99f86_phong-khach-tet-hien-dai.jpg"
+        }
+      ]
+    },
+    {
+      "Route": "images/products/dadfbdd9-ea56-4b3f-b4dc-e4521da99f86_phong-khach-tet-hien-dai.jpg",
+      "AssetFile": "images/products/dadfbdd9-ea56-4b3f-b4dc-e4521da99f86_phong-khach-tet-hien-dai.jpg",
+      "Selectors": [],
+      "ResponseHeaders": [
+        {
+          "Name": "Accept-Ranges",
+          "Value": "bytes"
+        },
+        {
+          "Name": "Cache-Control",
+          "Value": "max-age=3600, must-revalidate"
+        },
+        {
+          "Name": "Content-Length",
+          "Value": "65879"
+        },
+        {
+          "Name": "Content-Type",
+          "Value": "image/jpeg"
+        },
+        {
+          "Name": "ETag",
+          "Value": "\"rMcTHhdGs+GkTQNTpcYM5JAv7BC6AWkUq2N4gNSHepU=\""
+        },
+        {
+          "Name": "Last-Modified",
+          "Value": "Mon, 20 Apr 2026 10:47:33 GMT"
+        }
+      ],
+      "EndpointProperties": [
+        {
+          "Name": "integrity",
+          "Value": "sha256-rMcTHhdGs+GkTQNTpcYM5JAv7BC6AWkUq2N4gNSHepU="
+        }
+      ]
+    },
+    {
       "Route": "images/trangchu/banner_bep.jpg",
       "AssetFile": "images/trangchu/banner_bep.jpg",
       "Selectors": [],
