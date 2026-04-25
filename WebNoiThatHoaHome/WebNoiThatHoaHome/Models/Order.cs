@@ -44,4 +44,6 @@ public partial class Order
     public decimal? DiscountAmount { get; set; }
 
     public virtual Voucher? Voucher { get; set; }
+
+    public decimal? ManualDiscount { get; set; }
 }

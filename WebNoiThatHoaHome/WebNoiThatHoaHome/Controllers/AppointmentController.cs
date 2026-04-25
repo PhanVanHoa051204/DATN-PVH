@@ -15,7 +15,7 @@ namespace WebNoiThatHoaHome.Controllers
             _context = context;
         }
 
-        // 1. HIỂN THỊ FORM ĐẶT LỊCH 
+        // HIỂN THỊ FORM ĐẶT LỊCH 
         [HttpGet]
         public async Task<IActionResult> Booking(int? serviceId)
         {
@@ -30,9 +30,9 @@ namespace WebNoiThatHoaHome.Controllers
 
             ViewBag.Services = services;
 
-            // TẠO THỜI GIAN MẶC ĐỊNH LÀ NGÀY MAI 
+            // TẠO THỜI GIAN MẶC ĐỊNH 
             var tomorrow = DateTime.Now.AddDays(1);
-            var cleanDate = new DateTime(tomorrow.Year, tomorrow.Month, tomorrow.Day, tomorrow.Hour, tomorrow.Minute, 0); // Ép số giây về 0
+            var cleanDate = new DateTime(tomorrow.Year, tomorrow.Month, tomorrow.Day, tomorrow.Hour, tomorrow.Minute, 0); 
 
             var model = new Appointment
             {
@@ -43,7 +43,7 @@ namespace WebNoiThatHoaHome.Controllers
             return View(model);
         }
 
-        // 2. XỬ LÝ LƯU ĐẶT LỊCH XUỐNG DATABASE
+        // XỬ LÝ LƯU ĐẶT LỊCH XUỐNG DATABASE
         [HttpPost]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Booking(Appointment model)
@@ -83,22 +83,22 @@ namespace WebNoiThatHoaHome.Controllers
 
             return View(model);
         }
-        // 3. HỦY LỊCH HẸN CHỈ CHO HỦY KHI CHƯA ĐƯỢC DUYỆT
+        // HỦY LỊCH HẸN CHỈ CHO HỦY KHI CHƯA ĐƯỢC DUYỆT
         [HttpPost]
         public async Task<IActionResult> Cancel(int id)
         {
-            // 1. Lấy ID khách đang đăng nhập từ Claims
+            // Lấy ID khách đang đăng nhập từ Claims
             var userIdString = User.FindFirstValue(ClaimTypes.NameIdentifier);
             if (string.IsNullOrEmpty(userIdString)) return RedirectToAction("Login", "Account");
             int customerId = int.Parse(userIdString);
 
-            // 2. Tìm lịch hẹn phải đúng ID và đúng của Khách đó thì mới cho hủy 
+            // Tìm lịch hẹn phải đúng ID và đúng của Khách đó thì mới cho hủy 
             var appointment = await _context.Appointments
                 .FirstOrDefaultAsync(a => a.AppointmentId == id && a.CustomerId == customerId);
 
             if (appointment != null)
             {
-                // 3. Chỉ cho hủy nếu đang ở trạng thái Pending (Chờ duyệt)
+                // Chỉ cho hủy nếu đang ở trạng thái Pending (Chờ duyệt)
                 if (appointment.Status == "Pending")
                 {
                     appointment.Status = "Cancelled"; // Đổi trạng thái thành Đã hủy

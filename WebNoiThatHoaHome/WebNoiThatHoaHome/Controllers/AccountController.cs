@@ -20,10 +20,11 @@ namespace WebNoiThatHoaHome.Controllers
         [HttpGet]
         public IActionResult Login() => RedirectToAction("Index", "Home");
 
-        // --- 1. XỬ LÝ ĐĂNG NHẬP ---
+        // XỬ LÝ ĐĂNG NHẬP 
         [HttpPost]
         public async Task<IActionResult> Login(LoginViewModel model)
         {
+            // Kiểm tra dữ liệu người dùng nhập có hợp lệ không
             if (ModelState.IsValid)
             {
                 var user = await _context.Users
@@ -32,16 +33,15 @@ namespace WebNoiThatHoaHome.Controllers
 
                 if (user != null)
                 {                   
-                    // TÀI KHOẢN CÓ BỊ KHÓA KHÔNG?                    
+                    // Kiểm tra xem tk có bị khoá không                  
                     if (user.IsDeleted == true)
                     {
-                        // Bị khóa -> Báo lỗi đúng bệnh và đuổi ra ngoài ngay lập tức
+                        // Nếu bị khóa -> Lưu lỗi vào TempData và đẩy về trang chủ
                         TempData["LoginError"] = "Tài khoản của bạn đang bị khóa. Vui lòng liên hệ Admin!";
                         return RedirectToAction("Index", "Home");
                     }
-                    // =======================================================
 
-                    // Nếu an toàn đi qua trạm kiểm soát trên thì mới cấp "Vé" (Cookie)
+                    // Đăng nhập thành công -> Tạo cookie chứa thông tin user và role để phân quyền
                     var claims = new List<Claim>
                     {
                         new Claim(ClaimTypes.NameIdentifier, user.UserId.ToString()),
@@ -51,11 +51,11 @@ namespace WebNoiThatHoaHome.Controllers
                     };
 
                     var identity = new ClaimsIdentity(claims, CookieAuthenticationDefaults.AuthenticationScheme);
-                    await HttpContext.SignInAsync(CookieAuthenticationDefaults.AuthenticationScheme, new ClaimsPrincipal(identity));                 
-
+                    await HttpContext.SignInAsync(CookieAuthenticationDefaults.AuthenticationScheme, new ClaimsPrincipal(identity));
+                    // Kiểm tra xem người dùng có phải là Admin không để đẩy về trang quản trị nếu đúng
                     if (user.Role?.RoleName == "Admin")
                         return RedirectToAction("Index", "Home", new { area = "Admin" });
-
+                    // Nếu không phải Admin thì đẩy về trang chủ
                     return RedirectToAction("Index", "Home");
                 }
 
@@ -70,7 +70,7 @@ namespace WebNoiThatHoaHome.Controllers
             return RedirectToAction("Index", "Home");
         }
 
-        // --- 2. XỬ LÝ ĐĂNG KÝ ---
+        //  XỬ LÝ ĐĂNG KÝ 
         [HttpPost]
         public async Task<IActionResult> Register(RegisterViewModel model)
         {
@@ -113,7 +113,7 @@ namespace WebNoiThatHoaHome.Controllers
             await HttpContext.SignOutAsync(CookieAuthenticationDefaults.AuthenticationScheme);
             return RedirectToAction("Index", "Home");
         }
-
+        // Xử lý hiển thị trang thông tin cá nhân của khách
         public async Task<IActionResult> Profile()
         {
             var userIdString = User.FindFirstValue(ClaimTypes.NameIdentifier);
@@ -131,7 +131,7 @@ namespace WebNoiThatHoaHome.Controllers
         {
             var userIdString = User.FindFirstValue(ClaimTypes.NameIdentifier);
             if (string.IsNullOrEmpty(userIdString)) return RedirectToAction("Login", "Account");
-
+            // Lấy thông tin user từ database để kiểm tra mật khẩu hiện tại và cập nhật thông tin
             int userId = int.Parse(userIdString);
             var user = await _context.Users.FindAsync(userId);
 
@@ -163,7 +163,7 @@ namespace WebNoiThatHoaHome.Controllers
         {
             var userIdString = User.FindFirstValue(ClaimTypes.NameIdentifier);
             if (string.IsNullOrEmpty(userIdString)) return RedirectToAction("Login", "Account");
-
+            // Lấy thông tin user từ database để cập nhật địa chỉ giao hàng
             int userId = int.Parse(userIdString);
             var user = await _context.Users.FindAsync(userId);
 
@@ -171,7 +171,7 @@ namespace WebNoiThatHoaHome.Controllers
             {
                 if (!string.IsNullOrWhiteSpace(DeliveryName)) user.FullName = DeliveryName;
                 user.Phone = Phone;
-
+                
                 string fullAddress = AddressDetail;
                 if (!string.IsNullOrEmpty(Ward) && !string.IsNullOrEmpty(City))
                 {
@@ -249,24 +249,20 @@ namespace WebNoiThatHoaHome.Controllers
         [Authorize]
         public async Task<IActionResult> RequestCancelOrder(int orderId)
         {
-            // 1. Lấy ID của khách hàng đang đăng nhập
+            // Lấy ID của khách hàng đang đăng nhập
             var userIdString = User.FindFirstValue(ClaimTypes.NameIdentifier);
             if (!int.TryParse(userIdString, out int userId)) return RedirectToAction("Login");
-
-            // 2. Tìm đơn hàng xem có đúng của khách này không
+            // Tìm đơn hàng xem có đúng của khách này không
             var order = await _context.Orders
                 .FirstOrDefaultAsync(o => o.OrderId == orderId && o.UserId == userId);
-
             if (order == null) return NotFound();
-
-            // 3. CHẶN: Chỉ cho phép hủy nếu đơn hàng đang "Chờ xử lý" hoặc "Chưa thanh toán"
+            // Chỉ cho phép hủy nếu đơn hàng đang "Chờ xử lý" hoặc "Chưa thanh toán"
             if (order.OrderStatus == "Đã hoàn thành" || order.OrderStatus == "Đang giao" || order.OrderStatus == "Đã hủy")
             {
                 TempData["ErrorMsg"] = "Đơn hàng này đang được xử lý hoặc đã hoàn thành, không thể hủy!";
                 return RedirectToAction("Orders");
             }
-
-            // 4. Cập nhật trạng thái thành Chờ duyệt
+            //Cập nhật trạng thái thành Chờ duyệt
             order.OrderStatus = "Chờ xác nhận hủy";
             await _context.SaveChangesAsync();
 

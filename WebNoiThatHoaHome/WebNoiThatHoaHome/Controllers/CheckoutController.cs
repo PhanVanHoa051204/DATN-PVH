@@ -20,10 +20,10 @@ namespace WebNoiThatHoaHome.Controllers
             _configuration = configuration;
             _hubContext = hubContext;
         }
-        
+        // Trang Checkout hiển thị thông tin giỏ hàng, form nhập địa chỉ và chọn phương thức thanh toán
         [HttpGet]
         public async Task<IActionResult> Index()
-        {
+        {   // Kiểm tra xem khách đã đăng nhập chưa 
             var userIdString = User.FindFirstValue(ClaimTypes.NameIdentifier);
             if (string.IsNullOrEmpty(userIdString)) return RedirectToAction("Login", "Account");
             int userId = int.Parse(userIdString);
@@ -49,7 +49,7 @@ namespace WebNoiThatHoaHome.Controllers
         }
         // Hàm xử lý đặt hàng, tạo đơn và thanh toán
         [HttpPost]
-        public async Task<IActionResult> PlaceOrder(string CustomerName, string Phone, string City, string Ward, string AddressDetail, string OrderNote, string PaymentMethod, string ShippingMethod, int? AppliedVoucherId)
+        public async Task<IActionResult> PlaceOrder(string CustomerName, string Phone, string City, string Ward, string AddressDetail, string OrderNote, string PaymentMethod, string ShippingMethod, int? AppliedVoucherId, decimal? DirectDiscount)
         {
             var userIdString = User.FindFirstValue(ClaimTypes.NameIdentifier);
             if (string.IsNullOrEmpty(userIdString)) return RedirectToAction("Login", "Account");
@@ -88,7 +88,14 @@ namespace WebNoiThatHoaHome.Controllers
                         }
                     }
 
-                    decimal totalFinal = subTotal + shippingFee - discountAmount;
+                    // 4. Xử lý giảm giá trực tiếp của Admin (ManualDiscount)
+                    decimal adminManualDiscount = 0;
+                    if (User.IsInRole("Admin") && DirectDiscount.HasValue && DirectDiscount.Value > 0)
+                    {
+                        adminManualDiscount = DirectDiscount.Value;
+                    }
+                    // tính tổng tiền cuối cùng sau khi đã áp dụng voucher và giảm giá trực tiếp của admin
+                    decimal totalFinal = subTotal + shippingFee - discountAmount - adminManualDiscount;
 
                     // 3. Tạo đơn hàng chính
                     var newOrder = new Order
@@ -103,6 +110,7 @@ namespace WebNoiThatHoaHome.Controllers
                         PaymentStatus = "Pending",
                         OrderStatus = "New",
                         VoucherId = AppliedVoucherId,
+                        ManualDiscount = adminManualDiscount,
                         UpdatedAt = DateTime.Now
                     };
 

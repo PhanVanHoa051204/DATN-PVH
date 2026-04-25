@@ -61,7 +61,7 @@
                     <label class="form-label text-muted small">Địa chỉ chi tiết *</label>
                     <input type="text" class="form-control rounded-0" name="AddressDetail" placeholder="Số nhà, tên đường..." required>
                 </div>
-
+                
                 <h5 class="fw-bold mb-3 text-uppercase">Hình thức giao hàng</h5>
                 <div class="border p-3 rounded-0 bg-light mb-4">
                     <div class="form-check mb-2">
@@ -80,7 +80,17 @@
                         </label>
                     </div>
                 </div>
-
+                @* @if (User.IsInRole("Admin")) *@
+                @* { *@
+                @*     <h5 class="fw-bold mt-4 mb-3 text-primary text-uppercase">Chiết khấu trực tiếp (Admin)</h5> *@
+                @*     <div class="border border-primary p-3 rounded-0 bg-light mb-4"> *@
+                @*         <label class="form-label text-muted small">Nhập số tiền muốn giảm thẳng vào hóa đơn (VNĐ)</label> *@
+                @*         <div class="input-group"> *@
+                @*             <input type="number" id="DirectDiscount" name="DirectDiscount" class="form-control rounded-0 border-primary" placeholder="Ví dụ: 500000" min="0"> *@
+                @*             <button type="button" class="btn btn-primary rounded-0 px-3 fw-bold" onclick="apDungAdminDiscount()">ÁP DỤNG</button> *@
+                @*         </div> *@
+                @*     </div> *@
+                @* } *@
                 <h5 class="fw-bold mb-3 text-uppercase">Phương thức thanh toán</h5>
                 <div class="border p-3 rounded-0 mb-4">
                     <div class="form-check mb-2">
@@ -135,6 +145,11 @@
                             <span class="fw-bold" id="discountValue">- 0 đ</span>
                         </div>
 
+                        <div class="d-flex justify-content-between mb-2 text-primary d-none" id="adminDiscountRow">
+                            <span>Giảm giá Admin</span>
+                            <span class="fw-bold" id="adminDiscountValue">- 0 đ</span>
+                        </div>
+
                         <div class="d-flex justify-content-between mb-3">
                             <span class="text-muted">Vận chuyển</span>
                             <span class="fw-bold" id="displayShippingFee">0 đ</span>
@@ -162,7 +177,7 @@
 
 @section Scripts {
     <script>
-        // HÀM TÍNH TỔNG TIỀN (Sử dụng ID đồng bộ)
+        // HÀM TÍNH TỔNG TIỀN (Đã cập nhật thêm Admin Discount)
         function tinhTongCuoiCung() {
             // 1. Tiền hàng gốc từ Database
             var subTotal = parseFloat($('#subTotal').attr('data-value')) || 0;
@@ -170,20 +185,59 @@
             // 2. Tiền ship từ radio được chọn
             var shippingFee = parseFloat($('.shipping-method:checked').data('fee')) || 0;
 
-            // 3. Tiền giảm giá (nếu đang có dòng giảm giá)
+            // 3. Tiền giảm giá Voucher (nếu mở lại)
             var discount = 0;
             if (!$('#discountRow').hasClass('d-none')) {
                 var discountText = $('#discountValue').text().replace(/[^0-9]/g, '');
                 discount = parseFloat(discountText) || 0;
             }
 
-            // 4. Cập nhật giao diện
-            var finalTotal = subTotal + shippingFee - discount;
+            // 4. Tiền giảm giá Admin
+            var adminDiscountInput = $('#DirectDiscount');
+            var adminDiscount = 0;
+            if (adminDiscountInput.length > 0) {
+                adminDiscount = parseFloat(adminDiscountInput.val()) || 0;
+                var totalBeforeAdmin = subTotal + shippingFee - discount;
+
+                // Xử lý bảo mật & trải nghiệm UI
+                if (adminDiscount < 0) {
+                    adminDiscountInput.val('');
+                    adminDiscount = 0;
+                } else if (adminDiscount > totalBeforeAdmin) {
+                    adminDiscount = totalBeforeAdmin; // Ép về bằng tổng tiền
+                    adminDiscountInput.val(adminDiscount);
+                }
+
+                if (adminDiscount > 0) {
+                    $('#adminDiscountRow').removeClass('d-none');
+                    $('#adminDiscountValue').text('- ' + adminDiscount.toLocaleString('vi-VN') + ' đ');
+                } else {
+                    $('#adminDiscountRow').addClass('d-none');
+                }
+            }
+
+            // 5. Cập nhật giao diện
+            var finalTotal = subTotal + shippingFee - discount - adminDiscount;
             $('#displayShippingFee').text(shippingFee.toLocaleString('vi-VN') + ' đ');
             $('#displayTotal').text(finalTotal.toLocaleString('vi-VN') + ' đ');
         }
 
-        // HÀM ÁP MÃ
+        // Gọi hàm này khi Admin bấm nút ÁP DỤNG
+        function apDungAdminDiscount() {
+            var adminDiscount = parseFloat($('#DirectDiscount').val());
+            if (adminDiscount < 0) {
+                Swal.fire('Lỗi', 'Số tiền giảm không được âm!', 'error');
+            } else {
+                tinhTongCuoiCung();
+                Swal.fire({
+                    toast: true, position: 'top-end', icon: 'success',
+                    title: 'Đã cập nhật chiết khấu Admin!',
+                    showConfirmButton: false, timer: 1500
+                });
+            }
+        }
+
+        // HÀM ÁP MÃ VOUCHER (Giữ nguyên phòng khi ní cần dùng lại)
         function apDungMa() {
             var code = $('#voucherInput').val().trim();
             var subTotal = parseFloat($('#subTotal').attr('data-value')) || 0;
@@ -201,16 +255,13 @@
                     if (res.success) {
                         $('#discountRow').removeClass('d-none');
                         $('#discountValue').text('- ' + res.discountAmount.toLocaleString() + ' đ');
+                        tinhTongCuoiCung(); // Tính lại tổng
 
-                        tinhTongCuoiCung(); // Tính lại tổng sau khi có giảm giá
-
-                        // Gài ID vào form để gửi lên Server
                         if ($('#appliedVoucherId').length == 0) {
                             $('#checkoutForm').append('<input type="hidden" name="AppliedVoucherId" id="appliedVoucherId" value="' + res.voucherId + '">');
                         } else {
                             $('#appliedVoucherId').val(res.voucherId);
                         }
-
                         $('#voucherMessage').html('<span class="text-success fw-bold">✓ ' + res.message + '</span>');
                         Swal.fire('Thành công', res.message, 'success');
                     } else {
@@ -223,15 +274,15 @@
         }
 
         $(document).ready(function() {
-            // Khi đổi ship -> Tính lại tiền ngay
+            // Khi đổi ship -> Tính lại tiền ngay (kèm cả tiền Admin giảm)
             $('.shipping-method').on('change', function () {
                 tinhTongCuoiCung();
             });
 
-            // Tự động chạy lần đầu để hiện đúng số tiền từ Database
+            // Tự động chạy lần đầu để hiện đúng số tiền
             tinhTongCuoiCung();
 
-            // API Tỉnh thành
+            // API Tỉnh thành (Giữ nguyên của ní)
             $.ajax({
                 url: 'https://provinces.open-api.vn/api/?depth=2',
                 method: 'GET',

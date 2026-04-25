@@ -18,7 +18,7 @@ namespace WebNoiThatHoaHome.Controllers
         [HttpPost]
         public async Task<IActionResult> AddToCart(int productId, int quantity)
         {
-            // 1. Kiểm tra xem khách đã đăng nhập chưa bằng Identity
+            // Kiểm tra xem khách đã đăng nhập chưa bằng Identity
             var userIdString = User.FindFirstValue(ClaimTypes.NameIdentifier);
             if (string.IsNullOrEmpty(userIdString))
             {
@@ -26,20 +26,20 @@ namespace WebNoiThatHoaHome.Controllers
             }
             int userId = int.Parse(userIdString);
 
-            // 2. Đảm bảo số lượng gửi lên phải lớn hơn 0
+            // Đảm bảo số lượng gửi lên phải lớn hơn 0
             if (quantity <= 0)
             {
                 return Json(new { success = false, message = "Số lượng không hợp lệ!" });
             }
 
-            // 3. Kiểm tra sản phẩm có thật sự tồn tại trong DB không
+            // Kiểm tra sản phẩm có thật sự tồn tại trong DB không
             var product = await _context.Products.FindAsync(productId);
             if (product == null || product.IsDeleted == true || product.IsActive == false)
             {
                 return Json(new { success = false, message = "Sản phẩm không tồn tại hoặc đã ngừng kinh doanh." });
             }
 
-            // 4. Tìm Giỏ hàng của người dùng này. Nếu chưa có thì tạo mới.
+            // Tìm Giỏ hàng của người dùng này. Nếu chưa có thì tạo mới.
             var cart = await _context.Carts
                 .Include(c => c.CartItems) 
                 .FirstOrDefaultAsync(c => c.UserId == userId);
@@ -56,12 +56,12 @@ namespace WebNoiThatHoaHome.Controllers
                 await _context.SaveChangesAsync(); 
             }
 
-            // 5. Kiểm tra xem sản phẩm khách muốn mua đã có trong giỏ chưa
+            // Kiểm tra xem sản phẩm khách muốn mua đã có trong giỏ chưa
             var cartItem = cart.CartItems.FirstOrDefault(ci => ci.ProductId == productId);
 
             if (cartItem != null)
             {
-                // NẾU CÓ RỒI: Kiểm tra xem tổng số lượng mua có lố kho không?
+                //  Kiểm tra xem tổng số lượng mua có lố kho không nếu dã có trong giỏ
                 if (product.StockQuantity.HasValue && (cartItem.Quantity + quantity) > product.StockQuantity.Value)
                 {
                     return Json(new { success = false, message = $"Bạn đã có {cartItem.Quantity} sản phẩm này trong giỏ. Kho chỉ còn tổng {product.StockQuantity.Value} sản phẩm!" });
@@ -70,7 +70,7 @@ namespace WebNoiThatHoaHome.Controllers
             }
             else
             {
-                // NẾU CHƯA CÓ: Kiểm tra số lượng mua mới có lố kho không?
+                //  Kiểm tra số lượng mua mới có lố kho không nếu chưa có trong giỏ
                 if (product.StockQuantity.HasValue && quantity > product.StockQuantity.Value)
                 {
                     return Json(new { success = false, message = $"Kho hiện tại chỉ còn {product.StockQuantity.Value} sản phẩm!" });
@@ -84,13 +84,13 @@ namespace WebNoiThatHoaHome.Controllers
                 _context.CartItems.Add(newCartItem);
             }
 
-            // 6. Cập nhật lại thời gian giỏ hàng có biến động
+            // Cập nhật lại thời gian giỏ hàng có biến động
             cart.UpdatedAt = DateTime.Now;
             await _context.SaveChangesAsync();
             return Json(new { success = true });
         }
 
-        // 1. Hàm hiển thị trang Giỏ hàng
+        // Hàm hiển thị trang Giỏ hàng
         [HttpGet]
         public async Task<IActionResult> Index()
         {
@@ -130,7 +130,7 @@ namespace WebNoiThatHoaHome.Controllers
             return Json(new { success = true });
         }
 
-        // 3. Hàm Xóa sản phẩm khỏi giỏ
+        // Hàm Xóa sản phẩm khỏi giỏ
         [HttpPost]
         public async Task<IActionResult> RemoveItem(int cartItemId)
         {
